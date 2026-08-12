@@ -1,0 +1,38 @@
+{
+  "name": "sparkta",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local agent-powered rapid UI prototyping foundation",
+  "type": "module",
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "dev": "concurrently --kill-others --success first --names web,server --prefix-colors cyan,magenta npm:dev:web npm:dev:server",
+    "dev:web": "npm run dev --workspace @sparkta/web",
+    "dev:server": "npm run dev --workspace @sparkta/server",
+    "format:check": "prettier --check package.json tsconfig.base.json eslint.config.js prettier.config.js apps README.md docs",
+    "lint": "eslint apps",
+    "test": "npm run test --workspaces --if-present",
+    "test:focused": "vitest run",
+    "type-check": "npm run type-check --workspaces --if-present"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jsburckhardt/sparkta.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "concurrently": "^10.0.4",
+    "eslint": "^10.8.0",
+    "globals": "^17.9.0",
+    "prettier": "^3.9.6",
+    "typescript-eslint": "^8.66.1-alpha.4",
+    "vitest": "^4.1.10"
+  }
+}

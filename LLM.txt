@@ -1,34 +1,65 @@
-AGENTS.md                                                   — Agent definitions, roles, tools, guardrails
-CONTRIBUTING.md                                             — Human contribution guide
-LLM.txt                                                     — This file; repo map for AI agents
-README.md                                                   — Project overview
-.devcontainer/devcontainer.json                             — Dev container configuration
-.devcontainer/post-create.sh                                — One-time container setup for tmux config and GitHub CLI aliases
-.devcontainer/post-start.sh                                 — Per-start shared tmux session and dynamic environment setup
-.devcontainer/tmux-attach.sh                                — VS Code terminal attachment to the shared tmux socket
-.github/agents/aps-v1.2.2.agent.md                         — APS prompt generator agent
-.github/agents/bootstrap.agent.md                           — Bootstrap agent (new project scaffolding)
-.github/agents/excali.agent.md                              — Excalidraw diagram agent
-.github/agents/rpiv.agent.md                                — rpiv agent (full RPIV pipeline coordinator)
-.github/agents/onboard-repo.agent.md                        — Onboard-repo agent (introduce Soft Factory to existing repos)
-.github/agents/rpiv-verifier.agent.md                 — rpiv-verifier agent (test validation, commits, PR creation)
-.github/agents/rpiv-implementer.agent.md              — rpiv-implementer agent (code, tests, verification)
-.github/agents/rpiv-planner.agent.md                  — rpiv-planner agent (ADRs, core-components, action plans, task breakdown, test plans)
-.github/agents/rpiv-research.agent.md                 — rpiv-research agent (exploration, scope classification)
-.github/agents/issue-generator.agent.md               — Issue-generator agent (structured issue creation with acceptance criteria)
-.github/skills/README.md                              — APS Skill index
-.github/skills/agnostic-prompt-standard/SKILL.md      — APS reference framework Skill
-.github/PULL_REQUEST_TEMPLATE.md                      — PR template (acceptance criteria, verification checklist)
-docs/README.md                                              — Application documentation index
-project/README.md                                             — Project documentation index
-project/architecture/README.md                                 — Architecture documentation index
-project/architecture/ADR/ADR-260101-template.md                — ADR template (read-only, copy to create date-based artifacts)
-project/architecture/ADR/DECISION-LOG.md                       — Registry of all ADR and core-component decisions
-project/architecture/core-components/CORE-COMPONENT-260101-template.md — Core-component template (read-only, copy to create date-based artifacts)
-project/architecture/core-components/CORE-COMPONENT-260505-commit-standards.md — Commit standards (Conventional Commits, Co-authored-by)
-project/architecture/core-components/CORE-COMPONENT-260806-rpiv-stage-contract.md — RPIV stage ownership and handoff contract
-project/architecture/core-components/CORE-COMPONENT-260806-project-command-interface.md — Justfile command contract
-project/architecture/core-components/CORE-COMPONENT-260806-agent-executable-acceptance-criteria.md — Agent-executable issue criteria contract
-project/architecture/core-components/CORE-COMPONENT-260806-architecture-artifact-naming.md — Date-based architecture artifact naming contract
-project/architecture/core-components/README.md                 — Core-components index
-project/work-items/README.md                                   — Work-items index and canonical structure
+AGENTS.md — Agent definitions, Sparkta foundation boundaries, roles, tools, and guardrails
+CONTRIBUTING.md — Human contribution guide
+LLM.txt — This repository map for AI agents
+README.md — Sparkta identity, cold setup, root recipes, scope, and configuration
+PRD.md — Sparkta product requirements and future product direction
+justfile — Sole root operating-command interface
+package.json — Private npm workspace metadata and orchestration scripts
+package-lock.json — Locked root dependency graph for all workspaces
+tsconfig.base.json — Shared strict TypeScript defaults
+eslint.config.js — Shared application lint configuration
+prettier.config.js — Shared formatting configuration
+.devcontainer/devcontainer.json — Sparkta devcontainer with Node.js 24 and just features
+.devcontainer/devcontainer-lock.json — Locked devcontainer feature resolutions
+.devcontainer/post-create.sh — One-time tmux and GitHub CLI setup
+.devcontainer/post-start.sh — Shared Sparkta tmux session and dynamic environment setup
+.devcontainer/tmux-attach.sh — VS Code terminal attachment to the Sparkta tmux socket
+apps/web/package.json — React/Vite workspace manifest
+apps/web/src/App.tsx — Neutral Sparkta foundation view
+apps/web/src/foundation.ts — Exported web foundation identity
+apps/web/src/foundation.test.ts — Web foundation behavior test
+apps/server/package.json — Fastify workspace manifest
+apps/server/src/app.ts — Minimal Fastify boundary and safe error translation
+apps/server/src/main.ts — Structured server startup and shutdown
+apps/server/src/errors.ts — Typed application errors, normalization, and response translation
+apps/server/src/errors.test.ts — Error typing, cause, and redaction tests
+apps/server/src/logger.ts — Pino redaction and operational event fields
+apps/server/src/logger.test.ts — Structured event and sensitive-field redaction tests
+apps/server/src/foundation.ts — Exported server foundation identity
+apps/server/src/foundation.test.ts — Server foundation behavior test
+docs/README.md — Setup, operation, validation, configuration, state, and architecture guide
+.github/agents/prd-to-gh-issues.agent.md — PRD-to-GitHub backlog issue planning agent
+.github/agents/aps-v1.2.2.agent.md — APS prompt generator agent
+.github/agents/bootstrap.agent.md — New-project bootstrap agent
+.github/agents/excali.agent.md — Excalidraw diagram agent
+.github/agents/rpiv.agent.md — RPIV pipeline coordinator
+.github/agents/onboard-repo.agent.md — Existing-repository onboarding agent
+.github/agents/rpiv-research.agent.md — RPIV Research agent
+.github/agents/rpiv-planner.agent.md — RPIV Plan agent
+.github/agents/rpiv-implementer.agent.md — RPIV Implement agent
+.github/agents/rpiv-verifier.agent.md — RPIV Verify agent
+.github/agents/issue-generator.agent.md — Structured issue generator
+.github/skills/README.md — APS Skill index
+.github/skills/agnostic-prompt-standard/SKILL.md — APS reference framework Skill
+.github/PULL_REQUEST_TEMPLATE.md — Pull request template
+project/README.md — Project documentation index
+project/architecture/README.md — Sparkta architecture overview and scope boundaries
+project/architecture/ADR/ADR-260101-template.md — Read-only ADR template
+project/architecture/ADR/ADR-260812-foundation-stack.md — Accepted Sparkta foundation stack
+project/architecture/ADR/ADR-260812-filesystem-state-boundary.md — Accepted durable/runtime filesystem boundary
+project/architecture/ADR/DECISION-LOG.md — Registry for all ADRs, core-components, and decisions
+project/architecture/core-components/CORE-COMPONENT-260101-template.md — Read-only core-component template
+project/architecture/core-components/CORE-COMPONENT-260505-commit-standards.md — Conventional Commit and AI trailer contract
+project/architecture/core-components/CORE-COMPONENT-260806-rpiv-stage-contract.md — RPIV ownership and handoff contract
+project/architecture/core-components/CORE-COMPONENT-260806-project-command-interface.md — Root justfile command contract
+project/architecture/core-components/CORE-COMPONENT-260806-agent-executable-acceptance-criteria.md — Executable acceptance contract
+project/architecture/core-components/CORE-COMPONENT-260806-architecture-artifact-naming.md — Date-based architecture naming contract
+project/architecture/core-components/CORE-COMPONENT-260812-development-standards.md — Strict TypeScript, ESLint, Prettier, and Vitest contract
+project/architecture/core-components/CORE-COMPONENT-260812-error-handling.md — Typed and boundary-safe error contract
+project/architecture/core-components/CORE-COMPONENT-260812-observability.md — Structured Pino logging and redaction contract
+project/architecture/core-components/CORE-COMPONENT-260812-state-lifecycle.md — Durable and disposable state contract
+project/work-items/1-bootstrap-sparkta-and-coordinate-prototype-0/research/00-research.md — Issue 1 research evidence
+project/work-items/1-bootstrap-sparkta-and-coordinate-prototype-0/plan/01-action-plan.md — Issue 1 acceptance catalog and plan
+project/work-items/1-bootstrap-sparkta-and-coordinate-prototype-0/plan/02-task-breakdown.md — Issue 1 dependency-ordered tasks
+project/work-items/1-bootstrap-sparkta-and-coordinate-prototype-0/plan/03-test-plan.md — Issue 1 V-1 through V-9 validation plan
+project/work-items/1-bootstrap-sparkta-and-coordinate-prototype-0/implementation/00-implementation.md — Issue 1 implementation and acceptance evidence
