@@ -10,7 +10,7 @@
 - **Related Core-Components:** CORE-COMPONENT-260806-project-command-interface, CORE-COMPONENT-260806-rpiv-stage-contract
 
 ### Description
-Preserve the complete user-approved dirty baseline: Sparkta names in `.devcontainer/devcontainer.json`, `.devcontainer/post-start.sh`, and `.devcontainer/tmux-attach.sh`; deletion of `.github/agents/harness-cli-it.agent.md`; addition of `.github/agents/prd-to-gh-issues.agent.md`; and addition of `PRD.md`. Enable the official Node devcontainer feature at Node.js 24, update its lock record, keep the `just` feature, and keep the approved `sparkta` container and tmux names. Do not restore, rewrite, or omit pre-existing changes merely because they predate Implement.
+Preserve the complete user-approved dirty baseline: Sparkta names in `.devcontainer/devcontainer.json`, `.devcontainer/post-start.sh`, and `.devcontainer/tmux-attach.sh`; deletion of the obsolete repo-local harness bootstrap agent; addition of `.github/agents/prd-to-gh-issues.agent.md`; and addition of `PRD.md`. Enable the official Node devcontainer feature at Node.js 24, update its lock record, keep the `just` feature, and keep the approved `sparkta` container and tmux names. Do not restore, rewrite, or omit pre-existing changes merely because they predate Implement.
 
 ### Acceptance Criteria
 - AC-3: A rebuilt development environment provides Node.js 24, npm, and `just` for root commands.

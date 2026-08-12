@@ -39,7 +39,7 @@ Use the full branch diff from the merge base with `origin/main` after implementa
 
 ### Steps
 1. Confirm the diff retains Sparkta identity changes in `.devcontainer/devcontainer.json`, `.devcontainer/post-start.sh`, and `.devcontainer/tmux-attach.sh`.
-2. Confirm `.github/agents/harness-cli-it.agent.md` remains deleted.
+2. Confirm the obsolete repo-local harness bootstrap agent remains deleted.
 3. Confirm `.github/agents/prd-to-gh-issues.agent.md` and `PRD.md` are added without being discarded or replaced.
 4. Inspect application source and configuration for only minimal web/server bootstrap boundaries.
 5. Confirm there is no harness implementation, Soft Factory Runner installation, agent invocation, prompt-to-UI workflow, generated demo, generated-app lifecycle, control UI, or blessed starter under `templates/default`.

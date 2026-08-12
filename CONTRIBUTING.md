@@ -49,7 +49,6 @@ Each stage has clear inputs, outputs, and artifact locations. No stage may be sk
 - Creates logical, atomic commits following [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
 - Pushes to a feature branch (`<type>/<ISSUE_NUMBER>-<short-slug>`)
 - Opens a pull request with `Closes #<ISSUE_NUMBER>` in the body
-- Assigns the PR to Copilot for review
 
 ## Where Artifacts Belong
 
