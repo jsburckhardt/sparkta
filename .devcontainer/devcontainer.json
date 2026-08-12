@@ -1,5 +1,5 @@
 {
-    "name": "soft-factory",
+    "name": "sparkta",
     "build": {
         "dockerfile": "Dockerfile",
         "args": {
@@ -10,7 +10,7 @@
     },
     "runArgs": [
         "--name",
-        "soft-factory"
+        "sparkta"
     ],
     "features": {
         "ghcr.io/devcontainers/features/common-utils:2": {
@@ -20,9 +20,9 @@
         },
         "ghcr.io/devcontainers/features/docker-outside-of-docker": {},
         // "ghcr.io/devcontainers/features/python": {},
-        // "ghcr.io/devcontainers/features/node": {
-            // "version": "lts"
-        // },
+        "ghcr.io/devcontainers/features/node:1": {
+            "version": "24"
+        },
         // "ghcr.io/devcontainers/features/go:1": {
         //     "version": "latest"
         // },

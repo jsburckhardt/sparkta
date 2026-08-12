@@ -6,7 +6,8 @@ This file is the single registry of all architectural decisions and core-compone
 
 | ID | Title | Status | Date |
 |----|-------|--------|------|
-| _No ADRs yet. Copy `ADR-260101-template.md` and name it `ADR-yymmdd-short-slug.md`._ | | | |
+| ADR-260812-foundation-stack | Sparkta Foundation Stack | Accepted | 2026-08-12 |
+| ADR-260812-filesystem-state-boundary | Filesystem State Boundary | Accepted | 2026-08-12 |
 
 ## Core-Components
 
@@ -17,6 +18,10 @@ This file is the single registry of all architectural decisions and core-compone
 | CORE-COMPONENT-260806-project-command-interface | Project Command Interface | Adopted | 2026-08-06 |
 | CORE-COMPONENT-260806-agent-executable-acceptance-criteria | Agent-Executable Acceptance Criteria | Adopted | 2026-08-06 |
 | CORE-COMPONENT-260806-architecture-artifact-naming | Architecture Artifact Naming | Adopted | 2026-08-06 |
+| CORE-COMPONENT-260812-development-standards | TypeScript Development Standards | Adopted | 2026-08-12 |
+| CORE-COMPONENT-260812-error-handling | Application Error Handling | Adopted | 2026-08-12 |
+| CORE-COMPONENT-260812-observability | Structured Observability | Adopted | 2026-08-12 |
+| CORE-COMPONENT-260812-state-lifecycle | Durable and Runtime State Lifecycle | Adopted | 2026-08-12 |
 
 ## Decisions
 
@@ -49,3 +54,20 @@ Short, actionable statements derived from ADRs and core-components. More than on
 | 23 | Require Implement to update affected application documentation and Verify to inspect it | CORE-COMPONENT-260806-rpiv-stage-contract | 2026-08-06 |
 | 24 | Store RPIV artifacts under stable `project/work-items/<issue-number>-<short-description>/` paths | CORE-COMPONENT-260806-rpiv-stage-contract | 2026-08-07 |
 | 25 | Reuse an existing same-issue work-item directory before creating a new artifact path | CORE-COMPONENT-260806-rpiv-stage-contract | 2026-08-07 |
+| 26 | Use Node.js 24 LTS with strict TypeScript for Sparkta application code | ADR-260812-foundation-stack | 2026-08-12 |
+| 27 | Organize React/Vite web and Fastify server packages as npm workspaces | ADR-260812-foundation-stack | 2026-08-12 |
+| 28 | Use Vitest for unit and integration testing across npm workspaces | ADR-260812-foundation-stack | 2026-08-12 |
+| 29 | Store durable Sparkta application state on the filesystem under `.sparkta/apps` | ADR-260812-filesystem-state-boundary | 2026-08-12 |
+| 30 | Isolate disposable process, port, and session state under `.sparkta/runtime` | ADR-260812-filesystem-state-boundary | 2026-08-12 |
+| 31 | Enforce strict TypeScript, ESLint, and Prettier across application workspaces | CORE-COMPONENT-260812-development-standards | 2026-08-12 |
+| 32 | Prefer named exports and async/await in application source | CORE-COMPONENT-260812-development-standards | 2026-08-12 |
+| 33 | Require Vitest coverage for exported behavior and defect regressions | CORE-COMPONENT-260812-development-standards | 2026-08-12 |
+| 34 | Represent expected application failures with stable typed error codes | CORE-COMPONENT-260812-error-handling | 2026-08-12 |
+| 35 | Translate errors once at boundaries and redact internal details from clients | CORE-COMPONENT-260812-error-handling | 2026-08-12 |
+| 36 | Preserve error causes and never silently swallow unexpected failures | CORE-COMPONENT-260812-error-handling | 2026-08-12 |
+| 37 | Emit structured Pino records for server boundaries and lifecycle operations | CORE-COMPONENT-260812-observability | 2026-08-12 |
+| 38 | Include operation, outcome, and correlation context in operational events | CORE-COMPONENT-260812-observability | 2026-08-12 |
+| 39 | Redact secrets, prompts, generated source, and personal data from logs | CORE-COMPONENT-260812-observability | 2026-08-12 |
+| 40 | Treat `.sparkta/apps` content as authoritative across runtime restarts | CORE-COMPONENT-260812-state-lifecycle | 2026-08-12 |
+| 41 | Keep PIDs, ports, process handles, and agent sessions in disposable state | CORE-COMPONENT-260812-state-lifecycle | 2026-08-12 |
+| 42 | Reconstruct runtime state from durable application files after runtime loss | CORE-COMPONENT-260812-state-lifecycle | 2026-08-12 |

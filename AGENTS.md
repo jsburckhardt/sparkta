@@ -34,6 +34,29 @@ You MUST mark a PR review comment as resolved via the GitHub API after fixing th
 </instructions>
 
 <constants>
+SPARKTA_FOUNDATION: YAML<<
+product: Sparkta is a local, agent-powered rapid UI-prototyping environment.
+runtime: Node.js 24 with strict TypeScript and npm workspaces.
+application_boundaries:
+  - apps/web is the minimal React and Vite foundation.
+  - apps/server is the minimal Fastify foundation.
+state_boundaries:
+  - .sparkta/apps is durable and authoritative.
+  - .sparkta/runtime is disposable and reconstructable.
+architecture:
+  - project/architecture/ADR/ADR-260812-foundation-stack.md
+  - project/architecture/ADR/ADR-260812-filesystem-state-boundary.md
+  - project/architecture/core-components/CORE-COMPONENT-260812-development-standards.md
+  - project/architecture/core-components/CORE-COMPONENT-260812-error-handling.md
+  - project/architecture/core-components/CORE-COMPONENT-260812-observability.md
+  - project/architecture/core-components/CORE-COMPONENT-260812-state-lifecycle.md
+issue_1_exclusions:
+  - harness adoption
+  - Soft Factory Runner installation
+  - agent invocation and Prototype 0 behavior
+  - Sparkta control UI and generated-app lifecycle
+  - blessed generated-app starter
+>>
 APS_BADGE: "[![APS version](https://img.shields.io/badge/APS-v1.2.2-blue?logo=github)](https://github.com/chris-buckley/agnostic-prompt-standard/releases/tag/v1.2.2)"
 PIPELINE_STAGES: YAML<<
 - id: research
@@ -321,6 +344,28 @@ rpiv-verifier:
     - must not modify application source code, tests, or application documentation
     - must verify the branch is clean after all commits
     - must write summary.md to project/work-items/<ISSUE_NUMBER>-<SHORT_DESCRIPTION>/verify/ after PR creation
+prd-to-gh-issues:
+  file: .github/agents/prd-to-gh-issues.agent.md
+  purpose: Convert PRD artifacts into a user-reviewed hierarchy of linked GitHub backlog issues without prescribing unprovided implementation details.
+  tools:
+    - codebase and PRD exploration
+    - GitHub CLI (gh)
+    - user review and confirmation
+  read_paths:
+    - PRD.md
+    - README.md
+    - AGENTS.md
+    - LLM.txt
+    - existing GitHub issues
+  write_paths:
+    - GitHub labels and issues after explicit user approval
+  templates: []
+  guardrails:
+    - must discover existing issues before proposing backlog additions
+    - must present the complete hierarchy for user review before creating issues
+    - must preserve agent-executable acceptance markers
+    - must not create issues without explicit user approval
+
 issue-generator:
   file: .github/agents/issue-generator.agent.md
   purpose: Analyze codebase history for issue-quality gaps, draft a problem-focused GitHub issue with structured agent-executable acceptance criteria, dispatch a rubber-duck subagent to critique it, then create the issue via gh. Runs before the RPIV pipeline to produce feasible work without preempting RPIV Research or Plan.

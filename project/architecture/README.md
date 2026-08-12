@@ -1,25 +1,18 @@
 # Architecture
 
-This directory contains all architectural documentation for the project.
+This directory contains global architectural documentation for Sparkta.
 
 ## Structure
 
 | Directory | Purpose |
-|-----------|---------|
-| `ADR/` | ADR template, active ADRs, and the decision log (`DECISION-LOG.md`). |
-| `core-components/` | Core-component template and active core-component definitions |
+|---|---|
+| `ADR/` | Read-only ADR template, accepted ADRs, and `DECISION-LOG.md` |
+| `core-components/` | Read-only template and adopted cross-cutting behavioral contracts |
 
-## Key Concepts
+ADRs capture significant global decisions. Core-components define reusable global contracts. Every artifact is registered in [`ADR/DECISION-LOG.md`](ADR/DECISION-LOG.md). Templates are read-only references: copy them in place, use the UTC creation date in the new basename, and keep that date stable.
 
-### ADRs (Architecture Decision Records)
-ADRs capture significant architectural decisions. They are **global** — not scoped to any single issue. Every ADR must be recorded in `ADR/DECISION-LOG.md`.
+## Sparkta foundation
 
-### Core-Components
-Core-components define reusable, cross-cutting behavioral contracts. They are **global** and shared across all issues. Every core-component must be recorded in `ADR/DECISION-LOG.md`.
+The bootstrap adopts [Node.js 24, strict TypeScript, npm workspaces, React/Vite, Fastify, Vitest, ESLint, and Prettier](ADR/ADR-260812-foundation-stack.md). It separates [durable `.sparkta/apps/` files from disposable `.sparkta/runtime/` coordination](ADR/ADR-260812-filesystem-state-boundary.md). Implementation follows the adopted contracts for [development standards](core-components/CORE-COMPONENT-260812-development-standards.md), [typed boundary-safe errors](core-components/CORE-COMPONENT-260812-error-handling.md), [structured redacted observability](core-components/CORE-COMPONENT-260812-observability.md), and [state lifecycle](core-components/CORE-COMPONENT-260812-state-lifecycle.md).
 
-### Templates
-Templates are read-only references — copy and rename them, don't edit them directly:
-- `ADR/ADR-260101-template.md` — copy within `ADR/` and name the artifact `ADR-yymmdd-short-slug.md`
-- `core-components/CORE-COMPONENT-260101-template.md` — copy within `core-components/` and name the artifact `CORE-COMPONENT-yymmdd-short-slug.md`
-
-Use the UTC creation date for `yymmdd`. The full date-and-slug basename is the artifact ID, and the date remains unchanged after later edits.
+These records establish boundaries only. Harness adoption, the Soft Factory Runner, agent integration, Prototype 0, product APIs, generated-app lifecycle, and the blessed generated-app starter remain future issue scope. The implementation introduces no architecture deviation.
