@@ -1,0 +1,277 @@
+.agents/skills/builder/references/00-routing.md
+  s_be9e3cf69ff340::t_9ddffa249d0297 1-324
+.agents/skills/builder/references/stages/80-ship.md
+  s_be9e3cf69ff340::t_9ddffa249d0297 1-287
+.agents/skills/validate-v2/references/contract-and-forward-compatibility.md
+  s_be9e3cf69ff340::t_9ddffa249d0297 1-80
+.agents/skills/builder/references/stages/25-workshop.md
+  s_be9e3cf69ff340::t_9ddffa249d0297 1-678
+.agents/skills/builder/references/stages/35-adr.md
+  s_be9e3cf69ff340::t_9ddffa249d0297 1-486
+project/work-items/2-adopt-the-ai-substrate-engineering-harness/plan/01-action-plan.md
+  s_7d423fcf42576b::t_5dfe16aeb55ed0 29-36
+  s_d9f2fe44d7e0ea::t_1f568f16376b77 4,9,13
+  s_d9f2fe44d7e0ea::t_827fd7043b5846 1-3,5-8,10-12,15-28,37-41,44-46,50-52,55-57
+  s_7d423fcf42576b::t_47dead2fa3d923 14,42-43,47-49,53-54,58-59
+apps/server/src/app.ts
+  s_be9e3cf69ff340::t_380c9032982622 21-25
+.harness/extensions/boot/instructions.md
+  s_be9e3cf69ff340::t_e4aa24bbcb1bc4 1,3,5-7,9,11,13,15-23,26-28
+  s_be9e3cf69ff340::t_3c0dc312cbab38 2,4,8,10,12,14,24-25
+CONTRIBUTING.md
+  s_be9e3cf69ff340::t_6e554ffd81feb9 13-18,55
+.harness/engineering-harness.md
+  s_326109717f30d0::t_e759add988eafd 1-2,4,7,10,13,19-21,29-30,33,36,43-44,57,60,69-70,74,80-82,88
+  s_be9e3cf69ff340::t_fd17ea85bb65c0 3,5-6,8-9,11-12,14-18,22-28,31-32,34-35,37-42,45-56,58-59,61-68,71-73,75-79,83-87,89-90
+.harness/reports/harnessability/001-sparkta/report.md
+  s_326109717f30d0::t_cb597a8fa5996c 1-220
+.agents/skills/plan-0-v2-constitution/SKILL.md
+  s_be9e3cf69ff340::t_9ddffa249d0297 1-470
+.agents/skills/builder/references/stages/75-post-flight.md
+  s_be9e3cf69ff340::t_9ddffa249d0297 1-101
+.agents/skills/builder/references/flight-plan-ops.md
+  s_be9e3cf69ff340::t_9ddffa249d0297 1-128
+.agents/skills/plan-v2-extract-domain/SKILL.md
+  s_be9e3cf69ff340::t_9ddffa249d0297 1-410
+.harness/extensions/boot/extension.ts
+  s_be9e3cf69ff340::t_3c0dc312cbab38 12,621,624,643-645
+  s_be9e3cf69ff340::t_fb5062ef2a1234 1-11,13-620,622-623,625-642
+.agents/skills/validate-v2/SKILL.md
+  s_be9e3cf69ff340::t_9ddffa249d0297 1-209
+.agents/skills/builder/references/coach.md
+  s_be9e3cf69ff340::t_9ddffa249d0297 1-376
+.harness/reports/harnessability/001-sparkta/summary.md
+  s_326109717f30d0::t_cb597a8fa5996c 1-27
+.agents/skills/builder/references/flight-plan.example.md
+  s_be9e3cf69ff340::t_9ddffa249d0297 1-126
+.harness/extensions/checks/instructions.md
+  s_be9e3cf69ff340::t_8dcc78af07eadc 1-2,4,6,8,10,12-14
+  s_be9e3cf69ff340::t_57bf8d1b5d438e 3,5,7,9,11,15-17
+README.md
+  s_be9e3cf69ff340::t_e641053f20cda3 5,7,9,13-17,19,21-35,49-65,67,69,71,73,76-77,79,81
+docs/README.md
+  s_be9e3cf69ff340::t_e641053f20cda3 5,7,9-43,47-74,78-100,105-106,108,114-116,123-125
+.harness/flows/adopt.json
+  s_be9e3cf69ff340::t_86d7e189c2864e 6-8,211-220
+  s_be9e3cf69ff340::t_9710b2dbf4208c 222-233,320-328
+  s_326109717f30d0::t_8604d9bf348771 33-65,252,255-263,265-266
+  s_326109717f30d0::t_e97289684f7b4e 99-131,272,275-280,287-289,292
+  s_326109717f30d0::t_d8559127e2fc31 132-163,188,357,362-366,373-376,378
+  s_326109717f30d0::t_ed18228f28db39 66-98,336,341-351
+  s_be9e3cf69ff340::t_81bcf074f71dfe 201-210,221,298,311-312
+  s_326109717f30d0::t_b8d77fe4d5539e 1-5,12-32,245-251,253-254,264,267-271,273-274,290,293-297,299-301,313-317,319,331-335,337-340,352-356,358-361,379-382
+  s_be9e3cf69ff340::t_b3818c5ed91a64 9-11,164-187,189-200,281-286,291,302-310,367-372,377
+  s_be9e3cf69ff340::t_0bc15ca89c64a1 234-244,318,329-330
+.agents/skills/builder/references/getting-started.md
+  s_be9e3cf69ff340::t_9ddffa249d0297 1-276
+.agents/skills/builder/references/flight-plan.example.json
+  s_be9e3cf69ff340::t_9ddffa249d0297 1-113
+.harness/reports/harnessability/001-sparkta/evidence.jsonl
+  s_326109717f30d0::t_cb597a8fa5996c 1-6
+.agents/skills/builder/references/stages/62-progress.md
+  s_be9e3cf69ff340::t_9ddffa249d0297 1-110
+apps/server/src/app.test.ts
+  s_be9e3cf69ff340::t_380c9032982622 12-34
+.harness/reports/harnessability/latest.md
+  s_326109717f30d0::t_f7484cb91b87ee 1-220
+LLM.txt
+  s_be9e3cf69ff340::t_23ca4a6559a887 1-2,4,6-8,17-28,34-35,43-48,55,59,73-75
+project/architecture/ADR/DECISION-LOG.md
+  s_7d423fcf42576b::t_d430c319fd7878 31-79
+  s_d9f2fe44d7e0ea::t_1f568f16376b77 7-9,14-25
+.agents/skills/builder/references/stages/50-phase-tasks.md
+  s_be9e3cf69ff340::t_9ddffa249d0297 1-415
+.agents/skills/validate-v2/references/artifact-checks.md
+  s_be9e3cf69ff340::t_9ddffa249d0297 1-53
+.harness/extensions/checks/extension.ts
+  s_be9e3cf69ff340::t_71819c4a5ba3ed 47,60,66
+  s_be9e3cf69ff340::t_57bf8d1b5d438e 1,3-37,39-40,42-46,48-59,61-65
+  s_be9e3cf69ff340::t_8dcc78af07eadc 2,38,41,67-70
+.agents/skills/builder/references/stages/60-implement.md
+  s_be9e3cf69ff340::t_9ddffa249d0297 1-236
+.harness/reports/harnessability/001-sparkta/report.json
+  s_326109717f30d0::t_cb597a8fa5996c 1-925
+project/work-items/2-adopt-the-ai-substrate-engineering-harness/plan/02-task-breakdown.md
+  s_be9e3cf69ff340::t_773a1955900694 66
+  s_be9e3cf69ff340::t_fd56ac5efc7e2b 5
+  s_d9f2fe44d7e0ea::t_8e8aea0979fbe3 1-2,4,7,9,11-12,15-16,18-20,25-26,32-34,36-37,39-42,45-46,48-51,56-57,63-65,67-73,75-77,79-82,84-88,90-96,98-104,106-108,110-113,115-119,121-127,129-135,137-139,141-144,146-150,152-158,160-166,168-170,172-179,181-185,187-193,195-201,204-205,207-211,213-217,219-225,227-233,236-237,239-246,248-252,254-257
+  s_be9e3cf69ff340::t_91ebf1032ec6a3 97
+  s_be9e3cf69ff340::t_fb8f87a26cdffe 194
+  s_be9e3cf69ff340::t_b0c9322ad8c2a4 159
+  s_be9e3cf69ff340::t_a97f46de4eda62 35
+  s_be9e3cf69ff340::t_ae99754672a9fb 128
+  s_7d423fcf42576b::t_e85f80610a04eb 3,6,8,10,14,22-24,28-31,38,44,53-55,59-62,203,235
+  s_d9f2fe44d7e0ea::t_1f568f16376b77 13,17,21,27,43,47,52,58,74,78,83,89,105,109,114,120,136,140,145,151,167,171,180,186,202,206,212,218,234,238,247,253
+  s_be9e3cf69ff340::t_6f1d09ff291fd1 226
+project/work-items/2-adopt-the-ai-substrate-engineering-harness/plan/03-test-plan.md
+  s_d9f2fe44d7e0ea::t_1f568f16376b77 11,15,22,26,40,44,52,56,68,72,81,85,98,102,110,114,126,130,139,143,155,159,167,171,183,187,195,199,211,215,224,228,241,245,254,258,270,274,281,285,298,302,312,316
+  s_d9f2fe44d7e0ea::t_0fade5f40664f8 1-2,4,6,8-10,13-14,20-21,24-25,31-39,41-43,45-51,53-55,57-63,65-67,70-71,79-80,83-84,89-97,99-101,103-109,111-113,115-125,127-129,131-138,140-142,144-154,156-158,160-166,168-170,172-182,184-186,188-194,196-198,200-210,212-214,216-219,221-223,226-227,229-240,242-244,246-253,255-257,259-265,267-269,271-273,275-280,282-284,286-297,299-301,303-311,314-315,317-319
+  s_7d423fcf42576b::t_eda518f942009a 3,5,7,12,16-19,23,27-30,64,69,73-78,82,86-88,220,225,266,313
+.harness/reports/harnessability/schema.json
+  s_326109717f30d0::t_f7484cb91b87ee 1-679
+.agents/skills/validate-v2/references/examples.md
+  s_be9e3cf69ff340::t_9ddffa249d0297 1-41
+.agents/skills/builder/references/stages/20-plan.md
+  s_be9e3cf69ff340::t_9ddffa249d0297 1-679
+.agents/skills/builder/references/stages/80-merge.md
+  s_be9e3cf69ff340::t_9ddffa249d0297 1-1032
+.harness/reports/harnessability/latest.json
+  s_326109717f30d0::t_f7484cb91b87ee 1-925
+.agents/skills/builder/references/stages/70-review.md
+  s_be9e3cf69ff340::t_9ddffa249d0297 1-461
+project/work-items/2-adopt-the-ai-substrate-engineering-harness/implementation/00-implementation.md
+  s_be9e3cf69ff340::t_9599ca54e7586d 112
+  s_be9e3cf69ff340::t_97fa3a2ca1eb73 1-111,113-134
+.harness/records/harness-change/2026-08-13/001-adopt-sparkta-engineering-harness.md
+  s_be9e3cf69ff340::t_8086791aba37f5 10-12,15,17-18
+  s_be9e3cf69ff340::t_1a547dc9512f66 1-9,13-14,16
+.agents/skills/builder/references/stages/10-explore.md
+  s_be9e3cf69ff340::t_9ddffa249d0297 1-210
+.agents/skills/builder/SKILL.md
+  s_be9e3cf69ff340::t_9ddffa249d0297 1-120
+.agents/skills/validate-v2/references/record-template.md
+  s_be9e3cf69ff340::t_9ddffa249d0297 1-43
+AGENTS.md
+  s_be9e3cf69ff340::t_fd7e1957c6d9b1 497-518
+  s_be9e3cf69ff340::t_723ccf3d409d1a 5-7,39-50,68
+.agents/skills/builder/references/flight-plan.schema.json
+  s_be9e3cf69ff340::t_9ddffa249d0297 1-25
+.agents/skills/eng-harness-in-a-box/SKILL.md
+  s_be9e3cf69ff340::t_9ddffa249d0297 1-69
+.harness/flows/adopt.md
+  s_326109717f30d0::t_b8d77fe4d5539e 1-3,5,7-9,14-16,19-26,28-29,32-34
+  s_be9e3cf69ff340::t_b3818c5ed91a64 11,43,45-46,50,56
+  s_326109717f30d0::t_ed18228f28db39 17,44,51-52
+  s_be9e3cf69ff340::t_81bcf074f71dfe 12
+  s_be9e3cf69ff340::t_9710b2dbf4208c 13,47-49
+  s_326109717f30d0::t_e97289684f7b4e 40-42
+  s_326109717f30d0::t_8604d9bf348771 10,27,35-39
+  s_326109717f30d0::t_d8559127e2fc31 18,30,53-55
+  s_be9e3cf69ff340::t_86d7e189c2864e 31
+  s_be9e3cf69ff340::t_0bc15ca89c64a1 4,6
+project/work-items/2-adopt-the-ai-substrate-engineering-harness/research/00-research.md
+  s_563d5c7d8fb8b6::t_7bbcfdf7338002 1-79
+.agents/skills/builder/references/harness-seams.md
+  s_be9e3cf69ff340::t_9ddffa249d0297 1-219
+project/architecture/core-components/CORE-COMPONENT-260813-engineering-harness-operation.md
+  s_d9f2fe44d7e0ea::t_1f568f16376b77 18,31,40
+  s_7d423fcf42576b::t_3f6368eea80996 13,19-21,27,32-33,37,41-42,44,48,53,58-61,72,76
+  s_d9f2fe44d7e0ea::t_8c8ac9d8422806 28,35,62,73-74,80-81
+  s_d9f2fe44d7e0ea::t_4a80c4fe45e58e 1-12,14-17,22-26,29-30,34,36,38-39,43,45-47,49-52,54-57,63-71,75,77-79,82-92
+.agents/skills/builder/references/flight-plan.template.json
+  s_be9e3cf69ff340::t_9ddffa249d0297 1-122
+.harness/temp/.gitignore
+  s_be9e3cf69ff340::t_2e13dfbcbf74af 1-2
+.agents/skills/the-flow/SKILL.md
+  s_be9e3cf69ff340::t_9ddffa249d0297 1-11
+.agents/skills/eng-harness-0-harnessability-assessment/AUTHORING.md
+  s_be9e3cf69ff340::t_54a2d7978b627e 1-106
+.agents/skills/eng-harness-0-harnessability-assessment/README.md
+  s_be9e3cf69ff340::t_951ed4477c7d6e 1-63
+.agents/skills/eng-harness-0-harnessability-assessment/SKILL.md
+  s_be9e3cf69ff340::t_31411016226275 1-1102
+.agents/skills/eng-harness-0-harnessability-assessment/templates/assessment-latest.json
+  s_be9e3cf69ff340::t_87dd52065e86e5 1-239
+.agents/skills/eng-harness-0-harnessability-assessment/templates/assessment-latest.md
+  s_be9e3cf69ff340::t_c07f0bb5aa6570 1-244
+.agents/skills/eng-harness-0-harnessability-assessment/templates/assessment-report.md
+  s_be9e3cf69ff340::t_1e00bee678c80d 1-185
+.agents/skills/eng-harness-0-harnessability-assessment/templates/assessment-report.schema.json
+  s_be9e3cf69ff340::t_e036fec8efeed5 1-679
+.agents/skills/eng-harness-0-harnessability-assessment/templates/canonical-boundary.txt
+  s_be9e3cf69ff340::t_d7fc85d8daf8cf 1-2
+.agents/skills/eng-harness-0-harnessability-assessment/templates/codebase-affordance-record.json
+  s_be9e3cf69ff340::t_01e2ec1197086f 1-21
+.agents/skills/eng-harness-0-harnessability-assessment/templates/evidence-log.jsonl
+  s_be9e3cf69ff340::t_d54f718ba60bb0 1-2
+.agents/skills/eng-harness-0-harnessability-assessment/templates/summary.md
+  s_be9e3cf69ff340::t_f0d20a2089eb81 1-27
+.agents/skills/eng-harness-flow/SKILL.md
+  s_be9e3cf69ff340::t_af58010f40b8a6 1-161
+.agents/skills/eng-harness-flow/references/00-routing.md
+  s_be9e3cf69ff340::t_c3f2ec014fa0f7 1-422
+.agents/skills/eng-harness-flow/references/coach.md
+  s_be9e3cf69ff340::t_f69d4a52fe391b 1-136
+.agents/skills/eng-harness-flow/references/flight-plan-ops.md
+  s_be9e3cf69ff340::t_5c54737969936f 1-205
+.agents/skills/eng-harness-flow/references/getting-started.md
+  s_be9e3cf69ff340::t_ad6e852de56f70 1-307
+.agents/skills/eng-harness-flow/references/governance-doc.md
+  s_be9e3cf69ff340::t_7e63a82b07765b 1-71
+.agents/skills/eng-harness-flow/references/maturity-assessment.md
+  s_be9e3cf69ff340::t_6be2a59510e2a7 1-44
+.agents/skills/eng-harness-flow/references/retro.schema.json
+  s_be9e3cf69ff340::t_294d92bc4c8e57 1-141
+.agents/skills/eng-harness-flow/references/stages/add-extension.md
+  s_be9e3cf69ff340::t_adf77bcbbdae28 1-95
+.agents/skills/eng-harness-flow/references/stages/adopt.md
+  s_be9e3cf69ff340::t_86c9d949b604d0 1-268
+.agents/skills/eng-harness-flow/references/stages/backpressure.md
+  s_be9e3cf69ff340::t_45f3b011200450 1-273
+.agents/skills/eng-harness-flow/references/stages/boot.md
+  s_be9e3cf69ff340::t_9a7476d1222cc5 1-169
+.agents/skills/eng-harness-flow/references/stages/retro.md
+  s_be9e3cf69ff340::t_28c78c59d86f46 1-543
+.agents/skills/grill-agent-done/SKILL.md
+  s_be9e3cf69ff340::t_29a4cc48916650 1-70
+.github/agents/rpiv-implementer.agent.md
+  s_be9e3cf69ff340::t_02b38fe1ee26e5 34-36
+.github/agents/rpiv.agent.md
+  s_be9e3cf69ff340::t_e40af0203323fd 38-42
+.github/skills/README.md
+  s_be9e3cf69ff340::t_d30eb0577fe171 1,3,5-25
+.harness/skills.lock.json
+  s_be9e3cf69ff340::t_c0ec24bca7be04 1-12
+project/architecture/README.md
+  s_be9e3cf69ff340::t_67dd88b327a3a3 8,18-26
+justfile
+  s_be9e3cf69ff340::t_4ca308afa3a712 3-5,8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "20ad230a7db46f1923acb0fcc385338b969db6c0",
+  "prompts": {},
+  "sessions": {
+    "s_326109717f30d0": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "3749c621-cd75-42d9-998d-2729b2e1bbfe",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "jsburckhardt <jsburckhardt@gmail.com>"
+    },
+    "s_563d5c7d8fb8b6": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "call_moxdW0hSRbFtu36Ti56NNEzR",
+        "model": "unknown"
+      },
+      "human_author": "jsburckhardt <jsburckhardt@gmail.com>"
+    },
+    "s_7d423fcf42576b": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "call_0XW6RHSov9o9FTUTKBhthcWe",
+        "model": "unknown"
+      },
+      "human_author": "jsburckhardt <jsburckhardt@gmail.com>"
+    },
+    "s_be9e3cf69ff340": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "call_fPpKOHCchHvYHRW5FsPiNugt",
+        "model": "unknown"
+      },
+      "human_author": "jsburckhardt <jsburckhardt@gmail.com>"
+    },
+    "s_d9f2fe44d7e0ea": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "call_dfVGGZNXGuwKAKdep1S5c4LV",
+        "model": "unknown"
+      },
+      "human_author": "jsburckhardt <jsburckhardt@gmail.com>"
+    }
+  }
+}
