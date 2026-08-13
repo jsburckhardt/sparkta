@@ -1,0 +1,21 @@
+.harness/reports/harnessability/002-sparkta/summary.md
+  s_09258c54023a2d::t_97c96e9460e010 3
+project/work-items/2-adopt-the-ai-substrate-engineering-harness/implementation/00-implementation.md
+  s_09258c54023a2d::t_b5cf0c75941f05 65-73
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "17ce602e0414e14011d1addd8e9619670e9d2f3a",
+  "prompts": {},
+  "sessions": {
+    "s_09258c54023a2d": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "call_bXLme0huNYuLqc7eK3vJMd1D",
+        "model": "unknown"
+      },
+      "human_author": "jsburckhardt <jsburckhardt@gmail.com>"
+    }
+  }
+}
