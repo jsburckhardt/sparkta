@@ -62,6 +62,15 @@ This repair is a new descendant of rejected implementation SHA `20ad230a7db46f19
 - **AC-6 current runtime:** `harness boot --json` succeeded with ownership `9e1aad57-73f5-437e-a8bd-e93749c4599f` / PID and group `349287`, both readiness probes passed, and composed full checks delegated to successful `just verify`. `harness readiness --json` and independent HTTP probes passed. Stop revalidated every ownership field, sent only `SIGTERM`, released ports 3000/5173, removed ownership, and repeated stop succeeded.
 - **AC-6 validation:** final `just verify-focused` passed 13 tests across six files and diff integrity. Final `just verify` passed 13 tests, ESLint, Prettier, strict TypeScript checks, both builds, and merge-base diff integrity. `harness checks full --json` also delegated to `just verify` and passed.
 
+## Verify-return whitespace repair — 2026-08-13
+
+This repair descends from Verify-rejected SHA `bdfb928ad0299cb2337fe9a58a3b4c133e63c18a` and changes only the reported trailing whitespace plus this implementation evidence.
+
+- **AC-2 / AC-5:** Removed the two trailing spaces from `.harness/reports/harnessability/002-sparkta/summary.md` line 3 without changing the exact three-skill allowlist or any assessment wording.
+- **AC-6:** `just verify-focused` passed all 13 tests and diff integrity; `just verify` passed all 13 tests, lint, formatting, strict type checks, both builds, allowlist enforcement, and merge-base diff integrity.
+- **Mirror integrity:** `002-sparkta/report.md` remains byte-identical to root `latest.md`, and `report.json` remains byte-identical to root `latest.json`; no coupled mirror edit was required. The repaired summary SHA-256 is `0b08105485df30a0084e5638aa092170d0268d79afa2832f2ca2841cdafc9163`.
+- **Documentation impact:** No setup, API, configuration, usage, migration, architecture, deployment, or runtime behavior changed. The assessment summary formatting repair and this evidence addendum are the only documentation changes.
+
 ## Completed tasks
 
 | Task | Status | Implementation and evidence |

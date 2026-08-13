@@ -1,6 +1,6 @@
 # Harnessability — sparkta · B
 
-**Operate-Today** A (88.9%) · **Adaptability** B (79.2%) · Readiness H4 · Confidence high  
+**Operate-Today** A (88.9%) · **Adaptability** B (79.2%) · Readiness H4 · Confidence high
 Proof ceiling: L4 today → target L5
 
 **Committed engineering-harness skills:** `eng-harness-flow`, `eng-harness-0-harnessability-assessment`, and `grill-agent-done` (exact allowlist).
