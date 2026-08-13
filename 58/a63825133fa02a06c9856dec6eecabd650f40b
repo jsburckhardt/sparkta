@@ -1,0 +1,19 @@
+project/work-items/2-adopt-the-ai-substrate-engineering-harness/verify/summary.md
+  s_cd3676cb72aa36::t_745de2d84b3c85 6,15-20,26-39,43,47-49
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "58a63825133fa02a06c9856dec6eecabd650f40b",
+  "prompts": {},
+  "sessions": {
+    "s_cd3676cb72aa36": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "call_bk2PpmrRh86tLJ9wGqD1p38X",
+        "model": "unknown"
+      },
+      "human_author": "jsburckhardt <jsburckhardt@gmail.com>"
+    }
+  }
+}
