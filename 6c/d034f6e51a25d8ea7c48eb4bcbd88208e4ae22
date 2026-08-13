@@ -1,0 +1,123 @@
+.github/agents/rpiv-verifier.agent.md
+  s_0954ad42fb80e8::t_8bff15cc6e966e 50-51
+.gitignore
+  s_0954ad42fb80e8::t_051e03466f01df 7-11
+project/architecture/core-components/CORE-COMPONENT-260813-soft-factory-runner-operation.md
+  s_bdcdb823eac388::t_651613bcaaaf25 1-81
+.harness/engineering-harness.md
+  s_0954ad42fb80e8::t_a68ad284eaf475 94
+  s_0954ad42fb80e8::t_ac8ef1ffbd0dcc 5-9
+project/work-items/3-install-and-configure-soft-factory-runner/plan/02-task-breakdown.md
+  s_0954ad42fb80e8::t_579589b48b87b5 60
+  s_0954ad42fb80e8::t_79aa379ca64d6b 5
+  s_0954ad42fb80e8::t_92c966c28fb0d2 90
+  s_0954ad42fb80e8::t_7971894f0df4d8 116
+  s_0954ad42fb80e8::t_2688f74d4a3be9 32
+  s_bdcdb823eac388::t_825381f6b6af6c 1-4,6-31,33-59,61-89,91-115,117-143
+.github/agents/rpiv.agent.md
+  s_0954ad42fb80e8::t_8bff15cc6e966e 19-20,45-46
+.harness/reports/harnessability/003-sparkta/report.json
+  s_326109717f30d0::t_38c01641132eef 1-121,123-794,796-1085
+  s_0954ad42fb80e8::t_2dbc34cd9b01aa 122,795
+.soft-factory/config.yml
+  s_0954ad42fb80e8::t_051e03466f01df 2-8
+  s_0954ad42fb80e8::t_caad2eb3d728c7 1
+CONTRIBUTING.md
+  s_0954ad42fb80e8::t_ac8ef1ffbd0dcc 19-22
+.harness/reports/harnessability/latest.json
+  s_0954ad42fb80e8::t_2dbc34cd9b01aa 122,795
+  s_326109717f30d0::t_38c01641132eef 4,7-8,14-15,28-29,77-104,115-121,131-136,146-151,161-167,177-181,191-194,204-208,218-223,233-237,247-251,263-267,287-290,300-305,315-320,330-332,342-344,354-358,368-372,382-387,454-459,475-478,494-499,576-580,590-594,731-733,743-745,755-757,842-847,851-855,867-870,878-881,888-898,907-913,924-926,945-950,957-961,1075-1080
+.harness/reports/harnessability/003-sparkta/summary.md
+  s_326109717f30d0::t_38c01641132eef 1-26
+project/work-items/3-install-and-configure-soft-factory-runner/research/00-research.md
+  s_93a39d4468e410::t_29229c696b728b 1-75
+.harness/reports/harnessability/003-sparkta/report.md
+  s_326109717f30d0::t_38c01641132eef 1-22,24-70,72-150
+  s_0954ad42fb80e8::t_2dbc34cd9b01aa 23,71
+LLM.txt
+  s_0954ad42fb80e8::t_ac8ef1ffbd0dcc 6,28,75-77
+docs/README.md
+  s_0954ad42fb80e8::t_f1a89d8815ae3e 15-16,46-53,57,64-68,112,131,139,151
+  s_0954ad42fb80e8::t_88312c8c8ff8b3 54-56,58-63
+project/work-items/3-install-and-configure-soft-factory-runner/plan/03-test-plan.md
+  s_bdcdb823eac388::t_ae0dd0ccad32ed 1-153
+justfile
+  s_0954ad42fb80e8::t_3d07089e5e801f 6-9
+  s_0954ad42fb80e8::t_6bf618bf37af12 74,76-81
+  s_0954ad42fb80e8::t_195b4826561f04 28
+  s_0954ad42fb80e8::t_61cc0ec1a1946c 10-27,29-45,88,95
+README.md
+  s_0954ad42fb80e8::t_4c502256dbe6c8 9,17-18,54-57,68-70,89,93,101
+  s_0954ad42fb80e8::t_88312c8c8ff8b3 47-48,58-67
+AGENTS.md
+  s_0954ad42fb80e8::t_ac8ef1ffbd0dcc 8,46,52-54
+  s_0954ad42fb80e8::t_e3cce911e5f88a 55
+.harness/reports/harnessability/latest.md
+  s_326109717f30d0::t_38c01641132eef 4,6,8,10
+  s_0954ad42fb80e8::t_2dbc34cd9b01aa 23,71
+project/architecture/core-components/CORE-COMPONENT-260813-engineering-harness-operation.md
+  s_bdcdb823eac388::t_da5aa873f04610 13,27,34,43-44,50,74-75
+project/work-items/3-install-and-configure-soft-factory-runner/plan/01-action-plan.md
+  s_bdcdb823eac388::t_f697472edda95f 1-41
+project/architecture/ADR/DECISION-LOG.md
+  s_bdcdb823eac388::t_9299f8cf85decb 26,79,81-86
+.github/skills/README.md
+  s_0954ad42fb80e8::t_ac8ef1ffbd0dcc 17-22
+project/architecture/README.md
+  s_0954ad42fb80e8::t_ac8ef1ffbd0dcc 24-27,30
+project/work-items/3-install-and-configure-soft-factory-runner/implementation/00-implementation.md
+  s_0954ad42fb80e8::t_29a50bc175b305 1-62
+.harness/reports/harnessability/003-sparkta/evidence.jsonl
+  s_326109717f30d0::t_38c01641132eef 1-6
+scripts/verify-soft-factory.mjs
+  s_0954ad42fb80e8::t_7fa8641b76a33f 28-33
+  s_0954ad42fb80e8::t_4e3c0677afc57e 1-27,34
+.agents/agents/soft-factory-assessor.agent.md
+  s_326109717f30d0::t_5cd95e289fdefa 1-24
+.agents/agents/soft-factory.agent.md
+  s_326109717f30d0::t_8b682e50ca5a0e 1-37
+.agents/manifest.json
+  s_326109717f30d0::t_d4580754be3715 1-29
+.agents/skills/soft-factory/SKILL.md
+  s_326109717f30d0::t_2aa523e8c6f548 1-14
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "6cd034f6e51a25d8ea7c48eb4bcbd88208e4ae22",
+  "prompts": {},
+  "sessions": {
+    "s_0954ad42fb80e8": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "call_9xHa7eKGWOh68rgXUevvHBhJ",
+        "model": "unknown"
+      },
+      "human_author": "jsburckhardt <jsburckhardt@gmail.com>"
+    },
+    "s_326109717f30d0": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "3749c621-cd75-42d9-998d-2729b2e1bbfe",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "jsburckhardt <jsburckhardt@gmail.com>"
+    },
+    "s_93a39d4468e410": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "call_w4jwVVFbeGbjwdg8fgmPwi4Y",
+        "model": "unknown"
+      },
+      "human_author": "jsburckhardt <jsburckhardt@gmail.com>"
+    },
+    "s_bdcdb823eac388": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "call_XzXtMnK54sTc2VIbmO7dteCW",
+        "model": "unknown"
+      },
+      "human_author": "jsburckhardt <jsburckhardt@gmail.com>"
+    }
+  }
+}
