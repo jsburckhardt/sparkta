@@ -1,0 +1,69 @@
+README.md
+  s_a8f5a32e1122bc::t_7ff29acc707a5e 69
+project/work-items/2-adopt-the-ai-substrate-engineering-harness/plan/03-test-plan.md
+  s_62f408366bf3f4::t_25c0d6a30594bc 1,3,5-7,12,16-19,23,27-28,30,32-34,39,43-48,52,56-57,59,61-62,68,72-76,80,84,86,88-90,95,99-102,106,110,112,115,121,125-128,132,136,138,140-141,147,151-154,158,162,164,166-168,173,177-180,184,188,190,192-194,199,203-206,210,214,216,218-219,225,229-233,237,241-243
+project/architecture/ADR/DECISION-LOG.md
+  s_62f408366bf3f4::t_f4c9f8f799c084 78,80
+project/work-items/2-adopt-the-ai-substrate-engineering-harness/plan/01-action-plan.md
+  s_62f408366bf3f4::t_c21f6b0f60e1d5 1,10,14,18,38,42-46,50-55
+  s_62f408366bf3f4::t_42b9f2484108c0 29-36
+project/architecture/README.md
+  s_a8f5a32e1122bc::t_7ff29acc707a5e 20
+.harness/engineering-harness.md
+  s_a8f5a32e1122bc::t_19b701d230923c 5
+  s_a8f5a32e1122bc::t_7ff29acc707a5e 54,90
+justfile
+  s_a8f5a32e1122bc::t_61a5edf70af6ef 34-35,40,43,49
+  s_a8f5a32e1122bc::t_79a77ae5b404f5 36-39
+project/architecture/core-components/CORE-COMPONENT-260813-engineering-harness-operation.md
+  s_62f408366bf3f4::t_4431cdbd8fac2d 28,34,43-44,50,60-61,74-76
+  s_62f408366bf3f4::t_f4c9f8f799c084 27
+project/work-items/2-adopt-the-ai-substrate-engineering-harness/plan/02-task-breakdown.md
+  s_62f408366bf3f4::t_21260d983194db 1,3,14,23-24,28-30,32,37,39,43,47,52-53,57-60,62,65-67,69,73,82-83,87-89,91,95-98,102,111-112,116-118,120,124,127,131,144-146,150-153
+AGENTS.md
+  s_a8f5a32e1122bc::t_7ff29acc707a5e 45
+LLM.txt
+  s_a8f5a32e1122bc::t_7ff29acc707a5e 22,28,55
+project/work-items/2-adopt-the-ai-substrate-engineering-harness/research/00-research.md
+  s_50b0be14a7e2b4::t_5ffa8fddf6522f 1,12,16-20,23,26-38,41-49,52-59,62-67
+project/work-items/2-adopt-the-ai-substrate-engineering-harness/implementation/00-implementation.md
+  s_a8f5a32e1122bc::t_9f749a2e0a4837 12-24
+  s_a8f5a32e1122bc::t_da32380ba804d4 26-50
+  s_a8f5a32e1122bc::t_8734efe3f7855d 25
+docs/README.md
+  s_a8f5a32e1122bc::t_7ff29acc707a5e 88
+.github/skills/README.md
+  s_a8f5a32e1122bc::t_7ff29acc707a5e 7,13
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "13654afe3ec6f5f8aad909e129ebe680574352ac",
+  "prompts": {},
+  "sessions": {
+    "s_50b0be14a7e2b4": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "call_9GV4dJvksU5G0qhacHvoShT6",
+        "model": "unknown"
+      },
+      "human_author": "jsburckhardt <jsburckhardt@gmail.com>"
+    },
+    "s_62f408366bf3f4": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "call_kJwzHRznftLHtYkMFIJ9OoNq",
+        "model": "unknown"
+      },
+      "human_author": "jsburckhardt <jsburckhardt@gmail.com>"
+    },
+    "s_a8f5a32e1122bc": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "call_XdOsK8rMQhmW7jY9hhF04i0S",
+        "model": "unknown"
+      },
+      "human_author": "jsburckhardt <jsburckhardt@gmail.com>"
+    }
+  }
+}
