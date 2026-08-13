@@ -21,7 +21,7 @@ description: |
 - Human chooses. Encode the fix, not the memory.
 - Repeat.
 
-Guiding ethos: Don't apologise - fix. 
+Guiding ethos: Don't apologise - fix.
 
 \[found-or-established focal surface\] + \[deterministic proof\] + \[friction capture\] + \[human-chosen encoding\] = a harness, in a box.
 

@@ -10,8 +10,8 @@ The foundation establishes buildable application boundaries, tests, standards, s
 
 ## Cold setup
 
-1. Open the repository in its Dev Container or Codespace. Rebuild the container if Node.js 24, npm, `just`, or the configured ambient `harness` CLI is unavailable.
-2. Run `harness --version` and require `0.13.0`. The ambient harness is already installed by the configured environment; `just setup` does not install it, and it is intentionally absent from `package.json` and `package-lock.json`.
+1. Open the repository in its Dev Container or Codespace for Node.js 24, npm, and `just`. The committed devcontainer does not install or provision the harness CLI.
+2. Use the separately configured development environment that exposes the ambient harness, run `harness --version`, and require `0.13.0`. Repository npm state and `just setup` do not install it; it is intentionally absent from `package.json` and `package-lock.json`.
 3. Run `just setup` from the repository root to install the exact Sparkta dependency graph.
 4. Run `harness instructions`, `harness help --json`, and `harness doctor --json`. Read `harness instructions <verb>` before using a repository verb.
 5. Run `just --list` to inspect the authoritative project recipes.
@@ -62,7 +62,7 @@ The root [`justfile`](justfile) owns all project command bodies. Harness checks 
 | `LOG_LEVEL`                 |  `info` | Pino server log level                                            |
 | `harness boot --timeout-ms` | `60000` | Bounded readiness polling; accepts 1000 through 120000 ms        |
 
-The Vite foundation uses fixed port 5173. Boot refuses occupied fixed ports without signalling the unknown owner.
+The Vite foundation uses fixed port 5173. Boot refuses occupied fixed ports without signalling the unknown owner. On Linux/Node.js 24, cleanup validates the live PID start time, `just run` command, and `/proc` process-group membership against ownership metadata immediately before any negative process-group signal. A mismatch is stale state and is removed without signalling that recorded group.
 
 ## Skills and agent discovery
 

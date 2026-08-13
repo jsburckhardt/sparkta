@@ -43,7 +43,7 @@ A workshop should improve value delivery by reducing the time, ambiguity, risk, 
 ## When to Use
 
 - Concept has multiple valid implementation approaches
-- External interfaces or contracts need detailed specification  
+- External interfaces or contracts need detailed specification
 - Data structures will be referenced by multiple components
 - CLI/UX flow has branching paths or complex state
 - Storage format decisions affect future extensibility
@@ -148,12 +148,12 @@ def resolve_plan(input):
     # If input looks like "003-slug" or full path
     if matches(r'^\d{3}-') or input.startswith('docs/plans/'):
         return find_plan_by_path(input)
-    
+
     # Otherwise it's a slug - find matching plan
     for folder in list_folders('docs/plans/'):
         if folder.endswith(f'-{slugify(input)}'):
             return f'docs/plans/{folder}'
-    
+
     error(f'Plan not found: {input}')
 ```
 
@@ -164,7 +164,7 @@ def resolve_plan(input):
 Workshops in docs/plans/003-workflow-service/:
   001-cli-command-flows.md (CLI Flow) - Created 2024-01-15
   002-workunit-data-model.md (Data Model) - Created 2024-01-16
-  
+
 Run this verb again with: 003-workflow-service "<topic>" to create new
 ```
 

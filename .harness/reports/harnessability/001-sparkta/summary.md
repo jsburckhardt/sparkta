@@ -1,6 +1,6 @@
 # Harnessability — sparkta · B
 
-**Operate-Today** B (74.1%) · **Adaptability** B (75.0%) · Readiness H3 · Confidence high  
+**Operate-Today** B (74.1%) · **Adaptability** B (75.0%) · Readiness H3 · Confidence high
 Proof ceiling: L3 today → target L4
 
 ## Matrix

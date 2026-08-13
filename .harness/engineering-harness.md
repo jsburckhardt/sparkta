@@ -19,12 +19,12 @@ The root `justfile` remains authoritative. Harness wrappers do not contain npm, 
 
 ## Health check
 
-`harness readiness --json` verifies the recorded PID start time and `just run` identity before probing both services:
+`harness readiness --json` uses Linux `/proc` to verify the live PID start time, `just run` command, and process-group membership against recorded ownership before probing both services:
 
 1. `GET http://127.0.0.1:5173/` must return HTTP 200 with the `Sparkta Foundation` marker.
 2. `GET /api/readiness` on the `PORT` value or 3000 must return HTTP 200 with exactly `{"foundation":"sparkta-server","status":"ready"}`.
 
-Readiness does not start or stop any process. `harness stop --json` signals only a matching owned process group, waits for both ports to release, removes ownership state, and is idempotent.
+Readiness does not start or stop any process. `harness stop --json` revalidates that complete identity immediately before every negative process-group signal, waits for both ports to release, removes ownership state, and is idempotent. A mismatch is reported in structured ownership validation and removed as stale state without signalling the recorded group.
 
 ## Interact method
 

@@ -11,6 +11,18 @@
 
 The ambient harness installation was not changed. `ai-substrate-engineering-harness-0.13.0.tgz` remained absent, and neither `package.json` nor `package-lock.json` gained `@ai-substrate/engineering-harness`. The transient root `skills-lock.json` input was preserved locally but is excluded from committed state because the first-class installer records a temporary extraction source; `.harness/skills.lock.json` is the canonical portable lock.
 
+## Verify repair evidence — 2026-08-13
+
+This repair is a new descendant of rejected implementation SHA `20ad230a7db46f1923acb0fcc385338b969db6c0` and stays within the adopted engineering-harness operating contract; no ADR or core-component contract changed.
+
+- **AC-3 ownership safety:** `ownershipMatches()` now requires Linux `/proc` evidence that the live PID start time, `just run` command, and process-group membership all equal recorded ownership. Group liveness checks, `SIGTERM`, and `SIGKILL` each revalidate that identity before using a negative process-group ID. Invalid or mismatched state is removed without a group signal and reports field-level `ownership_validation` evidence.
+- **AC-3 automated controls:** `apps/server/src/harness-boot-ownership.test.ts` passed both controls: a live PID paired with another live process group returned `process_group_matched: false`, `signals: []`, left both fixtures alive, and wrote no signal marker; a valid owned group returned `process_group_matched: true`, `signals: ["SIGTERM"]`, and exited cleanly. Both `just verify-focused apps/server/src/harness-boot-ownership.test.ts` and delegated `harness checks focused ... --json` passed 2/2 tests.
+- **V-9 controls:** disposable listeners on ports 3000 and 5173 each survived rejected boot with `E_BOOT_PORT_CONFLICT`, `unknown_processes_signalled: false`, and no ownership file. A controlled composed-check exit 7 produced `E_BOOT_CHECKS`; verified cleanup sent `SIGTERM`, reported both ports released, and removed ownership. Repeated stop remained idempotent.
+- **AC-5 documentation:** `README.md` and `docs/README.md` now state that the committed devcontainer provides the Sparkta application toolchain but does not provision the separately configured ambient harness. README, docs, the boot briefing, governance, and architecture overview now describe the implemented Linux process-group check exactly.
+- **AC-6 diff integrity:** merge-base `git diff --check` is clean after removing four defects from `.agents/skills/builder/references/stages/25-workshop.md`, one extra EOF blank line, and the two other reported trailing spaces. No semantic skill or historical-report content changed.
+- **AC-6 current runtime:** `harness boot --json` succeeded with ownership `9e1aad57-73f5-437e-a8bd-e93749c4599f` / PID and group `349287`, both readiness probes passed, and composed full checks delegated to successful `just verify`. `harness readiness --json` and independent HTTP probes passed. Stop revalidated every ownership field, sent only `SIGTERM`, released ports 3000/5173, removed ownership, and repeated stop succeeded.
+- **AC-6 validation:** final `just verify-focused` passed 13 tests across six files and diff integrity. Final `just verify` passed 13 tests, ESLint, Prettier, strict TypeScript checks, both builds, and merge-base diff integrity. `harness checks full --json` also delegated to `just verify` and passed.
+
 ## Completed tasks
 
 | Task | Status | Implementation and evidence |
@@ -47,11 +59,11 @@ The ambient harness installation was not changed. `ai-substrate-engineering-harn
 
 ### AC-3 — known-state boot with inspectable evidence
 
-- Final `harness boot --json` returned `status: ok`, `delegated_command: just run`, ownership ID `d31de480-2ea9-4f75-9ca4-90e53b3ccba3`, owned PID/process group `315838`, and repository-relative log, ownership, and evidence paths.
+- Current `harness boot --json` returned `status: ok`, `delegated_command: just run`, ownership ID `9e1aad57-73f5-437e-a8bd-e93749c4599f`, owned PID/process group `349287`, and repository-relative log, ownership, and evidence paths.
 - Both final probes passed: web `http://127.0.0.1:5173/` returned HTTP 200 with the `Sparkta Foundation` marker; server `http://127.0.0.1:3000/api/readiness` returned HTTP 200 with the exact stable verdict.
 - Boot composed `harness checks full --json`, whose envelope delegated to `just verify` and returned exit 0.
 - `harness readiness --json` repeated both probes successfully for the verified ownership identity.
-- `harness stop --json` sent only `SIGTERM` to process group 315838, reported `stopped: true`, and reported ports 3000 and 5173 released. Repeated stop returned `already_stopped: true`. Post-stop readiness returned `E_READINESS_NOT_OWNED` as expected.
+- `harness stop --json` revalidated start time, command, and process-group membership, sent only `SIGTERM` to process group 349287, reported `stopped: true`, and reported ports 3000 and 5173 released. Repeated stop returned `already_stopped: true`; independent socket probes found both ports closed.
 - Transient evidence paths are `.harness/temp/boot/evidence.json`, `boot.log`, and live-only `ownership.json`. Final ownership is absent; the latest stop evidence and boot log remain inspectable and gitignored.
 - `GET /api/readiness` is covered by `apps/server/src/app.test.ts` and contains only `foundation` and `status`. No product workflow, persistence, external service, or public product API was added.
 
@@ -81,7 +93,7 @@ The ambient harness installation was not changed. `ai-substrate-engineering-harn
 ### AC-6 — configured readiness, boot, focused, and full checks succeed
 
 - Final ordered V-11 commands succeeded: version, instructions, help, doctor allowed-degraded diagnostics, skill portability, focused checks, boot, readiness, full checks, stop, port release, and explicit root full validation.
-- Final root `just verify` passed 11 tests across five test files, ESLint, Prettier, both strict TypeScript workspaces, both builds, and merge-base diff integrity.
+- Current root `just verify` passed 13 tests across six test files, ESLint, Prettier, both strict TypeScript workspaces, both builds, and merge-base diff integrity.
 - Final runtime cleanup proved ports 3000 and 5173 released, ownership absent, repeated stop successful, and readiness negative after stop.
 
 ## Validation results
@@ -96,7 +108,7 @@ The ambient harness installation was not changed. `ai-substrate-engineering-harn
 | V-6 focused delegation | Passed target/no-target/failure spy controls and actual harness/root focused runs. |
 | V-7 full delegation | Passed bare/full/failure spy controls and actual `harness checks full --json`. |
 | V-8 cold discovery | Passed six-entry-point command/path audit, exact hook grep, flow render drift check, governance TODO check, and docs formatting. |
-| V-9 ownership controls | Passed unknown port 3000 fixture PID 301776 and port 5173 fixture PID 302213 survival; stale-state unrelated PID 302665 survival; partial-start PID 304145 cleanup; failed-check PID 304634 cleanup; repeated stop. |
+| V-9 ownership controls | Passed process-group mismatch automation (both fixtures alive, no marker, no signal), valid-group clean stop, unknown ports 3000/5173 listener survival, controlled failed-check cleanup with both ports released, and repeated stop. |
 | V-10 root validation | Passed focused validation after every T-1 through T-7 task and T-8 acceptance work; explicit `just verify` passed. |
 | V-11 final sequence | Passed final version/instructions/help/doctor, skills audit, focused, boot, readiness, full, stop, cleanup, and current root validation. |
 
@@ -109,26 +121,26 @@ The ambient harness installation was not changed. `ai-substrate-engineering-harn
 - T-5: positive and negative lifecycle controls; `just verify-focused` — 11 tests passed.
 - T-6: help/doctor/instructions/flow/hook audits; `just verify-focused` — 11 tests passed.
 - T-7: docs/path/portability/format audits; `just verify-focused` — 11 tests passed.
-- T-8: final `harness checks focused apps/server/src/app.test.ts --json` — 3 targeted tests passed; final explicit `just verify-focused` — all 11 tests and diff integrity passed.
+- T-8: final `harness checks focused apps/server/src/app.test.ts --json` — 3 targeted tests passed; Verify repair `harness checks focused apps/server/src/harness-boot-ownership.test.ts --json` — 2 targeted controls passed; final explicit `just verify-focused` — all 13 tests and diff integrity passed.
 
 ## Documentation evidence
 
 | Requirement | Updated paths and observable content |
 | --- | --- |
 | Cold-agent governance | `AGENTS.md`, `LLM.txt` — ambient boundary, self-briefing, verbs, evidence, skills, RPIV hooks, and commit guidance. |
-| Human setup and usage | `README.md`, `CONTRIBUTING.md` — Node 24, ambient harness 0.13.0, `just setup`, root authority, adoption workflow, cleanup, and scope. |
+| Human setup and usage | `README.md`, `docs/README.md`, `CONTRIBUTING.md` — the devcontainer provides Node/npm/`just` but does not provision the separately configured ambient harness 0.13.0; `just setup`, root authority, adoption workflow, cleanup, and scope remain explicit. |
 | API contract | `README.md`, `docs/README.md` — exact additive `GET /api/readiness` status/body and non-sensitive boundary. No OpenAPI/Swagger file exists, so no separate API specification required an update. |
 | Configuration | `README.md`, `docs/README.md`, boot briefing — `PORT`, `LOG_LEVEL`, fixed 5173, 3000 default, `--timeout-ms` 1000–120000, and unknown-port behavior. |
-| Operations | `docs/README.md`, `.harness/engineering-harness.md`, boot briefing — known-state boot, probes, ownership verification, evidence paths, failure cleanup, stop, and doctor exception. |
+| Operations | `docs/README.md`, `.harness/engineering-harness.md`, boot briefing — Linux PID/start-time/command/process-group verification before group signalling, evidence paths, failure cleanup, stop, and doctor exception. |
 | Skills | `.github/skills/README.md` — links all nine packaged repository-local entries and canonical lock. |
-| Architecture | `project/architecture/README.md` — adopted harness contract, just delegation, RPIV boundaries, and separation from product state. No ADR/core-component contract change was required during Implement. |
+| Architecture | `project/architecture/README.md` — adopted harness contract, just delegation, exact owned process-group validation, RPIV boundaries, and separation from product state. No ADR/core-component contract change was required during Implement or Verify repair. |
 | Migration/deployment | `README.md` and `docs/README.md` — readiness and harness adoption are additive; no API/data/config migration and no deployment procedure. |
-| Historical evidence | `.harness/reports/harnessability/001-sparkta/` remains unchanged static branch-main evidence and is explicitly distinguished from current proof. |
+| Historical evidence | `.harness/reports/harnessability/001-sparkta/` remains static branch-main evidence and is explicitly distinguished from current proof; repair only removed the reported trailing space from its summary. |
 
 ## Final cleanup state before commit
 
 - `harness stop --json` is idempotent.
-- Ports 3000 and 5173 are released.
+- Ports 3000 and 5173 are released by stop and independently observed closed.
 - `.harness/temp/boot/ownership.json` is absent.
 - No writes exist under `.sparkta/`.
 - The ambient harness tarball remains absent and repository npm state remains unchanged by harness installation.

@@ -77,11 +77,32 @@ function bounded(value: string): string {
   return value.length <= OUTPUT_LIMIT ? value : value.slice(-OUTPUT_LIMIT);
 }
 
-function processStartTime(pid: number): string | null {
+interface LiveProcessIdentity {
+  process_group: number;
+  process_start_time: string;
+}
+
+interface OwnershipValidation {
+  matched: boolean;
+  process_live: boolean;
+  process_start_time_matched: boolean;
+  command_matched: boolean;
+  process_group_matched: boolean;
+}
+
+function liveProcessIdentity(pid: number): LiveProcessIdentity | null {
   try {
     const stat = readFileSync("/proc/" + pid + "/stat", "utf8");
     const afterName = stat.slice(stat.lastIndexOf(")") + 2).trim().split(/\s+/);
-    return afterName[19] ?? null;
+    const processGroup = Number(afterName[2]);
+    const processStartTime = afterName[19];
+    if (!Number.isInteger(processGroup) || processGroup <= 0 || processStartTime === undefined) {
+      return null;
+    }
+    return {
+      process_group: processGroup,
+      process_start_time: processStartTime,
+    };
   } catch {
     return null;
   }
@@ -95,22 +116,44 @@ function processCommand(pid: number): string | null {
   }
 }
 
-function ownershipMatches(value: Ownership): boolean {
+function ownershipValidation(value: Ownership): OwnershipValidation {
+  const identity = liveProcessIdentity(value.pid);
   const command = processCommand(value.pid);
-  return (
-    processStartTime(value.pid) === value.process_start_time &&
-    command !== null &&
-    command.includes("just") &&
-    command.includes("run")
-  );
+  const processStartTimeMatched = identity?.process_start_time === value.process_start_time;
+  const commandMatched =
+    command !== null && command.includes("just") && command.includes("run");
+  const processGroupMatched = identity?.process_group === value.process_group;
+  return {
+    matched: processStartTimeMatched && commandMatched && processGroupMatched,
+    process_live: identity !== null,
+    process_start_time_matched: processStartTimeMatched,
+    command_matched: commandMatched,
+    process_group_matched: processGroupMatched,
+  };
 }
 
-function groupIsAlive(group: number): boolean {
+function ownershipMatches(value: Ownership): boolean {
+  return ownershipValidation(value).matched;
+}
+
+function ownedGroupIsAlive(value: Ownership): boolean {
+  if (!ownershipMatches(value)) return false;
   try {
-    process.kill(-group, 0);
+    process.kill(-value.process_group, 0);
     return true;
   } catch (error) {
     return (error as NodeJS.ErrnoException).code === "EPERM";
+  }
+}
+
+function signalOwnedGroup(value: Ownership, signal: NodeJS.Signals): boolean {
+  if (!ownershipMatches(value)) return false;
+  try {
+    process.kill(-value.process_group, signal);
+    return true;
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === "ESRCH") return false;
+    throw error;
   }
 }
 
@@ -172,13 +215,16 @@ async function isPortOpen(port: number): Promise<boolean> {
   });
 }
 
-async function waitForGroupExit(ctx: V2VerbContext, group: number): Promise<boolean> {
+async function waitForGroupExit(
+  ctx: V2VerbContext,
+  ownership: Ownership,
+): Promise<boolean> {
   const deadline = Date.now() + STOP_TIMEOUT_MS;
   while (Date.now() < deadline) {
-    if (!groupIsAlive(group)) return true;
+    if (!ownedGroupIsAlive(ownership)) return true;
     await ctx.clock.sleep(100);
   }
-  return !groupIsAlive(group);
+  return !ownedGroupIsAlive(ownership);
 }
 
 async function waitForPortRelease(
@@ -200,39 +246,29 @@ async function stopOwned(
   ctx: V2VerbContext,
   paths: BootPaths,
   ownership: Ownership,
-  currentInvocation = false,
 ) {
-  const identityMatched = ownershipMatches(ownership);
+  const validation = ownershipValidation(ownership);
   const signals: string[] = [];
-  if (!identityMatched && !currentInvocation) {
+  if (!validation.matched) {
     removeOwnership(paths);
     return {
       stopped: false,
       stale_state_removed: true,
       identity_matched: false,
+      ownership_validation: validation,
       signals,
       ports_released: await waitForPortRelease(ctx, [ownership.ports.web, ownership.ports.server]),
     };
   }
 
-  if (groupIsAlive(ownership.process_group)) {
-    try {
-      process.kill(-ownership.process_group, "SIGTERM");
-      signals.push("SIGTERM");
-    } catch (error) {
-      if ((error as NodeJS.ErrnoException).code !== "ESRCH") throw error;
-    }
+  if (ownedGroupIsAlive(ownership) && signalOwnedGroup(ownership, "SIGTERM")) {
+    signals.push("SIGTERM");
   }
 
-  let exited = await waitForGroupExit(ctx, ownership.process_group);
-  if (!exited && groupIsAlive(ownership.process_group)) {
-    try {
-      process.kill(-ownership.process_group, "SIGKILL");
-      signals.push("SIGKILL");
-    } catch (error) {
-      if ((error as NodeJS.ErrnoException).code !== "ESRCH") throw error;
-    }
-    exited = await waitForGroupExit(ctx, ownership.process_group);
+  let exited = await waitForGroupExit(ctx, ownership);
+  if (!exited && signalOwnedGroup(ownership, "SIGKILL")) {
+    signals.push("SIGKILL");
+    exited = await waitForGroupExit(ctx, ownership);
   }
 
   removeOwnership(paths);
@@ -240,7 +276,8 @@ async function stopOwned(
   return {
     stopped: exited,
     stale_state_removed: false,
-    identity_matched: identityMatched,
+    identity_matched: true,
+    ownership_validation: validation,
     signals,
     ports_released: portsReleased,
   };
@@ -315,7 +352,7 @@ async function probeServices(ownership: Ownership) {
 async function pollServices(ctx: V2VerbContext, ownership: Ownership, timeoutMs: number) {
   const started = Date.now();
   let probes = await probeServices(ownership);
-  while (!probes.ok && Date.now() - started < timeoutMs && groupIsAlive(ownership.process_group)) {
+  while (!probes.ok && Date.now() - started < timeoutMs && ownedGroupIsAlive(ownership)) {
     await ctx.clock.sleep(250);
     probes = await probeServices(ownership);
   }
@@ -407,21 +444,42 @@ async function boot(ctx: V2VerbContext) {
     });
   }
 
-  let startTime = processStartTime(pid);
-  for (let attempt = 0; startTime === null && attempt < 10; attempt += 1) {
+  let identity = liveProcessIdentity(pid);
+  for (let attempt = 0; identity === null && attempt < 10; attempt += 1) {
     await ctx.clock.sleep(20);
-    startTime = processStartTime(pid);
+    identity = liveProcessIdentity(pid);
   }
-  if (startTime === null) {
-    if (groupIsAlive(pid)) {
-      try {
-        process.kill(-pid, "SIGTERM");
-      } catch {}
-    }
+
+  const ownership: Ownership | null =
+    identity !== null && identity.process_group === pid
+      ? {
+          schema_version: 1,
+          ownership_id: randomUUID(),
+          pid,
+          process_group: identity.process_group,
+          process_start_time: identity.process_start_time,
+          command: ["just", "run"],
+          created_at: ctx.clock.nowIso(),
+          ports: { web: WEB_PORT, server: port },
+          urls: {
+            web: "http://127.0.0.1:" + WEB_PORT + "/",
+            server: "http://127.0.0.1:" + port + "/api/readiness",
+          },
+          log_path: paths.logRelative,
+        }
+      : null;
+
+  for (let attempt = 0; ownership !== null && !ownershipMatches(ownership) && attempt < 10; attempt += 1) {
+    await ctx.clock.sleep(20);
+  }
+  if (ownership === null || !ownershipMatches(ownership)) {
     const details = {
       delegated_command: "just run",
       owned_pid: pid,
-      process_group: pid,
+      expected_process_group: pid,
+      observed_process_group: identity?.process_group ?? null,
+      ownership_validation: ownership === null ? null : ownershipValidation(ownership),
+      unknown_processes_signalled: false,
       duration_ms: Date.now() - started,
       ...evidencePaths(paths),
     };
@@ -432,26 +490,11 @@ async function boot(ctx: V2VerbContext) {
     });
   }
 
-  const ownership: Ownership = {
-    schema_version: 1,
-    ownership_id: randomUUID(),
-    pid,
-    process_group: pid,
-    process_start_time: startTime,
-    command: ["just", "run"],
-    created_at: ctx.clock.nowIso(),
-    ports: { web: WEB_PORT, server: port },
-    urls: {
-      web: "http://127.0.0.1:" + WEB_PORT + "/",
-      server: "http://127.0.0.1:" + port + "/api/readiness",
-    },
-    log_path: paths.logRelative,
-  };
   writeJson(paths.ownership, ownership);
 
   const probes = await pollServices(ctx, ownership, timeoutMs);
   if (!probes.ok) {
-    const cleanup = await stopOwned(ctx, paths, ownership, true);
+    const cleanup = await stopOwned(ctx, paths, ownership);
     const details = {
       delegated_command: "just run",
       ownership: {
@@ -489,7 +532,7 @@ async function boot(ctx: V2VerbContext) {
     stderr: bounded(checksResult.stderr),
   };
   if (!checksResult.ok) {
-    const cleanup = await stopOwned(ctx, paths, ownership, true);
+    const cleanup = await stopOwned(ctx, paths, ownership);
     const details = {
       delegated_command: "just run",
       ownership: {

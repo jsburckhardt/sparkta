@@ -126,6 +126,7 @@ Add `GET /api/readiness` to `createServer` as the smallest product-code seam req
 ## Task T-5: Add owned boot, readiness, and stop extensions
 
 - **Status:** Complete
+- **Verify repair:** Complete — live PID process-group membership is validated before group signals, with automated mismatch and valid-group controls.
 - **Complexity:** Large
 - **Dependencies:** T-3, T-4
 - **Acceptance Criteria:** AC-3, AC-6
@@ -192,6 +193,7 @@ Replace every operational TODO in `.harness/engineering-harness.md` with the val
 ## Task T-7: Update all cold-agent and operator documentation
 
 - **Status:** Complete
+- **Verify repair:** Complete — ambient-tool setup and Linux process-group ownership wording now match committed behavior.
 - **Complexity:** Medium
 - **Dependencies:** T-1, T-2, T-3, T-4, T-5, T-6
 - **Acceptance Criteria:** AC-2, AC-5, AC-6
@@ -224,6 +226,7 @@ Update `AGENTS.md`, `LLM.txt`, `README.md`, `docs/README.md`, `.github/skills/RE
 ## Task T-8: Execute acceptance and preserve evidence
 
 - **Status:** Complete
+- **Verify repair:** Complete — merge-base whitespace integrity, ownership controls, full checks, boot/readiness/stop, and root validation were rerun.
 - **Complexity:** Large
 - **Dependencies:** T-1, T-2, T-3, T-4, T-5, T-6, T-7
 - **Acceptance Criteria:** AC-1, AC-2, AC-3, AC-4, AC-5, AC-6

@@ -8,8 +8,8 @@ The repository-owned [devcontainer configuration](../.devcontainer/devcontainer.
 
 For a cold setup:
 
-1. Open or rebuild the repository Dev Container.
-2. Run `harness --version` and require `0.13.0`.
+1. Open or rebuild the repository Dev Container for the Sparkta Node.js/npm/`just` toolchain; this does not provision the harness.
+2. In the separately configured environment that exposes the ambient CLI, run `harness --version` and require `0.13.0`.
 3. Run `just setup` for Sparkta dependencies.
 4. Run `harness instructions`, `harness help --json`, and `harness doctor --json`.
 5. Run `just --list` to inspect the root project interface.
@@ -32,7 +32,7 @@ The check extension is delegation-only: focused calls `just verify-focused [targ
 
 ### Boot ownership and cleanup
 
-Boot uses fixed web port 5173 and `PORT` or 3000 for the server. It reconciles only ownership metadata whose PID, process start time, command, and process group still match. It refuses unknown listeners and never kills them. On partial startup, readiness timeout, or failed composed checks, boot cleans its owned process group and waits for both ports to release.
+Boot uses fixed web port 5173 and `PORT` or 3000 for the server. On Linux/Node.js 24 it reads `/proc/<pid>/stat` and `/proc/<pid>/cmdline` to require the live PID start time, `just run` command, and process-group membership to match the recorded ownership. The same complete identity is revalidated immediately before every negative process-group signal. A mismatch is removed as stale state without signalling the recorded group. Boot also refuses unknown listeners and never kills them. On partial startup, readiness timeout, or failed composed checks, boot cleans a still-verified owned process group and waits for both ports to release.
 
 A successful boot intentionally leaves both foundation services running. Run `harness stop --json` when finished; repeated stop calls are safe. Inspect the repository-relative paths named by the envelope:
 
