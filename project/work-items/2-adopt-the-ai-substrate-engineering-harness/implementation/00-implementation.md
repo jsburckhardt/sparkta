@@ -9,7 +9,45 @@
 - **Architecture:** implementation remains within ADR-260812-foundation-stack, ADR-260812-filesystem-state-boundary, and CORE-COMPONENT-260813-engineering-harness-operation.
 - **Verify boundary:** these notes record Implement evidence only. Final verification and acceptance remain owned by Verify.
 
-The ambient harness installation was not changed. `ai-substrate-engineering-harness-0.13.0.tgz` remained absent, and neither `package.json` nor `package-lock.json` gained `@ai-substrate/engineering-harness`. The transient root `skills-lock.json` input was preserved locally but is excluded from committed state because the first-class installer records a temporary extraction source; `.harness/skills.lock.json` is the canonical portable lock.
+The ambient harness installation was not changed. `ai-substrate-engineering-harness-0.13.0.tgz` remained absent, and neither `package.json` nor `package-lock.json` gained `@ai-substrate/engineering-harness`. The transient root `skills-lock.json` is absent. `.harness/skills.lock.json` records packaged-source provenance only and does not authorize skill names.
+
+## Corrective implementation addendum — 2026-08-13
+
+This addendum supersedes every final-state statement below that describes nine committed engineering-harness skills, a complete packaged inventory, or the canonical lock as skill-name authority. Those statements and command results are retained only as truthful history of the earlier implementation. The corrected final allowlist is exactly `eng-harness-flow`, `eng-harness-0-harnessability-assessment`, and `grill-agent-done`.
+
+- **AC-2:** Removed the tracked `builder`, `eng-harness-in-a-box`, `plan-0-v2-constitution`, `plan-v2-extract-domain`, `the-flow`, and `validate-v2` trees. The three allowed trees and the unrelated `.github/skills/agnostic-prompt-standard/` tree retained their aggregate SHA-256 `8630cfcd80750dbee16c39586d73d3aee3411578d329ea78615dbf57dadd0fb6`. The root guard accepts the exact set and rejects disposable missing/extra fixtures with actionable inventory output.
+- **AC-2 / AC-5:** Updated `AGENTS.md`, `LLM.txt`, `README.md`, `docs/README.md`, `.github/skills/README.md`, `.harness/engineering-harness.md`, and `project/architecture/README.md` to name only the three allowed skills, describe `.harness/skills.lock.json` as provenance, and prohibit broad restoration. Cold entry points and all three indexed `SKILL.md` paths resolve.
+- **AC-4:** Added root recipe `verify-harness-skills` and composed it into both authoritative `verify-focused` and `verify` recipes without changing harness wrapper delegation.
+- **Architecture:** Retained the in-place `CORE-COMPONENT-260813-engineering-harness-operation` update and Decision 46/48 records. No ADR or replacement core-component was created.
+- **Preservation baseline:** The modified `latest.json` and `latest.md` hashes were `84ea1893ec1cf31718e9799ff26d2d3aa6e2bc678f137d2aa2da703be7d9369a` and `a1f7dcc754e4d2ca0ec17387ab571ad8d4d78e42be3d37dd01beb55d5b5871b1`; all four untracked `002-sparkta` file hashes are recorded in the corrective handoff and must remain byte-identical. Generated report observations are historical evidence, not the live allowlist oracle.
+- **Verify handoff:** Verify must independently replace or explicitly supersede stale nine-skill final-state claims in `verify/summary.md` and PR #10 metadata, inspect the exact inventory and preservation hashes, rerun authoritative validation, and retain ownership of acceptance and GitHub updates. Implement does not alter those Verify-owned surfaces.
+
+
+### Corrective acceptance evidence
+
+| AC | Current Implement evidence |
+| --- | --- |
+| AC-1 | `harness --version` returned exactly `0.13.0`; `harness instructions` returned `status: ok`; `harness doctor --json` parsed and returned the documented environment-only `degraded` findings while both extensions, quality gate, and commit guidance remained loaded. No install, package dependency, lockfile dependency, or tarball was added. |
+| AC-2 | The sorted `.agents/skills/` inventory is exactly `eng-harness-0-harnessability-assessment`, `eng-harness-flow`, and `grill-agent-done`. All required `SKILL.md` entry points resolve. The root guard passed and disposable missing/extra controls both failed with expected/actual inventory output. Live normative discovery search returned no excluded names. |
+| AC-3 | `harness boot --json` delegated to `just run`, proved web HTTP 200 and the exact server readiness verdict, composed successful full checks, and named bounded evidence paths. `harness readiness --json` passed. Final `harness stop --json` matched complete ownership, sent only `SIGTERM`, released ports 3000/5173, and removed ownership; independent probes found both ports closed. |
+| AC-4 | `verify-harness-skills` is composed by both root recipes. `harness checks focused --json` delegated to exact `just verify-focused` and passed 13 tests; boot-composed `harness checks full --json` delegated to exact `just verify`. Existing delegation-only wrappers were unchanged. |
+| AC-5 | Updated all affected cold-agent, README, usage, operational, lock-boundary, and architecture-overview documentation. Each names the exact allowlist, root `justfile` authority, provenance-only lock role, and broad-install prohibition. Verify-owned `verify/summary.md` and PR #10 are explicitly handed back for independent correction. |
+| AC-6 | Corrective focused runs passed after T-1 through T-4; T-5 delegated focused checks passed 13 tests; boot-composed full checks passed; final root `just verify` passed 13 tests, lint, formatting, strict type checks, both builds, allowlist validation, and merge-base diff integrity. Runtime cleanup and report preservation checks passed. |
+
+### Corrective documentation evidence
+
+- **Setup/usage/operations:** `README.md`, `docs/README.md`, `AGENTS.md`, `LLM.txt`, `.harness/engineering-harness.md`, and `.github/skills/README.md` now expose exactly the three supported skills, warn against broad restoration, and retain the deterministic harness/root-recipe workflow.
+- **Architecture:** `project/architecture/README.md`, the existing engineering-harness core-component, and Decision 46/48 describe the narrowed contract without a new ADR or component.
+- **API/configuration/migration/deployment:** no application API, configuration default, data shape, migration, or deployment procedure changed; existing readiness documentation remains accurate.
+- **Preserved evidence:** implementation did not edit generated harnessability reports. Final hashes equal the baseline: `002-sparkta/evidence.jsonl` `682631299a114807ff0eff809480dc5d84a48da344a4b5fb8ca4f6ef0edc8487`, `report.json` `84ea1893ec1cf31718e9799ff26d2d3aa6e2bc678f137d2aa2da703be7d9369a`, `report.md` `a1f7dcc754e4d2ca0ec17387ab571ad8d4d78e42be3d37dd01beb55d5b5871b1`, and `summary.md` `d58229032a261d63f95a5ee182969039a571e3773a09e0adb0f009727ac844a5`; `latest.json` and `latest.md` match the corresponding report hashes.
+
+### Corrective focused validation chronology
+
+- T-1: `just verify-focused` passed 13 tests and diff integrity.
+- T-2: exact allowlist positive guard, missing/extra negative controls, and `just verify-focused` passed.
+- T-3: cold-entry path and stale-reference audits plus `just verify-focused` passed.
+- T-4: corrective evidence audit plus `just verify-focused` passed.
+- T-5: ambient CLI, boot/readiness/stop, delegated focused/full checks, final preservation/cleanup audits, and `just verify` passed.
 
 ## Verify repair evidence — 2026-08-13
 

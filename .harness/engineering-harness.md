@@ -2,7 +2,7 @@
 
 > **AGENTS START HERE → `harness instructions`** — self-brief from the already-configured ambient harness 0.13.0 CLI, then read `harness instructions <verb>` before invoking a repository verb. Confirm discovery with `harness help --json` and classify diagnostics with `harness doctor --json`.
 
-The ambient CLI installation is owned by the configured development environment. Repository npm state owns only Sparkta dependencies; it does not install or reproduce the harness. Committed governance, extensions, skills, and discovery files make repository behavior portable.
+The ambient CLI installation is owned by the configured development environment. Repository npm state owns only Sparkta dependencies; it does not install or reproduce the harness. Committed governance, extensions, skills, and discovery files make repository behavior portable. The committed engineering-harness skill boundary is exactly `eng-harness-flow`, `eng-harness-0-harnessability-assessment`, and `grill-agent-done`; `.harness/skills.lock.json` records source provenance rather than authorization. Do not run broad skill installation when it would restore any other entry.
 
 ## Boot command
 
@@ -51,7 +51,7 @@ Use `harness doctor --json` for extension and convention diagnostics. During RPI
 | Web foundation | HTTP 200 plus title marker | `harness readiness --json` |
 | Server foundation | HTTP 200 plus exact non-sensitive readiness body | `harness readiness --json` |
 | Runtime ownership | PID, process group, process start time, command, and port release | `.harness/temp/boot/ownership.json` and stop envelope |
-| Skill portability | Nine repository-local `.agents/skills/*/SKILL.md` entries from packaged source | `.harness/skills.lock.json` and committed skill content |
+| Skill portability | Exactly `eng-harness-flow`, `eng-harness-0-harnessability-assessment`, and `grill-agent-done` under `.agents/skills/` | Committed skill content and the root allowlist guard; `.harness/skills.lock.json` is provenance only |
 | Root regression gate | Test, lint, format, type-check, build, and diff integrity | `just verify` through the root `justfile` |
 
 ## Evidence paths
@@ -87,4 +87,4 @@ These are structural RPIV agent seams. Slash calls use the host skill mechanism;
 
 ## Current maturity snapshot
 
-**L2 — Commands encoded.** Ambient harness 0.13.0 discovery, delegated focused/full checks, owned boot, dual readiness, safe stop, packaged repository skills, and managed commit guidance were exercised in the configured Node.js 24 environment. L3 is not claimed: sustained normal-work improvement-loop evidence has not been established.
+**L2 — Commands encoded.** Ambient harness 0.13.0 discovery, delegated focused/full checks, owned boot, dual readiness, safe stop, the exact three-skill allowlist, and managed commit guidance were exercised in the configured Node.js 24 environment. L3 is not claimed: sustained normal-work improvement-loop evidence has not been established.

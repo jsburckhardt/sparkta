@@ -85,7 +85,7 @@ Fastify/Pino request logs use correlation IDs, omit request bodies, and redact a
 
 ## GitHub Copilot skills
 
-The complete packaged harness skill inventory is committed under [`.agents/skills/`](../.agents/skills/) and indexed in [`.github/skills/README.md`](../.github/skills/README.md). [`.harness/skills.lock.json`](../.harness/skills.lock.json) records project scope, `github-copilot`, and `packaged` source. Cold-agent use depends only on committed skill content; no temporary extraction directory, machine-global skill path, or repository harness npm package is required.
+The committed engineering-harness allowlist under [`.agents/skills/`](../.agents/skills/) is exactly `eng-harness-flow`, `eng-harness-0-harnessability-assessment`, and `grill-agent-done`, as indexed in [`.github/skills/README.md`](../.github/skills/README.md). [`.harness/skills.lock.json`](../.harness/skills.lock.json) records project scope and packaged-source provenance only; it does not authorize additional names. Cold-agent use depends only on committed skill content. Do not run a broad installer that would restore other packaged skills.
 
 ## RPIV harness seams
 

@@ -66,7 +66,7 @@ The Vite foundation uses fixed port 5173. Boot refuses occupied fixed ports with
 
 ## Skills and agent discovery
 
-GitHub Copilot skills are committed beneath [`.agents/skills/`](.agents/skills/) from the ambient harness packaged source. [`.harness/skills.lock.json`](.harness/skills.lock.json) is the canonical project-scope install declaration; cold agents use committed files and do not need a temporary source or installation rerun. Start from [`AGENTS.md`](AGENTS.md), [`LLM.txt`](LLM.txt), and the [skill index](.github/skills/README.md).
+Exactly three engineering-harness GitHub Copilot skills are committed beneath [`.agents/skills/`](.agents/skills/): `eng-harness-flow`, `eng-harness-0-harnessability-assessment`, and `grill-agent-done`. [`.harness/skills.lock.json`](.harness/skills.lock.json) records packaged-source provenance only; it does not authorize additional names. Cold agents use the committed files, must not run a broad installer that restores other skills, and start from [`AGENTS.md`](AGENTS.md), [`LLM.txt`](LLM.txt), and the [skill index](.github/skills/README.md).
 
 ## State boundaries and evidence
 

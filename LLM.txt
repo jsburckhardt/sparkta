@@ -19,13 +19,13 @@ prettier.config.js — Shared formatting configuration
 .harness/extensions/checks/instructions.md — Agent briefing for delegated checks
 .harness/extensions/boot/extension.ts — Ownership-safe boot, readiness, and stop extension
 .harness/extensions/boot/instructions.md — Agent briefing for bounded runtime lifecycle
-.harness/skills.lock.json — Canonical project-scope GitHub Copilot packaged-skill declaration
+.harness/skills.lock.json — GitHub Copilot packaged-source provenance; not skill-name authorization
 .harness/flows/adopt.json — Completed harness adoption flow source with delivery branch provenance
 .harness/flows/adopt.md — Harness-rendered adoption flow view
 .harness/records/harness-change/ — Validated engineering-harness capability change ledger
 .harness/reports/harnessability/ — Historical branch-main static assessment; not current runtime proof
 .harness/temp/boot/ — Gitignored transient runtime ownership, evidence, and log paths
-.agents/skills/ — Complete committed ambient harness 0.13.0 packaged skills for cold GitHub Copilot sessions
+.agents/skills/ — Exact allowlist: eng-harness-flow, eng-harness-0-harnessability-assessment, and grill-agent-done
 apps/web/package.json — React/Vite workspace manifest
 apps/web/src/App.tsx — Neutral Sparkta foundation view
 apps/web/src/foundation.ts — Exported web foundation identity
@@ -52,7 +52,7 @@ docs/README.md — Detailed harness setup, API, configuration, operation, cleanu
 .github/agents/excali.agent.md — Excalidraw diagram agent
 .github/agents/onboard-repo.agent.md — Existing-repository onboarding agent
 .github/agents/issue-generator.agent.md — Structured issue generator
-.github/skills/README.md — Complete repository-local skill index and packaged-source boundary
+.github/skills/README.md — Exact repository-local skill index and packaged-source boundary
 .github/skills/agnostic-prompt-standard/SKILL.md — APS reference framework Skill
 .github/PULL_REQUEST_TEMPLATE.md — Pull request template
 project/README.md — Project documentation index

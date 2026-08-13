@@ -1,4 +1,4 @@
-# Action Plan: Adopt the AI-Substrate engineering harness
+# Action Plan: Correct the AI-Substrate engineering harness skill allowlist
 
 ## Feature
 
@@ -7,15 +7,15 @@
 
 ## ADRs Created
 
-- None. Issue #2 supplies the harness-adoption choices, and the accepted foundation and command-interface architecture already govern the implementation. The readiness route is a bounded foundation probe, not a new product or system boundary.
+- None. The correction narrows an existing repository operating contract and does not introduce a new architectural boundary.
 
 ## Core-Components Created
 
-- [`CORE-COMPONENT-260813-engineering-harness-operation`](../../../architecture/core-components/CORE-COMPONENT-260813-engineering-harness-operation.md) — ambient configured CLI validation, authoritative command delegation, boot/readiness ownership, committed discovery surfaces, RPIV injection, and commit guidance.
+- No new core-component. Updated [`CORE-COMPONENT-260813-engineering-harness-operation`](../../../architecture/core-components/CORE-COMPONENT-260813-engineering-harness-operation.md) in place, preserving its creation date, to require exactly the three approved skills and prohibit broad installation from restoring excluded skills. Decisions 46 and 48 in `DECISION-LOG.md` record the revised contracts.
 
 ## Acceptance Criteria
 
-The following IDs preserve the GitHub issue checkbox order and exact criterion text.
+The IDs preserve GitHub Issue #2 criterion order and text exactly.
 
 - **AC-1 (Core):** The locally available `@ai-substrate/engineering-harness` v0.13.0 package is installed and `harness --version`, `harness instructions`, and `harness doctor --json` report usable results.
 - **AC-2 (Core):** GitHub Copilot harness skills are installed and repository-local governance artifacts are discoverable by a cold agent session.
@@ -26,34 +26,30 @@ The following IDs preserve the GitHub issue checkbox order and exact criterion t
 
 ## Acceptance Coverage
 
-| AC ID | Implementation tasks         | Tests or validation                                                                                                                                     | Expected evidence                                                                                                                                                                                                                   |
-| ----- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| AC-1  | T-1, T-6, T-8                | V-1 ambient CLI validation; V-2 CLI discovery and doctor; V-11 final acceptance sequence                                                                | Configured-environment identity; `harness --version` reporting 0.13.0; usable `harness instructions` envelope; parsed `harness doctor --json` envelope with repository-actionable findings tracked                                  |
-| AC-2  | T-2, T-6, T-7, T-8           | V-3 repository-portable skill inventory; V-8 cold-agent discovery audit; V-11 final acceptance sequence                                                 | Complete v0.13.0 packaged skill content under `.agents/skills/`; canonical packaged-source harness lock; no transient source in committed state; complete governance and discovery links                                            |
-| AC-3  | T-4, T-5, T-6, T-8           | V-4 readiness route integration; V-5 boot/readiness/stop lifecycle; V-9 occupied-port and stale-state negative controls; V-11 final acceptance sequence | Structured boot envelope with owned PID, delegated command, web/server probes, durations, and evidence paths; readiness response; log path; clean stop proof; unknown port owner remains alive                                      |
-| AC-4  | T-3, T-6, T-8                | V-6 focused delegation contract; V-7 full delegation contract; V-10 authoritative root validation; V-11 final acceptance sequence                       | Harness envelopes identify exact `just verify-focused [target]` and `just verify` delegation; spy/negative-control records show no duplicated npm/tool commands; unchanged authoritative root recipe names and successful root runs |
-| AC-5  | T-2, T-6, T-7, T-8           | V-2 CLI instructions; V-8 cold-agent discovery and commit-guidance audit; V-11 final acceptance sequence                                                | AGENTS managed commit block and RPIV hook seams; LLM map; README/docs setup and use; `.github/skills/README.md`; governance breadcrumb and per-verb instructions; explicit ambient-tool boundary                                    |
-| AC-6  | T-3, T-4, T-5, T-6, T-7, T-8 | V-5, V-6, V-7, V-9, V-10, V-11                                                                                                                          | Successful JSON envelopes for readiness, boot, focused checks, and full checks in the configured Node.js 24 environment; successful `just verify-focused`; successful final `just verify`; cleanup proof and command transcript     |
+| AC ID | Implementation tasks    | Tests or validation     | Expected evidence                                                                                                                                             |
+| ----- | ----------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| AC-1  | T-5                     | V-4, V-9                | Exact `0.13.0` version output plus usable instructions and parsed doctor envelopes after correction                                                           |
+| AC-2  | T-1, T-2, T-3, T-4, T-5 | V-1, V-2, V-3, V-8, V-9 | Exact three-directory inventory, retained entry points, no excluded names in live lock/index/docs, cold-session discovery proof, corrected work-item evidence |
+| AC-3  | T-5                     | V-5, V-9                | Successful boot/readiness envelopes, inspectable evidence paths, and owned cleanup proof                                                                      |
+| AC-4  | T-2, T-5                | V-2, V-6, V-9           | Allowlist gate plus focused/full envelopes naming exact root recipe delegation and unchanged root authority                                                   |
+| AC-5  | T-1, T-3, T-4, T-5      | V-1, V-3, V-8, V-9      | Updated governance and entry-point text naming the exact allowlist and deterministic harness workflow; corrected handoff metadata                             |
+| AC-6  | T-5                     | V-4, V-5, V-6, V-7, V-9 | Successful focused/full root and harness checks, boot/readiness/stop envelopes, and final cleanup evidence                                                    |
 
-**Coverage proof:** AC-1 through AC-6 each has one or more implementation tasks, deterministic validation, and named inspectable evidence. No criterion is task-only, test-only, or evidence-only.
+**Coverage proof:** Every AC-1 through AC-6 row maps to at least one implementation task, deterministic validation, and explicit evidence. The task breakdown and test plan repeat these IDs; no criterion is task-only, validation-only, or evidence-only.
 
 ## Implementation Tasks
 
-1. **T-1 — Validate the configured ambient harness 0.13.0 CLI** (`AC-1`): perform bounded, read-only validation of the already-installed configured tool with `harness --version`, `harness instructions`, and `harness doctor --json`; record usable output and separate environment-only degradation from repository-actionable findings. Do not redesign or reproduce installation through repository npm state.
-2. **T-2 — Complete portable GitHub Copilot skills** (`AC-2`, `AC-5`): use the ambient CLI first-class `harness skills install --target github-copilot` packaged-source surface, commit the complete repository-local skill content and canonical harness install declaration, and reject transient extraction paths from committed discovery or lock state.
-3. **T-3 — Add delegated focused and full check extensions** (`AC-4`, `AC-6`): implement repository extensions and verb briefings for bare/full and focused checks; call only `just verify` or `just verify-focused [target]`; return structured envelopes and evidence.
-4. **T-4 — Add a minimal server readiness seam** (`AC-3`, `AC-6`): add the explicitly scoped `GET /api/readiness` Fastify route with a stable non-sensitive response and injection tests. Do not add product workflows, persistence, or external dependencies.
-5. **T-5 — Add owned boot, readiness, and stop extensions** (`AC-3`, `AC-6`): start through `just run`, manage only `.harness/temp/boot/`, detect fixed-port conflicts without killing unknown processes, poll web and server readiness, compose full checks, retain structured evidence, and clean owned processes on failure or explicit stop.
-6. **T-6 — Complete governance, flow, injection, and commit guidance** (`AC-1`, `AC-2`, `AC-3`, `AC-4`, `AC-5`, `AC-6`): replace governance TODOs with the validated BIO contract, document the ambient CLI/repository-state boundary, add exact RPIV seam calls, inject harness-managed commit guidance, register verb instructions, and update the adoption flow only from validated evidence.
-7. **T-7 — Update all cold-agent and operator documentation** (`AC-2`, `AC-5`, `AC-6`): align `AGENTS.md`, `LLM.txt`, `README.md`, `docs/README.md`, `.github/skills/README.md`, and architecture overview links with the harness front door, clearly identifying the already-configured ambient CLI while retaining root `just` authority and foundation-only scope.
-8. **T-8 — Execute acceptance and preserve evidence** (`AC-1`, `AC-2`, `AC-3`, `AC-4`, `AC-5`, `AC-6`): run targeted `just verify-focused`, all harness-specific validations, final `just verify`, portability and negative-control checks, and formatting/diff checks; record AC-indexed evidence without cleaning or overwriting unrelated dirty baseline content.
+1. **T-1 — Reconcile the global harness contract** (`AC-2`, `AC-5`): retain the in-place core-component update and Decision Log records; create no ADR or replacement component.
+2. **T-2 — Enforce the exact committed skill allowlist** (`AC-2`, `AC-4`): retain only `eng-harness-flow`, `eng-harness-0-harnessability-assessment`, and `grill-agent-done` under `.agents/skills/`; remove the other six restored directories, eliminate contradictory lock state, and add an authoritative root validation guard without rerunning the broad packaged installer.
+3. **T-3 — Correct live discovery and operating documentation** (`AC-2`, `AC-5`): update the skill index, harness governance, repository maps, README/docs, and architecture overview so no live surface claims nine or complete packaged inventory.
+4. **T-4 — Reconcile issue evidence and delivery handoff** (`AC-2`, `AC-5`): append corrective Implement evidence, identify superseded nine-skill claims, and hand Verify the exact updates required for `verify/summary.md` and PR #10 without falsifying historical command results.
+5. **T-5 — Run regression and acceptance validation** (`AC-1`–`AC-6`): prove the exact allowlist, cold discovery, ambient CLI, delegated checks, boot/readiness/stop, and root validation while preserving unrelated report changes.
 
 ## Delivery Guardrails
 
-- Treat `@ai-substrate/engineering-harness` v0.13.0 as already installed and configured in the ambient development environment. Do not recover, recreate, commit, delete, or depend on `ai-substrate-engineering-harness-0.13.0.tgz`; do not add harness entries to `package.json` or `package-lock.json`.
-- Do not claim the ambient CLI can be reproduced from repository npm state unless existing independent configuration proves that claim. Repository portability applies to governance, extensions, skills, discovery, and evidence.
-- Snapshot the intentional modified/untracked baseline before implementation. Change related partial harness artifacts in place; do not reset, clean, or overwrite unrelated work.
-- Treat the original static harnessability report as historical branch-`main` evidence. Do not rewrite it as current proof.
-- Use `.harness/temp/boot/` only for disposable runtime ownership and evidence. Do not place harness state under `.sparkta/apps/` or `.sparkta/runtime/`.
-- A doctor `degraded` envelope is usable only under the documented core-component exception: the ambient CLI, repository extensions, checks, boot, readiness, and commit guidance must work; environment-only attribution/capture warnings must retain explicit next actions.
-- The root `justfile`, including `just setup`, `just verify-focused`, and `just verify`, remains authoritative. Harness commands supplement and delegate to it.
+- Do not run `harness skills install --target github-copilot` when it would restore excluded skills.
+- Do not remove or alter `.github/skills/agnostic-prompt-standard/`; the exact three-name allowlist applies to engineering-harness skills under `.agents/skills/`.
+- Preserve modified `.harness/reports/harnessability/latest.json`, modified `latest.md`, and untracked `.harness/reports/harnessability/002-sparkta/` byte-for-byte. Their generated nine-skill observation is not a live allowlist contract.
+- Treat `.harness/skills.lock.json` as installation provenance only. Remove the ignored transient root `skills-lock.json` if present; do not commit or cite it as authority.
+- Do not modify application behavior, readiness ownership, check delegation, root recipe bodies beyond the narrow allowlist validation hook, or npm dependency state.
+- Implement records corrective evidence; Verify independently refreshes acceptance decisions, `verify/summary.md`, and PR #10 metadata.

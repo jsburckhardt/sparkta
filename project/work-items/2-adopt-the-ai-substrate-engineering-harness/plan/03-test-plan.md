@@ -1,319 +1,243 @@
-# Test Plan: Adopt the AI-Substrate engineering harness
+# Test Plan: Correct the AI-Substrate engineering harness skill allowlist
 
-## Test V-1: Validate the configured ambient harness CLI
+## Test V-1: Validate the reconciled architecture contract
 
-- **Type:** Environment / acceptance
-- **Task:** T-1, T-8
-- **Acceptance Criteria:** AC-1
+- **Type:** Architecture / static
+- **Task:** T-1
+- **Acceptance Criteria:** AC-2, AC-5
 - **Priority:** Critical
 
 ### Setup
 
-Use the configured Node.js 24 devcontainer/environment in which `@ai-substrate/engineering-harness` v0.13.0 is already installed and configured. Record the environment and runtime versions. Start no harness-owned application runtime and make no package, lockfile, PATH, or installation changes.
+Use the updated core-component and Decision Log; inspect all existing architecture artifacts without creating new ones.
 
 ### Steps
 
-1. Run `harness --version` and capture the exact output and exit code.
-2. Run `harness instructions` and parse its single envelope, status, briefing, and next action.
-3. Run `harness doctor --json` and parse its single envelope, layer results, extensions, conventions, and next action.
-4. Classify each doctor finding as repository-actionable or environment-only under the core-component exception.
+1. Confirm the component ID, filename, registry row, and `2026-08-13` creation date are unchanged.
+2. Confirm its rules name exactly the three allowed skills, reject extras, and prohibit a broad restoring install.
+3. Confirm Decision 46 and Decision 48 are imperative, actionable, dated, and sourced to the component.
+4. Confirm no ADR or new core-component exists for this correction.
 
 ### Expected Result
 
-The configured ambient CLI reports exactly `0.13.0`; instructions return a usable briefing; doctor returns valid machine-readable `ok` or allowed `degraded` output with actionable diagnostics. This validation neither changes installation state nor claims the CLI is reproduced by repository npm state.
+The global contract unambiguously governs the three-skill allowlist and no nine-skill architectural prescription remains.
 
 ### Expected Evidence
 
-- Configured environment and Node.js version identifier.
-- Exact `harness --version` output showing `0.13.0`.
-- `harness instructions` envelope and usable briefing status.
-- Complete `harness doctor --json` envelope and finding-classification table.
+- Architecture audit table and relevant diffs.
+- Zero unexpected architecture-artifact paths.
 
-## Test V-2: Validate CLI discovery, doctor, and commit guidance
+## Test V-2: Prove the exact skill allowlist and validation guard
 
-- **Type:** Acceptance / diagnostic
-- **Task:** T-1, T-6, T-8
-- **Acceptance Criteria:** AC-1, AC-5, AC-6
+- **Type:** Static / negative control
+- **Task:** T-2
+- **Acceptance Criteria:** AC-2, AC-4
 - **Priority:** Critical
 
 ### Setup
 
-Complete T-1, T-3, T-5, and T-6 in the configured Node.js 24 development environment. Ensure no test boot runtime is left running.
+Complete skill pruning and the root validation guard. Use disposable copies for failure fixtures; never mutate preserved report paths.
 
 ### Steps
 
-1. Run `harness --version` and `harness instructions`.
-2. Run `harness help --json` and assert checks, boot, readiness, and stop verbs are registered with instruction availability.
-3. Run `harness instructions checks`, `harness instructions boot`, and `harness instructions commit`.
-4. Run `harness doctor --json`; parse the one-envelope schema, status, extensions, conventions, and next actions.
-5. Run the managed commit-guidance injection a second time in a disposable copy and assert it is idempotent.
+1. Sort top-level `.agents/skills/` directory names and compare byte-for-byte with the ordered expected set: `eng-harness-0-harnessability-assessment`, `eng-harness-flow`, `grill-agent-done`.
+2. Confirm each required `SKILL.md` and its referenced files resolve.
+3. Confirm all six excluded trees are absent from tracked and working state.
+4. Run the root allowlist guard successfully.
+5. In disposable copies, remove one required directory and add one extra directory; require non-zero, actionable failures.
+6. Confirm root `skills-lock.json` is absent, `.harness/skills.lock.json` does not name excluded skills, and the APS tree is unchanged.
 
 ### Expected Result
 
-Version is 0.13.0. Every repository verb and briefing is discoverable. Doctor exits successfully with `ok` or allowed `degraded`, reports loaded extensions and current commit guidance, and has no unresolved repository-adoption complaint. Only environment attribution/capture degradation documented by the core-component exception may remain. Re-injection does not duplicate or alter content outside its markers.
+Only the three required engineering-harness skills exist, and repository validation rejects both missing and additional entries without changing check delegation.
 
 ### Expected Evidence
 
-- Version, core/verb instruction output, help verb map, complete doctor JSON, and parsed diagnostic summary.
-- AGENTS managed marker count and no-diff idempotency result.
+- Expected/actual inventory output, tracked deletion list, path/link audit, and positive/negative guard transcripts.
+- Allowed-skill retention diff/hash evidence and APS no-change proof.
 
-## Test V-3: Prove portable GitHub Copilot skill installation
+## Test V-3: Audit cold-agent discovery and live documentation
 
-- **Type:** Static / portability
-- **Task:** T-2, T-8
+- **Type:** Documentation / discovery
+- **Task:** T-3
 - **Acceptance Criteria:** AC-2, AC-5
 - **Priority:** High
 
 ### Setup
 
-Complete the repository-local skill installation through the configured ambient CLI first-class `harness skills install --target github-copilot` interface using its default packaged source. Evaluate committed repository state without global agent skill directories or temporary extraction directories.
+Read only live normative entry points; exclude generated harnessability reports and explicitly historical evidence from stale-claim enforcement.
 
 ### Steps
 
-1. Retain the first-class installer transcript and its packaged skill inventory from T-2.
-2. Enumerate repository `.agents/skills/*/SKILL.md` slugs in sorted order and compare them with the complete packaged inventory.
-3. Validate all files and references needed by each committed skill exist and are readable from repository state.
-4. Validate `.harness/skills.lock.json` declares project scope, `github-copilot`, and `packaged` source; accept root `skills-lock.json` only if its metadata is repository-portable.
-5. Search committed files for temporary extraction paths, machine-global skill paths, root npm package paths, missing skill sources, and incomplete discovery references.
-6. Follow the repository skill index from a cold-agent entry point without consulting global agent files.
+1. Traverse `AGENTS.md`, `LLM.txt`, `README.md`, `docs/README.md`, `.github/skills/README.md`, `.harness/engineering-harness.md`, and `project/architecture/README.md` as a cold agent.
+2. Resolve all three allowlist links and harness governance links.
+3. Search these files for each excluded skill, nine-skill wording, and complete-packaged-inventory claims.
+4. Confirm lock documentation describes provenance only and warns against broad restoration.
+5. Confirm deterministic harness commands and root `just` authority remain accurate.
 
 ### Expected Result
 
-The complete v0.13.0 packaged skill set is committed and readable by GitHub Copilot. Canonical harness configuration records the packaged project installation, and no committed lock or discovery state relies on an ephemeral, machine-global, or repository npm package source.
+A cold agent discovers exactly the approved skills and current harness workflow in one hop; no live documentation authorizes or links an excluded skill.
 
 ### Expected Evidence
 
-- First-class installer transcript and sorted expected/actual inventory equality verdict.
-- Canonical lock validation and zero-result non-portable-source searches.
-- Repository-local paths for every packaged `SKILL.md` entry point and cold-discovery audit.
+- Entry-point audit matrix, link results, and scoped stale-reference search output.
 
-## Test V-4: Validate the Fastify readiness route
+## Test V-4: Validate ambient CLI usability after correction
 
-- **Type:** Integration / Vitest
-- **Task:** T-4
-- **Acceptance Criteria:** AC-3, AC-6
+- **Type:** Environment / acceptance
+- **Task:** T-5
+- **Acceptance Criteria:** AC-1, AC-6
 - **Priority:** Critical
 
 ### Setup
 
-Register `GET /api/readiness` through `createServer` and add the exact response oracle to `apps/server/src/app.test.ts` or a focused colocated test.
+Use the configured Node.js 24 environment. Do not install skills or change npm state.
 
 ### Steps
 
-1. Inject a GET request to `/api/readiness` without opening a network listener.
-2. Assert HTTP 200 and the exact stable readiness body.
-3. Assert the body omits PID, path, environment, stack, secrets, prompt, source, and mutable internal state.
-4. Assert request lifecycle/error/observability contracts remain intact.
-5. Run `just verify-focused apps/server/src/app.test.ts`.
+1. Run `harness --version`.
+2. Run `harness instructions`.
+3. Run and parse `harness doctor --json`.
+4. Classify any degraded findings under the existing documented exception.
 
 ### Expected Result
 
-The readiness seam deterministically reports the local server foundation ready, exposes no sensitive/internal values, and passes targeted authoritative root validation.
+Version is exactly `0.13.0`; instructions and doctor remain usable, with no repository-actionable skill-discovery contradiction.
 
 ### Expected Evidence
 
-- Passing Vitest case with exact body assertion.
-- `just verify-focused` output and exit code.
+- Exact version output, instruction envelope, doctor JSON, and finding classification.
 
-## Test V-5: Validate positive boot, readiness, checks composition, and cleanup
+## Test V-5: Regress boot, readiness, and owned cleanup
 
 - **Type:** Runtime / end-to-end
-- **Task:** T-5, T-6, T-8
+- **Task:** T-5
 - **Acceptance Criteria:** AC-3, AC-6
 - **Priority:** Critical
 
 ### Setup
 
-Use the configured devcontainer with ports 5173 and 3000 free, no unrelated service listeners, dependencies installed, and no valid harness-owned process. Preserve any stale test ownership file for V-9 instead of this positive path.
+Ensure ports 5173 and 3000 are free and no valid harness-owned process remains.
 
 ### Steps
 
-1. Run `harness stop --json` to establish an idempotent known state.
-2. Run `harness boot --json` and bound completion to the documented timeout.
-3. Assert boot delegated startup to `just run`, both service probes passed, and the composed full harness check passed.
-4. Run `harness readiness --json` and independently request the web root and `/api/readiness`.
-5. Inspect only the named `.harness/temp/boot/` log/evidence files for non-empty structured evidence.
-6. Run `harness stop --json`; verify the owned process is gone, both ports are released, and a repeated stop succeeds without collateral action.
+1. Run `harness stop --json` for a known state.
+2. Run `harness boot --json`; require `just run`, both probes, and composed full checks to pass.
+3. Run `harness readiness --json` and inspect named bounded evidence.
+4. Run `harness stop --json`; confirm ownership removal and released ports.
 
 ### Expected Result
 
-Boot starts both foundation processes from a known state, reports a successful structured envelope with inspectable evidence, leaves them ready for interaction, and stop removes only owned runtime state/listeners. Full checks are visibly composed through the delegated harness checks surface.
+Skill pruning has no effect on known-state boot, readiness, inspectable evidence, or owned cleanup.
 
 ### Expected Evidence
 
-- Boot/readiness/stop JSON envelopes with commands, ownership ID/PID, URLs, statuses, durations, checks result, and evidence paths.
-- Independent HTTP responses, redacted log excerpt, released-port checks, and repeated-stop result.
+- Boot/readiness/stop envelopes, evidence paths, HTTP probe fields, and closed-port proof.
 
-## Test V-6: Prove focused checks delegate exactly once
+## Test V-6: Regress focused and full delegation
 
-- **Type:** Contract / negative control
-- **Task:** T-3, T-8
+- **Type:** Contract / regression
+- **Task:** T-2, T-5
 - **Acceptance Criteria:** AC-4, AC-6
 - **Priority:** Critical
 
 ### Setup
 
-Place a disposable `just` spy first on PATH for one isolated harness invocation. The spy records argv and returns controlled success/failure without running npm, Vitest, lint, type-check, or build. Keep a real committed focused test path for the actual invocation.
+Use the established disposable `just` spy, then restore the real PATH.
 
 ### Steps
 
-1. Run `harness checks focused apps/server/src/app.test.ts --json` against the spy.
-2. Assert exactly one child call with argv `verify-focused`, `apps/server/src/app.test.ts` and no direct tool call.
-3. Repeat with no target and assert exact `verify-focused` delegation.
-4. Make the spy fail and assert the harness returns a non-ok envelope, child exit detail, and next action.
-5. Restore real PATH and run the same focused harness command; also run the authoritative `just verify-focused apps/server/src/app.test.ts`.
+1. Prove focused target/no-target calls invoke exactly `just verify-focused [target]` once.
+2. Prove bare/full calls invoke exactly `just verify` once.
+3. Confirm controlled child failure propagates.
+4. Run actual focused and full harness checks and verify the allowlist guard is composed by root recipes.
 
 ### Expected Result
 
-Focused harness checks are a thin one-call wrapper over the root focused recipe, forward the optional target safely, preserve failures, and succeed against the actual root command.
+Harness wrappers remain delegation-only and authoritative root validation now also enforces the exact allowlist.
 
 ### Expected Evidence
 
-- Spy argv/count records, success/failure envelopes, and actual harness/root focused outputs.
-- Static extension review showing no duplicated verification tool commands.
+- Spy argv/count records, failure envelope, actual focused/full envelopes, and static wrapper review.
 
-## Test V-7: Prove full checks delegate exactly once
-
-- **Type:** Contract / negative control
-- **Task:** T-3, T-5, T-8
-- **Acceptance Criteria:** AC-4, AC-6
-- **Priority:** Critical
-
-### Setup
-
-Use the same isolated `just` spy method as V-6, then restore the real PATH.
-
-### Steps
-
-1. Run bare `harness checks --json` against the spy and assert one `just verify` call.
-2. Run `harness checks full --json` against the spy and assert one `just verify` call.
-3. Make the spy fail and assert full failure propagation with a next action.
-4. Search the extension for copied npm/test/lint/format/type-check/build/diff-integrity bodies.
-5. Run `harness checks full --json` against the actual root recipe.
-
-### Expected Result
-
-Bare and explicit full checks delegate exactly once to `just verify`, duplicate no root recipe body, propagate failure honestly, and pass against the authoritative recipe.
-
-### Expected Evidence
-
-- Spy invocation records and JSON envelopes.
-- Zero duplication review result and successful actual full-check envelope.
-
-## Test V-8: Audit cold-agent discovery, governance, flow, and documentation
-
-- **Type:** Documentation / governance validation
-- **Task:** T-2, T-6, T-7, T-8
-- **Acceptance Criteria:** AC-2, AC-5, AC-6
-- **Priority:** High
-
-### Setup
-
-Evaluate only repository files in a cold-session reading order: `AGENTS.md`, `LLM.txt`, `README.md`, `.harness/engineering-harness.md`, `docs/README.md`, `.github/skills/README.md`, and RPIV agent definitions.
-
-### Steps
-
-1. Confirm each entry point links to existing harness governance, extensions, skills, architecture, and evidence paths.
-2. Confirm agents are told to run `harness instructions`, doctor, verb briefings, focused/full checks, boot/readiness/stop, and the managed commit path.
-3. Confirm RPIV pre-flight, pre-coding, coding, post-coding, and post-flight seams identify the exact harness hook/event invocation and agree with the governance injection map.
-4. Validate `.harness/flows/adopt.md` is generated from JSON, carries current branch provenance, and records validated completion rather than assumptions.
-5. Confirm root `just` authority, the already-configured ambient CLI boundary, Node.js 24 application setup, fixed ports, cleanup, evidence, doctor exception, and foundation-only scope are consistent across docs.
-6. Run formatting/link/path checks through the root validation surface.
-
-### Expected Result
-
-A cold agent reaches the deterministic harness front door in one hop, recognizes the configured ambient CLI boundary, and can discover how to inspect, validate, boot, observe, stop, commit, and invoke RPIV seams. No documentation contradicts root `just` authority or claims unproved maturity.
-
-### Expected Evidence
-
-- Entry-point/link/path audit table and command-example transcript.
-- Generated-flow consistency result, hook seam comparison, and documentation diff.
-- Successful formatting/root validation relevant output.
-
-## Test V-9: Exercise boot ownership and failure negative controls
-
-- **Type:** Runtime / resilience
-- **Task:** T-5, T-8
-- **Acceptance Criteria:** AC-3, AC-6
-- **Priority:** Critical
-
-### Setup
-
-Use disposable listeners/processes with captured PIDs. Ensure every fixture has teardown independent of the harness. Prepare stale ownership metadata that names a definitely dead PID. Never use an existing developer process as a fixture.
-
-### Steps
-
-1. Occupy port 3000 with the disposable unknown listener and run `harness boot --json`.
-2. Assert boot rejects the conflict, names the port, does not signal the listener, and creates no live owned runtime.
-3. Repeat for port 5173.
-4. Remove listeners, place stale harness ownership metadata, and run boot; assert stale state is reconciled without signaling an unrelated PID.
-5. Force one readiness probe or composed check to fail and assert all harness-owned processes are stopped and ports released.
-6. Run repeated `harness stop --json` and confirm idempotency.
-
-### Expected Result
-
-Boot never kills unknown port owners, safely reconciles stale owned state, reports actionable structured failures, and leaves no owned process after partial startup, timeout, or check failure.
-
-### Expected Evidence
-
-- Conflict/failure envelopes, fixture PID liveness before/after, stale-state reconciliation record, and released-port proof.
-- Teardown confirmation for every disposable fixture.
-
-## Test V-10: Run authoritative targeted and final root validation
+## Test V-7: Run authoritative root regression checks
 
 - **Type:** Regression / quality gate
-- **Task:** T-3, T-4, T-5, T-7, T-8
+- **Task:** T-5
 - **Acceptance Criteria:** AC-2, AC-3, AC-4, AC-5, AC-6
 - **Priority:** Critical
 
 ### Setup
 
-Complete all implementation and documentation tasks, stop harness-owned runtime, and retain the intentional baseline plus planned changes. Do not clean the worktree.
+Complete T-1 through T-4 and stop runtime processes without cleaning the worktree.
 
 ### Steps
 
-1. During implementation, run `just verify-focused` with the affected committed test target after each behavior change.
-2. Run `git diff --check` through the focused recipe as configured.
-3. After all changes, run `just verify` as the final authoritative validation source.
-4. Inspect the final root recipe names/bodies and confirm harness wrappers remain delegation-only.
+1. Run `just verify-focused` during correction.
+2. Run formatting and diff-integrity checks over changed architecture, plans, docs, and validation configuration.
+3. Run final `just verify`.
+4. Confirm no application source, package manifest, or package lock changed.
 
 ### Expected Result
 
-Targeted root validation succeeds during implementation, final root test/lint/format/type-check/build/diff-integrity succeeds, and the harness has not replaced or duplicated either authoritative recipe.
+All existing application and harness regressions pass, the exact allowlist guard passes, and the corrective diff remains configuration/documentation-only.
 
 ### Expected Evidence
 
-- Targeted `just verify-focused` transcripts by changed behavior.
-- Final `just verify` command, exit code, component results, and diff-integrity result.
-- Root-versus-wrapper delegation review.
+- Focused and full root transcripts, component results, diff check, and scoped changed-file list.
 
-## Test V-11: Run the configured-environment acceptance sequence
+## Test V-8: Validate corrected issue evidence and Verify handoff
 
-- **Type:** Final acceptance / end-to-end
-- **Task:** T-8
+- **Type:** Evidence / delivery governance
+- **Task:** T-4
+- **Acceptance Criteria:** AC-2, AC-5
+- **Priority:** High
+
+### Setup
+
+Use the corrective implementation addendum and, during Verify, inspect `verify/summary.md` and PR #10 independently.
+
+### Steps
+
+1. Confirm implementation evidence maps the correction to AC-2/AC-5 and clearly supersedes final nine-skill claims.
+2. Confirm the Verify handoff names exact inventory, validation, preservation, summary, and PR metadata checks.
+3. During Verify, remove or explicitly supersede stale final-state claims in `verify/summary.md` and PR #10 while retaining truthful historical context.
+4. Search current issue-owned and GitHub delivery surfaces for unqualified nine-skill acceptance claims.
+
+### Expected Result
+
+Repository and GitHub delivery evidence describe exactly three final engineering-harness skills and preserve RPIV stage ownership.
+
+### Expected Evidence
+
+- Corrective addendum, Verify decision diff, PR metadata output, and zero-result unqualified-claim search.
+
+## Test V-9: Run final acceptance and preservation sequence
+
+- **Type:** Final acceptance / preservation
+- **Task:** T-5
 - **Acceptance Criteria:** AC-1, AC-2, AC-3, AC-4, AC-5, AC-6
 - **Priority:** Critical
 
 ### Setup
 
-Use the configured Node.js 24 devcontainer after V-1 through V-10 pass. Start with no harness-owned runtime and free fixed ports. Preserve all unrelated dirty/untracked files.
+Record `git status` plus hashes for modified `latest.json`, modified `latest.md`, and every file under untracked `.harness/reports/harnessability/002-sparkta/`. Start with no owned runtime.
 
 ### Steps
 
-1. Run `harness --version`, `harness instructions`, `harness help --json`, and `harness doctor --json`.
-2. Run V-3 skill portability validation.
-3. Run `harness checks focused apps/server/src/app.test.ts --json`.
-4. Run `harness boot --json`, then `harness readiness --json`.
-5. Run `harness checks full --json`.
-6. Run `harness stop --json` and confirm both ports are released.
-7. Confirm final `just verify` evidence is current and record every result under AC-1 through AC-6.
+1. Run V-1 through V-8 in order.
+2. Re-run the exact inventory, stale-reference, CLI, focused/full checks, boot/readiness/stop, and final root validation.
+3. Compare final report hashes and status with the baseline.
+4. Confirm no broad installer was invoked, no excluded directory returned, ownership is absent, and ports are closed.
+5. Record evidence under AC-1 through AC-6 in the implementation handoff.
 
 ### Expected Result
 
-All six acceptance criteria have current, repository-accessible proof. Harness readiness, boot, focused checks, and full checks succeed; the ambient CLI is validated; repository skills, governance, extensions, and instructions are portable and discoverable; cleanup succeeds; root validation remains authoritative.
+All criteria have current proof for the corrected repository, and preservation-sensitive user report changes are byte-identical to their starting state.
 
 ### Expected Evidence
 
-- Ordered command transcript and JSON envelopes for all harness commands.
-- AC-1 through AC-6 evidence matrix in `project/work-items/2-adopt-the-ai-substrate-engineering-harness/implementation/00-implementation.md`.
-- Final port/process cleanup, git status/diff-integrity snapshot, and successful final `just verify` reference.
+- Ordered command transcript and AC coverage matrix.
+- Final exact three-name inventory and stale-reference audit.
+- Before/after report hashes/status, cleanup proof, and final `just verify` result.

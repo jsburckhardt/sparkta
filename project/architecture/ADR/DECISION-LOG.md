@@ -75,5 +75,6 @@ Short, actionable statements derived from ADRs and core-components. More than on
 | 43  | Use ambient configured harness v0.13.0 without repository npm dependency or tarball requirements      | CORE-COMPONENT-260813-engineering-harness-operation        | 2026-08-13 |
 | 44  | Delegate harness focused and full checks to authoritative root just recipes                           | CORE-COMPONENT-260813-engineering-harness-operation        | 2026-08-13 |
 | 45  | Require harness boot to prove both services ready and clean only owned processes                      | CORE-COMPONENT-260813-engineering-harness-operation        | 2026-08-13 |
-| 46  | Install packaged skills through ambient harness; commit governance, extensions, skills, and discovery | CORE-COMPONENT-260813-engineering-harness-operation        | 2026-08-13 |
+| 46  | Commit exactly the three approved engineering-harness skills and matching discovery references        | CORE-COMPONENT-260813-engineering-harness-operation        | 2026-08-13 |
 | 47  | Use harness commit with explicit pathspecs for AI-authored commits                                    | CORE-COMPONENT-260813-engineering-harness-operation        | 2026-08-13 |
+| 48  | Prohibit broad skill installation from restoring skills outside the approved allowlist                | CORE-COMPONENT-260813-engineering-harness-operation        | 2026-08-13 |
