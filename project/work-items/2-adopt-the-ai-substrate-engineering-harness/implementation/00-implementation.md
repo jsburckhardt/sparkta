@@ -19,8 +19,8 @@ This addendum supersedes every final-state statement below that describes nine c
 - **AC-2 / AC-5:** Updated `AGENTS.md`, `LLM.txt`, `README.md`, `docs/README.md`, `.github/skills/README.md`, `.harness/engineering-harness.md`, and `project/architecture/README.md` to name only the three allowed skills, describe `.harness/skills.lock.json` as provenance, and prohibit broad restoration. Cold entry points and all three indexed `SKILL.md` paths resolve.
 - **AC-4:** Added root recipe `verify-harness-skills` and composed it into both authoritative `verify-focused` and `verify` recipes without changing harness wrapper delegation.
 - **Architecture:** Retained the in-place `CORE-COMPONENT-260813-engineering-harness-operation` update and Decision 46/48 records. No ADR or replacement core-component was created.
-- **Preservation baseline:** The modified `latest.json` and `latest.md` hashes were `84ea1893ec1cf31718e9799ff26d2d3aa6e2bc678f137d2aa2da703be7d9369a` and `a1f7dcc754e4d2ca0ec17387ab571ad8d4d78e42be3d37dd01beb55d5b5871b1`; all four untracked `002-sparkta` file hashes are recorded in the corrective handoff and must remain byte-identical. Generated report observations are historical evidence, not the live allowlist oracle.
-- **Verify handoff:** Verify must independently replace or explicitly supersede stale nine-skill final-state claims in `verify/summary.md` and PR #10 metadata, inspect the exact inventory and preservation hashes, rerun authoritative validation, and retain ownership of acceptance and GitHub updates. Implement does not alter those Verify-owned surfaces.
+- **Coupled assessment documentation:** The user reclassified assessment `002-sparkta` and root `latest` as directly affected documentation. Implement corrected the stale nine-skill surface to the exact allowlist without changing assessment 001, scoring, grades, readiness, proof level, or remediation priorities.
+- **Verify handoff:** Verify must independently replace or explicitly supersede stale nine-skill final-state claims in `verify/summary.md` and PR #10 metadata, inspect the exact inventory and corrected assessment consistency, rerun authoritative validation, and retain ownership of acceptance and GitHub updates. Implement does not alter those Verify-owned surfaces.
 
 
 ### Corrective acceptance evidence
@@ -32,14 +32,14 @@ This addendum supersedes every final-state statement below that describes nine c
 | AC-3 | `harness boot --json` delegated to `just run`, proved web HTTP 200 and the exact server readiness verdict, composed successful full checks, and named bounded evidence paths. `harness readiness --json` passed. Final `harness stop --json` matched complete ownership, sent only `SIGTERM`, released ports 3000/5173, and removed ownership; independent probes found both ports closed. |
 | AC-4 | `verify-harness-skills` is composed by both root recipes. `harness checks focused --json` delegated to exact `just verify-focused` and passed 13 tests; boot-composed `harness checks full --json` delegated to exact `just verify`. Existing delegation-only wrappers were unchanged. |
 | AC-5 | Updated all affected cold-agent, README, usage, operational, lock-boundary, and architecture-overview documentation. Each names the exact allowlist, root `justfile` authority, provenance-only lock role, and broad-install prohibition. Verify-owned `verify/summary.md` and PR #10 are explicitly handed back for independent correction. |
-| AC-6 | Corrective focused runs passed after T-1 through T-4; T-5 delegated focused checks passed 13 tests; boot-composed full checks passed; final root `just verify` passed 13 tests, lint, formatting, strict type checks, both builds, allowlist validation, and merge-base diff integrity. Runtime cleanup and report preservation checks passed. |
+| AC-6 | Corrective focused runs passed after T-1 through T-4; T-5 delegated focused checks passed 13 tests; boot-composed full checks passed; final root `just verify` passed 13 tests, lint, formatting, strict type checks, both builds, allowlist validation, and merge-base diff integrity. Runtime cleanup passed; the directly affected assessment documentation passed schema, exact-mirror, stale-claim, and allowlist consistency checks. |
 
 ### Corrective documentation evidence
 
 - **Setup/usage/operations:** `README.md`, `docs/README.md`, `AGENTS.md`, `LLM.txt`, `.harness/engineering-harness.md`, and `.github/skills/README.md` now expose exactly the three supported skills, warn against broad restoration, and retain the deterministic harness/root-recipe workflow.
 - **Architecture:** `project/architecture/README.md`, the existing engineering-harness core-component, and Decision 46/48 describe the narrowed contract without a new ADR or component.
 - **API/configuration/migration/deployment:** no application API, configuration default, data shape, migration, or deployment procedure changed; existing readiness documentation remains accurate.
-- **Preserved evidence:** implementation did not edit generated harnessability reports. Final hashes equal the baseline: `002-sparkta/evidence.jsonl` `682631299a114807ff0eff809480dc5d84a48da344a4b5fb8ca4f6ef0edc8487`, `report.json` `84ea1893ec1cf31718e9799ff26d2d3aa6e2bc678f137d2aa2da703be7d9369a`, `report.md` `a1f7dcc754e4d2ca0ec17387ab571ad8d4d78e42be3d37dd01beb55d5b5871b1`, and `summary.md` `d58229032a261d63f95a5ee182969039a571e3773a09e0adb0f009727ac844a5`; `latest.json` and `latest.md` match the corresponding report hashes.
+- **Harnessability assessment documentation:** corrected `002-sparkta/report.md`, `report.json`, `summary.md`, and `evidence.jsonl` to state or evidence the exact three-skill allowlist. Scores remain evidence-honest and unchanged. Root `latest.md` and `latest.json` byte-match the corrected report files. Assessment 001 is untouched. Corrected hashes: `evidence.jsonl` `0fec2f3f2db02617e721f68220c8a776240874f3cbff41d7c4bfe99bef5e2b38`, `report.json`/`latest.json` `1899ee51d69249d063d08a97fa8de82cc58d3d25dd37e353e82b18c6db4e42ff`, `report.md`/`latest.md` `e6ee4066f19721bc3918831c15e2a0a2866d3af15d2d24f12f6fb812483c808c`, and `summary.md` `520467f6204f0b0a6b6f5d46f6dc31db73a92bb108181bacf2a5a0446bca3812`.
 
 ### Corrective focused validation chronology
 
@@ -48,6 +48,7 @@ This addendum supersedes every final-state statement below that describes nine c
 - T-3: cold-entry path and stale-reference audits plus `just verify-focused` passed.
 - T-4: corrective evidence audit plus `just verify-focused` passed.
 - T-5: ambient CLI, boot/readiness/stop, delegated focused/full checks, final preservation/cleanup audits, and `just verify` passed.
+- Corrective documentation continuation: `just verify-harness-skills`, JSON/JSONL readability, exact root-latest mirrors, scoped stale-claim search, `just verify-focused` (13 tests), and `just verify` (13 tests plus lint, formatting, type checks, and builds) passed.
 
 ## Verify repair evidence — 2026-08-13
 
