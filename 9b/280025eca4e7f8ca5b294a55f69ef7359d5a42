@@ -1,0 +1,50 @@
+docs/README.md
+  s_af31cff9c3f8e7::t_33f4d23eccd1f8 11-12,35
+apps/server/src/harness-boot-ownership.test.ts
+  s_af31cff9c3f8e7::t_ce5bef49fbd6e4 76-83,224
+  s_af31cff9c3f8e7::t_1c932b12aed911 17,44-47,100,103,106,205
+  s_af31cff9c3f8e7::t_c7ca9ec82b2947 137-140,184-189
+  s_af31cff9c3f8e7::t_cc5fa2ef8387c6 1-16,18-43,48-75,84-99,101-102,104-105,107-136,141-183,190-204,206-223,225-227
+.agents/skills/eng-harness-in-a-box/SKILL.md
+  s_af31cff9c3f8e7::t_36846587158080 24
+project/architecture/README.md
+  s_af31cff9c3f8e7::t_67caf72e6a5484 20
+.agents/skills/builder/references/stages/25-workshop.md
+  s_af31cff9c3f8e7::t_36846587158080 46,151,156,167
+project/work-items/2-adopt-the-ai-substrate-engineering-harness/implementation/00-implementation.md
+  s_af31cff9c3f8e7::t_90e8331c7dd30f 14-25,62,66,96,111,124,134,136,143
+  s_af31cff9c3f8e7::t_f3643818c532ad 131,138
+.harness/extensions/boot/extension.ts
+  s_af31cff9c3f8e7::t_01d244ec2f7cbd 250,252,258,264-265,268-271,279-280
+  s_af31cff9c3f8e7::t_8bb22937b19c9d 157,447-448,450,452-475,479-482
+  s_af31cff9c3f8e7::t_76bfd0490e0ac2 80-93,97-105,119-120,122-132,135-140,142,149-156,158
+  s_af31cff9c3f8e7::t_310b1e99c719b3 218-221,224,227
+  s_af31cff9c3f8e7::t_ffd5a47cf08e7b 355,497,535
+  s_af31cff9c3f8e7::t_94502e5422810d 159
+.harness/reports/harnessability/001-sparkta/summary.md
+  s_af31cff9c3f8e7::t_36846587158080 3
+README.md
+  s_af31cff9c3f8e7::t_cac681904960ab 13-14,65
+.harness/extensions/boot/instructions.md
+  s_af31cff9c3f8e7::t_d326058527376b 6-7,26
+project/work-items/2-adopt-the-ai-substrate-engineering-harness/plan/02-task-breakdown.md
+  s_af31cff9c3f8e7::t_a1a6473c699b04 129,196,229
+.harness/engineering-harness.md
+  s_af31cff9c3f8e7::t_602919897aa081 22,27
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "9b280025eca4e7f8ca5b294a55f69ef7359d5a42",
+  "prompts": {},
+  "sessions": {
+    "s_af31cff9c3f8e7": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "call_JwKYpMZQSbovaQ8HmTdrNpoh",
+        "model": "unknown"
+      },
+      "human_author": "jsburckhardt <jsburckhardt@gmail.com>"
+    }
+  }
+}
