@@ -2,21 +2,37 @@
 
 [![APS version](https://img.shields.io/badge/APS-v1.2.2-blue?logo=github)](https://github.com/chris-buckley/agnostic-prompt-standard/releases/tag/v1.2.2)
 
-Sparkta is a local, agent-powered environment for rapidly turning product ideas into interactive UI prototypes. This repository currently provides only the Node.js 24 and strict TypeScript foundation: a minimal React/Vite web process and a minimal Fastify server process.
+Sparkta is a local, agent-powered environment for rapidly turning product ideas into interactive UI prototypes. This repository currently provides the Node.js 24 and strict TypeScript foundation: a minimal React/Vite web process, a minimal Fastify server process, and a deterministic engineering harness surface for humans and autonomous agents.
 
-## Bootstrap scope
+## Foundation scope
 
-This foundation establishes buildable application boundaries, tests, standards, safe errors, structured logs, and the project command interface. It does **not** implement harness adoption, the Soft Factory Runner, agent invocation, the Sparkta control UI, Prototype 0 behavior, generated-app lifecycle, a generated demo, or the blessed generated-app starter. Those capabilities remain in their ordered follow-up issues.
+The foundation establishes buildable application boundaries, tests, standards, safe errors, structured logs, the root project command interface, and repository-local harness governance, extensions, and GitHub Copilot skills. It does **not** implement the Soft Factory Runner, agent invocation, the Sparkta control UI, Prototype 0 behavior, generated-app lifecycle, a generated demo, or the blessed generated-app starter.
 
 ## Cold setup
 
-1. Open the repository in a Dev Container or Codespace. If the current container predates this foundation, run **Dev Containers: Rebuild Container** from the editor command palette. The repository configuration provisions Node.js 24, npm, and `just`.
-2. From the repository root, run `just setup` to install the exact dependency graph from the root lockfile.
-3. Run `just --list` to discover the stable project command interface.
+1. Open the repository in its Dev Container or Codespace. Rebuild the container if Node.js 24, npm, `just`, or the configured ambient `harness` CLI is unavailable.
+2. Run `harness --version` and require `0.13.0`. The ambient harness is already installed by the configured environment; `just setup` does not install it, and it is intentionally absent from `package.json` and `package-lock.json`.
+3. Run `just setup` from the repository root to install the exact Sparkta dependency graph.
+4. Run `harness instructions`, `harness help --json`, and `harness doctor --json`. Read `harness instructions <verb>` before using a repository verb.
+5. Run `just --list` to inspect the authoritative project recipes.
 
-If Node.js or npm is unavailable, do not install an ad hoc version in the session; rebuild the repository devcontainer so the locked feature configuration supplies the required tools.
+A `degraded` doctor envelope is usable only when the CLI, extensions, quality gate, skills, and commit guidance are loaded. The expected environment-only findings identify disabled harness telemetry capture and a git-ai binary that is installed but not on the editor PATH; follow each doctor `next_action` when that capability is needed.
 
-## Project commands
+## Deterministic harness surface
+
+| Command                                     | Purpose                                                                               |
+| ------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `harness checks focused [test-path] --json` | Delegate exactly once to `just verify-focused [test-path]`                            |
+| `harness checks full --json`                | Delegate exactly once to `just verify`                                                |
+| `harness boot --json`                       | Reconcile owned state, start `just run`, prove both services, and compose full checks |
+| `harness readiness --json`                  | Recheck the Vite marker and Fastify readiness verdict for the owned runtime           |
+| `harness stop --json`                       | Stop only the verified owned process group and release both ports                     |
+| `harness instructions commit`               | Explain the attribution-aware commit path                                             |
+| `harness commit "<message>" -- <paths>`     | Commit explicit pathspecs and report confirmed or named attribution state             |
+
+Successful boot leaves the foundation running. Always finish with `harness stop --json`. Transient ownership, the latest structured evidence, and the boot log are confined to `.harness/temp/boot/`; they never use the product state roots. The complete operating contract is [`.harness/engineering-harness.md`](.harness/engineering-harness.md).
+
+## Authoritative project recipes
 
 | Recipe                            | Purpose                                                                        |
 | --------------------------------- | ------------------------------------------------------------------------------ |
@@ -30,24 +46,36 @@ If Node.js or npm is unavailable, do not install an ad hoc version in the sessio
 | `just verify-focused [test-path]` | Run one selected Vitest target, or all tests when omitted, plus diff integrity |
 | `just verify`                     | Run the complete static, test, build, and diff-integrity suite                 |
 
-`just run` exposes the neutral web foundation on port 5173 and starts the server on port 3000. Stop both with Ctrl+C. These processes expose no product workflow or public product API.
+The root [`justfile`](justfile) owns all project command bodies. Harness checks supplement that interface and never duplicate or replace the focused or full recipes.
 
-## Configuration and state boundary
+## Readiness API and configuration
 
-| Setting     | Default | Purpose                       |
-| ----------- | ------: | ----------------------------- |
-| `PORT`      |  `3000` | Minimal Fastify listener port |
-| `LOG_LEVEL` |  `info` | Pino server log level         |
+`GET /api/readiness` returns HTTP 200 with the exact non-sensitive body:
 
-Future durable generated-application files belong under `.sparkta/apps/`. Reconstructable process, port, and agent-session coordination belongs under `.sparkta/runtime/` and must be safe to delete while Sparkta is stopped. This issue documents that contract but does not implement persistence or lifecycle services.
+```json
+{ "foundation": "sparkta-server", "status": "ready" }
+```
 
-## Repository layout
+| Setting or option           | Default | Purpose                                                          |
+| --------------------------- | ------: | ---------------------------------------------------------------- |
+| `PORT`                      |  `3000` | Fastify listener and harness server probe; must differ from 5173 |
+| `LOG_LEVEL`                 |  `info` | Pino server log level                                            |
+| `harness boot --timeout-ms` | `60000` | Bounded readiness polling; accepts 1000 through 120000 ms        |
+
+The Vite foundation uses fixed port 5173. Boot refuses occupied fixed ports without signalling the unknown owner.
+
+## Skills and agent discovery
+
+GitHub Copilot skills are committed beneath [`.agents/skills/`](.agents/skills/) from the ambient harness packaged source. [`.harness/skills.lock.json`](.harness/skills.lock.json) is the canonical project-scope install declaration; cold agents use committed files and do not need a temporary source or installation rerun. Start from [`AGENTS.md`](AGENTS.md), [`LLM.txt`](LLM.txt), and the [skill index](.github/skills/README.md).
+
+## State boundaries and evidence
+
+Future durable generated-application files belong under `.sparkta/apps/`. Reconstructable product runtime coordination belongs under `.sparkta/runtime/` and must be safe to delete while Sparkta is stopped. Harness runtime evidence is a separate transient boundary under `.harness/temp/boot/`.
 
 - [`apps/web/`](apps/web/) — minimal React/Vite foundation and tests
-- [`apps/server/`](apps/server/) — minimal Fastify foundation, typed errors, structured logging, and tests
-- [`docs/README.md`](docs/README.md) — setup, operation, configuration, and architecture guide
-- [`PRD.md`](PRD.md) — product direction; most described behavior remains future scope
+- [`apps/server/`](apps/server/) — Fastify foundation, readiness route, safe errors, logs, and tests
+- [`docs/README.md`](docs/README.md) — detailed setup, API, configuration, operation, and cleanup guide
 - [`project/architecture/`](project/architecture/) — accepted ADRs and adopted cross-cutting contracts
-- [`project/work-items/`](project/work-items/) — RPIV evidence and plans
+- [`project/work-items/`](project/work-items/) — RPIV plans and evidence
 
-There is no deployment or migration procedure for this initial local-only foundation.
+The harness adoption and readiness route are additive. They require no API, data, or configuration migration. There is no deployment procedure for this local-only foundation.

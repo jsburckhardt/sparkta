@@ -10,6 +10,12 @@ Research → Plan → Implement → Verify
 
 Each stage has clear inputs, outputs, and artifact locations. No stage may be skipped.
 
+## Engineering Harness Front Door
+
+The configured development environment provides ambient `harness` 0.13.0; repository npm setup does not install it. Start with `harness instructions` and `harness doctor --json`. Use `harness checks focused [target] --json` during implementation, `harness checks full --json` before handoff, and `harness boot` / `readiness` / `stop` for the owned local foundation lifecycle. Harness checks delegate to the authoritative root `just verify-focused` and `just verify` recipes.
+
+RPIV fires the `eng-harness-flow` skill at pre-flight, pre-coding, coding, post-coding, and post-flight seams. See [`.harness/engineering-harness.md`](.harness/engineering-harness.md) for exact calls and evidence paths.
+
 ## How to Start Work on an Issue
 
 1. **Create a GitHub Issue** describing the work to be done.
@@ -46,7 +52,7 @@ Each stage has clear inputs, outputs, and artifact locations. No stage may be sk
 
 - The `rpiv-verifier` workflow runs the full test suite and confirms all tests pass
 - Independently verifies affected application documentation matches the committed behavior
-- Creates logical, atomic commits following [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
+- Creates logical, atomic commits following [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) through the explicit-pathspec `harness commit` guidance when supported
 - Pushes to a feature branch (`<type>/<ISSUE_NUMBER>-<short-slug>`)
 - Opens a pull request with `Closes #<ISSUE_NUMBER>` in the body
 

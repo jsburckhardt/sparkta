@@ -2,6 +2,9 @@
 
 <instructions>
 Every piece of work MUST flow through exactly four stages in order: Research, Plan, Implement, Verify.
+Every autonomous agent MUST start with `harness instructions`, inspect `harness doctor --json`, and read `harness instructions <verb>` before using a repository harness verb.
+RPIV MUST fire `/eng-harness-flow --hook pre-flight`, `pre-coding`, `coding`, `post-coding`, and `post-flight` at the structural seams documented in `.harness/engineering-harness.md`.
+Agents MUST treat harness checks as delegation to the authoritative root `just verify-focused` and `just verify` recipes, not replacements for them.
 You MUST classify scope_type as exactly one of: issue, architecture_decision, core_component.
 You MUST NOT create an architectural decision outside of an ADR document.
 You MUST NOT create reusable cross-cutting behavior outside of a core-component document.
@@ -33,6 +36,18 @@ You MUST update the APS version badge in README.md and the APS_BADGE constant wh
 You MUST mark a PR review comment as resolved via the GitHub API after fixing the issue it raised.
 </instructions>
 
+<harness>
+AGENTS START HERE: run `harness instructions`, then `harness help --json` and `harness doctor --json`. Read `harness instructions <verb>` before invoking that verb.
+The configured environment owns ambient harness 0.13.0. Repository npm setup does not install or reproduce it; committed portability lives in `.harness/`, `.agents/skills/`, and this discovery guidance.
+Use `harness checks focused [target] --json` while building and `harness checks full --json` before handoff. These wrappers delegate exactly to root `just verify-focused [target]` and `just verify`; the root `justfile` stays authoritative.
+Use `harness boot --json`, require `harness readiness --json` before interaction, and finish with `harness stop --json`. Boot owns only `.harness/temp/boot/`, refuses unknown listeners on ports 5173 and `PORT` or 3000, and names its transient evidence and log paths.
+The only current server interaction is additive `GET /api/readiness` returning `{"foundation":"sparkta-server","status":"ready"}`. Product workflows remain out of scope.
+GitHub Copilot skills are committed at `.agents/skills/*/SKILL.md` and indexed by `.github/skills/README.md`; `.harness/skills.lock.json` is the canonical packaged-source declaration.
+Fire the exact `/eng-harness-flow --hook <event>` calls at the RPIV seams in `.harness/engineering-harness.md`. During coding, capture concrete friction with `harness observe` when a documented trigger occurs.
+Read `harness instructions commit` and use the managed `harness commit "<message>" -- <explicit-paths>` path. Conventional Commit, Co-authorship, and stage ownership rules still apply.
+A doctor `degraded` result is usable only for documented environment capture or attribution visibility warnings when the CLI, extensions, checks, boot, readiness, skills, and commit guidance work; retain every reported next action.
+</harness>
+
 <constants>
 SPARKTA_FOUNDATION: YAML<<
 product: Sparkta is a local, agent-powered rapid UI-prototyping environment.
@@ -50,8 +65,8 @@ architecture:
   - project/architecture/core-components/CORE-COMPONENT-260812-error-handling.md
   - project/architecture/core-components/CORE-COMPONENT-260812-observability.md
   - project/architecture/core-components/CORE-COMPONENT-260812-state-lifecycle.md
+  - project/architecture/core-components/CORE-COMPONENT-260813-engineering-harness-operation.md
 issue_1_exclusions:
-  - harness adoption
   - Soft Factory Runner installation
   - agent invocation and Prototype 0 behavior
   - Sparkta control UI and generated-app lifecycle
@@ -479,3 +494,25 @@ SET VERIFY_RESULT := <OUTCOME> (from "Agent Inference" using ISSUE_NUMBER, WORK_
 <input>
 USER_INPUT is the GitHub issue number, URL, or description for pipeline routing.
 </input>
+
+<!-- BEGIN harness:commit-guidance -->
+## Committing in this repo
+
+Use `harness commit "<message>" -- <paths>` rather than a chained
+`git add … && git commit …`.
+
+A `harness commit` is **verified or named**: it probes the collector ingress,
+commits, and then tells you WHICH outcome you got. It never blocks and never
+rolls back. The outcomes are:
+
+- **confirmed** — when the collector ingress socket is reachable: harness commits with no trace2 override, waits (bounded) for the `refs/notes/ai` note, and tells you whether it landed. A landed note is the healthy shape, and a miss is reported to you rather than hidden — with the next step named in the command's own output. Nothing was buffered on this path, so there is nothing to drain.
+- **buffered and named** — when git's configured trace2 target is a plain FILE, or when the ingress is blocked, absent or unconfigured: the commit is made with its trace2 events going to a buffer file instead of the collector, so attribution is DEFERRED, not lost — and it isn't proven yet either. `harness commit` names the buffer it used; when the configured target is a plain FILE it must be pointed back at the socket first, because while it names a file there is no ingress to replay into. Drain it with `harness doctor telemetry-nudge` from an UNSANDBOXED shell. Recovery is POSIX-ONLY: the drain replays into an af_unix socket, so on a Windows host `harness doctor telemetry-nudge` refuses on platform grounds and drains nothing — the buffered events stay on disk, untouched, until they are drained from a host whose collector ingress is an af_unix socket.
+- **NOT VERIFIED on this platform** — when trace2 points at a Windows NAMED PIPE (\\.\pipe\…): the commit is made with no trace2 override (git talks to the pipe as usual), nothing was buffered, nothing was written beside the pipe — and nothing is claimed about attribution, because nothing was measured. Check for yourself with `git notes --ref=ai show HEAD`. Do NOT run `harness doctor telemetry-nudge` — there is no buffer to drain and no replay path for the named-pipe transport, and it will refuse.
+
+A chained or compound `git commit` can **silently lose attribution** — agent
+command sandboxes block git-ai's socket, git quietly disables trace2, and the
+commit's authorship may later be recorded as human.
+
+Neither shape guarantees delivery. What `harness commit` guarantees is that the
+outcome is never silent. Read `harness instructions commit` for the detail.
+<!-- END harness:commit-guidance -->

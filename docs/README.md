@@ -2,35 +2,124 @@
 
 Sparkta is a local, agent-powered rapid UI-prototyping environment. The current repository is a foundational Node.js 24 and TypeScript workspace, not the Prototype 0 or control product described in the [PRD](../PRD.md).
 
-## Development environment
+## Development environment and setup
 
-The repository-owned [devcontainer configuration](../.devcontainer/devcontainer.json) and [feature lock](../.devcontainer/devcontainer-lock.json) provide Node.js 24, npm, and `just`. In a cold session, open or rebuild the repository Dev Container, run `just setup`, and discover commands with `just --list`. If Node.js or npm is missing, rebuild the container rather than provisioning an undeclared session-local toolchain.
+The repository-owned [devcontainer configuration](../.devcontainer/devcontainer.json) and [feature lock](../.devcontainer/devcontainer-lock.json) provide Node.js 24, npm, and `just`. The configured development environment also provides the ambient `@ai-substrate/engineering-harness` CLI at version 0.13.0. That ambient tool is not a Sparkta npm dependency and is not reproduced by `just setup`.
 
-Use `just run` to start the neutral web foundation on port 5173 and the Fastify foundation on port 3000. Stop the command with Ctrl+C. The processes do not implement a control UI, prompt workflow, agent invocation, generated application, or public product API.
+For a cold setup:
+
+1. Open or rebuild the repository Dev Container.
+2. Run `harness --version` and require `0.13.0`.
+3. Run `just setup` for Sparkta dependencies.
+4. Run `harness instructions`, `harness help --json`, and `harness doctor --json`.
+5. Run `just --list` to inspect the root project interface.
+
+If doctor is `degraded` only because harness telemetry capture is disabled or git-ai is not visible on the editor PATH, retain and follow the reported environment `next_action`. Repository adoption is not usable when extensions, quality gate, skills, or commit guidance are missing.
+
+## Agent and operator workflow
+
+Read [`.harness/engineering-harness.md`](../.harness/engineering-harness.md) and `harness instructions <verb>` before operating a verb.
+
+```bash
+harness checks focused apps/server/src/app.test.ts --json
+harness boot --json
+harness readiness --json
+harness checks full --json
+harness stop --json
+```
+
+The check extension is delegation-only: focused calls `just verify-focused [target]` and bare/full calls `just verify`. All project command bodies remain in the root [`justfile`](../justfile).
+
+### Boot ownership and cleanup
+
+Boot uses fixed web port 5173 and `PORT` or 3000 for the server. It reconciles only ownership metadata whose PID, process start time, command, and process group still match. It refuses unknown listeners and never kills them. On partial startup, readiness timeout, or failed composed checks, boot cleans its owned process group and waits for both ports to release.
+
+A successful boot intentionally leaves both foundation services running. Run `harness stop --json` when finished; repeated stop calls are safe. Inspect the repository-relative paths named by the envelope:
+
+- `.harness/temp/boot/ownership.json` — live ownership; removed by stop;
+- `.harness/temp/boot/evidence.json` — latest bounded structured lifecycle evidence;
+- `.harness/temp/boot/boot.log` — transient startup output.
+
+All three are gitignored and separate from `.sparkta/apps/` and `.sparkta/runtime/`.
 
 ## Validation
 
-Use `just verify-focused [test-path]` during a change. Omitting the path runs all Vitest tests; supplying one runs only that committed target plus the documented diff-integrity safeguard. Use `just verify` for the complete test, lint, format, type-check, build, and diff-integrity suite. All operating command bodies live in the root [`justfile`](../justfile).
+Use `just verify-focused [test-path]` during a change and `just verify` for the complete test, lint, format, type-check, build, and diff-integrity suite. Harness wrappers report the delegated command, argv, exit status, duration, and bounded output without copying recipe internals.
+
+Use the attribution-aware managed commit path after reading `harness instructions commit`:
+
+```bash
+harness commit "feat(scope): describe the change" -- <explicit-paths>
+```
+
+Conventional Commit and configured Co-authorship requirements still apply. The command reports whether git-ai attribution was confirmed or buffered and named.
+
+## Readiness API
+
+### `GET /api/readiness`
+
+The local Fastify foundation exposes a deterministic liveness and readiness seam.
+
+- **Response status:** `200 OK`
+- **Content type:** JSON
+- **Response body:**
+
+  ```json
+  {
+    "foundation": "sparkta-server",
+    "status": "ready"
+  }
+  ```
+
+The response intentionally omits PID, paths, environment, stack, secrets, prompts, source, and mutable process state. This endpoint is a local foundation probe, not a public product API or product workflow.
 
 ## Configuration
 
-The server reads `PORT` (default `3000`) and `LOG_LEVEL` (default `info`). Fastify/Pino request logs use correlation IDs, omit request bodies, and redact authorization, cookies, tokens, prompts, conversation content, and generated source fields. Unexpected HTTP failures receive a generic response while protected structured logs retain causal diagnostics.
+| Setting or option           | Default | Constraints and effect                                                    |
+| --------------------------- | ------: | ------------------------------------------------------------------------- |
+| `PORT`                      |  `3000` | Server listener and readiness probe; integer from 1 to 65535 and not 5173 |
+| `LOG_LEVEL`                 |  `info` | Pino server log level                                                     |
+| `harness boot --timeout-ms` | `60000` | Readiness bound from 1000 through 120000 ms                               |
+
+Fastify/Pino request logs use correlation IDs, omit request bodies, and redact authorization, cookies, tokens, prompts, conversation content, and generated source fields. Unexpected HTTP failures receive a generic response while protected structured logs retain causal diagnostics.
+
+## GitHub Copilot skills
+
+The complete packaged harness skill inventory is committed under [`.agents/skills/`](../.agents/skills/) and indexed in [`.github/skills/README.md`](../.github/skills/README.md). [`.harness/skills.lock.json`](../.harness/skills.lock.json) records project scope, `github-copilot`, and `packaged` source. Cold-agent use depends only on committed skill content; no temporary extraction directory, machine-global skill path, or repository harness npm package is required.
+
+## RPIV harness seams
+
+The RPIV coordinator and Implement agent structurally call `/eng-harness-flow` through the host skill mechanism:
+
+- `--hook pre-flight` before Research;
+- `--hook pre-coding` between Plan and Implement;
+- `--hook coding` during implementation, with concrete friction captured by `harness observe`;
+- `--hook post-coding` after full validation and before the Implement handoff;
+- `--hook post-flight` after successful Verify closeout.
+
+The exact seam map is in [`.harness/engineering-harness.md`](../.harness/engineering-harness.md).
 
 ## Filesystem contract
 
 - `.sparkta/apps/` is reserved for durable application metadata, generated source, and conversation history.
-- `.sparkta/runtime/` is reserved for disposable PIDs, ports, process handles, status caches, and agent-session coordination.
+- `.sparkta/runtime/` is reserved for disposable product PIDs, ports, status caches, and agent-session coordination.
+- `.harness/temp/boot/` is reserved for disposable engineering-harness runtime ownership and evidence.
 
-The runtime directory must be reconstructable from durable files. No persistence repository, runtime manager, schema, lifecycle API, generated application, or blessed starter is included in this bootstrap.
+No persistence repository, runtime manager, schema, lifecycle API, generated application, or blessed starter is included in this foundation.
 
 ## Architecture
 
 - [Foundation stack ADR](../project/architecture/ADR/ADR-260812-foundation-stack.md)
 - [Filesystem state boundary ADR](../project/architecture/ADR/ADR-260812-filesystem-state-boundary.md)
+- [Engineering harness operating contract](../project/architecture/core-components/CORE-COMPONENT-260813-engineering-harness-operation.md)
+- [Project command interface](../project/architecture/core-components/CORE-COMPONENT-260806-project-command-interface.md)
+- [RPIV stage contract](../project/architecture/core-components/CORE-COMPONENT-260806-rpiv-stage-contract.md)
 - [TypeScript development standards](../project/architecture/core-components/CORE-COMPONENT-260812-development-standards.md)
 - [Application error handling](../project/architecture/core-components/CORE-COMPONENT-260812-error-handling.md)
 - [Structured observability](../project/architecture/core-components/CORE-COMPONENT-260812-observability.md)
 - [Durable and runtime state lifecycle](../project/architecture/core-components/CORE-COMPONENT-260812-state-lifecycle.md)
 - [Architecture registry](../project/architecture/ADR/DECISION-LOG.md)
 
-This initial foundation introduces no API, data, or configuration migration. It has no deployment procedure: operation is local to the configured development environment.
+## Migration and deployment impact
+
+Harness adoption and `GET /api/readiness` are additive. They introduce no breaking API, data, or configuration migration. The foundation has no deployment procedure; operation remains local to the configured development environment.

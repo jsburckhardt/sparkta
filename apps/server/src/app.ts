@@ -18,6 +18,11 @@ export const createServer = (options: CreateServerOptions = {}): FastifyInstance
     logger: options.logger === false ? false : loggerOptions,
   });
 
+  server.get("/api/readiness", async () => ({
+    foundation: "sparkta-server",
+    status: "ready",
+  }));
+
   server.setErrorHandler((value, request, reply) => {
     const translated = translateError(value);
     const event = createOperationalEvent({

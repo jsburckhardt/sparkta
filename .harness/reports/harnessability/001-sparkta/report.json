@@ -1,0 +1,925 @@
+{
+  "schema_version": "harnessability-assessment.v0.2",
+  "run": {
+    "timestamp_utc": "20260813T052139Z",
+    "repo_root": "/workspaces/sparkta",
+    "repo_name": "sparkta",
+    "branch": "main",
+    "commit": "3f43b50790ed4b573e8889f2d2aca048c5900c69",
+    "mode": "static",
+    "commands_executed": [
+      "git status --short",
+      "git branch --show-current",
+      "git rev-parse HEAD",
+      "git ls-files",
+      "harness --version",
+      "harness doctor --json",
+      "harness flow --help"
+    ],
+    "commands_skipped": [
+      "dependency installation",
+      "service boot",
+      "just verify",
+      "runtime smoke probes",
+      "external service calls"
+    ],
+    "safety_notes": [
+      "No secret values were read.",
+      "No product code, services, dependencies, or external systems were mutated.",
+      "The worktree was already dirty; assessment files were added without altering pre-existing changes."
+    ]
+  },
+  "verdict": {
+    "operate_today_percent": 74.1,
+    "operate_today_grade": "B",
+    "adaptability_percent": 75,
+    "adaptability_grade": "B",
+    "harnessability_index_percent": 74.5,
+    "harnessability_index_grade": "B",
+    "final_grade": "B",
+    "readiness_level": "H3",
+    "highest_proof_level": "L3",
+    "target_proof_level": "L4",
+    "confidence": "high"
+  },
+  "harness_surfaces": [
+    {
+      "name": "Root justfile",
+      "path": "justfile",
+      "kind": "canonical",
+      "status": "configured",
+      "notes": "Repository-owned setup, run, focused verification, and full verification front door."
+    },
+    {
+      "name": "Engineering harness CLI",
+      "path": ".harness/",
+      "kind": "canonical",
+      "status": "adoption-in-progress",
+      "notes": "CLI 0.13.0 responds, but no checks or boot extensions and no governance document exist yet."
+    },
+    {
+      "name": "RPIV flow",
+      "path": "AGENTS.md",
+      "kind": "canonical",
+      "status": "configured",
+      "notes": "Research, Plan, Implement, and Verify are structurally specified with work-item evidence."
+    }
+  ],
+  "topology": {
+    "primary_type": "local full-stack TypeScript foundation",
+    "languages": ["TypeScript", "JavaScript", "Bash", "Markdown"],
+    "runtimes": ["Node.js 24"],
+    "package_roots": [".", "apps/server", "apps/web"],
+    "service_types": ["Fastify API foundation", "React/Vite web foundation"],
+    "frameworks": ["Fastify", "React", "Vite", "Vitest", "ESLint", "Prettier"],
+    "ci": [],
+    "is_monorepo": true,
+    "notes": "npm workspace with two small application packages; operation is local-only and no product persistence or remote runtime dependency is implemented."
+  },
+  "axis_a_operate_today": [
+    {
+      "id": "A1",
+      "name": "Cold-start orientation and repo map",
+      "band": "Strong",
+      "points": 3,
+      "evidence": ["README.md", "docs/README.md", "AGENTS.md", "project/README.md"],
+      "notes": "Purpose, scope, layout, commands, and RPIV evidence locations are explicit.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "id": "A2",
+      "name": "Setup and environment contract",
+      "band": "Strong",
+      "points": 3,
+      "evidence": [".devcontainer/devcontainer.json", "package-lock.json", "README.md"],
+      "notes": "Node 24, just, locked npm setup, ports, and log level defaults are declared.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "id": "A3",
+      "name": "Locality of infrastructure and external dependency exposure",
+      "band": "Strong",
+      "points": 3,
+      "evidence": ["README.md", "apps/server/package.json", "apps/web/package.json"],
+      "notes": "The current foundation has no database, queue, auth, model provider, or other runtime external dependency.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "id": "A4",
+      "name": "Harness front door and command discoverability",
+      "band": "Partial",
+      "points": 2,
+      "evidence": ["justfile", "README.md", "harness doctor --json"],
+      "notes": "just is clear and complete, but the engineering harness has no project verbs yet.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "id": "A5",
+      "name": "Boot and health/readiness path",
+      "band": "Weak",
+      "points": 1,
+      "evidence": ["justfile: run", "README.md: documented ports"],
+      "notes": "The processes can be started, but no health endpoint, readiness probe, smoke command, or structured boot verdict exists.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "id": "A6",
+      "name": "Seed, fixture, reset, and cleanup state",
+      "band": "Not applicable",
+      "points": null,
+      "evidence": ["README.md: persistence and generated-app lifecycle are explicitly future scope"],
+      "notes": "The current foundation owns no durable product state.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "id": "A7",
+      "name": "Supported interaction surfaces",
+      "band": "Partial",
+      "points": 2,
+      "evidence": ["apps/server/src/app.test.ts", "apps/web/src/App.tsx", "README.md"],
+      "notes": "Fastify injection exercises HTTP boundaries and Vite serves a UI foundation, but no public product API or automated UI interaction exists.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "id": "A8",
+      "name": "Existing deterministic back-pressure sensors",
+      "band": "Strong",
+      "points": 3,
+      "evidence": ["justfile: verify-focused and verify", "project/work-items/1-bootstrap-sparkta-and-coordinate-prototype-0/verify/summary.md"],
+      "notes": "Tests, lint, formatting, type checking, builds, and diff integrity have local commands and recorded passing evidence.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "id": "A9",
+      "name": "Observability and evidence artifacts",
+      "band": "Partial",
+      "points": 2,
+      "evidence": ["apps/server/src/logger.ts", "apps/server/src/logger.test.ts", "project/work-items/1-bootstrap-sparkta-and-coordinate-prototype-0/verify/summary.md"],
+      "notes": "Structured redacted logs and RPIV evidence exist, but no runtime capture or inspect command produces portable live evidence.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "id": "A10",
+      "name": "Compounding harness loop",
+      "band": "Weak",
+      "points": 1,
+      "evidence": [".harness/flows/adopt.json", "AGENTS.md"],
+      "notes": "Adoption has started, but governance, observation records, retro harvest, and encoded harness changes are not established.",
+      "provenance": "evidence",
+      "confidence": "high"
+    }
+  ],
+  "axis_b_adaptability": [
+    {
+      "id": "B1",
+      "name": "Structural coupling and blast radius",
+      "band": "Strong",
+      "points": 3,
+      "evidence": ["apps/server/src", "apps/web/src", "package.json workspaces"],
+      "notes": "The small web/server package boundary keeps current blast radius narrow.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "id": "B2",
+      "name": "Temporal/change coupling",
+      "band": "Unknown",
+      "points": 0,
+      "evidence": [],
+      "notes": "Git history mining was not enabled in static mode.",
+      "provenance": "unknown",
+      "confidence": "low"
+    },
+    {
+      "id": "B3",
+      "name": "Cohesion and locality of change",
+      "band": "Strong",
+      "points": 3,
+      "evidence": ["apps/server/src/*.ts with colocated tests", "apps/web/src/foundation.ts and foundation.test.ts"],
+      "notes": "Foundation behavior and tests are colocated in focused modules.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "id": "B4",
+      "name": "Seams, substitution, and dependency inversion",
+      "band": "Partial",
+      "points": 2,
+      "evidence": ["apps/server/src/app.ts: createServer options", "apps/server/src/app.test.ts: Fastify inject"],
+      "notes": "The server factory and in-process injection are reusable seams; broader adapters are not needed or present yet.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "id": "B5",
+      "name": "Hermetic, offline, and isolated testability",
+      "band": "Strong",
+      "points": 3,
+      "evidence": ["apps/server/src/*.test.ts", "apps/web/src/foundation.test.ts"],
+      "notes": "Tests run in process without remote services or credentials.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "id": "B6",
+      "name": "Side-effect isolation and external-effect sinks",
+      "band": "Not applicable",
+      "points": null,
+      "evidence": ["README.md: external integrations are outside current scope"],
+      "notes": "No external side-effect integration exists in the foundation.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "id": "B7",
+      "name": "State evolution and consequence verification",
+      "band": "Not applicable",
+      "points": null,
+      "evidence": ["README.md: persistence is future scope"],
+      "notes": "No implemented durable state or migration path exists to assess.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "id": "B8",
+      "name": "Architecture boundary enforceability",
+      "band": "Partial",
+      "points": 2,
+      "evidence": ["project/architecture/ADR/DECISION-LOG.md", "eslint.config.js"],
+      "notes": "Architecture contracts are comprehensive prose, but no dependency or boundary sensor proves conformance.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "id": "B9",
+      "name": "Complexity, size, and navigability thresholds",
+      "band": "Partial",
+      "points": 2,
+      "evidence": ["eslint.config.js", "small source files under apps/"],
+      "notes": "The code is currently compact and linted, but explicit complexity or size thresholds are absent.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "id": "B10",
+      "name": "Inner-loop speed and repeatability",
+      "band": "Strong",
+      "points": 3,
+      "evidence": ["justfile: verify-focused", "justfile: verify", "package-lock.json"],
+      "notes": "Focused and complete deterministic lanes are distinct and locked; prior verification records both passing.",
+      "provenance": "evidence",
+      "confidence": "high"
+    }
+  ],
+  "backpressure_surfaces": [
+    {
+      "category": "static",
+      "name": "Complete local verification",
+      "command_or_check": "just verify",
+      "scope": "all workspaces and diff integrity",
+      "local_available": true,
+      "ci_available": false,
+      "proof_level": "L2",
+      "status": "configured_unverified",
+      "evidence": "justfile and prior RPIV verification summary"
+    },
+    {
+      "category": "static",
+      "name": "Focused tests",
+      "command_or_check": "just verify-focused [test-path]",
+      "scope": "selected Vitest target plus diff integrity",
+      "local_available": true,
+      "ci_available": false,
+      "proof_level": "L2",
+      "status": "configured_unverified",
+      "evidence": "justfile and prior RPIV verification summary"
+    },
+    {
+      "category": "runtime",
+      "name": "Fastify in-process HTTP interaction",
+      "command_or_check": "apps/server/src/app.test.ts",
+      "scope": "error-boundary HTTP behavior",
+      "local_available": true,
+      "ci_available": false,
+      "proof_level": "L3",
+      "status": "recorded",
+      "evidence": "Fastify inject tests and prior passing just verify record"
+    },
+    {
+      "category": "observability",
+      "name": "Structured redacted server logging",
+      "command_or_check": "apps/server/src/logger.test.ts",
+      "scope": "event shape and sensitive-field redaction",
+      "local_available": true,
+      "ci_available": false,
+      "proof_level": "L2",
+      "status": "recorded",
+      "evidence": "logger tests and observability core-component"
+    },
+    {
+      "category": "human_inferential",
+      "name": "RPIV architecture and documentation review",
+      "command_or_check": null,
+      "scope": "issue acceptance, architecture, documentation, and branch diff",
+      "local_available": true,
+      "ci_available": false,
+      "proof_level": "L1",
+      "status": "configured",
+      "evidence": "AGENTS.md and project work-item artifacts"
+    }
+  ],
+  "scenario_probes": [
+    {
+      "name": "Server HTTP behavior loop",
+      "applicable": true,
+      "relevant_surfaces": ["createServer", "Fastify inject", "Vitest"],
+      "likely_edit_target": "apps/server/src",
+      "required_setup": "locked npm dependencies",
+      "supported_interaction": "Fastify inject request",
+      "expected_observable_consequence": "status code and safe JSON response",
+      "deterministic_verdict": "just verify-focused apps/server/src/app.test.ts",
+      "reset_cleanup_path": "afterEach closes each server",
+      "local_substitute_available": "in-process Fastify server",
+      "remote_or_secret_blockers": "none",
+      "highest_plausible_proof_level": "L3",
+      "what_agent_would_infer": "whether the network listener is actually ready on port 3000",
+      "highest_leverage_missing_sensor": "health endpoint plus boot-time HTTP probe"
+    },
+    {
+      "name": "Web UI foundation loop",
+      "applicable": true,
+      "relevant_surfaces": ["React", "Vite", "Vitest"],
+      "likely_edit_target": "apps/web/src",
+      "required_setup": "locked npm dependencies",
+      "supported_interaction": "module-level foundation assertion; manual Vite browser interaction",
+      "expected_observable_consequence": "rendered foundation UI",
+      "deterministic_verdict": "just verify-focused apps/web/src/foundation.test.ts",
+      "reset_cleanup_path": "no persistent state",
+      "local_substitute_available": "native local Vite process",
+      "remote_or_secret_blockers": "none",
+      "highest_plausible_proof_level": "L2",
+      "what_agent_would_infer": "whether the browser-rendered page is usable",
+      "highest_leverage_missing_sensor": "headless UI smoke that captures a screenshot or accessible DOM assertion"
+    },
+    {
+      "name": "Architecture-rule loop",
+      "applicable": true,
+      "relevant_surfaces": ["ADRs", "core-components", "ESLint", "npm workspaces"],
+      "likely_edit_target": "workspace imports and filesystem boundaries",
+      "required_setup": "locked npm dependencies",
+      "supported_interaction": "static source analysis",
+      "expected_observable_consequence": "forbidden dependency or path use produces a failing verdict",
+      "deterministic_verdict": "not implemented",
+      "reset_cleanup_path": "not applicable",
+      "local_substitute_available": "existing ESLint configuration can host rules",
+      "remote_or_secret_blockers": "none",
+      "highest_plausible_proof_level": "L1",
+      "what_agent_would_infer": "whether code conforms to documented state and package boundaries",
+      "highest_leverage_missing_sensor": "architecture boundary check integrated into just verify"
+    }
+  ],
+  "command_tiers": [
+    {
+      "command_or_check": "just setup",
+      "tier": "bootstrap",
+      "category": "dependency setup",
+      "local_available": true,
+      "ci_available": false,
+      "requires_services": false,
+      "requires_secrets": false,
+      "mutates_state": true,
+      "expected_duration_if_known": "unknown",
+      "output_artifact": "node_modules",
+      "proof_level": "L1",
+      "status": "configured_unverified",
+      "evidence": "justfile and README.md"
+    },
+    {
+      "command_or_check": "just run",
+      "tier": "boot",
+      "category": "local processes",
+      "local_available": true,
+      "ci_available": false,
+      "requires_services": false,
+      "requires_secrets": false,
+      "mutates_state": false,
+      "expected_duration_if_known": "long-running",
+      "output_artifact": "process logs",
+      "proof_level": "L1",
+      "status": "configured_unverified",
+      "evidence": "justfile and README.md"
+    },
+    {
+      "command_or_check": "just verify-focused [test-path]",
+      "tier": "fast",
+      "category": "focused test and diff integrity",
+      "local_available": true,
+      "ci_available": false,
+      "requires_services": false,
+      "requires_secrets": false,
+      "mutates_state": false,
+      "expected_duration_if_known": "unknown",
+      "output_artifact": "terminal verdict",
+      "proof_level": "L2",
+      "status": "configured_unverified",
+      "evidence": "justfile and prior verification summary"
+    },
+    {
+      "command_or_check": "just verify",
+      "tier": "proof",
+      "category": "complete static validation",
+      "local_available": true,
+      "ci_available": false,
+      "requires_services": false,
+      "requires_secrets": false,
+      "mutates_state": false,
+      "expected_duration_if_known": "unknown",
+      "output_artifact": "terminal verdict and build outputs",
+      "proof_level": "L2",
+      "status": "configured_unverified",
+      "evidence": "justfile and prior verification summary"
+    },
+    {
+      "command_or_check": "harness doctor --json",
+      "tier": "doctor",
+      "category": "harness diagnostics",
+      "local_available": true,
+      "ci_available": false,
+      "requires_services": false,
+      "requires_secrets": false,
+      "mutates_state": false,
+      "expected_duration_if_known": "short",
+      "output_artifact": "JSON envelope",
+      "proof_level": "L1",
+      "status": "verified",
+      "evidence": "Executed during this assessment; status degraded because project extensions and conventions are incomplete."
+    }
+  ],
+  "environment_variables": [
+    {
+      "name": "PORT",
+      "required": "optional",
+      "purpose_inferred": "Fastify listener port",
+      "source_files": ["apps/server/src/main.ts", "README.md", "docs/README.md"],
+      "example_present": "yes",
+      "safe_default_present": "yes",
+      "secret_like": "no",
+      "local_dev_notes": "Defaults to 3000."
+    },
+    {
+      "name": "LOG_LEVEL",
+      "required": "optional",
+      "purpose_inferred": "Pino server log level",
+      "source_files": ["apps/server/src/logger.ts", "README.md", "docs/README.md"],
+      "example_present": "yes",
+      "safe_default_present": "yes",
+      "secret_like": "no",
+      "local_dev_notes": "Defaults to info."
+    }
+  ],
+  "external_dependencies": [
+    {
+      "name": "npm registry",
+      "type": "other",
+      "where_detected": "package-lock.json and just setup",
+      "local_option": "none",
+      "remote_required": "yes",
+      "secret_required": "no",
+      "mutation_risk": "local_only",
+      "proof_blocked_by_dependency": "partial",
+      "recommended_affordance": "Retain the committed lockfile and devcontainer; cache behavior is environment-owned."
+    }
+  ],
+  "gaps": [
+    {
+      "id": "GAP-001",
+      "title": "No configured harness checks or boot verbs",
+      "axis": "operate_today",
+      "subsystem": "tools",
+      "loop_stage": "boot",
+      "backpressure_category": "runtime",
+      "scenario_impacted": "all",
+      "target_layer": "harness",
+      "encoding_type": "command",
+      "severity": "high",
+      "status": "absent",
+      "provenance": "evidence",
+      "confidence": "high",
+      "recommended_next_action": "Wrap just verify as harness checks, then add harness boot that composes checks.",
+      "proof_level_unblocked": "L3",
+      "estimated_effort": "S",
+      "risk_tier": "low"
+    },
+    {
+      "id": "GAP-002",
+      "title": "Running processes have no health or smoke verdict",
+      "axis": "operate_today",
+      "subsystem": "feedback",
+      "loop_stage": "validate",
+      "backpressure_category": "runtime",
+      "scenario_impacted": "server HTTP behavior loop and web UI foundation loop",
+      "target_layer": "product_code",
+      "encoding_type": "diagnostic",
+      "severity": "high",
+      "status": "absent",
+      "provenance": "evidence",
+      "confidence": "high",
+      "recommended_next_action": "Add a minimal readiness endpoint and a local boot/smoke probe; add headless UI evidence when UI behavior expands.",
+      "proof_level_unblocked": "L4",
+      "estimated_effort": "S",
+      "risk_tier": "low"
+    },
+    {
+      "id": "GAP-003",
+      "title": "Architecture contracts are not executable",
+      "axis": "adaptability",
+      "subsystem": "architecture",
+      "loop_stage": "validate",
+      "backpressure_category": "static",
+      "scenario_impacted": "architecture-rule loop",
+      "target_layer": "harness",
+      "encoding_type": "architecture_rule",
+      "severity": "medium",
+      "status": "weak",
+      "provenance": "evidence",
+      "confidence": "high",
+      "recommended_next_action": "Encode package direction and filesystem-boundary checks in the existing lint or checks lane.",
+      "proof_level_unblocked": "L2",
+      "estimated_effort": "M",
+      "risk_tier": "low"
+    },
+    {
+      "id": "GAP-004",
+      "title": "No committed CI or pre-commit equivalent enforces just verify",
+      "axis": "operate_today",
+      "subsystem": "human_process",
+      "loop_stage": "validate",
+      "backpressure_category": "static",
+      "scenario_impacted": "all",
+      "target_layer": "ci",
+      "encoding_type": "workflow",
+      "severity": "medium",
+      "status": "absent",
+      "provenance": "evidence",
+      "confidence": "high",
+      "recommended_next_action": "When CI enters scope, make it call the same harness checks or just verify command used locally.",
+      "proof_level_unblocked": "L2",
+      "estimated_effort": "S",
+      "risk_tier": "low"
+    },
+    {
+      "id": "GAP-005",
+      "title": "Compounding observation and retro loop is incomplete",
+      "axis": "operate_today",
+      "subsystem": "feedback",
+      "loop_stage": "improve",
+      "backpressure_category": "human_inferential",
+      "scenario_impacted": "all",
+      "target_layer": "harness",
+      "encoding_type": "workflow",
+      "severity": "medium",
+      "status": "partial",
+      "provenance": "evidence",
+      "confidence": "high",
+      "recommended_next_action": "Complete governance, injection, checks, and boot adoption, then use observe and retro records during RPIV work.",
+      "proof_level_unblocked": "L2",
+      "estimated_effort": "S",
+      "risk_tier": "low"
+    }
+  ],
+  "remediations": [
+    {
+      "id": "REM-001",
+      "title": "Expose the complete local gate as harness checks",
+      "recommended_encoding": "harness checks wrapping just verify",
+      "target_layer": "harness",
+      "proof_level_unblocked": "L2",
+      "estimated_effort": "XS",
+      "risk_tier": "low",
+      "addresses_gaps": ["GAP-001", "GAP-005"]
+    },
+    {
+      "id": "REM-002",
+      "title": "Create a structured boot and readiness path",
+      "recommended_encoding": "harness boot composing checks and probing server/web readiness",
+      "target_layer": "harness",
+      "proof_level_unblocked": "L3",
+      "estimated_effort": "S",
+      "risk_tier": "low",
+      "addresses_gaps": ["GAP-001", "GAP-002"]
+    },
+    {
+      "id": "REM-003",
+      "title": "Encode architecture boundaries",
+      "recommended_encoding": "lint or dedicated architecture sensor included by checks",
+      "target_layer": "harness",
+      "proof_level_unblocked": "L2",
+      "estimated_effort": "M",
+      "risk_tier": "low",
+      "addresses_gaps": ["GAP-003"]
+    }
+  ],
+  "product_code_affordances": [
+    {
+      "id": "AFF-001",
+      "title": "Minimal server readiness endpoint",
+      "category": "health",
+      "status": "proposed",
+      "risk_tier": "low",
+      "target_layer": "product_code",
+      "environment_scope": ["local", "test"],
+      "environments_where_it_must_not_apply": [],
+      "safety_requirements": ["Return no secrets or internal state.", "Use a stable status and schema."],
+      "human_or_security_review_required": false,
+      "which_gap_it_addresses": "GAP-002",
+      "which_harness_command_or_proof_level_it_unblocks": "harness boot and L3 runtime readiness proof",
+      "why_it_is_better_than_more_documentation": "A probe can fail deterministically when the listener is not ready."
+    }
+  ],
+  "harness_recommendations": [
+    {
+      "id": "HAR-001",
+      "title": "Add checks extension",
+      "path": ".harness/extensions/checks/",
+      "risk": "low",
+      "type": "command",
+      "summary": "Wrap just verify without duplicating command bodies.",
+      "rationale": "Makes the existing complete gate discoverable through the engineering harness.",
+      "requires_human_review": true
+    },
+    {
+      "id": "HAR-002",
+      "title": "Add boot extension",
+      "path": ".harness/extensions/boot/",
+      "risk": "low",
+      "type": "command",
+      "summary": "Compose harness checks and return a structured readiness verdict.",
+      "rationale": "Replaces process-start inference with a repeatable boot path.",
+      "requires_human_review": true
+    }
+  ],
+  "applied_patches": [],
+  "onboarding_consolidation": [
+    {
+      "item": "Cold setup and project command map",
+      "action": "keep",
+      "source_path": "README.md",
+      "notes": "Already concise and consistent with docs/README.md and the justfile."
+    },
+    {
+      "item": "RPIV operating contract",
+      "action": "keep",
+      "source_path": "AGENTS.md",
+      "notes": "Already canonical for delivery flow; the future harness injection map should reference rather than duplicate it."
+    }
+  ],
+  "first_safe_session_plan": [
+    "Run harness init to stamp the governance contract.",
+    "Record RPIV lifecycle hook injection points without changing product code.",
+    "Create harness checks as a thin wrapper over just verify.",
+    "Create harness boot that composes checks; add runtime readiness only through a separately planned product change.",
+    "Run harness doctor, harness checks, and harness boot and retain their structured evidence."
+  ],
+  "human_questions": [],
+  "evidence_log": [
+    {
+      "source": "README.md and docs/README.md",
+      "claim": "Cold setup, local commands, ports, configuration, and current scope are explicitly documented.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "source": "justfile",
+      "claim": "The repository has focused and complete local validation lanes.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "source": "project/work-items/1-bootstrap-sparkta-and-coordinate-prototype-0/verify/summary.md",
+      "claim": "A prior independent verification records tests, lint, formatting, type checks, and builds passing.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "source": "apps/server/src/app.test.ts",
+      "claim": "Fastify inject provides a hermetic HTTP interaction seam with deterministic response assertions.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "source": "harness doctor --json",
+      "claim": "The harness CLI loads, but project checks, boot, governance conventions, and commit guidance are not configured.",
+      "provenance": "evidence",
+      "confidence": "high"
+    }
+  ],
+  "report_paths": {
+    "run_dir": ".harness/reports/harnessability/001-sparkta",
+    "report_md": ".harness/reports/harnessability/001-sparkta/report.md",
+    "report_json": ".harness/reports/harnessability/001-sparkta/report.json",
+    "summary_md": ".harness/reports/harnessability/001-sparkta/summary.md",
+    "evidence_jsonl": ".harness/reports/harnessability/001-sparkta/evidence.jsonl",
+    "latest_md": ".harness/reports/harnessability/latest.md",
+    "latest_json": ".harness/reports/harnessability/latest.json",
+    "schema_json": ".harness/reports/harnessability/schema.json"
+  },
+  "assessment_matrix": [
+    {
+      "area": "Operate-Today",
+      "grade": "B",
+      "score_percent": 74.1,
+      "weight": 0.5,
+      "rationale": "Strong setup and static proof, with boot/readiness and harness adoption gaps.",
+      "evidence": ["README.md", "justfile", "harness doctor --json"]
+    },
+    {
+      "area": "Adaptability",
+      "grade": "B",
+      "score_percent": 75,
+      "weight": 0.5,
+      "rationale": "Small cohesive boundaries and hermetic tests; architecture rules remain prose.",
+      "evidence": ["apps/server/src", "apps/web/src", "project/architecture/"]
+    }
+  ],
+  "engineering_flows": [
+    {
+      "name": "RPIV",
+      "kind": "sdd",
+      "commands": ["Research", "Plan", "Implement", "Verify"],
+      "where_detected": "AGENTS.md and project/work-items/",
+      "canonical": "yes",
+      "provenance": "evidence",
+      "notes": "Issue-scoped evidence pipeline with independent verification."
+    },
+    {
+      "name": "Local validation",
+      "kind": "test",
+      "commands": ["just verify-focused", "just verify"],
+      "where_detected": "justfile and README.md",
+      "canonical": "yes",
+      "provenance": "evidence",
+      "notes": "Root justfile owns operating command bodies."
+    },
+    {
+      "name": "Local development",
+      "kind": "local",
+      "commands": ["just setup", "just run"],
+      "where_detected": "justfile and docs/README.md",
+      "canonical": "yes",
+      "provenance": "evidence",
+      "notes": "Starts web and server processes together."
+    }
+  ],
+  "pre_commit_gates": [
+    {
+      "name": "No committed pre-commit gate",
+      "mechanism": "none",
+      "checks": [],
+      "local_available": false,
+      "ci_equivalent": false,
+      "notes": "Validation exists on demand through just; no hook enforces it."
+    }
+  ],
+  "ci_local_equivalence": [
+    {
+      "check": "Complete verification",
+      "ci_command": "",
+      "local_command": "just verify",
+      "equivalence": "local_only",
+      "notes": "No committed CI workflow was detected."
+    }
+  ],
+  "existing_harness_concepts": [
+    {
+      "name": "just command interface",
+      "kind": "canonical",
+      "surfaces": ["justfile", "README.md", "docs/README.md"],
+      "coverage": "Strong",
+      "notes": "Complete project command interface but not yet exposed through harness verbs."
+    },
+    {
+      "name": "engineering harness",
+      "kind": "canonical",
+      "surfaces": [".harness/", "harness CLI"],
+      "coverage": "Weak",
+      "notes": "Adoption is in progress; no project extensions or governance contract yet."
+    }
+  ],
+  "deterministic_encoding_opportunities": [
+    {
+      "id": "ENC-001",
+      "title": "Runtime readiness",
+      "current_encoding": "doc",
+      "proposed_encoding": "health endpoint and harness boot probe",
+      "proof_level": "L3",
+      "rationale": "Documented ports do not prove that either process is ready."
+    },
+    {
+      "id": "ENC-002",
+      "title": "Architecture boundaries",
+      "current_encoding": "doc",
+      "proposed_encoding": "lint or dedicated architecture check",
+      "proof_level": "L2",
+      "rationale": "ADRs guide implementation but cannot fail a violating change."
+    }
+  ],
+  "test_mechanisms": [
+    {
+      "name": "Vitest unit tests",
+      "type": "unit",
+      "where_detected": "apps/server/src/*.test.ts and apps/web/src/*.test.ts",
+      "deterministic": "yes",
+      "notes": "Pure functions, error translation, logging, and foundation identity are asserted locally."
+    },
+    {
+      "name": "Fastify injection",
+      "type": "integration",
+      "where_detected": "apps/server/src/app.test.ts",
+      "deterministic": "yes",
+      "notes": "Exercises the real Fastify request/error boundary in process and closes servers after each test."
+    },
+    {
+      "name": "In-memory log sink",
+      "type": "sink",
+      "where_detected": "apps/server/src/logger.test.ts",
+      "deterministic": "yes",
+      "notes": "Writable stream captures structured log output for redaction assertions."
+    }
+  ],
+  "external_dependency_pressure": [
+    {
+      "dependency": "npm registry during clean setup",
+      "pressure": "low",
+      "local_substitute": "none",
+      "proof_impact": "Only blocks dependency restoration; runtime tests and application behavior have no remote dependency.",
+      "notes": "Committed lockfile constrains the dependency graph."
+    }
+  ],
+  "code_composition": [
+    {
+      "area": "web/server workspace boundary",
+      "kind": "package",
+      "coupling": "low in current foundation",
+      "test_seam": "yes",
+      "notes": "Each package builds and tests independently through npm workspaces."
+    },
+    {
+      "area": "Fastify server factory",
+      "kind": "seam",
+      "coupling": "low",
+      "test_seam": "yes",
+      "notes": "createServer supports logger suppression and in-process requests."
+    }
+  ],
+  "candidate_first_harness_surfaces": [
+    {
+      "surface": "checks",
+      "rationale": "Wrap the already canonical just verify gate without duplication.",
+      "proof_level": "L2",
+      "already_exists": "no",
+      "priority": "high",
+      "notes": "Lowest-cost deterministic harness verb."
+    },
+    {
+      "surface": "boot",
+      "rationale": "Compose checks and replace process readiness inference with a structured verdict.",
+      "proof_level": "L3",
+      "already_exists": "no",
+      "priority": "high",
+      "notes": "Start with current process commands; add health probing when product affordance exists."
+    },
+    {
+      "surface": "architecture",
+      "rationale": "Turn stable ADR/core-component boundaries into executable backpressure.",
+      "proof_level": "L2",
+      "already_exists": "no",
+      "priority": "medium",
+      "notes": "Integrate with checks after the basic nucleus."
+    }
+  ],
+  "manual_operation_signals": [
+    {
+      "signal": "README instructs users to stop just run with Ctrl+C and provides no machine-readable readiness verdict.",
+      "kind": "manual_step",
+      "influences": ["A5", "A9", "B10"],
+      "penalize": "yes",
+      "notes": "A harness boot command should own startup and readiness evidence."
+    },
+    {
+      "signal": "Web behavior is currently inspected manually in a browser.",
+      "kind": "manual_step",
+      "influences": ["A7", "A8", "A9", "B5"],
+      "penalize": "yes",
+      "notes": "The current unit test proves only a foundation string, not rendered UI behavior."
+    }
+  ]
+}

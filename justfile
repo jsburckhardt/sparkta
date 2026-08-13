@@ -1,8 +1,11 @@
 set shell := ["bash", "-eu", "-o", "pipefail", "-c"]
 
+default:
+    @just --list
+
 # Install the locked npm workspace graph from a clean dependency state.
 setup:
-    npm ci
+    npm ci --include=dev
 
 # Start the minimal web and server development processes.
 run:

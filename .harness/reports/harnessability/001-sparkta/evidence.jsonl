@@ -1,0 +1,6 @@
+{"source":"README.md and docs/README.md","claim":"Cold setup, local commands, ports, configuration, and current scope are explicitly documented.","provenance":"evidence","confidence":"high"}
+{"source":"justfile","claim":"The repository has focused and complete local validation lanes.","provenance":"evidence","confidence":"high"}
+{"source":"project/work-items/1-bootstrap-sparkta-and-coordinate-prototype-0/verify/summary.md","claim":"Prior independent verification records tests, lint, formatting, type checks, and builds passing.","provenance":"evidence","confidence":"high"}
+{"source":"apps/server/src/app.test.ts","claim":"Fastify inject provides a hermetic HTTP interaction seam with deterministic response assertions.","provenance":"evidence","confidence":"high"}
+{"source":"apps/server/src/logger.test.ts","claim":"An in-memory writable sink deterministically proves structured-log redaction.","provenance":"evidence","confidence":"high"}
+{"source":"harness doctor --json","claim":"The harness CLI loads, but project checks, boot, governance conventions, and commit guidance are not configured.","provenance":"evidence","confidence":"high"}

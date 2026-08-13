@@ -1,11 +1,11 @@
-AGENTS.md — Agent definitions, Sparkta foundation boundaries, roles, tools, and guardrails
-CONTRIBUTING.md — Human contribution guide
+AGENTS.md — Cold-agent harness front door, RPIV rules, exact hook seams, and managed commit guidance
+CONTRIBUTING.md — Human contribution and harness-assisted RPIV workflow
 LLM.txt — This repository map for AI agents
-README.md — Sparkta identity, cold setup, root recipes, scope, and configuration
+README.md — Sparkta setup, harness operation, readiness API, configuration, skills, and scope
 PRD.md — Sparkta product requirements and future product direction
-justfile — Sole root operating-command interface
-package.json — Private npm workspace metadata and orchestration scripts
-package-lock.json — Locked root dependency graph for all workspaces
+justfile — Sole authoritative project setup, run, focused, and full command bodies
+package.json — Private npm workspace metadata; intentionally does not install the ambient harness
+package-lock.json — Locked Sparkta dependency graph; intentionally does not contain the ambient harness
 tsconfig.base.json — Shared strict TypeScript defaults
 eslint.config.js — Shared application lint configuration
 prettier.config.js — Shared formatting configuration
@@ -14,12 +14,25 @@ prettier.config.js — Shared formatting configuration
 .devcontainer/post-create.sh — One-time tmux and GitHub CLI setup
 .devcontainer/post-start.sh — Shared Sparkta tmux session and dynamic environment setup
 .devcontainer/tmux-attach.sh — VS Code terminal attachment to the Sparkta tmux socket
+.harness/engineering-harness.md — Canonical boot, checks, health, interact, observe, signals, evidence, and RPIV injection contract
+.harness/extensions/checks/extension.ts — Delegation-only focused and full check extension
+.harness/extensions/checks/instructions.md — Agent briefing for delegated checks
+.harness/extensions/boot/extension.ts — Ownership-safe boot, readiness, and stop extension
+.harness/extensions/boot/instructions.md — Agent briefing for bounded runtime lifecycle
+.harness/skills.lock.json — Canonical project-scope GitHub Copilot packaged-skill declaration
+.harness/flows/adopt.json — Completed harness adoption flow source with delivery branch provenance
+.harness/flows/adopt.md — Harness-rendered adoption flow view
+.harness/records/harness-change/ — Validated engineering-harness capability change ledger
+.harness/reports/harnessability/ — Historical branch-main static assessment; not current runtime proof
+.harness/temp/boot/ — Gitignored transient runtime ownership, evidence, and log paths
+.agents/skills/ — Complete committed ambient harness 0.13.0 packaged skills for cold GitHub Copilot sessions
 apps/web/package.json — React/Vite workspace manifest
 apps/web/src/App.tsx — Neutral Sparkta foundation view
 apps/web/src/foundation.ts — Exported web foundation identity
 apps/web/src/foundation.test.ts — Web foundation behavior test
 apps/server/package.json — Fastify workspace manifest
-apps/server/src/app.ts — Minimal Fastify boundary and safe error translation
+apps/server/src/app.ts — Fastify boundary, safe error translation, and GET /api/readiness
+apps/server/src/app.test.ts — Exact readiness response and safe HTTP boundary tests
 apps/server/src/main.ts — Structured server startup and shutdown
 apps/server/src/errors.ts — Typed application errors, normalization, and response translation
 apps/server/src/errors.test.ts — Error typing, cause, and redaction tests
@@ -27,23 +40,23 @@ apps/server/src/logger.ts — Pino redaction and operational event fields
 apps/server/src/logger.test.ts — Structured event and sensitive-field redaction tests
 apps/server/src/foundation.ts — Exported server foundation identity
 apps/server/src/foundation.test.ts — Server foundation behavior test
-docs/README.md — Setup, operation, validation, configuration, state, and architecture guide
+docs/README.md — Detailed harness setup, API, configuration, operation, cleanup, skills, and architecture guide
+.github/agents/rpiv.agent.md — RPIV coordinator with pre-flight, pre-coding, and post-flight harness seams
+.github/agents/rpiv-implementer.agent.md — Implement stage with coding and post-coding harness seams
+.github/agents/rpiv-research.agent.md — RPIV Research agent
+.github/agents/rpiv-planner.agent.md — RPIV Plan agent
+.github/agents/rpiv-verifier.agent.md — RPIV Verify agent
 .github/agents/prd-to-gh-issues.agent.md — PRD-to-GitHub backlog issue planning agent
 .github/agents/aps-v1.2.2.agent.md — APS prompt generator agent
 .github/agents/bootstrap.agent.md — New-project bootstrap agent
 .github/agents/excali.agent.md — Excalidraw diagram agent
-.github/agents/rpiv.agent.md — RPIV pipeline coordinator
 .github/agents/onboard-repo.agent.md — Existing-repository onboarding agent
-.github/agents/rpiv-research.agent.md — RPIV Research agent
-.github/agents/rpiv-planner.agent.md — RPIV Plan agent
-.github/agents/rpiv-implementer.agent.md — RPIV Implement agent
-.github/agents/rpiv-verifier.agent.md — RPIV Verify agent
 .github/agents/issue-generator.agent.md — Structured issue generator
-.github/skills/README.md — APS Skill index
+.github/skills/README.md — Complete repository-local skill index and packaged-source boundary
 .github/skills/agnostic-prompt-standard/SKILL.md — APS reference framework Skill
 .github/PULL_REQUEST_TEMPLATE.md — Pull request template
 project/README.md — Project documentation index
-project/architecture/README.md — Sparkta architecture overview and scope boundaries
+project/architecture/README.md — Foundation and engineering-harness architecture overview
 project/architecture/ADR/ADR-260101-template.md — Read-only ADR template
 project/architecture/ADR/ADR-260812-foundation-stack.md — Accepted Sparkta foundation stack
 project/architecture/ADR/ADR-260812-filesystem-state-boundary.md — Accepted durable/runtime filesystem boundary
@@ -57,9 +70,6 @@ project/architecture/core-components/CORE-COMPONENT-260806-architecture-artifact
 project/architecture/core-components/CORE-COMPONENT-260812-development-standards.md — Strict TypeScript, ESLint, Prettier, and Vitest contract
 project/architecture/core-components/CORE-COMPONENT-260812-error-handling.md — Typed and boundary-safe error contract
 project/architecture/core-components/CORE-COMPONENT-260812-observability.md — Structured Pino logging and redaction contract
-project/architecture/core-components/CORE-COMPONENT-260812-state-lifecycle.md — Durable and disposable state contract
-project/work-items/1-bootstrap-sparkta-and-coordinate-prototype-0/research/00-research.md — Issue 1 research evidence
-project/work-items/1-bootstrap-sparkta-and-coordinate-prototype-0/plan/01-action-plan.md — Issue 1 acceptance catalog and plan
-project/work-items/1-bootstrap-sparkta-and-coordinate-prototype-0/plan/02-task-breakdown.md — Issue 1 dependency-ordered tasks
-project/work-items/1-bootstrap-sparkta-and-coordinate-prototype-0/plan/03-test-plan.md — Issue 1 V-1 through V-9 validation plan
-project/work-items/1-bootstrap-sparkta-and-coordinate-prototype-0/implementation/00-implementation.md — Issue 1 implementation and acceptance evidence
+project/architecture/core-components/CORE-COMPONENT-260812-state-lifecycle.md — Durable and disposable product state contract
+project/architecture/core-components/CORE-COMPONENT-260813-engineering-harness-operation.md — Ambient CLI, delegation, boot ownership, discovery, and commit contract
+project/work-items/2-adopt-the-ai-substrate-engineering-harness/ — Issue 2 research, plan, implementation, and acceptance evidence
