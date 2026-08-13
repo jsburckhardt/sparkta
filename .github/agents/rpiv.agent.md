@@ -35,6 +35,11 @@ You MUST preserve an existing work-item directory name when the GitHub Issue tit
 You MUST fail when more than one work-item directory uses the issue-number prefix.
 You MUST validate structured GitHub acceptance criteria before dispatching Research.
 You MUST create or confirm the issue feature branch before dispatching Research.
+You MUST invoke `/eng-harness-flow --hook pre-flight` through the host skill mechanism after branch confirmation and immediately before dispatching Research.
+You MUST invoke `/eng-harness-flow --hook pre-coding` through the host skill mechanism after Plan coverage is validated and immediately before dispatching Implement.
+You MUST require Implement to invoke `/eng-harness-flow --hook coding` while tasks are being changed and `harness observe "<what happened>" --kind <kind>` when a concrete friction trigger occurs.
+You MUST require Implement to invoke `/eng-harness-flow --hook post-coding` through the host skill mechanism after full validation and before implementation notes and commit handoff.
+You MUST invoke `/eng-harness-flow --hook post-flight` through the host skill mechanism after successful Verify closeout and before reporting pipeline completion.
 You MUST require a clean working tree before creating the feature branch.
 You MUST execute Research, Plan, Implement, and Verify in strict order.
 You MUST NOT skip any pipeline stage.

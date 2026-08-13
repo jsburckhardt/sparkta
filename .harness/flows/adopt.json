@@ -1,0 +1,382 @@
+{
+  "schema_version": 1,
+  "kind": "harness-adopt",
+  "slug": "adopt",
+  "nav": {
+    "now": "bridge",
+    "next": null,
+    "intent": "Adoption commands proven; enter the recurring harness loop",
+    "bag": {
+      "delivery_branch": "issue-2-adopt-engineering-harness"
+    }
+  },
+  "created_at": "2026-08-13T05:18:27.243Z",
+  "provenance": {
+    "record_kind": "flow",
+    "harness_version": "0.13.0",
+    "branch": "main",
+    "repo": "https://github.com/jsburckhardt/sparkta.git",
+    "created_at": "2026-08-13T05:18:27.243Z",
+    "agent": null,
+    "plan_id": null
+  },
+  "events": [
+    {
+      "id": "CRT-001",
+      "kind": "created",
+      "origin": "engine",
+      "fired_at": "2026-08-13T05:18:27.257Z",
+      "details": {
+        "kind": "harness-adopt",
+        "slug": "adopt"
+      }
+    },
+    {
+      "id": "UPD-001",
+      "kind": "node-updated",
+      "origin": "engine",
+      "fired_at": "2026-08-13T05:18:50.025Z",
+      "details": {
+        "node": "install",
+        "fields": [
+          "comments"
+        ]
+      }
+    },
+    {
+      "id": "STA-001",
+      "kind": "status-changed",
+      "origin": "engine",
+      "fired_at": "2026-08-13T05:18:50.531Z",
+      "details": {
+        "node": "install",
+        "from": "assumed",
+        "to": "done"
+      }
+    },
+    {
+      "id": "CUR-001",
+      "kind": "cursor-moved",
+      "origin": "engine",
+      "fired_at": "2026-08-13T05:18:51.172Z",
+      "details": {
+        "from": "install",
+        "to": "scout"
+      }
+    },
+    {
+      "id": "UPD-002",
+      "kind": "node-updated",
+      "origin": "engine",
+      "fired_at": "2026-08-13T05:25:20.513Z",
+      "details": {
+        "node": "scout",
+        "fields": [
+          "comments"
+        ]
+      }
+    },
+    {
+      "id": "STA-002",
+      "kind": "status-changed",
+      "origin": "engine",
+      "fired_at": "2026-08-13T05:25:20.891Z",
+      "details": {
+        "node": "scout",
+        "from": "assumed",
+        "to": "done"
+      }
+    },
+    {
+      "id": "CUR-002",
+      "kind": "cursor-moved",
+      "origin": "engine",
+      "fired_at": "2026-08-13T05:25:21.208Z",
+      "details": {
+        "from": "scout",
+        "to": "governance"
+      }
+    },
+    {
+      "id": "UPD-003",
+      "kind": "node-updated",
+      "origin": "engine",
+      "fired_at": "2026-08-13T05:26:24.787Z",
+      "details": {
+        "node": "governance",
+        "fields": [
+          "comments"
+        ]
+      }
+    },
+    {
+      "id": "STA-003",
+      "kind": "status-changed",
+      "origin": "engine",
+      "fired_at": "2026-08-13T05:26:25.148Z",
+      "details": {
+        "node": "governance",
+        "from": "assumed",
+        "to": "done"
+      }
+    },
+    {
+      "id": "CUR-003",
+      "kind": "cursor-moved",
+      "origin": "engine",
+      "fired_at": "2026-08-13T05:26:25.527Z",
+      "details": {
+        "from": "governance",
+        "to": "inject"
+      }
+    },
+    {
+      "id": "UPD-004",
+      "kind": "node-updated",
+      "origin": "engine",
+      "fired_at": "2026-08-13T05:32:36.826Z",
+      "details": {
+        "node": "inject",
+        "fields": [
+          "comments"
+        ]
+      }
+    },
+    {
+      "id": "STA-004",
+      "kind": "status-changed",
+      "origin": "engine",
+      "fired_at": "2026-08-13T05:32:37.265Z",
+      "details": {
+        "node": "inject",
+        "from": "assumed",
+        "to": "done"
+      }
+    },
+    {
+      "id": "CUR-004",
+      "kind": "cursor-moved",
+      "origin": "engine",
+      "fired_at": "2026-08-13T05:32:37.786Z",
+      "details": {
+        "from": "inject",
+        "to": "build-boot"
+      }
+    },
+    {
+      "id": "UPD-005",
+      "kind": "node-updated",
+      "origin": "engine",
+      "fired_at": "2026-08-13T06:27:10.586Z",
+      "details": {
+        "node": "inject",
+        "fields": [
+          "comments"
+        ]
+      }
+    },
+    {
+      "id": "UPD-006",
+      "kind": "node-updated",
+      "origin": "engine",
+      "fired_at": "2026-08-13T06:27:10.614Z",
+      "details": {
+        "node": "governance",
+        "fields": [
+          "comments"
+        ]
+      }
+    },
+    {
+      "id": "UPD-007",
+      "kind": "node-updated",
+      "origin": "engine",
+      "fired_at": "2026-08-13T06:27:10.738Z",
+      "details": {
+        "node": "build-boot",
+        "fields": [
+          "comments"
+        ]
+      }
+    },
+    {
+      "id": "STA-005",
+      "kind": "status-changed",
+      "origin": "engine",
+      "fired_at": "2026-08-13T06:27:29.543Z",
+      "details": {
+        "node": "build-boot",
+        "from": "assumed",
+        "to": "done"
+      }
+    },
+    {
+      "id": "CUR-005",
+      "kind": "cursor-moved",
+      "origin": "engine",
+      "fired_at": "2026-08-13T06:27:49.182Z",
+      "details": {
+        "from": "build-boot",
+        "to": "bridge"
+      }
+    },
+    {
+      "id": "UPD-008",
+      "kind": "node-updated",
+      "origin": "engine",
+      "fired_at": "2026-08-13T06:27:59.761Z",
+      "details": {
+        "node": "bridge",
+        "fields": [
+          "comments"
+        ]
+      }
+    },
+    {
+      "id": "STA-006",
+      "kind": "status-changed",
+      "origin": "engine",
+      "fired_at": "2026-08-13T06:28:06.175Z",
+      "details": {
+        "node": "bridge",
+        "from": "assumed",
+        "to": "done"
+      }
+    }
+  ],
+  "nodes": [
+    {
+      "id": "install",
+      "type": "install",
+      "label": "Install harness",
+      "status": "done",
+      "next": [
+        "governance"
+      ],
+      "zone": "preflight",
+      "comments": [
+        {
+          "at": "2026-08-13T05:18:50.025Z",
+          "text": "decision:available reason:harness-0.13.0-and-flow-cli-respond; doctor-envelope-returned time:2026-08-13T05:17:50.707Z",
+          "source": "agent",
+          "kind": "validation"
+        }
+      ],
+      "modified_at": "2026-08-13T05:18:50.531Z",
+      "ran_at": "2026-08-13T05:18:50.531Z"
+    },
+    {
+      "id": "governance",
+      "type": "governance",
+      "label": "Governance + boot contract",
+      "status": "done",
+      "next": [
+        "build-boot"
+      ],
+      "zone": "flight",
+      "comments": [
+        {
+          "at": "2026-08-13T05:26:24.787Z",
+          "text": "decision:complete verdict:governance-stamped path:.harness/engineering-harness.md time:2026-08-13T05:26:05.711Z",
+          "source": "agent",
+          "kind": "validation"
+        },
+        {
+          "at": "2026-08-13T06:27:10.614Z",
+          "text": "decision:complete verdict:BIO-contract-populated evidence:.harness/engineering-harness.md doctor:quality-gate-ok branch:issue-2-adopt-engineering-harness",
+          "source": "agent",
+          "kind": "validation"
+        }
+      ],
+      "modified_at": "2026-08-13T06:27:10.614Z",
+      "ran_at": "2026-08-13T05:26:25.148Z"
+    },
+    {
+      "id": "build-boot",
+      "type": "build-boot",
+      "label": "Build + run boot (last)",
+      "status": "done",
+      "next": [
+        "bridge"
+      ],
+      "zone": "postflight",
+      "comments": [
+        {
+          "at": "2026-08-13T06:27:10.738Z",
+          "text": "decision:complete verdict:boot-readiness-stop-and-delegated-checks-proven evidence:V-4,V-5,V-6,V-7,V-9 just-focused:passed branch:issue-2-adopt-engineering-harness",
+          "source": "agent",
+          "kind": "validation"
+        }
+      ],
+      "modified_at": "2026-08-13T06:27:29.535Z",
+      "ran_at": "2026-08-13T06:27:29.535Z"
+    },
+    {
+      "id": "bridge",
+      "type": "decision",
+      "label": "Bridge → harness loop?",
+      "status": "done",
+      "next": [],
+      "zone": "postflight",
+      "comments": [
+        {
+          "at": "2026-08-13T06:27:59.760Z",
+          "text": "decision:complete verdict:adoption-bridge-ready next:recurring-harness-loop evidence:governance,extensions,skills,rpiv-hooks,managed-commit-guidance branch:issue-2-adopt-engineering-harness",
+          "source": "agent",
+          "kind": "validation"
+        }
+      ],
+      "modified_at": "2026-08-13T06:28:06.174Z",
+      "ran_at": "2026-08-13T06:28:06.174Z"
+    },
+    {
+      "id": "scout",
+      "type": "scout",
+      "label": "Scout (harnessability)",
+      "status": "done",
+      "next": [
+        "governance"
+      ],
+      "zone": "preflight",
+      "branch_of": "install",
+      "comments": [
+        {
+          "at": "2026-08-13T05:25:20.513Z",
+          "text": "decision:complete verdict:operate-B-74.1_adaptability-B-75 readiness:H3 proof:L3 report:.harness/reports/harnessability/latest.json time:2026-08-13T05:26:00Z",
+          "source": "agent",
+          "kind": "validation"
+        }
+      ],
+      "modified_at": "2026-08-13T05:25:20.891Z",
+      "ran_at": "2026-08-13T05:25:20.891Z"
+    },
+    {
+      "id": "inject",
+      "type": "inject",
+      "label": "Inject (wire seams)",
+      "status": "done",
+      "next": [
+        "build-boot"
+      ],
+      "zone": "flight",
+      "branch_of": "governance",
+      "comments": [
+        {
+          "at": "2026-08-13T05:32:36.826Z",
+          "text": "decision:complete verdict:manual-map-recorded path:.harness/engineering-harness.md reason:structural-rpiv-wiring-deferred-to-rpiv-delivery time:2026-08-13T05:28:00Z",
+          "source": "agent",
+          "kind": "validation"
+        },
+        {
+          "at": "2026-08-13T06:27:10.586Z",
+          "text": "decision:complete verdict:structural-rpiv-hooks-wired evidence:.github/agents/rpiv.agent.md,.github/agents/rpiv-implementer.agent.md branch:issue-2-adopt-engineering-harness",
+          "source": "agent",
+          "kind": "validation"
+        }
+      ],
+      "modified_at": "2026-08-13T06:27:10.586Z",
+      "ran_at": "2026-08-13T05:32:37.265Z"
+    }
+  ],
+  "title": "adopt"
+}

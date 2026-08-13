@@ -1,0 +1,909 @@
+{
+  "schema_version": "harnessability-assessment.v0.2",
+  "run": {
+    "timestamp_utc": "20260813T074941Z",
+    "repo_root": "/workspaces/sparkta",
+    "repo_name": "sparkta",
+    "branch": "issue-2-adopt-engineering-harness",
+    "commit": "13654afe3ec6f5f8aad909e129ebe680574352ac",
+    "mode": "static",
+    "commands_executed": [
+      "git status --short",
+      "git branch --show-current",
+      "git rev-parse HEAD",
+      "static repository file inspection"
+    ],
+    "commands_skipped": [
+      "dependency installation",
+      "service boot",
+      "runtime probes",
+      "test and build execution",
+      "external service calls",
+      "deep Git-history analysis"
+    ],
+    "safety_notes": [
+      "No secret values were read.",
+      "No service, dependency, product state, or external system was mutated.",
+      "Runtime and validation claims rely on committed Implement and independent Verify evidence from Issue #2."
+    ]
+  },
+  "verdict": {
+    "operate_today_percent": 88.9,
+    "operate_today_grade": "A",
+    "adaptability_percent": 79.2,
+    "adaptability_grade": "B",
+    "harnessability_index_percent": 84.1,
+    "harnessability_index_grade": "B",
+    "final_grade": "B",
+    "readiness_level": "H4",
+    "highest_proof_level": "L4",
+    "target_proof_level": "L5",
+    "confidence": "high"
+  },
+  "harness_surfaces": [
+    {
+      "name": "Engineering harness",
+      "path": ".harness/",
+      "kind": "canonical",
+      "status": "adopted",
+      "notes": "Committed governance, checks, owned boot/readiness/stop, skills lock, flow, and change record."
+    },
+    {
+      "name": "Root justfile",
+      "path": "justfile",
+      "kind": "canonical",
+      "status": "authoritative",
+      "notes": "Owns setup, run, focused validation, and full validation command bodies."
+    },
+    {
+      "name": "RPIV flow",
+      "path": "AGENTS.md",
+      "kind": "canonical",
+      "status": "harness-integrated",
+      "notes": "Research, Plan, Implement, and Verify include structural harness lifecycle seams."
+    },
+    {
+      "name": "Copilot skills",
+      "path": ".agents/skills/",
+      "kind": "canonical",
+      "status": "exact-allowlist",
+      "notes": "Exactly eng-harness-flow, eng-harness-0-harnessability-assessment, and grill-agent-done are committed; .harness/skills.lock.json records provenance only."
+    }
+  ],
+  "topology": {
+    "primary_type": "local full-stack TypeScript foundation",
+    "languages": ["TypeScript", "JavaScript", "Bash", "Markdown"],
+    "runtimes": ["Node.js 24", "ambient engineering harness 0.13.0"],
+    "package_roots": [".", "apps/server", "apps/web"],
+    "service_types": ["Fastify API foundation", "React/Vite web foundation", "engineering harness extensions"],
+    "frameworks": ["Fastify", "React", "Vite", "Vitest", "ESLint", "Prettier"],
+    "ci": [],
+    "is_monorepo": true,
+    "notes": "Local-only npm workspace with deterministic owned boot and no current product persistence or remote runtime service."
+  },
+  "axis_a_operate_today": [
+    {
+      "id": "A1",
+      "name": "Cold-start orientation and repo map",
+      "band": "Strong",
+      "points": 3,
+      "evidence": ["AGENTS.md", "LLM.txt", "README.md", "docs/README.md", ".harness/engineering-harness.md"],
+      "notes": "Cold agents reach the harness, RPIV, project commands, the exact three-skill allowlist, and evidence paths in one hop.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "id": "A2",
+      "name": "Setup and environment contract",
+      "band": "Partial",
+      "points": 2,
+      "evidence": [".devcontainer/devcontainer.json", "README.md", "docs/README.md", "project/work-items/2-adopt-the-ai-substrate-engineering-harness/verify/summary.md"],
+      "notes": "Application setup is reproducible, but harness CLI availability remains an explicitly separate configured-environment prerequisite.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "id": "A3",
+      "name": "Locality of infrastructure and external dependency exposure",
+      "band": "Strong",
+      "points": 3,
+      "evidence": ["package.json", "apps/server/package.json", "apps/web/package.json", "README.md"],
+      "notes": "Current runtime and proof require no database, queue, auth provider, model provider, secret, or remote service.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "id": "A4",
+      "name": "Harness front door and command discoverability",
+      "band": "Strong",
+      "points": 3,
+      "evidence": [".harness/extensions/", ".harness/engineering-harness.md", "AGENTS.md", ".github/skills/README.md", "justfile"],
+      "notes": "Checks, boot, readiness, stop, instructions, doctor, evidence locations, and the exact allowlist (eng-harness-flow, eng-harness-0-harnessability-assessment, grill-agent-done) are canonical and structured.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "id": "A5",
+      "name": "Boot and health/readiness path",
+      "band": "Strong",
+      "points": 3,
+      "evidence": [".harness/extensions/boot/extension.ts", "apps/server/src/app.ts", "project/work-items/2-adopt-the-ai-substrate-engineering-harness/verify/summary.md"],
+      "notes": "Owned boot proves both services, composes full checks, emits bounded evidence, and safely releases ports.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "id": "A6",
+      "name": "Seed, fixture, reset, and cleanup state",
+      "band": "Not applicable",
+      "points": null,
+      "evidence": ["README.md", "docs/README.md"],
+      "notes": "No product persistence exists; harness runtime cleanup is separately covered by boot/stop.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "id": "A7",
+      "name": "Supported interaction surfaces",
+      "band": "Partial",
+      "points": 2,
+      "evidence": ["GET /api/readiness", "Vite root marker", "apps/server/src/app.test.ts"],
+      "notes": "Real foundation HTTP surfaces are supported, but product workflow and automated browser interaction remain future scope.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "id": "A8",
+      "name": "Existing deterministic back-pressure sensors",
+      "band": "Strong",
+      "points": 3,
+      "evidence": ["justfile", ".harness/extensions/checks/extension.ts", "apps/server/src/harness-boot-ownership.test.ts", "Issue #2 Verify summary"],
+      "notes": "Static gates, HTTP readiness, exact delegation, process ownership, occupied-port safety, and cleanup are deterministic.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "id": "A9",
+      "name": "Observability and evidence artifacts",
+      "band": "Strong",
+      "points": 3,
+      "evidence": [".harness/temp/boot evidence contract", "structured JSON envelopes", "project/work-items/2-adopt-the-ai-substrate-engineering-harness/implementation/00-implementation.md"],
+      "notes": "Runtime verdicts name bounded logs/evidence; durable AC-indexed Implement and Verify evidence is committed.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "id": "A10",
+      "name": "Compounding harness loop",
+      "band": "Partial",
+      "points": 2,
+      "evidence": [".harness/engineering-harness.md", ".harness/records/harness-change/2026-08-13/001-adopt-sparkta-engineering-harness.md", "RPIV hook wiring"],
+      "notes": "Observe/retro hooks and one encoded change exist, but sustained normal-work retro and improvement recurrence are not yet demonstrated.",
+      "provenance": "evidence",
+      "confidence": "high"
+    }
+  ],
+  "axis_b_adaptability": [
+    {
+      "id": "B1",
+      "name": "Structural coupling and blast radius",
+      "band": "Strong",
+      "points": 3,
+      "evidence": ["npm workspace boundaries", "apps/server/src", "apps/web/src"],
+      "notes": "Small separated packages keep current change scope narrow.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "id": "B2",
+      "name": "Temporal/change coupling",
+      "band": "Unknown",
+      "points": 0,
+      "evidence": [],
+      "notes": "Deep Git-history analysis was not enabled.",
+      "provenance": "unknown",
+      "confidence": "low"
+    },
+    {
+      "id": "B3",
+      "name": "Cohesion and locality of change",
+      "band": "Strong",
+      "points": 3,
+      "evidence": ["colocated application tests", "separate harness extension packages"],
+      "notes": "Application behavior, tests, and harness verbs have focused ownership.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "id": "B4",
+      "name": "Seams, substitution, and dependency inversion",
+      "band": "Strong",
+      "points": 3,
+      "evidence": ["createServer factory", "Fastify inject", "delegation spies", "process-group fixtures"],
+      "notes": "Tests reuse in-process HTTP, command spies, detached fixtures, and explicit lifecycle seams.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "id": "B5",
+      "name": "Hermetic, offline, and isolated testability",
+      "band": "Strong",
+      "points": 3,
+      "evidence": ["Vitest suites", "Fastify inject", "temporary harness roots", "disposable listener fixtures"],
+      "notes": "Meaningful static and ownership tests need no remote services or credentials.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "id": "B6",
+      "name": "Side-effect isolation and external-effect sinks",
+      "band": "Not applicable",
+      "points": null,
+      "evidence": ["foundation scope excludes external effects"],
+      "notes": "No product external side effect exists yet.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "id": "B7",
+      "name": "State evolution and consequence verification",
+      "band": "Not applicable",
+      "points": null,
+      "evidence": ["foundation scope excludes product state"],
+      "notes": "No implemented durable product state or migration path exists.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "id": "B8",
+      "name": "Architecture boundary enforceability",
+      "band": "Partial",
+      "points": 2,
+      "evidence": ["project/architecture/", "eslint.config.js", "just verify"],
+      "notes": "Contracts are explicit and reviewed, but package/state boundaries are not yet encoded as a dedicated deterministic rule.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "id": "B9",
+      "name": "Complexity, size, and navigability thresholds",
+      "band": "Partial",
+      "points": 2,
+      "evidence": ["ESLint", "small application files", "large boot extension"],
+      "notes": "Current code is navigable, but explicit complexity/size thresholds and hotspot sensors are absent.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "id": "B10",
+      "name": "Inner-loop speed and repeatability",
+      "band": "Strong",
+      "points": 3,
+      "evidence": ["just verify-focused", "harness checks focused", "owned boot/readiness/stop", "Issue #2 repeated lifecycle evidence"],
+      "notes": "Focused and complete lanes are distinct; runtime returns to a known stopped state.",
+      "provenance": "evidence",
+      "confidence": "high"
+    }
+  ],
+  "backpressure_surfaces": [
+    {
+      "category": "static",
+      "name": "Focused and full root validation",
+      "command_or_check": "harness checks focused [target] --json; harness checks full --json",
+      "scope": "tests, lint, format, type-check, build, diff integrity",
+      "local_available": true,
+      "ci_available": false,
+      "proof_level": "L2",
+      "status": "verified",
+      "evidence": "Issue #2 independent verification"
+    },
+    {
+      "category": "runtime",
+      "name": "Owned foundation lifecycle",
+      "command_or_check": "harness boot/readiness/stop --json",
+      "scope": "Vite and Fastify readiness, ownership, cleanup",
+      "local_available": true,
+      "ci_available": false,
+      "proof_level": "L4",
+      "status": "verified",
+      "evidence": "Boot/readiness/stop envelopes, HTTP probes, logs, port and ownership consequences"
+    },
+    {
+      "category": "consequence",
+      "name": "Runtime cleanup consequence",
+      "command_or_check": "harness stop --json",
+      "scope": "ownership removal and port release",
+      "local_available": true,
+      "ci_available": false,
+      "proof_level": "L4",
+      "status": "verified",
+      "evidence": "Ownership absent and ports 3000/5173 independently closed"
+    },
+    {
+      "category": "observability",
+      "name": "Bounded lifecycle evidence",
+      "command_or_check": "JSON envelopes and .harness/temp/boot evidence",
+      "scope": "delegation, probes, timings, ownership, logs",
+      "local_available": true,
+      "ci_available": false,
+      "proof_level": "L4",
+      "status": "verified",
+      "evidence": "Governance contract and Issue #2 evidence"
+    },
+    {
+      "category": "human_inferential",
+      "name": "RPIV architecture and documentation review",
+      "command_or_check": null,
+      "scope": "acceptance, architecture, documentation, branch diff",
+      "local_available": true,
+      "ci_available": false,
+      "proof_level": "L1",
+      "status": "configured",
+      "evidence": "AGENTS.md and Verify summary"
+    }
+  ],
+  "scenario_probes": [
+    {
+      "name": "Foundation boot-to-evidence loop",
+      "applicable": true,
+      "relevant_surfaces": ["harness boot", "Vite root", "GET /api/readiness", "harness stop"],
+      "likely_edit_target": ".harness/extensions/boot and application readiness seams",
+      "required_setup": "Node.js 24, just, ambient harness 0.13.0, free ports",
+      "supported_interaction": "HTTP requests to both local foundations",
+      "expected_observable_consequence": "structured evidence, live ports, then ownership removal and released ports",
+      "deterministic_verdict": "boot/readiness/stop JSON envelopes",
+      "reset_cleanup_path": "harness stop --json",
+      "local_substitute_available": "native local processes",
+      "remote_or_secret_blockers": "none",
+      "highest_plausible_proof_level": "L4",
+      "what_agent_would_infer": "nothing about current foundation readiness or cleanup when the supported path is used",
+      "highest_leverage_missing_sensor": "clean-checkout rerun evidence for L5"
+    },
+    {
+      "name": "Web UI behavior loop",
+      "applicable": true,
+      "relevant_surfaces": ["React/Vite root", "foundation marker"],
+      "likely_edit_target": "apps/web/src",
+      "required_setup": "owned boot",
+      "supported_interaction": "browser-rendered local page",
+      "expected_observable_consequence": "accessible DOM state or screenshot",
+      "deterministic_verdict": "not implemented",
+      "reset_cleanup_path": "harness stop --json",
+      "local_substitute_available": "local headless browser",
+      "remote_or_secret_blockers": "none",
+      "highest_plausible_proof_level": "L3",
+      "what_agent_would_infer": "whether UI behavior beyond the title marker works",
+      "highest_leverage_missing_sensor": "headless UI smoke with accessibility assertion and artifact"
+    },
+    {
+      "name": "Architecture-rule loop",
+      "applicable": true,
+      "relevant_surfaces": ["ADRs", "core-components", "npm workspaces", "ESLint"],
+      "likely_edit_target": "workspace imports and state-boundary paths",
+      "required_setup": "locked application dependencies",
+      "supported_interaction": "static source analysis",
+      "expected_observable_consequence": "forbidden import or state-path use fails deterministically",
+      "deterministic_verdict": "not implemented",
+      "reset_cleanup_path": "not applicable",
+      "local_substitute_available": "existing lint/check lane",
+      "remote_or_secret_blockers": "none",
+      "highest_plausible_proof_level": "L1",
+      "what_agent_would_infer": "whether documented boundaries are obeyed",
+      "highest_leverage_missing_sensor": "architecture boundary check included by just verify"
+    }
+  ],
+  "command_tiers": [
+    {
+      "command_or_check": "just setup",
+      "tier": "bootstrap",
+      "status": "configured_unverified",
+      "proof_level": "L1",
+      "evidence": "Root justfile and setup documentation"
+    },
+    {
+      "command_or_check": "harness doctor --json",
+      "tier": "doctor",
+      "status": "verified",
+      "proof_level": "L1",
+      "evidence": "Issue #2 independent Verify evidence"
+    },
+    {
+      "command_or_check": "harness boot --json",
+      "tier": "boot",
+      "status": "verified",
+      "proof_level": "L4",
+      "evidence": "Issue #2 lifecycle evidence"
+    },
+    {
+      "command_or_check": "harness readiness --json",
+      "tier": "health",
+      "status": "verified",
+      "proof_level": "L3",
+      "evidence": "Dual HTTP probe evidence"
+    },
+    {
+      "command_or_check": "harness checks focused [target] --json",
+      "tier": "fast",
+      "status": "verified",
+      "proof_level": "L2",
+      "evidence": "Exact delegation controls and real focused run"
+    },
+    {
+      "command_or_check": "harness checks full --json",
+      "tier": "proof",
+      "status": "verified",
+      "proof_level": "L2",
+      "evidence": "Exact delegation and independent just verify"
+    },
+    {
+      "command_or_check": "harness stop --json",
+      "tier": "cleanup",
+      "status": "verified",
+      "proof_level": "L4",
+      "evidence": "Verified group signal, ownership removal, and released ports"
+    },
+    {
+      "command_or_check": "harness observe; harness record retro",
+      "tier": "retro_or_improve",
+      "status": "configured_unverified",
+      "proof_level": "L1",
+      "evidence": "RPIV seam wiring and governance; sustained use not yet established"
+    }
+  ],
+  "environment_variables": [
+    {
+      "name": "PORT",
+      "required": "optional",
+      "purpose_inferred": "Fastify listener and readiness probe port",
+      "source_files": ["apps/server/src/main.ts", "README.md", "docs/README.md"],
+      "example_present": "yes",
+      "safe_default_present": "yes",
+      "secret_like": "no",
+      "local_dev_notes": "Defaults to 3000 and must differ from 5173."
+    },
+    {
+      "name": "LOG_LEVEL",
+      "required": "optional",
+      "purpose_inferred": "Pino server log level",
+      "source_files": ["apps/server/src/logger.ts", "README.md", "docs/README.md"],
+      "example_present": "yes",
+      "safe_default_present": "yes",
+      "secret_like": "no",
+      "local_dev_notes": "Defaults to info."
+    }
+  ],
+  "external_dependencies": [
+    {
+      "name": "npm registry during clean application setup",
+      "type": "other",
+      "where_detected": "package-lock.json and just setup",
+      "local_option": "none",
+      "remote_required": "yes",
+      "secret_required": "no",
+      "mutation_risk": "local_only",
+      "proof_blocked_by_dependency": "partial",
+      "recommended_affordance": "Retain the lockfile and configured devcontainer."
+    },
+    {
+      "name": "ambient harness CLI",
+      "type": "other",
+      "where_detected": "governance, README, Issue #2 evidence",
+      "local_option": "native",
+      "remote_required": "no",
+      "secret_required": "no",
+      "mutation_risk": "none",
+      "proof_blocked_by_dependency": "partial",
+      "recommended_affordance": "Keep explicit version/doctor preflight and configured-environment ownership."
+    }
+  ],
+  "gaps": [
+    {
+      "id": "GAP-101",
+      "title": "Harness CLI availability is an environment-owned prerequisite",
+      "axis": "operate_today",
+      "subsystem": "environment",
+      "loop_stage": "boot",
+      "backpressure_category": "static",
+      "scenario_impacted": "all harness operations",
+      "target_layer": "environment",
+      "encoding_type": "diagnostic",
+      "severity": "medium",
+      "status": "partial",
+      "provenance": "evidence",
+      "confidence": "high",
+      "recommended_next_action": "Retain exact version and doctor preflight; do not claim repository provisioning.",
+      "proof_level_unblocked": "L1",
+      "estimated_effort": "XS",
+      "risk_tier": "low"
+    },
+    {
+      "id": "GAP-102",
+      "title": "No automated browser UI consequence sensor",
+      "axis": "operate_today",
+      "subsystem": "tests",
+      "loop_stage": "validate",
+      "backpressure_category": "consequence",
+      "scenario_impacted": "Web UI behavior loop",
+      "target_layer": "test_code",
+      "encoding_type": "sensor",
+      "severity": "medium",
+      "status": "absent",
+      "provenance": "evidence",
+      "confidence": "high",
+      "recommended_next_action": "Add a headless local UI smoke that asserts accessible DOM state and retains a bounded artifact.",
+      "proof_level_unblocked": "L4",
+      "estimated_effort": "M",
+      "risk_tier": "low"
+    },
+    {
+      "id": "GAP-103",
+      "title": "Architecture boundaries remain review-enforced",
+      "axis": "adaptability",
+      "subsystem": "architecture",
+      "loop_stage": "validate",
+      "backpressure_category": "static",
+      "scenario_impacted": "Architecture-rule loop",
+      "target_layer": "harness",
+      "encoding_type": "architecture_rule",
+      "severity": "medium",
+      "status": "weak",
+      "provenance": "evidence",
+      "confidence": "high",
+      "recommended_next_action": "Encode workspace import direction and product/harness state-path rules in the existing check lane.",
+      "proof_level_unblocked": "L2",
+      "estimated_effort": "M",
+      "risk_tier": "low"
+    },
+    {
+      "id": "GAP-104",
+      "title": "No committed CI equivalent for the full local gate",
+      "axis": "operate_today",
+      "subsystem": "human_process",
+      "loop_stage": "validate",
+      "backpressure_category": "static",
+      "scenario_impacted": "all",
+      "target_layer": "ci",
+      "encoding_type": "workflow",
+      "severity": "medium",
+      "status": "absent",
+      "provenance": "evidence",
+      "confidence": "high",
+      "recommended_next_action": "When CI enters scope, invoke the same harness checks full or just verify surface.",
+      "proof_level_unblocked": "L2",
+      "estimated_effort": "S",
+      "risk_tier": "low"
+    },
+    {
+      "id": "GAP-105",
+      "title": "Compounding loop lacks sustained normal-work evidence",
+      "axis": "operate_today",
+      "subsystem": "feedback",
+      "loop_stage": "improve",
+      "backpressure_category": "human_inferential",
+      "scenario_impacted": "future RPIV work",
+      "target_layer": "harness",
+      "encoding_type": "workflow",
+      "severity": "medium",
+      "status": "partial",
+      "provenance": "evidence",
+      "confidence": "high",
+      "recommended_next_action": "Use observe, retro drain, harvest, and one encoded improvement during the next normal RPIV issue.",
+      "proof_level_unblocked": "L5",
+      "estimated_effort": "S",
+      "risk_tier": "low"
+    }
+  ],
+  "remediations": [
+    {
+      "id": "REM-101",
+      "title": "Add a headless UI smoke sensor",
+      "recommended_encoding": "harness ui-smoke command with accessible DOM assertion and bounded artifact",
+      "target_layer": "harness_and_test_code",
+      "proof_level_unblocked": "L4",
+      "estimated_effort": "M",
+      "risk_tier": "low",
+      "addresses_gaps": ["GAP-102"]
+    },
+    {
+      "id": "REM-102",
+      "title": "Encode architecture boundaries",
+      "recommended_encoding": "architecture rule included by the authoritative full check",
+      "target_layer": "harness",
+      "proof_level_unblocked": "L2",
+      "estimated_effort": "M",
+      "risk_tier": "low",
+      "addresses_gaps": ["GAP-103"]
+    },
+    {
+      "id": "REM-103",
+      "title": "Demonstrate a full compounding cycle",
+      "recommended_encoding": "normal-work observe, retro, harvest, and validated harness-change record",
+      "target_layer": "harness",
+      "proof_level_unblocked": "L5",
+      "estimated_effort": "S",
+      "risk_tier": "low",
+      "addresses_gaps": ["GAP-105"]
+    }
+  ],
+  "product_code_affordances": [],
+  "harness_recommendations": [
+    {
+      "id": "HAR-101",
+      "title": "UI smoke evidence command",
+      "path": ".harness/extensions/ui-smoke/",
+      "risk": "low",
+      "type": "sensor",
+      "summary": "Exercise the local rendered foundation and retain an accessible or visual artifact.",
+      "rationale": "Closes the remaining UI inference gap without remote infrastructure.",
+      "requires_human_review": true
+    },
+    {
+      "id": "HAR-102",
+      "title": "Architecture fitness check",
+      "path": ".harness/extensions/architecture/",
+      "risk": "low",
+      "type": "sensor",
+      "summary": "Fail workspace-direction or state-boundary violations deterministically.",
+      "rationale": "Moves stable architecture contracts out of repeated reviewer inference.",
+      "requires_human_review": true
+    }
+  ],
+  "applied_patches": [],
+  "onboarding_consolidation": [
+    {
+      "item": "Harness and project cold setup",
+      "action": "keep",
+      "source_path": "README.md",
+      "notes": "Cleanly distinguishes repository setup from the ambient harness prerequisite."
+    },
+    {
+      "item": "Agent operating contract",
+      "action": "keep",
+      "source_path": "AGENTS.md",
+      "notes": "Canonical one-hop routing to harness, RPIV, the exact three-skill allowlist, checks, boot, and commit guidance."
+    },
+    {
+      "item": "Detailed operations",
+      "action": "keep",
+      "source_path": "docs/README.md",
+      "notes": "Accurately covers readiness, ownership, evidence, cleanup, and state boundaries."
+    }
+  ],
+  "first_safe_session_plan": [
+    "Run harness instructions and inspect harness doctor --json.",
+    "Run harness checks focused for the scoped test target.",
+    "Run harness boot --json and require harness readiness --json before interaction.",
+    "Make the scoped change through RPIV and capture concrete friction through the configured hooks.",
+    "Run harness checks full --json, then harness stop --json and retain durable AC evidence."
+  ],
+  "human_questions": [],
+  "evidence_log": [
+    {
+      "source": ".harness/engineering-harness.md, .github/skills/README.md, justfile",
+      "claim": "Checks, boot, readiness, stop, evidence, RPIV seams, and the exact engineering-harness allowlist (eng-harness-flow, eng-harness-0-harnessability-assessment, grill-agent-done) are explicitly governed.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "source": "project/work-items/2-adopt-the-ai-substrate-engineering-harness/verify/summary.md",
+      "claim": "Independent verification passed full validation, lifecycle, ownership safety, documentation, and cleanup.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "source": ".harness/extensions/boot/extension.ts and ownership tests",
+      "claim": "Boot validates PID start time, command, and process group before signalling and refuses unknown listeners.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "source": ".harness/extensions/checks/extension.ts",
+      "claim": "Harness validation delegates without duplicating root recipe bodies.",
+      "provenance": "evidence",
+      "confidence": "high"
+    },
+    {
+      "source": "README.md, AGENTS.md, LLM.txt, docs/README.md",
+      "claim": "Cold-agent and operator discovery is consolidated and distinguishes ambient CLI ownership.",
+      "provenance": "evidence",
+      "confidence": "high"
+    }
+  ],
+  "report_paths": {
+    "run_dir": ".harness/reports/harnessability/002-sparkta",
+    "report_md": ".harness/reports/harnessability/002-sparkta/report.md",
+    "report_json": ".harness/reports/harnessability/002-sparkta/report.json",
+    "summary_md": ".harness/reports/harnessability/002-sparkta/summary.md",
+    "evidence_jsonl": ".harness/reports/harnessability/002-sparkta/evidence.jsonl",
+    "latest_md": ".harness/reports/harnessability/latest.md",
+    "latest_json": ".harness/reports/harnessability/latest.json",
+    "schema_json": ".harness/reports/harnessability/schema.json"
+  },
+  "assessment_matrix": [
+    {
+      "area": "Operate-Today",
+      "grade": "A",
+      "score_percent": 88.9,
+      "weight": 0.5,
+      "rationale": "Canonical boot, readiness, cleanup, checks, evidence, and discovery are now established.",
+      "evidence": [".harness/", "Issue #2 Verify summary"]
+    },
+    {
+      "area": "Adaptability",
+      "grade": "B",
+      "score_percent": 79.2,
+      "weight": 0.5,
+      "rationale": "Strong seams and hermetic tests remain limited by inferred architecture boundaries and unknown temporal coupling.",
+      "evidence": ["application and harness tests", "project/architecture/"]
+    }
+  ],
+  "engineering_flows": [
+    {
+      "name": "RPIV with harness lifecycle",
+      "kind": "sdd",
+      "commands": ["Research", "Plan", "Implement", "Verify", "pre-flight", "pre-coding", "coding", "post-coding", "post-flight"],
+      "where_detected": "AGENTS.md, RPIV agent definitions, governance injection map",
+      "canonical": "yes",
+      "provenance": "evidence",
+      "notes": "Issue delivery and harness improvement seams are structurally connected."
+    },
+    {
+      "name": "Harness validation and runtime",
+      "kind": "local",
+      "commands": ["harness checks focused", "harness checks full", "harness boot", "harness readiness", "harness stop"],
+      "where_detected": ".harness/extensions and governance",
+      "canonical": "yes",
+      "provenance": "evidence",
+      "notes": "Delegates correctness to root just recipes and owns runtime evidence safely."
+    }
+  ],
+  "pre_commit_gates": [
+    {
+      "name": "Attribution-aware explicit commit path",
+      "mechanism": "git_hook",
+      "checks": ["harness commit ingress/attribution reporting"],
+      "local_available": true,
+      "ci_equivalent": false,
+      "notes": "Commit guidance is managed; correctness validation remains an explicit harness/root gate."
+    }
+  ],
+  "ci_local_equivalence": [
+    {
+      "check": "Complete verification",
+      "ci_command": "",
+      "local_command": "harness checks full --json -> just verify",
+      "equivalence": "local_only",
+      "notes": "No committed CI workflow was detected."
+    }
+  ],
+  "existing_harness_concepts": [
+    {
+      "name": "Engineering harness",
+      "kind": "canonical",
+      "surfaces": [".harness/", ".agents/skills/", "AGENTS.md", "LLM.txt"],
+      "coverage": "Strong",
+      "notes": "Adopted front door for discovery, validation, runtime, evidence, improvement hooks, and exactly three approved engineering-harness skills."
+    },
+    {
+      "name": "Root project command interface",
+      "kind": "canonical",
+      "surfaces": ["justfile", "README.md", "docs/README.md"],
+      "coverage": "Strong",
+      "notes": "Authoritative command bodies wrapped by the harness."
+    }
+  ],
+  "deterministic_encoding_opportunities": [
+    {
+      "id": "ENC-101",
+      "title": "Rendered UI behavior",
+      "current_encoding": "manual",
+      "proposed_encoding": "headless UI smoke with accessible DOM assertion and bounded artifact",
+      "proof_level": "L4",
+      "rationale": "The title marker proves availability but not user-visible behavior."
+    },
+    {
+      "id": "ENC-102",
+      "title": "Architecture boundaries",
+      "current_encoding": "doc",
+      "proposed_encoding": "workspace import and state-path architecture sensor",
+      "proof_level": "L2",
+      "rationale": "ADRs and core-components cannot fail violating changes."
+    }
+  ],
+  "test_mechanisms": [
+    {
+      "name": "Fastify injection",
+      "type": "integration",
+      "where_detected": "apps/server/src/app.test.ts",
+      "deterministic": "yes",
+      "notes": "Exercises the real request boundary in process."
+    },
+    {
+      "name": "In-memory structured-log sink",
+      "type": "sink",
+      "where_detected": "apps/server/src/logger.test.ts",
+      "deterministic": "yes",
+      "notes": "Captures redaction evidence without external logging."
+    },
+    {
+      "name": "Command delegation spies",
+      "type": "stub",
+      "where_detected": "Issue #2 V-6/V-7 evidence",
+      "deterministic": "yes",
+      "notes": "Proves exact argv and failure propagation."
+    },
+    {
+      "name": "Detached process-group fixtures",
+      "type": "integration",
+      "where_detected": "apps/server/src/harness-boot-ownership.test.ts",
+      "deterministic": "yes",
+      "notes": "Proves valid ownership and no-signal mismatch behavior."
+    }
+  ],
+  "external_dependency_pressure": [
+    {
+      "dependency": "npm registry during clean application setup",
+      "pressure": "low",
+      "local_substitute": "none",
+      "proof_impact": "Only dependency restoration is affected.",
+      "notes": "Runtime proof has no remote dependency."
+    },
+    {
+      "dependency": "configured ambient harness 0.13.0",
+      "pressure": "medium",
+      "local_substitute": "native",
+      "proof_impact": "Harness commands are unavailable if the configured environment omits the ambient tool.",
+      "notes": "Version and doctor preflight make the prerequisite explicit."
+    }
+  ],
+  "code_composition": [
+    {
+      "area": "web/server workspace boundary",
+      "kind": "package",
+      "coupling": "low",
+      "test_seam": "yes",
+      "notes": "Independent workspace validation with a shared root gate."
+    },
+    {
+      "area": "Fastify server factory",
+      "kind": "seam",
+      "coupling": "low",
+      "test_seam": "yes",
+      "notes": "Supports injection without network startup."
+    },
+    {
+      "area": "Harness extension boundary",
+      "kind": "extension_point",
+      "coupling": "delegates to stable just and runtime interfaces",
+      "test_seam": "yes",
+      "notes": "Checks and boot are discoverable packages with structured envelopes."
+    }
+  ],
+  "candidate_first_harness_surfaces": [
+    {
+      "surface": "ui-smoke",
+      "rationale": "Close the rendered UI evidence gap.",
+      "proof_level": "L4",
+      "already_exists": "no",
+      "priority": "high",
+      "notes": "Add when UI behavior becomes part of an issue acceptance boundary."
+    },
+    {
+      "surface": "architecture",
+      "rationale": "Encode stable workspace and state-boundary rules.",
+      "proof_level": "L2",
+      "already_exists": "no",
+      "priority": "medium",
+      "notes": "Include in the authoritative full gate."
+    }
+  ],
+  "manual_operation_signals": [
+    {
+      "signal": "Rendered web behavior beyond the title marker has no automated browser assertion.",
+      "kind": "manual_step",
+      "influences": ["A7", "A8", "A9", "B5"],
+      "penalize": "yes",
+      "notes": "Foundation availability is automated; richer UI consequence evidence is not."
+    }
+  ]
+}

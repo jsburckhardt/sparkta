@@ -9,6 +9,29 @@ afterEach(async () => {
   await Promise.all(servers.splice(0).map(async (server) => server.close()));
 });
 
+describe("createServer readiness", () => {
+  it("reports the stable non-sensitive server foundation verdict", async () => {
+    const server = createServer({ logger: false });
+    servers.push(server);
+
+    const response = await server.inject({
+      headers: { "x-request-id": "readiness-test" },
+      method: "GET",
+      url: "/api/readiness",
+    });
+
+    expect(response.statusCode).toBe(200);
+    expect(response.json()).toEqual({
+      foundation: "sparkta-server",
+      status: "ready",
+    });
+    expect(Object.keys(response.json())).toEqual(["foundation", "status"]);
+    expect(response.body).not.toMatch(
+      /pid|path|environment|stack|secret|prompt|source|process|request-id/i,
+    );
+  });
+});
+
 describe("createServer error boundary", () => {
   it("translates a known error once into its safe response", async () => {
     const server = createServer({ logger: false });

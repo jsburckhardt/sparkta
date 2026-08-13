@@ -31,6 +31,9 @@ You MUST validate that the root justfile exposes verify-focused and verify befor
 You MUST treat the root justfile recipes as the validation source.
 You MUST NOT infer, invent, or auto-detect validation commands outside the root justfile.
 You MUST implement tasks in dependency order.
+You MUST invoke `/eng-harness-flow --hook coding` through the host skill mechanism while tasks are being changed.
+You MUST capture concrete coding friction with `harness observe "<what happened>" --kind <kind>` when a retry, guess, hidden setup step, missing deterministic verdict, or other documented trigger occurs.
+You MUST invoke `/eng-harness-flow --hook post-coding` through the host skill mechanism after full validation and before writing implementation notes and committing the handoff.
 You MUST write or update tests required by each task and AC-* mapping.
 You MUST run just verify-focused while building each task.
 You MUST fix focused validation failures before marking a task complete.
