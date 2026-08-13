@@ -1,0 +1,8 @@
+protocol_version: 1
+repository:
+  worktree_root: .trees
+  state_root: .soft-factory
+rpiv:
+  final_validation: just verify
+execution:
+  max_concurrent_runs: 1

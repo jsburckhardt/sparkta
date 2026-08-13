@@ -2,7 +2,11 @@
 
 > **AGENTS START HERE → `harness instructions`** — self-brief from the already-configured ambient harness 0.13.0 CLI, then read `harness instructions <verb>` before invoking a repository verb. Confirm discovery with `harness help --json` and classify diagnostics with `harness doctor --json`.
 
-The ambient CLI installation is owned by the configured development environment. Repository npm state owns only Sparkta dependencies; it does not install or reproduce the harness. Committed governance, extensions, skills, and discovery files make repository behavior portable. The committed engineering-harness skill boundary is exactly `eng-harness-flow`, `eng-harness-0-harnessability-assessment`, and `grill-agent-done`; `.harness/skills.lock.json` records source provenance rather than authorization. Do not run broad skill installation when it would restore any other entry.
+The ambient CLI installation is owned by the configured development environment. Repository npm state owns only Sparkta dependencies; it does not install or reproduce the harness. Committed governance, extensions, skills, and discovery files make repository behavior portable. The committed engineering-harness skill boundary is exactly `eng-harness-flow`, `eng-harness-0-harnessability-assessment`, and `grill-agent-done`; the separately governed official `soft-factory` skill is the only additional directory; `.harness/skills.lock.json` records source provenance rather than authorization. Do not run broad skill installation when it would restore any other entry.
+
+## Soft Factory boundary
+
+The ambient Soft Factory Runner is governed separately. `just runner-readiness` validates its package, official assets, protocol-1 integration, and 24-check Runner Doctor without selecting an issue. Runner uses `.trees/` and `.soft-factory/`; harness boot remains confined to `.harness/temp/boot/`. Runner Doctor does not replace harness Doctor, and the broad harness skill installer must not be used to alter the official Soft Factory skill. Lifecycle usage is documented in [`docs/README.md`](../docs/README.md#soft-factory-runner-operation).
 
 ## Boot command
 
@@ -87,4 +91,4 @@ These are structural RPIV agent seams. Slash calls use the host skill mechanism;
 
 ## Current maturity snapshot
 
-**L2 — Commands encoded.** Ambient harness 0.13.0 discovery, delegated focused/full checks, owned boot, dual readiness, safe stop, the exact three-skill allowlist, and managed commit guidance were exercised in the configured Node.js 24 environment. L3 is not claimed: sustained normal-work improvement-loop evidence has not been established.
+**L2 — Commands encoded.** Ambient harness 0.13.0 discovery, delegated focused/full checks, owned boot, dual readiness, safe stop, the three-skill engineering-harness allowlist, separately governed Soft Factory skill, and managed commit guidance were exercised in the configured Node.js 24 environment. L3 is not claimed: sustained normal-work improvement-loop evidence has not been established.

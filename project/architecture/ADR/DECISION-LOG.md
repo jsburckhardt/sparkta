@@ -23,6 +23,7 @@ This file is the single registry of all architectural decisions and core-compone
 | CORE-COMPONENT-260812-observability                        | Structured Observability               | Adopted | 2026-08-12 |
 | CORE-COMPONENT-260812-state-lifecycle                      | Durable and Runtime State Lifecycle    | Adopted | 2026-08-12 |
 | CORE-COMPONENT-260813-engineering-harness-operation        | Engineering Harness Operating Contract | Adopted | 2026-08-13 |
+| CORE-COMPONENT-260813-soft-factory-runner-operation        | Soft Factory Runner Operating Contract  | Adopted | 2026-08-13 |
 
 ## Decisions
 
@@ -75,6 +76,11 @@ Short, actionable statements derived from ADRs and core-components. More than on
 | 43  | Use ambient configured harness v0.13.0 without repository npm dependency or tarball requirements      | CORE-COMPONENT-260813-engineering-harness-operation        | 2026-08-13 |
 | 44  | Delegate harness focused and full checks to authoritative root just recipes                           | CORE-COMPONENT-260813-engineering-harness-operation        | 2026-08-13 |
 | 45  | Require harness boot to prove both services ready and clean only owned processes                      | CORE-COMPONENT-260813-engineering-harness-operation        | 2026-08-13 |
-| 46  | Commit exactly the three approved engineering-harness skills and matching discovery references        | CORE-COMPONENT-260813-engineering-harness-operation        | 2026-08-13 |
+| 46  | Commit three approved engineering-harness skills alongside separately governed named skills           | CORE-COMPONENT-260813-engineering-harness-operation        | 2026-08-13 |
 | 47  | Use harness commit with explicit pathspecs for AI-authored commits                                    | CORE-COMPONENT-260813-engineering-harness-operation        | 2026-08-13 |
-| 48  | Prohibit broad skill installation from restoring skills outside the approved allowlist                | CORE-COMPONENT-260813-engineering-harness-operation        | 2026-08-13 |
+| 48  | Prohibit broad harness installation from restoring unapproved engineering-harness skills              | CORE-COMPONENT-260813-engineering-harness-operation        | 2026-08-13 |
+| 49  | Use configured ambient Soft Factory Runner without repository installation dependencies               | CORE-COMPONENT-260813-soft-factory-runner-operation        | 2026-08-13 |
+| 50  | Reserve `.trees` and `.soft-factory` for Runner worktrees and operational state                       | CORE-COMPONENT-260813-soft-factory-runner-operation        | 2026-08-13 |
+| 51  | Require protocol 1, agent-result-v1, and `just verify` for Runner RPIV integration                     | CORE-COMPONENT-260813-soft-factory-runner-operation        | 2026-08-13 |
+| 52  | Delegate explicitly selected issue lifecycle and cleanup exclusively to Soft Factory Runner            | CORE-COMPONENT-260813-soft-factory-runner-operation        | 2026-08-13 |
+| 53  | Commit and integrity-check the official Operator, Assessor, skill, and manifest                        | CORE-COMPONENT-260813-soft-factory-runner-operation        | 2026-08-13 |

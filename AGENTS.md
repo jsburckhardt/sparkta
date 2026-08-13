@@ -5,6 +5,7 @@ Every piece of work MUST flow through exactly four stages in order: Research, Pl
 Every autonomous agent MUST start with `harness instructions`, inspect `harness doctor --json`, and read `harness instructions <verb>` before using a repository harness verb.
 RPIV MUST fire `/eng-harness-flow --hook pre-flight`, `pre-coding`, `coding`, `post-coding`, and `post-flight` at the structural seams documented in `.harness/engineering-harness.md`.
 Agents MUST treat harness checks as delegation to the authoritative root `just verify-focused` and `just verify` recipes, not replacements for them.
+Agents MUST use only root `just runner` recipes for Soft Factory, require one caller-supplied positive `<ISSUE_NUMBER>` for issue operations, and MUST NOT infer or select an issue or manipulate Runner-owned state.
 You MUST classify scope_type as exactly one of: issue, architecture_decision, core_component.
 You MUST NOT create an architectural decision outside of an ADR document.
 You MUST NOT create reusable cross-cutting behavior outside of a core-component document.
@@ -42,11 +43,15 @@ The configured environment owns ambient harness 0.13.0. Repository npm setup doe
 Use `harness checks focused [target] --json` while building and `harness checks full --json` before handoff. These wrappers delegate exactly to root `just verify-focused [target]` and `just verify`; the root `justfile` stays authoritative.
 Use `harness boot --json`, require `harness readiness --json` before interaction, and finish with `harness stop --json`. Boot owns only `.harness/temp/boot/`, refuses unknown listeners on ports 5173 and `PORT` or 3000, and names its transient evidence and log paths.
 The only current server interaction is additive `GET /api/readiness` returning `{"foundation":"sparkta-server","status":"ready"}`. Product workflows remain out of scope.
-The only engineering-harness GitHub Copilot skills allowed at `.agents/skills/*/SKILL.md` are `eng-harness-flow`, `eng-harness-0-harnessability-assessment`, and `grill-agent-done`; `.github/skills/README.md` indexes them. `.harness/skills.lock.json` records packaged-source provenance only and does not authorize other names. Do not run a broad skill installation that restores excluded entries.
+The engineering-harness GitHub Copilot skills allowed at `.agents/skills/*/SKILL.md` are `eng-harness-flow`, `eng-harness-0-harnessability-assessment`, and `grill-agent-done`; `.github/skills/README.md` indexes them. `.harness/skills.lock.json` records packaged-source provenance only and does not authorize other names. The separately governed official `soft-factory` skill is the only fourth directory. Do not run a broad harness skill installation that restores excluded entries.
 Fire the exact `/eng-harness-flow --hook <event>` calls at the RPIV seams in `.harness/engineering-harness.md`. During coding, capture concrete friction with `harness observe` when a documented trigger occurs.
 Read `harness instructions commit` and use the managed `harness commit "<message>" -- <explicit-paths>` path. Conventional Commit, Co-authorship, and stage ownership rules still apply.
 A doctor `degraded` result is usable only for documented environment capture or attribution visibility warnings when the CLI, extensions, checks, boot, readiness, skills, and commit guidance work; retain every reported next action.
 </harness>
+
+<soft-factory-runner>
+The configured environment owns ambient `soft-factory-runner` 0.1.0; repository npm, lockfile, setup, and devcontainer state MUST NOT install it. Start with `just runner-readiness`; Runner Doctor is separate from harness Doctor. Configuration fixes protocol 1, `.trees`, `.soft-factory`, final `just verify`, and concurrency 1. Runner exclusively owns worktrees, locks, processes, snapshots, progress/result paths, recovery, logs, and cleanup. Use an explicit caller-supplied positive `<ISSUE_NUMBER>` for run, status, reconcile, resume, stop, clean, attach, and logs; never queue, rank, infer, or select an issue. Read `docs/README.md#soft-factory-runner-operation`.
+</soft-factory-runner>
 
 <constants>
 SPARKTA_FOUNDATION: YAML<<

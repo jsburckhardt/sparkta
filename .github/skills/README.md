@@ -14,6 +14,12 @@ Exactly these engineering-harness skills are allowed under `.agents/skills/`:
 
 Start engineering-harness work with `harness instructions`, [the governance contract](../../.harness/engineering-harness.md), and the `eng-harness-flow` skill for RPIV seam hooks.
 
+## Separately governed Soft Factory skill
+
+- [`soft-factory`](../../.agents/skills/soft-factory/SKILL.md) — official Runner protocol-1 operation skill governed by the Soft Factory Runner component.
+
+This is the only fourth `.agents/skills/` directory. Install or upgrade it only through the root Runner asset recipe; the engineering-harness allowlist remains exactly the three names above.
+
 ## Agnostic Prompt Standard skill
 
 - [`agnostic-prompt-standard`](agnostic-prompt-standard/SKILL.md) — APS v1.2.2 reference and authoring guidance.

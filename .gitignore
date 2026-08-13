@@ -4,3 +4,8 @@ node_modules/
 *.tsbuildinfo
 .devcontainer/.tmux-shared
 .sparkta/runtime/
+
+# Soft Factory isolated worktrees and runtime state.
+.trees/
+.soft-factory/*
+!.soft-factory/config.yml
