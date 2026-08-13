@@ -1,0 +1,33 @@
+.harness/reports/harnessability/003-sparkta/summary.md
+  s_bcccbca76e57c7::t_188968b92ca529 6
+.harness/reports/harnessability/003-sparkta/report.md
+  s_bcccbca76e57c7::t_188968b92ca529 63,71,146
+.harness/reports/harnessability/003-sparkta/report.json
+  s_bcccbca76e57c7::t_1925269b96ad7b 71
+  s_bcccbca76e57c7::t_188968b92ca529 72,168,815,952
+.harness/reports/harnessability/latest.json
+  s_bcccbca76e57c7::t_188968b92ca529 72,168,815,952
+  s_bcccbca76e57c7::t_1925269b96ad7b 71
+project/work-items/3-install-and-configure-soft-factory-runner/implementation/00-implementation.md
+  s_bcccbca76e57c7::t_7e904ee1317c02 62-70
+.harness/reports/harnessability/003-sparkta/evidence.jsonl
+  s_bcccbca76e57c7::t_188968b92ca529 1
+.harness/reports/harnessability/latest.md
+  s_bcccbca76e57c7::t_188968b92ca529 63,71,146
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "8f0a191b2273672bb577aa05f7381052620a5bc7",
+  "prompts": {},
+  "sessions": {
+    "s_bcccbca76e57c7": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "call_xGdznXXCpqsS1WhnX5Wj96fk",
+        "model": "unknown"
+      },
+      "human_author": "jsburckhardt <jsburckhardt@gmail.com>"
+    }
+  }
+}
