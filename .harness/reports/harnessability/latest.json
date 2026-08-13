@@ -68,8 +68,8 @@
       "name": "Copilot skills",
       "path": ".agents/skills/",
       "kind": "canonical",
-      "status": "exact-allowlist",
-      "notes": "Exactly eng-harness-flow, eng-harness-0-harnessability-assessment, and grill-agent-done are committed; .harness/skills.lock.json records provenance only."
+      "status": "governed-four-skill-inventory",
+      "notes": "The governed four-skill committed inventory is eng-harness-flow, eng-harness-0-harnessability-assessment, grill-agent-done, and soft-factory; the exact engineering-harness allowlist is the first three, while soft-factory is separately governed. .harness/skills.lock.json records engineering-harness provenance only."
     }
   ],
   "topology": {
@@ -165,7 +165,7 @@
         ".github/skills/README.md",
         "justfile"
       ],
-      "notes": "Checks, boot, readiness, stop, instructions, doctor, evidence locations, and the exact allowlist (eng-harness-flow, eng-harness-0-harnessability-assessment, grill-agent-done) are canonical and structured.",
+      "notes": "Checks, boot, readiness, stop, instructions, doctor, and evidence locations are canonical and structured; the governed committed inventory has four skills (eng-harness-flow, eng-harness-0-harnessability-assessment, grill-agent-done, soft-factory), with an exact three-skill engineering-harness allowlist and separately governed soft-factory.",
       "provenance": "evidence",
       "confidence": "high"
     },
@@ -812,7 +812,7 @@
   "evidence_log": [
     {
       "source": ".harness/engineering-harness.md, .github/skills/README.md, justfile",
-      "claim": "Checks, boot, readiness, stop, evidence, RPIV seams, and the exact engineering-harness allowlist (eng-harness-flow, eng-harness-0-harnessability-assessment, grill-agent-done) are explicitly governed.",
+      "claim": "Checks, boot, readiness, stop, evidence, and RPIV seams are explicitly governed; the committed inventory has four skills (eng-harness-flow, eng-harness-0-harnessability-assessment, grill-agent-done, soft-factory), with an exact three-skill engineering-harness allowlist and separately governed soft-factory.",
       "provenance": "evidence",
       "confidence": "high"
     },
@@ -949,7 +949,7 @@
         "LLM.txt"
       ],
       "coverage": "Strong",
-      "notes": "Adopted front door for discovery, validation, runtime, evidence, improvement hooks, and exactly three approved engineering-harness skills."
+      "notes": "Adopted front door for discovery, validation, runtime, evidence, and improvement hooks; the governed committed inventory has four skills, comprising the exact three-skill engineering-harness allowlist and separately governed soft-factory."
     },
     {
       "name": "Root project command interface",

@@ -59,4 +59,13 @@
 - Full validation: initial `just verify` found README Prettier drift; after applying the configured formatter, two subsequent runs passed Runner readiness, 13 tests, lint, format, type-check, build, and diff integrity.
 - Runner Doctor environment findings: none; final `ready: true` with 24/24 checks passed.
 
+## Verify-return repair at 6cd034f6e51a25d8ea7c48eb4bcbd88208e4ae22
+
+- Corrected every current assessment 003 skill-inventory claim in `report.md`, `report.json`, `summary.md`, and `evidence.jsonl` to distinguish the governed four-skill committed inventory from the exact three-skill engineering-harness allowlist and separately governed `soft-factory`.
+- Re-mirrored `latest.md` and `latest.json` byte-for-byte from assessment 003; assessments 001 and 002 remain unchanged. Report scores, grades, readiness, confidence, and proof level were not changed.
+- AC-3 evidence: assessment inventory text now names all four committed directories and preserves the three-name engineering-harness boundary. AC-6 evidence: only assessment 003, root latest mirrors, and this implementation note changed; no historical assessment or issue runtime state changed.
+- Consistency/schema evidence: the changed JSON values remain strings accepted by the existing v0.2 schema, JSON/JSONL remain readable, report/latest byte comparisons passed for Markdown and JSON, and the comprehensive stale-claim search found only wording that now states both governance scopes.
+- Focused validation: `just verify-focused` passed (6 test files, 13 tests, Runner readiness and diff integrity). Full validation: `just verify` passed (13 tests, lint, format, type-check, build, Runner readiness, and diff integrity).
+- Documentation impact: harnessability assessment 003 and its root latest mirrors were corrected; no README, API, configuration, usage, migration, architecture-contract, deployment, or operational guidance change was required because runtime behavior and interfaces did not change.
+
 Final acceptance remains owned by Verify.

@@ -60,7 +60,7 @@ There are no blocking runtime or remote-service dependencies for the current fou
 | Engineering harness | `.harness/` | Adopted canonical front door |
 | Root project commands | `justfile` | Authoritative command bodies |
 | RPIV | `AGENTS.md`, `.github/agents/` | Harness-integrated delivery flow |
-| Copilot skills | `.agents/skills/` | Exact allowlist: `eng-harness-flow`, `eng-harness-0-harnessability-assessment`, and `grill-agent-done` |
+| Copilot skills | `.agents/skills/` | Governed four-skill committed inventory: `eng-harness-flow`, `eng-harness-0-harnessability-assessment`, `grill-agent-done`, and `soft-factory`; the exact engineering-harness allowlist is the first three, while `soft-factory` is separately governed |
 
 ## Repository topology
 
@@ -68,7 +68,7 @@ Sparkta is a local-only Node.js 24 strict-TypeScript npm workspace with a React/
 
 ## Existing engineering environment survey
 
-The canonical path is now `harness instructions` → doctor/help → focused checks → owned boot/readiness → work → full checks → stop. Harness checks delegate exactly to the root `justfile`. RPIV carries all five harness lifecycle seams. The committed engineering-harness skill surface is the three-name engineering-harness allowlist plus the separately governed Soft Factory skill above; the package lock is provenance, not authorization. Test mechanisms include Fastify injection, an in-memory log sink, command spies, and detached process-group fixtures.
+The canonical path is now `harness instructions` → doctor/help → focused checks → owned boot/readiness → work → full checks → stop. Harness checks delegate exactly to the root `justfile`. RPIV carries all five harness lifecycle seams. The governed four-skill committed inventory is `eng-harness-flow`, `eng-harness-0-harnessability-assessment`, `grill-agent-done`, and `soft-factory`; the exact engineering-harness allowlist is the first three, while `soft-factory` is separately governed; the package lock is provenance, not authorization. Test mechanisms include Fastify injection, an in-memory log sink, command spies, and detached process-group fixtures.
 
 There is no committed CI workflow. The configured environment must separately provide harness 0.13.0; documentation and diagnostics state this boundary honestly.
 
@@ -143,7 +143,7 @@ None.
 
 | Source | Provenance | Claim |
 |---|---|---|
-| `.harness/engineering-harness.md`, `.github/skills/README.md`, `justfile` | evidence | Canonical commands, evidence, the exact allowlist (`eng-harness-flow`, `eng-harness-0-harnessability-assessment`, and `grill-agent-done`), and lifecycle seams are governed |
+| `.harness/engineering-harness.md`, `.github/skills/README.md`, `justfile` | evidence | Canonical commands, evidence, and lifecycle seams are governed; the committed inventory has four skills (`eng-harness-flow`, `eng-harness-0-harnessability-assessment`, `grill-agent-done`, and `soft-factory`), with an exact three-skill engineering-harness allowlist and separately governed `soft-factory` |
 | Issue #2 Verify summary | evidence | Independent validation passed lifecycle, ownership, docs, and full checks |
 | Boot extension and tests | evidence | Unknown owners are protected and valid groups are safely stopped |
 | Checks extension | evidence | Root recipe authority is preserved through exact delegation |
