@@ -1,0 +1,32 @@
+project/work-items/3-install-and-configure-soft-factory-runner/plan/03-test-plan.md
+  s_f54cfab86c9688::t_2824eaf40547f9 31
+  s_f54cfab86c9688::t_9a77460e9f3d53 17,29,42-43,97
+project/architecture/core-components/CORE-COMPONENT-260813-soft-factory-runner-operation.md
+  s_f54cfab86c9688::t_9a77460e9f3d53 31
+project/work-items/3-install-and-configure-soft-factory-runner/plan/01-action-plan.md
+  s_f54cfab86c9688::t_9a77460e9f3d53 35,41,43
+project/architecture/ADR/DECISION-LOG.md
+  s_f54cfab86c9688::t_9a77460e9f3d53 90
+project/work-items/3-install-and-configure-soft-factory-runner/verify/summary.md
+  s_f54cfab86c9688::t_9a77460e9f3d53 14
+project/work-items/3-install-and-configure-soft-factory-runner/plan/02-task-breakdown.md
+  s_f54cfab86c9688::t_9a77460e9f3d53 31,42,46-47,51,56,98,115
+project/work-items/3-install-and-configure-soft-factory-runner/implementation/00-implementation.md
+  s_f54cfab86c9688::t_9a77460e9f3d53 6,30
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "0574dadae254f2b7e9d98e0b7f76fccdf6102d4f",
+  "prompts": {},
+  "sessions": {
+    "s_f54cfab86c9688": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "db269fd2-d10a-4cdf-89ae-54f42de46838",
+        "model": "unknown"
+      },
+      "human_author": "jsburckhardt <jsburckhardt@gmail.com>"
+    }
+  }
+}
