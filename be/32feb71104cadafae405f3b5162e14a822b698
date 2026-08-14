@@ -1,0 +1,66 @@
+.github/agents/rpiv-verifier.agent.md
+  s_c44c9c8c818220::t_417e76e930905f 3,5,7,11,20-57,61,67-80,84,96-98,108,114-119,123,128,133,135-143,145,147-148,152-158,160-163,166-167,170,178-201,204-246,249-259,262-277,280-293,296-300,303-310,313-318,321-323,326-334,337-340,343-354,358-361,366
+CONTRIBUTING.md
+  s_c44c9c8c818220::t_cfc376668541bb 21
+project/architecture/core-components/CORE-COMPONENT-260813-soft-factory-runner-operation.md
+  s_c44c9c8c818220::t_a80243bc3ca63e 26
+  s_c44c9c8c818220::t_6061b4619a12db 9,13,18-25,27-29,32-37,40-43,45,49,54-58,65-69,73
+docs/README.md
+  s_c44c9c8c818220::t_a80243bc3ca63e 50,57,65,67
+  s_c44c9c8c818220::t_77829c98795c7d 54-56,58-63
+  s_c44c9c8c818220::t_cfc376668541bb 15,52
+project/work-items/3-install-and-configure-soft-factory-runner/implementation/00-implementation.md
+  s_c44c9c8c818220::t_07c32969904dfe 9,12,16-19,21,31,33
+  s_c44c9c8c818220::t_fa60ac43410945 1,3,5,7,10-11,14,20,23,25,27,29
+justfile
+  s_c44c9c8c818220::t_399beb59f4925f 34-40,52,55,62
+project/work-items/3-install-and-configure-soft-factory-runner/plan/03-test-plan.md
+  s_c44c9c8c818220::t_399beb59f4925f 1,3,5-6,9-12,15,17,19-20,23-25,28,30,32-33,36-38,40,43,45,47,51-53,56
+  s_c44c9c8c818220::t_a80243bc3ca63e 39
+.harness/engineering-harness.md
+  s_c44c9c8c818220::t_cfc376668541bb 9
+README.md
+  s_c44c9c8c818220::t_cfc376668541bb 17,47
+  s_c44c9c8c818220::t_77829c98795c7d 38-46,48-49,57-59,61-66
+  s_c44c9c8c818220::t_a80243bc3ca63e 60,67
+  s_c44c9c8c818220::t_5044a7503ef0fa 68
+AGENTS.md
+  s_c44c9c8c818220::t_cfc376668541bb 8
+  s_c44c9c8c818220::t_a80243bc3ca63e 53
+project/work-items/3-install-and-configure-soft-factory-runner/plan/01-action-plan.md
+  s_c44c9c8c818220::t_a80243bc3ca63e 7,24,35
+  s_c44c9c8c818220::t_399beb59f4925f 1,4,9,11-16,19-23,25,29,31-34,36,39-43
+project/architecture/ADR/DECISION-LOG.md
+  s_c44c9c8c818220::t_cfc376668541bb 87-88
+project/work-items/3-install-and-configure-soft-factory-runner/plan/02-task-breakdown.md
+  s_c44c9c8c818220::t_07c32969904dfe 41
+  s_c44c9c8c818220::t_399beb59f4925f 1,3,7,10,13,15,19,27,30-31,34,37,39,42,46,49
+  s_c44c9c8c818220::t_77829c98795c7d 5,17,29
+  s_c44c9c8c818220::t_a80243bc3ca63e 22,25
+LLM.txt
+  s_c44c9c8c818220::t_cfc376668541bb 6
+.github/agents/rpiv.agent.md
+  s_c44c9c8c818220::t_417e76e930905f 3,5,7,9,11-12,14-15,29-66,73-75,84-101,105,122,141,143-146,156,158-159,170-190,193,195-198,200-243,246,248-253,255-260,265-273,276,278-293,296,298-313,316,318-325,328-331,333-340,345
+scripts/verify-soft-factory.mjs
+  s_c44c9c8c818220::t_a80243bc3ca63e 62-63
+  s_c44c9c8c818220::t_417e76e930905f 8-10,17,26-28,30
+  s_c44c9c8c818220::t_6061b4619a12db 3,5-6,18-19,21,25,29,31-45,47-49,52-61,64-70
+project/architecture/README.md
+  s_c44c9c8c818220::t_cfc376668541bb 26
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "be32feb71104cadafae405f3b5162e14a822b698",
+  "prompts": {},
+  "sessions": {
+    "s_c44c9c8c818220": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "46c7491f-570d-4ba4-a4da-480852fa3462",
+        "model": "unknown"
+      },
+      "human_author": "jsburckhardt <jsburckhardt@gmail.com>"
+    }
+  }
+}
