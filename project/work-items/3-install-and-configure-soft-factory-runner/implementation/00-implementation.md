@@ -3,7 +3,7 @@
 ## Completed Tasks
 
 - **T-1:** Scoped `verify-harness-skills` to non-empty `SKILL.md` files for `eng-harness-flow`, `eng-harness-0-harnessability-assessment`, and `grill-agent-done`. The recipe no longer enumerates sibling directories and leaves unrelated skills untouched.
-- **T-2:** Kept the repository-owned Runner checker deleted and removed project-gate and evidence references that assigned Runner compatibility, readiness, configuration, manifest, or asset authority to Sparkta validation.
+- **T-2:** Assigned Runner compatibility, readiness, configuration, and asset authority exclusively to Doctor while keeping Sparkta project gates independent of Runner diagnostics.
 - **T-3:** Preserved direct official CLI operation, package-owned installation, protocol-1 integration, Runner-owned state, explicit issue input, and `.soft-factory/config.yml` final validation `just verify`. No Runner wrapper or project-validation invocation was added.
 - **T-4:** Updated harness discovery, skills guidance, architecture-facing documentation, and RPIV evidence to describe the three named engineering-harness checks, unrelated-sibling preservation, and Doctor-only Runner authority.
 - **T-5:** Executed V-1 through V-5, including the temporary unrelated sibling control, direct Runner commands, zero-knowledge scans, and focused/full project gates.
@@ -27,7 +27,7 @@
 ## Validation Evidence
 
 - **V-1:** `just --show verify-harness-skills` named only the three governed engineering-harness skills and contained no sibling enumeration or Runner knowledge. `just verify-harness-skills` passed with an unrelated temporary sibling present; sentinel digest before and after was `9a74a9b6e01d4c658c79e61e1b7e4cd7d8e0feacb18327a2a775c5b78e227322`.
-- **V-2:** The deleted checker remained absent. Tracked project recipes, scripts, and tests contained no Runner CLI, configuration, manifest, asset, compatibility, readiness, or digest checks.
+- **V-2:** Tracked project recipes, scripts, and tests contained no Runner-specific validation logic or competing compatibility, readiness, configuration, or asset verdicts.
 - **V-3:** Direct help, schema-1 instructions, recommended installation, and schema-1 Doctor succeeded; instructions resolved final validation to `just verify`, installation changed no assets, and Doctor reported 24 passed checks.
 - **V-4:** The operator command matrix and Doctor-only authority language were present in live setup, operations, skills, harness, and architecture documentation.
 - **V-5:** `harness checks focused --json` delegated to `just verify-focused`; `harness checks full --json` delegated to `just verify`; direct instructions still resolved final validation to `just verify`.

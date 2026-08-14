@@ -11,7 +11,7 @@
 
 - Confirm `verify-harness-skills` checks non-empty content only for `eng-harness-flow`, `eng-harness-0-harnessability-assessment`, and `grill-agent-done`.
 - Confirm project validation does not enumerate, reject, require, inspect, or modify unrelated `.agents/skills/` siblings.
-- Confirm the repository-owned Runner checker is absent and project recipes, scripts, and tests contain no Runner compatibility, readiness, configuration, manifest, asset, or digest logic.
+- Confirm project recipes, scripts, and tests contain no Runner-specific validation logic or competing compatibility, readiness, configuration, or asset verdicts.
 - Treat direct `soft-factory doctor --json` as the sole Runner compatibility, readiness, configuration, and asset verdict.
 - Confirm direct Runner operation and explicit issue input remain documented for run, list/status, reconcile, resume, stop, clean, attach, and logs.
 - Confirm `.soft-factory/config.yml` retains final validation `just verify` and direct instructions resolve the same command.

@@ -14,7 +14,7 @@ Create one uniquely named temporary sibling directory under `.agents/skills/` wi
 ### Steps
 
 1. Inspect `just --show verify-harness-skills` and require the three engineering-harness names.
-2. Require that recipe body to contain no `soft-factory`, `.soft-factory`, `.agents/manifest.json`, official asset path, Runner CLI, asset hash, or whole-directory equality logic.
+2. Require that recipe body to contain no Runner-specific name, path, CLI, configuration, asset, or whole-directory equality logic.
 3. Run `just verify-harness-skills` while the unrelated temporary sibling exists.
 4. Assert the sibling directory and sentinel are byte-identical after the recipe returns, then remove only the temporary fixture.
 
@@ -26,9 +26,9 @@ Engineering-harness validation succeeds by checking its three governed skills an
 
 - Captured recipe body, successful exit, and before/after sentinel digest.
 
-## Test V-2: Duplicate authority and reference elimination
+## Test V-2: Runner authority isolation
 
-- **Type:** Static repository contract
+- **Type:** Repository authority boundary
 - **Task:** T-2, T-4, T-5
 - **Acceptance Criteria:** AC-2, AC-3, AC-4, AC-5, AC-6
 - **Priority:** Critical
@@ -39,8 +39,8 @@ Inspect tracked files plus the complete `origin/main...HEAD` branch diff. Exclud
 
 ### Steps
 
-1. Require `scripts/verify-soft-factory.mjs` and every other repository-owned Runner checker to be absent.
-2. Require zero live invocations or affirmative evidence references to the deleted checker, `verify-soft-factory-contract`, static Runner contracts, static asset hashes, or manifest/config compatibility parsing.
+1. Require tracked files to contain no repository-owned Runner validation implementation.
+2. Require zero live or evidentiary claims that Sparkta determines Runner compatibility, readiness, configuration, or asset validity.
 3. Require `justfile` to contain no Soft Factory CLI, name, path, configuration, manifest, skill, hash, compatibility, or readiness check.
 4. Require no Sparkta script or test to inspect `.soft-factory/config.yml`, `.agents/manifest.json`, or official Soft Factory assets for a verdict.
 
@@ -94,7 +94,7 @@ Inspect README, detailed operations documentation, agent guidance, harness disco
 
 1. Require direct documented commands for run, list/status, reconcile, resume, stop, clean, attach, and logs.
 2. Require one caller-supplied positive issue number wherever the command requires issue identity.
-3. Require Doctor-only compatibility/readiness/asset language and no project-check, wrapper, static-contract, or hash authority.
+3. Require Doctor-only compatibility, readiness, configuration, and asset language with no competing project-validation authority.
 4. Require harness documentation to name only the three engineering-harness skills as its validation scope and state that unrelated sibling skills are ignored and preserved.
 
 ### Expected Result

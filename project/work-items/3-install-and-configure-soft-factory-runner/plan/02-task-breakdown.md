@@ -28,7 +28,7 @@ Change `justfile#verify-harness-skills` so it validates presence of only `eng-ha
 - `just --show verify-harness-skills` names only the three engineering-harness skills and contains no Soft Factory path, manifest, hash, configuration, or CLI reference.
 - The temporary unrelated sibling exists unchanged after `just verify-harness-skills` succeeds.
 
-## Task T-2: Remove duplicate Soft Factory authority
+## Task T-2: Establish sole Soft Factory authority
 
 - **Status:** Complete
 - **Complexity:** Medium
@@ -39,21 +39,21 @@ Change `justfile#verify-harness-skills` so it validates presence of only `eng-ha
 
 ### Description
 
-Keep `scripts/verify-soft-factory.mjs` absent and remove every reference that treats it, a static contract, asset hashes, manifest parsing, configuration parsing, or any equivalent Sparkta check as Runner evidence. Replace compatibility, readiness, and official-asset verdicts with direct `soft-factory doctor --json`. Do not duplicate Doctor logic in shell, JavaScript, Just, tests, documentation, or evidence.
+Assign Runner compatibility, readiness, configuration, and official-asset verdicts exclusively to direct `soft-factory doctor --json`. Keep shell, JavaScript, Just, tests, documentation, and evidence free of competing Runner validation logic.
 
 ### Acceptance Criteria
 
-- AC-2, AC-3, and AC-4 are proved through Runner-owned commands rather than Sparkta static checks.
-- AC-5 and AC-6 guidance and evidence contain no duplicate checker authority.
+- AC-2, AC-3, and AC-4 are proved through Runner-owned commands rather than Sparkta project validation.
+- AC-5 and AC-6 guidance and evidence assign Runner authority only to Doctor.
 
 ### Test Coverage
 
-- V-2 searches the repository and branch diff for the deleted checker, stale checker references, static Runner checks, and Sparkta-side asset/hash authority.
+- V-2 searches the repository and branch diff for any Runner-specific validation logic or competing compatibility, readiness, configuration, and asset verdicts.
 - V-3 runs direct Runner commands and treats Doctor as the sole compatibility/readiness/asset verdict.
 
 ### Expected Evidence
 
-- The deleted script is absent and tracked files contain no invocation or affirmative evidence reference to it.
+- Tracked files contain no repository-owned Runner validation implementation or evidence that assigns Runner verdicts to Sparkta.
 - No root recipe or Sparkta script inspects `.soft-factory/config.yml`, `.agents/manifest.json`, or official Soft Factory asset paths.
 - Direct Doctor JSON is the cited readiness and compatibility evidence.
 
@@ -95,7 +95,7 @@ Preserve direct official CLI operation, package-owned asset installation, protoc
 
 ### Description
 
-Update live harness discovery and skills documentation to describe only the three engineering-harness skills and to ignore/preserve unrelated siblings. Keep Runner operations documented through direct CLI commands. Reconcile implementation notes, verification summary, and PR text so prior static-check, static-contract, exact-inventory, and hash claims are explicitly superseded and are not presented as acceptance evidence.
+Update live harness discovery and skills documentation to describe only the three engineering-harness skills and to ignore/preserve unrelated siblings. Keep Runner operations documented through direct CLI commands. Reconcile implementation notes, verification summary, and PR text so acceptance evidence cites only current Doctor output and Runner-independent Sparkta validation.
 
 ### Acceptance Criteria
 
@@ -112,7 +112,7 @@ Update live harness discovery and skills documentation to describe only the thre
 
 - Live docs state that harness validation checks three engineering-harness skills and ignores unrelated siblings.
 - Runner docs state that Doctor alone decides compatibility/readiness/assets.
-- Implementation, verification, and PR evidence no longer claim hashes or static contracts as proof.
+- Implementation, verification, and PR evidence cite only current authoritative verdicts.
 
 ## Task T-5: Prove the boundary
 

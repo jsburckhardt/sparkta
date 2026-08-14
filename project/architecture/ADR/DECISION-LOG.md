@@ -87,4 +87,4 @@ Short, actionable statements derived from ADRs and core-components. More than on
 | 54  | Invoke Soft Factory directly and prohibit repository operational wrappers, adapters, and synthetic orchestration | CORE-COMPONENT-260813-soft-factory-runner-operation        | 2026-08-14 |
 | 55  | Use Runner Doctor as the sole compatibility and readiness authority; keep project verification Runner-independent | CORE-COMPONENT-260813-soft-factory-runner-operation        | 2026-08-14 |
 | 56  | Prohibit Sparkta validation from inspecting Soft Factory configuration, assets, manifests, skills, or hashes | CORE-COMPONENT-260813-soft-factory-runner-operation        | 2026-08-14 |
-| 57  | Remove duplicate static Runner checkers and invalidate their historical authority                      | CORE-COMPONENT-260813-soft-factory-runner-operation        | 2026-08-14 |
+| 57  | Make Runner Doctor the sole authority and keep project validation Runner-independent                  | CORE-COMPONENT-260813-soft-factory-runner-operation        | 2026-08-14 |

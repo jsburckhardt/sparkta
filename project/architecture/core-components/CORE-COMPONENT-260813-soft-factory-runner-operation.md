@@ -28,7 +28,7 @@ This contract applies to the ambient `soft-factory-runner` CLI, repository confi
 - The root `justfile` MUST remain authoritative for Sparkta setup, run, and focused/full project verification. Those recipes MUST NOT run a Soft Factory-specific repository check, execute Runner, inspect Runner configuration, or check, enumerate, require, hash, or otherwise interpret official Soft Factory assets.
 - `soft-factory instructions --json` and `soft-factory doctor --json` MUST be run directly as operator preflight; they MUST NOT be hidden inside project validation.
 - `soft-factory doctor --json` is the sole authority for Runner compatibility and repository readiness.
-- The repository MUST NOT provide or retain a duplicate static Runner compatibility, readiness, configuration, manifest, or asset checker. Historical references that present such a checker as evidence or authority MUST be removed or explicitly invalidated.
+- The repository MUST NOT duplicate Runner compatibility, readiness, configuration, manifest, or asset validation. Repository evidence MUST cite Doctor as the sole authority for those verdicts.
 
 ### Interfaces
 
