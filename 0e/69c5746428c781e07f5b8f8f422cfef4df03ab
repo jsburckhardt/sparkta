@@ -1,0 +1,19 @@
+project/work-items/3-install-and-configure-soft-factory-runner/verify/summary.md
+  s_cec68e43254ef7::t_4914966ff48ad0 3,6-16,18,20-24,26,28-33,35,37
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "0e69c5746428c781e07f5b8f8f422cfef4df03ab",
+  "prompts": {},
+  "sessions": {
+    "s_cec68e43254ef7": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "eacc2d54-153c-43ae-bda2-c9173814ce4f",
+        "model": "unknown"
+      },
+      "human_author": "jsburckhardt <jsburckhardt@gmail.com>"
+    }
+  }
+}
