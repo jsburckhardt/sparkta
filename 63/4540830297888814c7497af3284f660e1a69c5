@@ -1,0 +1,22 @@
+project/architecture/README.md
+  s_e8ebc9876d8a83::t_3cb1c6c1bf29d6 26
+project/work-items/3-install-and-configure-soft-factory-runner/implementation/00-implementation.md
+  s_e8ebc9876d8a83::t_3cb1c6c1bf29d6 30-33,35
+  s_e8ebc9876d8a83::t_d3bea3168715c8 34
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "634540830297888814c7497af3284f660e1a69c5",
+  "prompts": {},
+  "sessions": {
+    "s_e8ebc9876d8a83": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "bf3b38c5-8bc9-4b39-855f-703935733445",
+        "model": "unknown"
+      },
+      "human_author": "jsburckhardt <jsburckhardt@gmail.com>"
+    }
+  }
+}
