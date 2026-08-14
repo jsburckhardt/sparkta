@@ -119,7 +119,7 @@
         "docs/README.md",
         ".harness/engineering-harness.md"
       ],
-      "notes": "Cold agents reach the harness, RPIV, project commands, the three-skill engineering-harness allowlist plus the separately governed Soft Factory skill, and evidence paths in one hop.",
+      "notes": "Cold agents reach the harness, RPIV, project commands, exactly three engineering-harness skills, the repository-owned Runner dispatcher agent, and evidence paths in one hop.",
       "provenance": "evidence",
       "confidence": "high"
     },
@@ -792,7 +792,7 @@
       "item": "Agent operating contract",
       "action": "keep",
       "source_path": "AGENTS.md",
-      "notes": "Canonical one-hop routing to harness, RPIV, the three-skill engineering-harness allowlist plus the separately governed Soft Factory skill, checks, boot, and commit guidance."
+      "notes": "Canonical one-hop routing to harness, RPIV, exactly three engineering-harness skills, the repository-owned Runner dispatcher agent, checks, boot, and commit guidance."
     },
     {
       "item": "Detailed operations",

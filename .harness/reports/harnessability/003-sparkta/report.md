@@ -20,7 +20,7 @@ Run metadata
 - Target next proof level: **L5**
 - Confidence: **high**
 
-Sparkta now has a canonical engineering harness with structured discovery, delegated focused/full checks, owned boot, dual readiness, safe cleanup, the three-skill engineering-harness allowlist plus the separately governed Soft Factory skill, and durable acceptance evidence. A fresh agent can operate and prove the current foundation locally without remote services or secrets. The remaining proof gap is user-visible UI behavior; the remaining compounding gap is sustained observe/retro/improve use across normal work.
+Sparkta now has a canonical engineering harness with structured discovery, delegated focused/full checks, owned boot, dual readiness, safe cleanup, exactly three engineering-harness skills, the repository-owned `.github/agents/runner-dispatcher.agent.md` agent for Soft Factory Runner dispatch, and durable acceptance evidence. A fresh agent can operate and prove the current foundation locally without remote services or secrets. The remaining proof gap is user-visible UI behavior; the remaining compounding gap is sustained observe/retro/improve use across normal work.
 
 ## Assessment matrix
 
