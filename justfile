@@ -31,13 +31,6 @@ type-check:
 build:
     npm run build
 
-# Validate committed Runner configuration, official assets, and direct-CLI documentation without executing Runner.
-verify-soft-factory-contract:
-    node scripts/verify-soft-factory.mjs
-    git check-ignore -q .trees/issue-3/example
-    git check-ignore -q .soft-factory/runs/3/snapshot.json
-    ! git check-ignore -q .soft-factory/config.yml
-
 # Enforce three engineering-harness skills plus the separately governed Soft Factory skill.
 verify-harness-skills:
     engineering=(eng-harness-0-harnessability-assessment eng-harness-flow grill-agent-done)
@@ -49,17 +42,15 @@ verify-harness-skills:
     [[ ! -e skills-lock.json ]] || { echo "Remove stale root skills-lock.json; .harness/skills.lock.json is provenance only." >&2; exit 1; }
     if grep -En "builder|eng-harness-in-a-box|plan-0-v2-constitution|plan-v2-extract-domain|the-flow|validate-v2" AGENTS.md LLM.txt README.md docs/README.md .github/skills/README.md .harness/engineering-harness.md project/architecture/README.md; then echo "Live discovery documentation names an excluded engineering-harness skill." >&2; exit 1; fi
 
-# Run a selected Vitest target, or all tests when no target is supplied, plus static contracts and diff integrity.
+# Run a selected Vitest target, or all tests when no target is supplied, plus harness governance and diff integrity.
 verify-focused target="":
     just verify-harness-skills
-    just verify-soft-factory-contract
     if [[ -n "{{target}}" ]]; then npm run test:focused -- "{{target}}"; else npm run test:focused; fi
     git diff --check
 
 # Run the complete static, test, build, and diff-integrity suite.
 verify:
     just verify-harness-skills
-    just verify-soft-factory-contract
     just test
     just lint
     just format-check

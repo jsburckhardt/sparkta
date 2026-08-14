@@ -35,18 +35,17 @@ Successful boot leaves the foundation running. Always finish with `harness stop 
 
 ## Authoritative project recipes
 
-| Recipe                              | Purpose                                                                        |
-| ----------------------------------- | ------------------------------------------------------------------------------ |
-| `just setup`                        | Recreate dependencies from the committed lockfile                              |
-| `just run`                          | Start the minimal web and server processes                                     |
-| `just test`                         | Run all workspace tests                                                        |
-| `just lint`                         | Check application source                                                       |
-| `just format-check`                 | Check application and operating-document formatting                            |
-| `just type-check`                   | Type-check both workspaces                                                     |
-| `just build`                        | Build both workspaces                                                          |
-| `just verify-soft-factory-contract` | Statically check committed Runner compatibility without executing Runner       |
-| `just verify-focused [test-path]`   | Run one selected Vitest target, or all tests when omitted, plus diff integrity |
-| `just verify`                       | Run the complete static, test, build, and diff-integrity suite                 |
+| Recipe                            | Purpose                                                                        |
+| --------------------------------- | ------------------------------------------------------------------------------ |
+| `just setup`                      | Recreate dependencies from the committed lockfile                              |
+| `just run`                        | Start the minimal web and server processes                                     |
+| `just test`                       | Run all workspace tests                                                        |
+| `just lint`                       | Check application source                                                       |
+| `just format-check`               | Check application and operating-document formatting                            |
+| `just type-check`                 | Type-check both workspaces                                                     |
+| `just build`                      | Build both workspaces                                                          |
+| `just verify-focused [test-path]` | Run one selected Vitest target, or all tests when omitted, plus diff integrity |
+| `just verify`                     | Run the complete static, test, build, and diff-integrity suite                 |
 
 The root [`justfile`](justfile) owns all project command bodies. Harness checks supplement that interface and never duplicate or replace the focused or full recipes.
 

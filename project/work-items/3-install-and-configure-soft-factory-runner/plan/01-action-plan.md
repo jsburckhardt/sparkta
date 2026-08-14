@@ -11,9 +11,10 @@
 - Restore `.github/agents/rpiv*.agent.md` to the official Runner-compatible baseline at `e67a2ac` semantics.
 - Delete the Sparkta Operator, integration adapter, synthetic canary, and rejected retro.
 - Use direct `soft-factory` commands for every Runner discovery, preflight, and lifecycle operation.
-- Keep the root `justfile` authoritative for Sparkta setup, run, focused/full verification, and a purely static repository contract check only.
+- Keep the root `justfile` authoritative for Sparkta setup, run, and focused/full project verification without any Soft Factory-specific check or Runner execution.
 - Preserve `.soft-factory/config.yml` with final validation `just verify`; Runner/RPIV invokes that project validation command directly.
 - Preserve official Runner assets and `.agents/manifest.json` byte-for-byte.
+- Use direct `soft-factory doctor --json` as the sole Runner compatibility and readiness authority.
 
 ## Acceptance Criteria
 
@@ -29,7 +30,7 @@
 | AC ID | Tasks | Validation | Expected evidence |
 | --- | --- | --- | --- |
 | AC-1 | T-2, T-4 | V-2, V-4 | Direct CLI help/instructions and ambient package identity |
-| AC-2 | T-1, T-3, T-4 | V-1, V-3, V-4 | Exact committed config and static compatibility assertions |
+| AC-2 | T-1, T-3, T-4 | V-1, V-3, V-4 | Exact committed config plus direct Doctor evidence |
 | AC-3 | T-1, T-3, T-4 | V-1, V-3, V-4 | Unchanged official and manifest SHA-256 values |
 | AC-4 | T-2, T-4 | V-2, V-4 | Direct Doctor schema 1 with 24/24 checks ready |
 | AC-5 | T-2, T-3 | V-3 | Direct command matrix and zero `operational Just wrapper` references in live surfaces |
@@ -39,5 +40,5 @@
 
 1. **T-1 - Reverse rejected orchestration:** Restore official RPIV agent semantics and remove repository-owned Operator, adapter, canary, retro, and related claims.
 2. **T-2 - Establish direct Runner operation:** Remove every operational Soft Factory recipe and update operator guidance to direct CLI commands with explicit issue numbers.
-3. **T-3 - Retain static repository validation:** Keep only a no-CLI static contract check for config, official integrity, metadata, direct-command documentation, and wrapper absence.
+3. **T-3 - Remove repository-owned Runner validation:** Delete the repository-specific checker and remove it from project recipes, documentation, architecture, plans, and evidence.
 4. **T-4 - Validate and record correction:** Run direct instructions and Doctor, run focused/full Sparkta gates, update evidence, and commit without pushing.

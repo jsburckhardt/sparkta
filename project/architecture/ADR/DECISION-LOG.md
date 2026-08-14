@@ -85,4 +85,4 @@ Short, actionable statements derived from ADRs and core-components. More than on
 | 52  | Delegate explicitly selected issue lifecycle and cleanup exclusively to Soft Factory Runner            | CORE-COMPONENT-260813-soft-factory-runner-operation        | 2026-08-13 |
 | 53  | Commit and integrity-check the official Operator, Assessor, skill, and manifest                        | CORE-COMPONENT-260813-soft-factory-runner-operation        | 2026-08-13 |
 | 54  | Invoke Soft Factory directly and prohibit repository operational wrappers, adapters, and synthetic orchestration | CORE-COMPONENT-260813-soft-factory-runner-operation        | 2026-08-14 |
-| 55  | Restrict root Runner validation to static compatibility while retaining `just verify` as final validation | CORE-COMPONENT-260813-soft-factory-runner-operation        | 2026-08-14 |
+| 55  | Use Runner Doctor as the sole compatibility and readiness authority; keep project verification Runner-independent | CORE-COMPONENT-260813-soft-factory-runner-operation        | 2026-08-14 |

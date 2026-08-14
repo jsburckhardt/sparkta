@@ -24,17 +24,17 @@ Remove the generic an operational pass-through recipe recipe and every operation
 ### Test Coverage
 V-2 executes direct non-issue preflight commands. V-3 rejects any `operational Just wrapper` reference in live surfaces and any `soft-factory` execution in the root justfile.
 
-## Task T-3: Retain static repository validation
+## Task T-3: Remove repository-owned Runner validation
 
 - **Status:** Completed
 - **Dependencies:** T-1, T-2
 - **Acceptance Criteria:** AC-2, AC-3, AC-5, AC-6
 
 ### Description
-Keep one root static contract recipe that executes only `scripts/verify-soft-factory.mjs` and Git ignore probes. The script validates committed config, official assets, integration metadata, direct-CLI documentation, absence of wrappers/adapters, and absence of repository installation dependencies without executing Runner.
+Delete the repository-specific Runner checker and remove its recipe, project-gate composition, documentation, architecture language, plan language, and evidence. Keep Runner compatibility and readiness under direct Doctor authority, while focused/full project validation remains Runner-independent.
 
 ### Test Coverage
-V-3 runs the static contract through focused/full project gates.
+V-3 proves the removed checker has no remaining repository references and that project gates contain no Soft Factory-specific validation or execution.
 
 ## Task T-4: Validate and record correction
 
@@ -43,7 +43,7 @@ V-3 runs the static contract through focused/full project gates.
 - **Acceptance Criteria:** AC-1, AC-2, AC-3, AC-4, AC-5, AC-6
 
 ### Description
-Run direct `soft-factory instructions --json` and `soft-factory doctor --json`, then `just verify-focused` and `just verify`. Record exact evidence, official hashes, correction commit, clean-tree proof, and unchanged remote PR facts without pushing or editing GitHub.
+Run direct `soft-factory doctor --json`, then `just verify-focused` and `just verify`. Record exact evidence, zero-reference proof, correction commit, and clean-tree proof without pushing or editing GitHub.
 
 ### Test Coverage
 V-4 is the authoritative correction sequence.

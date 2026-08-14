@@ -27,20 +27,19 @@ Rejected orchestration is fully removed while official integration and configura
 ### Expected Result
 Direct CLI preflight succeeds without wrappers, issue selection, or Runner mutation.
 
-## V-3: Static repository contract
+## V-3: Repository validation boundary
 
 - **Tasks:** T-1, T-2, T-3
 - **Acceptance Criteria:** AC-2, AC-3, AC-5, AC-6
 
 ### Steps
-1. Run `node scripts/verify-soft-factory.mjs`.
-2. Assert exact config, manifest, official digests, skill inventory, and RPIV metadata.
+1. Search all repository files for the two rejected checker identifiers and require zero matches.
+2. Search live documentation, governance, plans, evidence, reports, scripts, and the root command interface for stale prose describing repository-owned Runner validation.
 3. Assert every required direct lifecycle command appears in README and detailed docs.
-4. Assert no `operational Just wrapper` text remains in live docs, governance, plans, implementation evidence, verification script, or justfile.
-5. Assert the justfile contains no `soft-factory` execution and no operational Runner recipe.
+4. Assert the justfile contains no `soft-factory` execution, Soft Factory-specific check, or operational Runner recipe.
 
 ### Expected Result
-The repository proves only committed compatibility and documentation; it neither executes nor reimplements Runner.
+The repository delegates Runner compatibility and readiness exclusively to direct Doctor operation and does not execute or reimplement Runner through project validation.
 
 ## V-4: Authoritative project gates
 
@@ -53,4 +52,4 @@ The repository proves only committed compatibility and documentation; it neither
 3. Recheck official hashes, GitHub remote facts, and clean-tree state after commit.
 
 ### Expected Result
-Sparkta validation passes with the static contract included, while all Runner operations remain direct CLI responsibilities.
+Sparkta validation passes without a Soft Factory-specific repository check, while all Runner operations remain direct CLI responsibilities.

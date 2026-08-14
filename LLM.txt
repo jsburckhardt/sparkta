@@ -3,7 +3,7 @@ CONTRIBUTING.md — Human contribution and harness-assisted RPIV workflow
 LLM.txt — This repository map for AI agents
 README.md — Sparkta setup, harness operation, readiness API, configuration, skills, and scope
 PRD.md — Sparkta product requirements and future product direction
-justfile — Sole authoritative Sparkta command bodies, including static Runner compatibility and focused/full gates
+justfile — Sole authoritative Sparkta command bodies, including focused/full project gates
 package.json — Private npm workspace metadata; intentionally does not install the ambient harness
 package-lock.json — Locked Sparkta dependency graph; intentionally does not contain the ambient harness
 tsconfig.base.json — Shared strict TypeScript defaults

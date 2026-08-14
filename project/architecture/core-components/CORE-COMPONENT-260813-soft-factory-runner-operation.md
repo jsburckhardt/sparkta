@@ -25,16 +25,16 @@ This contract applies to the ambient `soft-factory-runner` CLI, repository confi
 - Runner MUST remain the sole control plane for its RPIV launch binding, worktrees, locks, leases, snapshots, progress, result publication, processes, recovery, logs, and cleanup.
 - Operators MUST invoke `soft-factory` directly. The repository MUST NOT provide `operational Just wrapper`, operational Runner recipes, custom Operator, helper-adapter, or synthetic Runner orchestration surfaces.
 - Every issue-specific command MUST receive one caller-supplied positive issue number; agents MUST NOT queue, rank, infer, or select an issue.
-- The root `justfile` MUST remain authoritative for Sparkta setup, run, focused/full verification, and MAY include a static compatibility check that does not execute the Runner CLI or duplicate Runner behavior.
+- The root `justfile` MUST remain authoritative for Sparkta setup, run, and focused/full project verification. Those recipes MUST NOT run a Soft Factory-specific repository check or execute Runner.
 - `soft-factory instructions --json` and `soft-factory doctor --json` MUST be run directly as operator preflight; they MUST NOT be hidden inside project validation.
+- `soft-factory doctor --json` is the sole authority for Runner compatibility and repository readiness.
 
 ### Interfaces
 
 - Direct discovery and preflight: `soft-factory --help`, `soft-factory instructions --json`, `soft-factory install --recommended`, and `soft-factory doctor --json`.
 - Direct lifecycle: `soft-factory run --issue <ISSUE_NUMBER> --json`, `list`, `status`, `reconcile`, `resume`, `stop`, `clean`, `attach`, and `logs` with explicit issue input where required.
 - Sparkta validation: `just verify-focused` and `just verify`.
-- Static compatibility: `just verify-soft-factory-contract`, which reads committed files only and does not invoke `soft-factory`.
-- Committed compatibility surfaces: `.soft-factory/config.yml`, `.gitignore`, `.github/agents/rpiv.agent.md`, `.agents/manifest.json`, and the three official assets.
+- Committed Runner surfaces: `.soft-factory/config.yml`, `.gitignore`, `.github/agents/rpiv.agent.md`, `.agents/manifest.json`, and the three official assets.
 
 ### Expectations
 
@@ -42,11 +42,11 @@ This contract applies to the ambient `soft-factory-runner` CLI, repository confi
 - Doctor reports all ordered readiness checks and actionable remediation for failed prerequisites.
 - Repeated official-asset installation is a no-op and preserves unrelated `.agents/` content.
 - Runner state never overlaps `.harness/temp/boot/`, `.sparkta/apps/`, or `.sparkta/runtime/`.
-- Repository validation proves committed compatibility without simulating, adapting, or executing Runner behavior.
+- Project validation remains independent of Runner diagnostics and behavior.
 
 ## Rationale
 
-Runner already owns complete issue delivery and operational safety. Direct CLI operation keeps that ownership legible and prevents Sparkta from creating a second orchestration layer. The root `justfile` remains a project command interface: Runner may invoke `just verify`, while operators invoke Runner itself directly. A static contract check can protect committed configuration and asset integrity without becoming an operational wrapper.
+Runner already owns complete issue delivery, compatibility diagnostics, readiness, and operational safety. Direct CLI operation keeps that ownership legible and prevents Sparkta from creating a second orchestration or validation layer. The root `justfile` remains a project command interface: Runner may invoke `just verify`, while operators invoke Runner itself directly.
 
 ## Usage Examples
 
