@@ -1,0 +1,38 @@
+project/work-items/3-install-and-configure-soft-factory-runner/implementation/00-implementation.md
+  s_e110994d8481ed::t_4b34410f05c490 1,5-9,13-18,22-25,27,29-33,35,37
+justfile
+  s_e110994d8481ed::t_f2317c34a9ecf8 34,37
+.github/skills/README.md
+  s_e110994d8481ed::t_e420f41ade561f 7,13,21
+docs/README.md
+  s_e110994d8481ed::t_e9ec0635097800 67
+  s_e110994d8481ed::t_e420f41ade561f 112
+LLM.txt
+  s_e110994d8481ed::t_e9ec0635097800 28
+AGENTS.md
+  s_e110994d8481ed::t_49884b74ea4126 46
+project/work-items/3-install-and-configure-soft-factory-runner/plan/02-task-breakdown.md
+  s_e110994d8481ed::t_4b34410f05c490 5,33,62,89,119
+project/work-items/3-install-and-configure-soft-factory-runner/verify/summary.md
+  s_e110994d8481ed::t_4b34410f05c490 3,6-8,10,12-17,19,21-25,27,29
+.harness/engineering-harness.md
+  s_e110994d8481ed::t_e420f41ade561f 5,58,94
+README.md
+  s_e110994d8481ed::t_e420f41ade561f 87
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "644b9954ecd16efa38f03c368bfc64c5230abc6d",
+  "prompts": {},
+  "sessions": {
+    "s_e110994d8481ed": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "fee35b55-50b2-4348-8a07-4434e1eaaae2",
+        "model": "unknown"
+      },
+      "human_author": "jsburckhardt <jsburckhardt@gmail.com>"
+    }
+  }
+}
