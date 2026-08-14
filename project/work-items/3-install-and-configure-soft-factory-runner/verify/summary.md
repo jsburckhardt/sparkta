@@ -1,5 +1,7 @@
 # Verification Summary: Issue #3
 
+> **Verdict withdrawn - returned to Plan on 2026-08-14.** PR #11 is not accepted at the recorded implementation SHA. `justfile#verify-harness-skills` still enumerates and requires the separately governed Soft Factory skill, contradicting Doctor-only authority and invalidating the prior project-gate evidence. Verify must rerun against a new Implement handoff after T-1 through T-5.
+
 - **Work item:** `project/work-items/3-install-and-configure-soft-factory-runner`
 - **Verified branch:** `issue-3-install-and-configure-soft-factory-runner`
 - **Implementation commit:** `be32feb71104cadafae405f3b5162e14a822b698`
@@ -10,10 +12,10 @@
 
 - **AC-1 - Passed.** The ambient executable resolves at `/usr/local/share/nvm/versions/node/v24.19.0/bin/soft-factory`, global package identity is `soft-factory-runner@0.1.0`, and direct help and instructions exited successfully.
 - **AC-2 - Passed.** `.soft-factory/config.yml` declares protocol 1, `.trees`, `.soft-factory`, final `just verify`, and concurrency 1. Direct Doctor accepted the configuration.
-- **AC-3 - Passed.** Official Operator, Assessor, skill, and manifest hashes match both the prior accepted baseline and their locked values: `46b96e18...ced760`, `40054f09...b7ed3d`, `07d0c15b...9d3b6f`, and `e57667a0...6a857`.
+- **AC-3 - Withdrawn.** Independent official-asset hashes are not valid acceptance authority. Official installation plus `soft-factory doctor --json` must provide the replacement verdict.
 - **AC-4 - Passed.** Direct `soft-factory doctor --json` returned schema 1, `ready: true`, and 24 of 24 blocking checks passed with the official per-check diagnostic contract.
 - **AC-5 - Passed.** README and detailed operator documentation cover direct run, list/status, reconcile, resume, stop, clean, attach, and logs commands with explicit issue placeholders. No operational Runner recipe or wrapper remains.
-- **AC-6 - Passed.** Direct instructions and Doctor plus `just verify` passed without selecting or mutating an issue.
+- **AC-6 - Withdrawn.** The prior `just verify` still enforced the Soft Factory skill/directory and therefore was not Runner-independent.
 
 ## Rejected implementation review
 
@@ -31,7 +33,7 @@ The complete branch diff was reviewed against the corrected action plan, task br
 
 - `soft-factory instructions --json` - passed; schema 1 and effective final validation `just verify`.
 - `soft-factory doctor --json` - passed; 24/24 checks and `ready: true`.
-- Official asset, manifest, and RPIV baseline comparisons - passed.
+- Official asset, manifest, and RPIV baseline comparisons - superseded; do not reuse as compatibility/readiness/asset proof.
 - Rejected-file and prohibited-wrapper searches - passed.
 - `just verify` - passed: harness governance, 13 tests, lint, formatting, type-check, build, and branch diff integrity.
 - Working tree before verification and after validation - clean.

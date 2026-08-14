@@ -4,9 +4,9 @@ This directory contains global architectural documentation for Sparkta.
 
 ## Structure
 
-| Directory | Purpose |
-| --- | --- |
-| `ADR/` | Read-only ADR template, accepted ADRs, and `DECISION-LOG.md` |
+| Directory          | Purpose                                                           |
+| ------------------ | ----------------------------------------------------------------- |
+| `ADR/`             | Read-only ADR template, accepted ADRs, and `DECISION-LOG.md`      |
 | `core-components/` | Read-only template and adopted cross-cutting behavioral contracts |
 
 ADRs capture significant global decisions. Core-components define reusable global contracts. Every artifact is registered in [`ADR/DECISION-LOG.md`](ADR/DECISION-LOG.md). Templates are read-only references: copy them in place, use the UTC creation date in the new basename, and keep that date stable.
@@ -17,13 +17,13 @@ The bootstrap adopts [Node.js 24, strict TypeScript, npm workspaces, React/Vite,
 
 ## Engineering harness boundary
 
-The adopted [engineering harness operating contract](core-components/CORE-COMPONENT-260813-engineering-harness-operation.md) defines the already-configured ambient CLI boundary, the exact `eng-harness-flow`, `eng-harness-0-harnessability-assessment`, and `grill-agent-done` skill allowlist, packaged-source lock provenance, repository-local extensions, root `justfile` delegation, dual-service readiness, Linux PID/start-time/command/process-group validation for owned transient boot state, RPIV hook injection, and managed commit guidance. The [project command interface](core-components/CORE-COMPONENT-260806-project-command-interface.md) remains authoritative, and the [RPIV stage contract](core-components/CORE-COMPONENT-260806-rpiv-stage-contract.md) retains stage ownership.
+The adopted [engineering harness operating contract](core-components/CORE-COMPONENT-260813-engineering-harness-operation.md) defines the already-configured ambient CLI boundary, the exact `eng-harness-flow`, `eng-harness-0-harnessability-assessment`, and `grill-agent-done` skill allowlist, preservation of unrelated sibling skills, packaged-source lock provenance, repository-local extensions, root `justfile` delegation, dual-service readiness, Linux PID/start-time/command/process-group validation for owned transient boot state, RPIV hook injection, and managed commit guidance. The [project command interface](core-components/CORE-COMPONENT-260806-project-command-interface.md) remains authoritative, and the [RPIV stage contract](core-components/CORE-COMPONENT-260806-rpiv-stage-contract.md) retains stage ownership.
 
 Harness ownership under `.harness/temp/boot/` is engineering evidence, not Sparkta product state. Adoption does not alter the `.sparkta/apps/` or `.sparkta/runtime/` architecture and introduces no product persistence or lifecycle service.
 
 ## Soft Factory Runner boundary
 
-The adopted [Soft Factory Runner operating contract](core-components/CORE-COMPONENT-260813-soft-factory-runner-operation.md) governs the environment-owned CLI, protocol-1 configuration, safe `.trees/` and `.soft-factory/` roots, official assets, canonical RPIV injected handoff, direct CLI operation, explicit-issue lifecycle, and readiness validation. Direct `soft-factory doctor --json` is the sole authority for Runner compatibility and repository readiness; Sparkta does not claim or implement a separate repository check for that contract. Runner state is independent of harness evidence and Sparkta product state. The engineering-harness contract still authorizes exactly three engineering-harness skills; the Runner contract separately authorizes only the official `soft-factory` skill.
+The adopted [Soft Factory Runner operating contract](core-components/CORE-COMPONENT-260813-soft-factory-runner-operation.md) governs the environment-owned CLI, protocol-1 configuration, safe `.trees/` and `.soft-factory/` roots, official assets, canonical RPIV injected handoff, direct CLI operation, explicit-issue lifecycle, and readiness validation. Direct `soft-factory doctor --json` is the sole authority for Runner compatibility, repository readiness, and official-asset interpretation; Sparkta does not claim or implement a separate repository check for that contract. Runner state is independent of harness evidence and Sparkta product state. Sparkta focused/full validation does not inspect Runner configuration or assets, while engineering-harness validation checks only its three named skills and ignores unrelated siblings.
 
 ## Scope boundary
 

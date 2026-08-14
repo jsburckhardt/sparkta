@@ -1,5 +1,7 @@
 # Implementation Evidence: Correct Soft Factory Runner operation
 
+> **Status: Superseded - returned to Plan on 2026-08-14.** This evidence does not prove the corrected plan. The prior focused/full gates still required the separately governed Soft Factory skill through `justfile#verify-harness-skills`, so their success cannot establish Runner-independent Sparkta validation. Implement must replace the affected AC evidence after completing T-1 through T-5.
+
 ## Correction
 
 The final implementation keeps Runner compatibility and readiness under the direct official CLI. Sparkta's root recipes remain project-only gates and do not invoke Runner or perform separate Runner diagnostics.
@@ -15,10 +17,10 @@ The final implementation keeps Runner compatibility and readiness under the dire
 
 - **AC-1:** The ambient `soft-factory` CLI remains directly available as `soft-factory-runner@0.1.0`.
 - **AC-2:** `.soft-factory/config.yml` remains protocol 1 with `.trees`, `.soft-factory`, final `just verify`, and concurrency 1. Direct Doctor accepted the configuration.
-- **AC-3:** The correction diff does not modify the official Operator, Assessor, skill, or manifest assets.
+- **AC-3:** Superseded. Asset presence and compatibility must be established through official installation and `soft-factory doctor --json`, not independent file or hash checks.
 - **AC-4:** Direct `soft-factory doctor --json` exited 0 with schema version 1, `ready: true`, repository `jsburckhardt/sparkta`, default branch `main`, and 24 of 24 blocking checks passed.
 - **AC-5:** `README.md` and `docs/README.md` retain the direct lifecycle command matrix. The root command interface has no operational Runner recipe and does not execute `soft-factory`.
-- **AC-6:** A comprehensive tracked and untracked-file scan found zero matches for both rejected checker identifiers. `just verify-focused` passed 6 files and 13 tests plus harness governance and diff integrity. `just verify` passed 6 files and 13 tests, lint, formatting, type-check, build, harness governance, and branch diff integrity.
+- **AC-6:** Superseded. The prior project gates passed only because harness governance still enumerated and required the Soft Factory skill. Corrected evidence must prove those gates know only Sparkta and the three engineering-harness skills while preserving unrelated siblings.
 
 ## Documentation Evidence
 

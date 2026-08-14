@@ -1,49 +1,140 @@
-# Task Breakdown: Correct Soft Factory Runner operation
+# Task Breakdown: Restore Soft Factory Doctor authority
 
-## Task T-1: Reverse rejected orchestration
+## Task T-1: Scope engineering-harness validation
 
-- **Status:** Completed
+- **Status:** Pending
+- **Complexity:** Medium
 - **Dependencies:** None
-- **Acceptance Criteria:** AC-2, AC-3, AC-6
+- **Acceptance Criteria:** AC-2, AC-6
+- **Related ADRs:** None
+- **Related Core-Components:** `CORE-COMPONENT-260806-project-command-interface`, `CORE-COMPONENT-260813-engineering-harness-operation`
 
 ### Description
-Restore the three RPIV agents to `e67a2ac` semantics. Delete the Sparkta Operator, integration adapter, synthetic canary, and rejected retro. Remove executable-APS, adapter, synthetic-proof, and repository-owned orchestration claims from architecture and evidence.
+
+Change `justfile#verify-harness-skills` so it validates presence of only `eng-harness-flow`, `eng-harness-0-harnessability-assessment`, and `grill-agent-done`. Preserve the stale-lock and excluded engineering-harness discovery guards. Remove whole-directory equality, the `soft-factory` name/path, and every requirement or enumeration of unrelated sibling skills. The recipe must not delete or modify any sibling directory.
+
+### Acceptance Criteria
+
+- AC-2 remains reachable through Runner Doctor rather than project validation.
+- AC-6 project validation succeeds while unrelated cross-cutting skills coexist under `.agents/skills/`.
 
 ### Test Coverage
-V-1 and V-3 prove official integrity, baseline agent restoration, and rejected-file absence.
 
-## Task T-2: Establish direct Runner operation
+- V-1 inspects the recipe boundary and exercises it with an unrelated temporary sibling skill.
+- V-5 runs the focused and full delegated project gates.
 
-- **Status:** Completed
+### Expected Evidence
+
+- `just --show verify-harness-skills` names only the three engineering-harness skills and contains no Soft Factory path, manifest, hash, configuration, or CLI reference.
+- The temporary unrelated sibling exists unchanged after `just verify-harness-skills` succeeds.
+
+## Task T-2: Remove duplicate Soft Factory authority
+
+- **Status:** Pending
+- **Complexity:** Medium
 - **Dependencies:** T-1
-- **Acceptance Criteria:** AC-1, AC-4, AC-5
+- **Acceptance Criteria:** AC-2, AC-3, AC-4, AC-5, AC-6
+- **Related ADRs:** `ADR-260812-foundation-stack`, `ADR-260812-filesystem-state-boundary`
+- **Related Core-Components:** `CORE-COMPONENT-260813-soft-factory-runner-operation`, `CORE-COMPONENT-260813-engineering-harness-operation`
 
 ### Description
-Remove the generic an operational pass-through recipe recipe and every operational operational Runner recipes recipe. Update AGENTS, README, detailed docs, CONTRIBUTING, LLM, harness guidance, and architecture guidance so operators invoke `soft-factory` directly with one explicit positive issue number where required.
+
+Keep `scripts/verify-soft-factory.mjs` absent and remove every reference that treats it, a static contract, asset hashes, manifest parsing, configuration parsing, or any equivalent Sparkta check as Runner evidence. Replace compatibility, readiness, and official-asset verdicts with direct `soft-factory doctor --json`. Do not duplicate Doctor logic in shell, JavaScript, Just, tests, documentation, or evidence.
+
+### Acceptance Criteria
+
+- AC-2, AC-3, and AC-4 are proved through Runner-owned commands rather than Sparkta static checks.
+- AC-5 and AC-6 guidance and evidence contain no duplicate checker authority.
 
 ### Test Coverage
-V-2 executes direct non-issue preflight commands. V-3 rejects any `operational Just wrapper` reference in live surfaces and any `soft-factory` execution in the root justfile.
 
-## Task T-3: Remove repository-owned Runner validation
+- V-2 searches the repository and branch diff for the deleted checker, stale checker references, static Runner checks, and Sparkta-side asset/hash authority.
+- V-3 runs direct Runner commands and treats Doctor as the sole compatibility/readiness/asset verdict.
 
-- **Status:** Completed
-- **Dependencies:** T-1, T-2
-- **Acceptance Criteria:** AC-2, AC-3, AC-5, AC-6
+### Expected Evidence
+
+- The deleted script is absent and tracked files contain no invocation or affirmative evidence reference to it.
+- No root recipe or Sparkta script inspects `.soft-factory/config.yml`, `.agents/manifest.json`, or official Soft Factory asset paths.
+- Direct Doctor JSON is the cited readiness and compatibility evidence.
+
+## Task T-3: Preserve direct Runner ownership
+
+- **Status:** Pending
+- **Complexity:** Small
+- **Dependencies:** T-2
+- **Acceptance Criteria:** AC-1, AC-2, AC-3, AC-4, AC-6
+- **Related ADRs:** `ADR-260812-foundation-stack`, `ADR-260812-filesystem-state-boundary`
+- **Related Core-Components:** `CORE-COMPONENT-260813-soft-factory-runner-operation`, `CORE-COMPONENT-260806-rpiv-stage-contract`
 
 ### Description
-Delete the repository-specific Runner checker and remove its recipe, project-gate composition, documentation, architecture language, plan language, and evidence. Keep Runner compatibility and readiness under direct Doctor authority, while focused/full project validation remains Runner-independent.
+
+Preserve direct official CLI operation, package-owned asset installation, protocol-1 integration, Runner-owned state, and caller-supplied positive issue numbers. Keep `.soft-factory/config.yml` final validation exactly `just verify`. Do not add operational wrappers, adapters, synthetic canaries, or Runner execution to root project recipes.
+
+### Acceptance Criteria
+
+- AC-1 through AC-4 and AC-6 remain satisfied by official Runner surfaces.
 
 ### Test Coverage
-V-3 proves the removed checker has no remaining repository references and that project gates contain no Soft Factory-specific validation or execution.
 
-## Task T-4: Validate and record correction
+- V-3 exercises help, instructions, recommended installation, and Doctor directly without selecting an issue.
+- V-5 proves Runner still resolves final validation to the Sparkta `just verify` gate.
 
-- **Status:** Completed
-- **Dependencies:** T-2, T-3
+### Expected Evidence
+
+- Direct commands succeed with no issue lifecycle mutation.
+- Instructions report effective final validation `just verify`; Doctor reports readiness from the current repository state.
+
+## Task T-4: Reconcile documentation and evidence
+
+- **Status:** Pending
+- **Complexity:** Medium
+- **Dependencies:** T-1, T-2, T-3
+- **Acceptance Criteria:** AC-3, AC-4, AC-5, AC-6
+- **Related ADRs:** None
+- **Related Core-Components:** `CORE-COMPONENT-260813-engineering-harness-operation`, `CORE-COMPONENT-260813-soft-factory-runner-operation`, `CORE-COMPONENT-260806-rpiv-stage-contract`
+
+### Description
+
+Update live harness discovery and skills documentation to describe only the three engineering-harness skills and to ignore/preserve unrelated siblings. Keep Runner operations documented through direct CLI commands. Reconcile implementation notes, verification summary, and PR text so prior static-check, static-contract, exact-inventory, and hash claims are explicitly superseded and are not presented as acceptance evidence.
+
+### Acceptance Criteria
+
+- AC-3 and AC-4 evidence points only to Runner-owned installation/Doctor behavior.
+- AC-5 retains all required direct explicit-issue lifecycle operations.
+- AC-6 records only the corrected validation path.
+
+### Test Coverage
+
+- V-2 rejects stale authority claims and references.
+- V-4 checks the complete required command matrix and boundary language.
+
+### Expected Evidence
+
+- Live docs state that harness validation checks three engineering-harness skills and ignores unrelated siblings.
+- Runner docs state that Doctor alone decides compatibility/readiness/assets.
+- Implementation, verification, and PR evidence no longer claim hashes or static contracts as proof.
+
+## Task T-5: Prove the boundary
+
+- **Status:** Pending
+- **Complexity:** Medium
+- **Dependencies:** T-4
 - **Acceptance Criteria:** AC-1, AC-2, AC-3, AC-4, AC-5, AC-6
+- **Related ADRs:** None
+- **Related Core-Components:** `CORE-COMPONENT-260806-project-command-interface`, `CORE-COMPONENT-260813-engineering-harness-operation`, `CORE-COMPONENT-260813-soft-factory-runner-operation`
 
 ### Description
-Run direct `soft-factory doctor --json`, then `just verify-focused` and `just verify`. Record exact evidence, zero-reference proof, correction commit, and clean-tree proof without pushing or editing GitHub.
+
+Execute the test plan in order, capture AC-indexed evidence, and commit the implementation with a clean tree for independent Verify. Do not start an issue run or mutate an unrelated issue.
+
+### Acceptance Criteria
+
+- Every AC has direct, bounded evidence from V-1 through V-5.
 
 ### Test Coverage
-V-4 is the authoritative correction sequence.
+
+- V-1 through V-5 are required.
+
+### Expected Evidence
+
+- Direct Doctor and instructions envelopes, unrelated-sibling preservation proof, zero-reference scans, documentation command coverage, focused/full project-gate results, implementation commit SHA, and clean-tree proof.
