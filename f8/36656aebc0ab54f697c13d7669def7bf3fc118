@@ -1,0 +1,21 @@
+project/architecture/README.md
+  s_ad6d9475242390::t_150f6b4f18c376 7-9
+project/architecture/ADR/DECISION-LOG.md
+  s_ad6d9475242390::t_150f6b4f18c376 26,32-87,89-90
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "f836656aebc0ab54f697c13d7669def7bf3fc118",
+  "prompts": {},
+  "sessions": {
+    "s_ad6d9475242390": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "aca3233a-041e-45c3-93b3-d3a661fc3252",
+        "model": "unknown"
+      },
+      "human_author": "jsburckhardt <jsburckhardt@gmail.com>"
+    }
+  }
+}
