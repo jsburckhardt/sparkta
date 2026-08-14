@@ -27,3 +27,9 @@ Updated `README.md`, `LLM.txt`, the Soft Factory operating core-component, the d
 ## Validation Notes
 
 Direct Doctor is the sole Runner compatibility and readiness authority. Sparkta focused/full validation remains the final project validation configured in `.soft-factory/config.yml`, but those recipes neither execute Runner nor perform a Soft Factory-specific check. Final acceptance remains owned by Verify.
+
+## Verify-Return Repair
+
+- Rewrote the stale architecture overview so it names direct `soft-factory doctor --json` as the sole Runner compatibility and repository-readiness authority and explicitly disclaims a separate Sparkta repository check.
+- Searched all tracked files, excluding Git object history, for all four stale markers specified in the Verify return; the repaired tree contains zero matches.
+- Re-ran direct Runner Doctor and the focused and full root project gates. No Runner configuration, direct CLI contract, official asset, or remote pull-request content changed.
