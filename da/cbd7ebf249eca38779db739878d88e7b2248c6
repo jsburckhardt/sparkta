@@ -1,0 +1,27 @@
+.harness/reports/harnessability/003-sparkta/report.json
+  s_f6be257a783d0b::t_b49904a06473b2 122,795
+project/work-items/3-install-and-configure-soft-factory-runner/implementation/00-implementation.md
+  s_f6be257a783d0b::t_b49904a06473b2 16,24,33
+.harness/reports/harnessability/003-sparkta/report.md
+  s_f6be257a783d0b::t_b49904a06473b2 23
+.harness/reports/harnessability/latest.json
+  s_f6be257a783d0b::t_b49904a06473b2 122,795
+.harness/reports/harnessability/latest.md
+  s_f6be257a783d0b::t_b49904a06473b2 23
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "dacbd7ebf249eca38779db739878d88e7b2248c6",
+  "prompts": {},
+  "sessions": {
+    "s_f6be257a783d0b": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "7040a92f-0ec7-4b67-b6e7-b9b53c23eadb",
+        "model": "unknown"
+      },
+      "human_author": "jsburckhardt <jsburckhardt@gmail.com>"
+    }
+  }
+}
