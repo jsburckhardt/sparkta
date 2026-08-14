@@ -4,9 +4,9 @@ This directory contains global architectural documentation for Sparkta.
 
 ## Structure
 
-| Directory          | Purpose                                                           |
-| ------------------ | ----------------------------------------------------------------- |
-| `ADR/`             | Read-only ADR template, accepted ADRs, and `DECISION-LOG.md`      |
+| Directory | Purpose |
+| --- | --- |
+| `ADR/` | Read-only ADR template, accepted ADRs, and `DECISION-LOG.md` |
 | `core-components/` | Read-only template and adopted cross-cutting behavioral contracts |
 
 ADRs capture significant global decisions. Core-components define reusable global contracts. Every artifact is registered in [`ADR/DECISION-LOG.md`](ADR/DECISION-LOG.md). Templates are read-only references: copy them in place, use the UTC creation date in the new basename, and keep that date stable.
