@@ -5,7 +5,7 @@ Every piece of work MUST flow through exactly four stages in order: Research, Pl
 Every autonomous agent MUST start with `harness instructions`, inspect `harness doctor --json`, and read `harness instructions <verb>` before using a repository harness verb.
 RPIV MUST fire `/eng-harness-flow --hook pre-flight`, `pre-coding`, `coding`, `post-coding`, and `post-flight` at the structural seams documented in `.harness/engineering-harness.md`.
 Agents MUST treat harness checks as delegation to the authoritative root `just verify-focused` and `just verify` recipes, not replacements for them.
-Agents MUST invoke the official `soft-factory` CLI directly for Soft Factory operations, require one caller-supplied positive `<ISSUE_NUMBER>` for issue operations, and MUST NOT infer or select an issue or manipulate Runner-owned state.
+Agents MUST use `.github/agents/runner-dispatcher.agent.md` as the orchestration-facing Runner facade, require one caller-supplied positive `<ISSUE_NUMBER>`, and MUST NOT infer or select an issue or manipulate Runner-owned state.
 You MUST classify scope_type as exactly one of: issue, architecture_decision, core_component.
 You MUST NOT create an architectural decision outside of an ADR document.
 You MUST NOT create reusable cross-cutting behavior outside of a core-component document.
@@ -50,7 +50,7 @@ A doctor `degraded` result is usable only for documented environment capture or 
 </harness>
 
 <soft-factory-runner>
-The configured environment owns ambient `soft-factory-runner` 0.1.0; repository npm, lockfile, setup, and devcontainer state MUST NOT install it. Start with `soft-factory instructions --json` and `soft-factory doctor --json`; Runner Doctor is separate from harness Doctor. Configuration fixes protocol 1, `.trees`, `.soft-factory`, final `just verify`, and concurrency 1. Runner exclusively owns worktrees, locks, processes, snapshots, progress/result paths, recovery, logs, and cleanup. Use an explicit caller-supplied positive `<ISSUE_NUMBER>` for run, status, reconcile, resume, stop, clean, attach, and logs; never queue, rank, infer, or select an issue. Read `docs/README.md#soft-factory-runner-operation`.
+The configured environment owns ambient `soft-factory-runner` 0.1.0; repository npm, lockfile, setup, and devcontainer state MUST NOT install it. The APS v1.2.2 `.github/agents/runner-dispatcher.agent.md` facade requires one explicit positive issue, runs direct instructions and Doctor, blocks on non-ready remediation, and otherwise runs exactly `soft-factory run --issue <ISSUE_NUMBER> --json`. Runner Doctor is separate from harness Doctor. Configuration fixes protocol 1, `.trees`, `.soft-factory`, final `just verify`, and concurrency 1. Runner exclusively owns worktrees, locks, processes, snapshots, progress/result paths, recovery, logs, and cleanup. Read `docs/README.md#soft-factory-runner-operation`.
 </soft-factory-runner>
 
 <constants>

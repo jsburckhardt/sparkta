@@ -72,7 +72,7 @@ project/architecture/core-components/CORE-COMPONENT-260812-error-handling.md —
 project/architecture/core-components/CORE-COMPONENT-260812-observability.md — Structured Pino logging and redaction contract
 project/architecture/core-components/CORE-COMPONENT-260812-state-lifecycle.md — Durable and disposable product state contract
 project/architecture/core-components/CORE-COMPONENT-260813-engineering-harness-operation.md — Ambient CLI, delegation, boot ownership, discovery, and commit contract
-project/architecture/core-components/CORE-COMPONENT-260813-soft-factory-runner-operation.md — Ambient Runner, safe roots, official assets, explicit-issue operations, and RPIV handoff contract
+project/architecture/core-components/CORE-COMPONENT-260813-soft-factory-runner-operation.md — Ambient Runner, safe roots, dispatcher facade, explicit-issue operation, and RPIV handoff contract
 .soft-factory/config.yml — Protocol-1 Runner roots, final validation, and positive concurrency
-.agents/manifest.json — Exact official Runner asset inventory and digests
+.github/agents/runner-dispatcher.agent.md — APS v1.2.2 user/model facade for one Doctor-gated explicit issue dispatch
 project/work-items/2-adopt-the-ai-substrate-engineering-harness/ — Issue 2 research, plan, implementation, and acceptance evidence

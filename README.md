@@ -51,20 +51,16 @@ The root [`justfile`](justfile) owns all project command bodies. Harness checks 
 
 ## Soft Factory Runner operations
 
-Runner Doctor is the authority for repository Runner readiness; harness Doctor covers the separate engineering-harness surface. The caller must supply one explicit positive `<ISSUE_NUMBER>`; never queue, rank, infer, or select an issue. Runner alone owns its worktrees, locks, processes, snapshots, recovery, logs, and cleanup.
+Runner Doctor is the authority for repository Runner readiness; harness Doctor covers the separate engineering-harness surface. The configured environment owns the CLI, while the repository owns the user- and model-invocable [`runner-dispatcher`](.github/agents/runner-dispatcher.agent.md) facade. The caller must supply exactly one explicit positive `<ISSUE_NUMBER>`; never queue, rank, infer, or select an issue. Runner alone owns its worktrees, locks, processes, snapshots, recovery, logs, and cleanup.
 
-| Operation                | Direct CLI invocation                                                   |
-| ------------------------ | ----------------------------------------------------------------------- |
-| Start the selected issue | `soft-factory run --issue <ISSUE_NUMBER> --json`                        |
-| List and inspect         | `soft-factory list --json`; `soft-factory status <ISSUE_NUMBER> --json` |
-| Reconcile                | `soft-factory reconcile <ISSUE_NUMBER> --json`                          |
-| Resume                   | `soft-factory resume <ISSUE_NUMBER> --json`                             |
-| Stop                     | `soft-factory stop <ISSUE_NUMBER> --json`                               |
-| Clean                    | `soft-factory clean <ISSUE_NUMBER> --json`                              |
-| Attach                   | `soft-factory attach <ISSUE_NUMBER>`                                    |
-| Read logs                | `soft-factory logs <ISSUE_NUMBER> --json`                               |
+| Operation                              | Invocation                                                         |
+| -------------------------------------- | ------------------------------------------------------------------ |
+| Discover the immutable Runner contract | `soft-factory instructions --json`                                 |
+| Evaluate Runner readiness              | `soft-factory doctor --json`                                       |
+| Dispatch through Copilot               | Invoke `runner-dispatcher` with one explicit positive issue number |
+| Direct CLI equivalent                  | `soft-factory run --issue <ISSUE_NUMBER> --json`                   |
 
-Use `soft-factory install --recommended` for package-owned asset convergence. Read `soft-factory instructions --json` and require `soft-factory doctor --json` to be ready before starting explicitly authorized work. Status and list are inspection only; lifecycle behavior and retained-resource decisions belong exclusively to Runner.
+The dispatcher runs instructions and Doctor directly, returns Doctor remediation without dispatch when `ready` is false, and otherwise runs the direct issue command exactly once. Its structured result distinguishes dispatch acceptance from ticket completion. It never invokes RPIV itself or manages Runner lifecycle resources.
 
 ## Readiness API and configuration
 
@@ -84,7 +80,7 @@ The Vite foundation uses fixed port 5173. Boot refuses occupied fixed ports with
 
 ## Skills and agent discovery
 
-Engineering-harness validation requires non-empty `SKILL.md` files only for `eng-harness-flow`, `eng-harness-0-harnessability-assessment`, and `grill-agent-done` beneath [`.agents/skills/`](.agents/skills/). It ignores and preserves unrelated sibling skills. [`.harness/skills.lock.json`](.harness/skills.lock.json) records packaged-source provenance only; it does not authorize additional engineering-harness names. Cold agents use the committed files, must not run a broad installer that restores excluded engineering-harness skills, and start from [`AGENTS.md`](AGENTS.md), [`LLM.txt`](LLM.txt), and the [skill index](.github/skills/README.md).
+Engineering-harness validation requires non-empty `SKILL.md` files for exactly `eng-harness-flow`, `eng-harness-0-harnessability-assessment`, and `grill-agent-done` beneath [`.agents/skills/`](.agents/skills/). [`.harness/skills.lock.json`](.harness/skills.lock.json) records packaged-source provenance only; it does not authorize additional names. The Runner facade is a [VS Code agent](.github/agents/runner-dispatcher.agent.md), not a skill. Cold agents start from [`AGENTS.md`](AGENTS.md), [`LLM.txt`](LLM.txt), and the [skill index](.github/skills/README.md).
 
 ## State boundaries and evidence
 
@@ -96,4 +92,4 @@ Future durable generated-application files belong under `.sparkta/apps/`. Recons
 - [`project/architecture/`](project/architecture/) — accepted ADRs and adopted cross-cutting contracts
 - [`project/work-items/`](project/work-items/) — RPIV plans and evidence
 
-Harness and Runner adoption are additive. They require no API or data migration. Existing Runner configuration should converge to protocol 1, the safe roots, final `just verify`, and concurrency 1; do not hand-edit Runner state or replace official assets. There is no server deployment procedure for this local-only foundation.
+Harness and Runner adoption are additive. They require no API or data migration. Runner configuration remains protocol 1 with safe roots, final `just verify`, and concurrency 1; do not hand-edit Runner state. There is no server deployment procedure for this local-only foundation.

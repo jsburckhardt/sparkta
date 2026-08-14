@@ -1,37 +1,47 @@
-# Implementation Evidence: Restore Soft Factory Doctor authority
+# Implementation Evidence: Replace package assets with Runner dispatcher
 
 ## Completed Tasks
 
-- **T-1:** Scoped `verify-harness-skills` to non-empty `SKILL.md` files for `eng-harness-flow`, `eng-harness-0-harnessability-assessment`, and `grill-agent-done`. The recipe no longer enumerates sibling directories and leaves unrelated skills untouched.
-- **T-2:** Assigned Runner compatibility, readiness, configuration, and asset authority exclusively to Doctor while keeping Sparkta project gates independent of Runner diagnostics.
-- **T-3:** Preserved direct official CLI operation, package-owned installation, protocol-1 integration, Runner-owned state, explicit issue input, and `.soft-factory/config.yml` final validation `just verify`. No Runner wrapper or project-validation invocation was added.
-- **T-4:** Updated harness discovery, skills guidance, architecture-facing documentation, and RPIV evidence to describe the three named engineering-harness checks, unrelated-sibling preservation, and Doctor-only Runner authority.
-- **T-5:** Executed V-1 through V-5, including the temporary unrelated sibling control, direct Runner commands, zero-knowledge scans, and focused/full project gates.
+- **T-1:** Removed all three plan-specified unwanted asset surfaces; retained exactly the three engineering-harness skills and the existing Runner configuration, ignores, and RPIV metadata.
+- **T-2:** Added `.github/agents/runner-dispatcher.agent.md` as an APS v1.2.2, VS Code, user- and model-invocable depth-1 leaf with only `execute/runInTerminal` and `execute/getTerminalOutput`.
+- **T-3:** Reconciled live setup, usage, governance, architecture, skill index, harnessability assessment, historical work-item, and current evidence references around the dispatcher and Doctor-only readiness authority.
+- **T-4:** Ran structural, APS, control-flow, inventory, JSON, stale-reference, direct preflight, focused, and full validation without invoking a real issue run.
 
 ## Acceptance Evidence
 
-- **AC-1:** Direct `soft-factory --help` and `soft-factory instructions --json` succeeded. Recommended installation reported the package-owned assets already up to date, and direct Doctor reported ready.
-- **AC-2:** Direct Doctor accepted protocol 1, safe `.trees` and `.soft-factory` roots, and positive concurrency. Instructions reported effective final validation `just verify`; Sparkta project recipes did not inspect Runner configuration.
-- **AC-3:** `soft-factory install --recommended` completed with `ASSETS_UP_TO_DATE` and no changes. Direct Doctor supplied the sole compatibility, readiness, and asset verdict.
-- **AC-4:** Direct `soft-factory doctor --json` returned schema version 1, `ready: true`, and 24 passed checks with no failed check.
-- **AC-5:** `README.md` and `docs/README.md` retain direct commands for run, list/status, reconcile, resume, stop, clean, attach, and logs, with caller-supplied issue input where required.
-- **AC-6:** Direct help, instructions, installation, and Doctor completed without selecting an issue. The temporary unrelated sibling sentinel retained the same SHA-256 before and after engineering-harness validation, and focused/full Sparkta gates remained independent of Runner.
+- **AC-1:** Direct `soft-factory instructions --json` returned schema version 1 and direct `soft-factory doctor --json` returned schema version 1 with `ready: true`; the ambient CLI remained available without repository installation changes.
+- **AC-2:** `.soft-factory/config.yml` retains protocol 1, `.trees`, `.soft-factory`, final validation `just verify`, and concurrency 1. `.github/agents/rpiv.agent.md` retains `runner_protocol: 1` and `result_contract: agent-result-v1`; `.gitignore` retains both Runner roots while allowing configuration.
+- **AC-3:** APS lint passed section order, newline, instructions, frontmatter, tool, format, trigger, and command-count checks. The dispatcher frontmatter is `user-invocable: true`, `disable-model-invocation: false`, and `target: vscode`; its only tools are the two qualified terminal tools. Static control proof found exactly three ordered terminal calls: instructions, Doctor, and one exact run command.
+- **AC-4:** Invalid input branches precede terminal use, the non-ready Doctor branch returns exact structured Doctor output before the run path, Runner output remains exact, and the result separately reports dispatch acceptance and ticket completion. Static proof found no nested delegation, `just` Runner wrapper, lifecycle command invocation, direct state access, retry, or RPIV invocation.
+- **AC-5:** The three unwanted paths are absent. The retained `SKILL.md` inventory is exactly `eng-harness-0-harnessability-assessment`, `eng-harness-flow`, and `grill-agent-done`. Live documentation and current evidence no longer recommend package-managed Copilot asset installation; Research and the old Verify summary are explicitly marked historical/superseded.
+- **AC-6:** APS lint, asset/config assertions, assessment JSON parsing, exact-command negative controls, direct instructions/Doctor preflight, Runner-independence scan, focused checks, and full checks passed. No `soft-factory run` command was executed against any issue.
 
 ## Documentation Evidence
 
-- Updated `AGENTS.md`, `LLM.txt`, `README.md`, `docs/README.md`, `.github/skills/README.md`, and `.harness/engineering-harness.md` for named engineering-harness checks and unrelated-sibling preservation.
-- Existing `project/architecture/README.md` and the engineering-harness and Soft Factory Runner core-components already state the corrected authority boundary and required no further contract change.
-- API behavior, configuration defaults, migrations, deployment, and Sparkta product behavior were unaffected.
-- The remote PR description was not changed during Implement. Verify must regenerate it from this corrected evidence and the final implementation SHA.
+- **Setup and usage:** `README.md`, `docs/README.md`, and `CONTRIBUTING.md` now provide one-hop dispatcher discovery, explicit positive issue input, ordered direct preflight, Doctor remediation, exact dispatch, and launch-versus-completion semantics.
+- **Agent and skill discovery:** `AGENTS.md`, `LLM.txt`, `.github/skills/README.md`, and `.harness/engineering-harness.md` identify the dispatcher as an agent facade and retain exactly three engineering-harness skills.
+- **Architecture:** `project/architecture/README.md`, `CORE-COMPONENT-260813-soft-factory-runner-operation.md`, and `DECISION-LOG.md` define Doctor as sole readiness authority and Runner as sole lifecycle/state owner.
+- **Assessments:** `003-sparkta` and `latest` Markdown/JSON inventories plus `003-sparkta/evidence.jsonl` now describe exactly three committed engineering-harness skills; both JSON reports parse successfully with Node.
+- **Historical evidence:** Research retains a clear pre-revision provenance marker. The prior Verify summary is marked superseded and makes no current acceptance decision. The GitHub issue body and PR body were not changed.
+- **No product impact:** API behavior, application configuration, data, migration, deployment, and Sparkta product behavior are unchanged.
 
 ## Validation Evidence
 
-- **V-1:** `just --show verify-harness-skills` named only the three governed engineering-harness skills and contained no sibling enumeration or Runner knowledge. `just verify-harness-skills` passed with an unrelated temporary sibling present; sentinel digest before and after was `9a74a9b6e01d4c658c79e61e1b7e4cd7d8e0feacb18327a2a775c5b78e227322`.
-- **V-2:** Tracked project recipes, scripts, and tests contained no Runner-specific validation logic or competing compatibility, readiness, configuration, or asset verdicts.
-- **V-3:** Direct help, schema-1 instructions, recommended installation, and schema-1 Doctor succeeded; instructions resolved final validation to `just verify`, installation changed no assets, and Doctor reported 24 passed checks.
-- **V-4:** The operator command matrix and Doctor-only authority language were present in live setup, operations, skills, harness, and architecture documentation.
-- **V-5:** `harness checks focused --json` delegated to `just verify-focused`; `harness checks full --json` delegated to `just verify`; direct instructions still resolved final validation to `just verify`.
+- **APS v1.2.2 lint:** `APS_LINT=PASS`; APS v1.0 section order is `instructions,constants,formats,runtime,triggers,processes,input`; VS Code adapter 2.1.0 frontmatter and least-privilege tool checks passed; formats are `INVALID_INPUT`, `DOCTOR_REMEDIATION`, and `RUNNER_RESULT`.
+- **Control flow:** `CONTROL_FLOW=PASS`; terminal invocations are exactly instructions, Doctor, run in order; missing, multiple, zero, negative, fractional, signed, and invalid inputs are rejected before terminal use; Doctor non-ready returns without run; positive launch execution was false.
+- **Inventory and integration:** `ASSET_INVENTORY=PASS`; exactly three engineering-harness skills remain; protocol, root, validation, concurrency, ignore, and RPIV metadata assertions passed.
+- **Assessment JSON:** `ASSESSMENT_JSON=PASS` for `003-sparkta/report.json` and `latest.json`.
+- **Runner independence:** `PROJECT_VALIDATION_RUNNER_INDEPENDENCE=PASS`; root recipes, package metadata, applications, and devcontainer state contain no Runner execution dependency.
+- **Direct preflight:** Instructions returned schema version 1 and effective final validation `just verify`. Doctor returned schema version 1, `ready: true`, and 24 passed blocking checks.
+- **Focused gate:** `harness checks focused --json` delegated exactly to `just verify-focused`; 6 files and 13 tests passed with exit code 0.
+- **Full gate:** The first `harness checks full --json` reached `just verify` and reported a `README.md` Prettier mismatch. After applying the existing formatter, the rerun delegated exactly to `just verify` and passed tests, lint, formatting, type-check, build, and diff integrity with exit code 0.
+
+## Warnings and Friction
+
+- Harness Doctor is usable but degraded because harness telemetry capture is intentionally off and the installed `git-ai` binary directory is absent from editor PATH. Its next actions remain environment-owned.
+- `rg` and the required `apply_patch` helper were absent. Tracked-file scans used `git grep`; patch-only edits used a local asserted `apply_patch` fallback. The minimal `python3` lacked `json.tool`, so assessment JSON parsing used the existing Node runtime.
+- The host exposed no callable slash-skill tool to fire `/eng-harness-flow --hook coding` or `/eng-harness-flow --hook post-coding`; concrete friction was still captured through `harness observe` as required. The observation bucket contains prior-session entries, so it was not cleared destructively.
 
 ## Handoff Status
 
-Implementation is complete and committed by the SHA supplied in the Implement handoff. Final acceptance remains owned by Verify.
+Implementation is complete pending the managed implementation commit. Final acceptance remains owned by Verify.

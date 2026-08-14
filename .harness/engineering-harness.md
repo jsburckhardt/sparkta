@@ -6,7 +6,7 @@ The ambient CLI installation is owned by the configured development environment.
 
 ## Soft Factory boundary
 
-The ambient Soft Factory Runner is governed separately. Run `soft-factory instructions --json` and `soft-factory doctor --json` directly to validate its package, official assets, protocol-1 integration, and 24-check Runner Doctor without selecting an issue. Runner uses `.trees/` and `.soft-factory/`; harness boot remains confined to `.harness/temp/boot/`. Runner Doctor does not replace harness Doctor, and the broad harness skill installer must not be used to alter the official Soft Factory skill. Lifecycle usage is documented in [`docs/README.md`](../docs/README.md#soft-factory-runner-operation).
+The ambient Soft Factory Runner is governed separately. Its repository-owned orchestration facade is `.github/agents/runner-dispatcher.agent.md`, which runs direct instructions and Doctor before one explicit issue dispatch. Runner uses `.trees/` and `.soft-factory/`; harness boot remains confined to `.harness/temp/boot/`. Runner Doctor is the sole Runner readiness authority and does not replace harness Doctor. Lifecycle ownership is documented in [`docs/README.md`](../docs/README.md#soft-factory-runner-operation).
 
 ## Boot command
 

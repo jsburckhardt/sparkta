@@ -23,7 +23,7 @@ Harness ownership under `.harness/temp/boot/` is engineering evidence, not Spark
 
 ## Soft Factory Runner boundary
 
-The adopted [Soft Factory Runner operating contract](core-components/CORE-COMPONENT-260813-soft-factory-runner-operation.md) governs the environment-owned CLI, protocol-1 configuration, safe `.trees/` and `.soft-factory/` roots, official assets, canonical RPIV injected handoff, direct CLI operation, explicit-issue lifecycle, and readiness validation. Direct `soft-factory doctor --json` is the sole authority for Runner compatibility, repository readiness, and official-asset interpretation; Sparkta does not claim or implement a separate repository check for that contract. Runner state is independent of harness evidence and Sparkta product state. Sparkta focused/full validation does not inspect Runner configuration or assets, while engineering-harness validation checks only its three named skills and ignores unrelated siblings.
+The adopted [Soft Factory Runner operating contract](core-components/CORE-COMPONENT-260813-soft-factory-runner-operation.md) governs the environment-owned CLI, protocol-1 configuration, safe `.trees/` and `.soft-factory/` roots, canonical RPIV handoff, and the APS v1.2.2 `runner-dispatcher` facade. Direct `soft-factory doctor --json` is the sole Runner readiness authority; Sparkta does not claim or implement a separate repository check. Runner state is independent of harness evidence and Sparkta product state. Sparkta focused/full validation does not inspect Runner configuration or state, while engineering-harness validation requires exactly its three named skills.
 
 ## Scope boundary
 

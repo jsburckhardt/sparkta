@@ -45,26 +45,19 @@ All three are gitignored and separate from `.sparkta/apps/` and `.sparkta/runtim
 
 ## Soft Factory Runner operation
 
-The repository commits protocol-1 configuration and official assets while the configured environment owns the CLI. `.trees/` is the isolated-worktree root. Only `.soft-factory/config.yml` is committed beneath the state root; runtime descendants are ignored. Concurrency is 1 and each new run snapshots final validation as `just verify`. Runner state is separate from harness `.harness/temp/boot/` and product `.sparkta/` state.
+The repository commits protocol-1 configuration and the APS v1.2.2 [`runner-dispatcher`](../.github/agents/runner-dispatcher.agent.md), while the configured environment owns the CLI. `.trees/` is the isolated-worktree root. Only `.soft-factory/config.yml` is committed beneath the state root; runtime descendants are ignored. Concurrency is 1 and each new run snapshots final validation as `just verify`. Runner state is separate from harness `.harness/temp/boot/` and product `.sparkta/` state.
 
 Runner Doctor and harness Doctor are different authorities: use `soft-factory doctor --json` for all 24 Runner repository checks and `harness doctor --json` for harness extensions and environment diagnostics. Never manipulate Runner worktrees, locks, leases, snapshots, processes, result files, recovery, logs, or cleanup directly.
 
-A caller must explicitly authorize one positive `<ISSUE_NUMBER>`; operators and agents must not queue, rank, infer, or select one. Invoke every supported lifecycle interface directly:
+A caller must provide exactly one explicit positive `<ISSUE_NUMBER>`; operators and agents must not queue, rank, infer, or select one. The dispatcher is both user- and model-invocable and exposes only the qualified VS Code terminal tools needed to run commands and retrieve output:
 
-| Workflow                   | Direct CLI invocation                                                      |
-| -------------------------- | -------------------------------------------------------------------------- |
-| Run                        | `soft-factory run --issue <ISSUE_NUMBER> --json`                           |
-| List and status inspection | `soft-factory list --json` and `soft-factory status <ISSUE_NUMBER> --json` |
-| Reconcile                  | `soft-factory reconcile <ISSUE_NUMBER> --json`                             |
-| Resume                     | `soft-factory resume <ISSUE_NUMBER> --json`                                |
-| Stop                       | `soft-factory stop <ISSUE_NUMBER> --json`                                  |
-| Clean retained resources   | `soft-factory clean <ISSUE_NUMBER> --json`                                 |
-| Attach                     | `soft-factory attach <ISSUE_NUMBER>`                                       |
-| Logs                       | `soft-factory logs <ISSUE_NUMBER> --json`                                  |
+1. It rejects missing, multiple, nonpositive, fractional, signed, or invalid issue input before terminal use.
+2. It runs `soft-factory instructions --json` directly.
+3. It runs `soft-factory doctor --json` directly and returns its exact structured remediation when `ready` is false.
+4. Only when Doctor reports ready, it runs exactly `soft-factory run --issue <ISSUE_NUMBER> --json` once.
+5. It returns exact Runner output and distinguishes dispatch acceptance from ticket completion.
 
-Before an authorized run, inspect `soft-factory instructions --json` and require `soft-factory doctor --json` to report ready. `status` and `list` do not select an issue. Reconcile, resume, stop, clean, attach, and logs always target the explicit issue supplied by the caller.
-
-Runner Doctor is the sole authority that interprets the package-owned manifest and official Operator, Assessor, and skill assets. Use `soft-factory install --recommended` for package-owned convergence, then require `soft-factory doctor --json` to report ready; do not manually replace these files or run the broad harness skill installer.
+The dispatcher does not invoke RPIV agents, retry refusals, use `just`, inspect `.trees` or `.soft-factory`, or manage locks, processes, worktrees, recovery, logs, or cleanup. Those resources and all lifecycle decisions remain Runner-owned. Project validation remains Runner-independent.
 
 ## Validation
 
@@ -148,4 +141,4 @@ No persistence repository, runtime manager, schema, lifecycle API, generated app
 
 ## Migration and deployment impact
 
-Harness adoption, Runner integration, and `GET /api/readiness` are additive. They introduce no breaking API or data migration. Existing Runner users converge configuration to protocol 1, `.trees`, `.soft-factory`, `just verify`, and concurrency 1 without deleting state or replacing official assets. The foundation has no server deployment procedure; both ambient tools remain local configured-environment prerequisites.
+Harness adoption, Runner integration, and `GET /api/readiness` are additive. They introduce no breaking API or data migration. Runner configuration remains protocol 1 with `.trees`, `.soft-factory`, `just verify`, and concurrency 1. The foundation has no server deployment procedure; both ambient tools remain local configured-environment prerequisites.

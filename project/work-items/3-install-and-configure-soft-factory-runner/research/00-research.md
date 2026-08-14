@@ -1,5 +1,7 @@
 # Research Brief: Install and configure Soft Factory Runner
 
+> **Historical Research:** This brief records the repository state before the user-approved revised plan. Its package-asset findings and original Issue #3 criteria are superseded by `plan/01-action-plan.md`; they are retained only as Research-stage provenance.
+
 ## GitHub Issue
 - **Issue:** #3
 - **Title:** Install and configure Soft Factory Runner

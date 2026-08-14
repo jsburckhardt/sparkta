@@ -6,75 +6,76 @@ Adopted
 
 ## Purpose
 
-Provide one safe operating contract for isolated and recoverable RPIV delivery through the environment-owned Soft Factory Runner without repository-specific orchestration, command wrappers, or duplicated Runner behavior.
+Provide one safe repository-owned dispatch surface for delivering one explicitly supplied GitHub issue through the environment-owned Soft Factory Runner without duplicating Runner orchestration, state, recovery, or cleanup.
 
 ## Scope
 
-This contract applies to the ambient `soft-factory-runner` CLI, repository configuration and ignore boundaries, official Operator/Assessor/skill assets, canonical RPIV integration metadata and injected handoffs, direct operator commands, readiness diagnostics, and preservation of Runner-owned resources. It does not install or wrap the CLI, select an issue, start a run, or change Sparkta product state.
+This contract applies to the ambient `soft-factory-runner` CLI, protocol-1 repository configuration, canonical RPIV metadata, `.github/agents/runner-dispatcher.agent.md`, direct Runner preflight and launch commands, and Runner-owned resources. It excludes package-installed Operator, Assessor, skill, and manifest assets and adds no project command wrapper.
 
 ## Definition
 
 ### Rules
 
-- The configured development environment MUST provide `soft-factory-runner` and the `soft-factory` CLI; repository npm, lockfile, setup, and devcontainer configuration MUST NOT install or reproduce it.
-- `.soft-factory/config.yml` MUST declare protocol 1, worktree root `.trees`, state root `.soft-factory`, final validation `just verify`, and concurrency 1.
-- `just verify` is the Sparkta validation command Runner/RPIV invokes; it is not a Soft Factory command wrapper.
-- Git ignore rules MUST cover `.trees` descendants and `.soft-factory` runtime state while keeping `.soft-factory/config.yml` committable.
-- The canonical `.github/agents/rpiv.agent.md` MUST retain `runner_protocol: 1` and `result_contract: agent-result-v1` and consume only Runner-injected helpers when launched by Runner.
-- The official Operator, Assessor, Soft Factory skill, and `.agents/manifest.json` MUST remain package-owned compatibility assets; installation and upgrades MUST use Runner directly rather than manual replacement, and their compatibility/readiness MUST be determined only by `soft-factory doctor --json`.
-- Runner MUST remain the sole control plane for its RPIV launch binding, worktrees, locks, leases, snapshots, progress, result publication, processes, recovery, logs, and cleanup.
-- Operators MUST invoke `soft-factory` directly. The repository MUST NOT provide `operational Just wrapper`, operational Runner recipes, custom Operator, helper-adapter, or synthetic Runner orchestration surfaces.
-- Every issue-specific command MUST receive one caller-supplied positive issue number; agents MUST NOT queue, rank, infer, or select an issue.
-- The root `justfile` MUST remain authoritative for Sparkta setup, run, and focused/full project verification. Those recipes MUST NOT run a Soft Factory-specific repository check, execute Runner, inspect Runner configuration, or check, enumerate, require, hash, or otherwise interpret official Soft Factory assets.
-- `soft-factory instructions --json` and `soft-factory doctor --json` MUST be run directly as operator preflight; they MUST NOT be hidden inside project validation.
-- `soft-factory doctor --json` is the sole authority for Runner compatibility and repository readiness.
-- The repository MUST NOT duplicate Runner compatibility, readiness, configuration, manifest, or asset validation. Repository evidence MUST cite Doctor as the sole authority for those verdicts.
+- The configured environment MUST provide `soft-factory-runner` and `soft-factory`; repository npm, lockfile, setup, and devcontainer configuration MUST NOT install it.
+- `.soft-factory/config.yml` MUST declare protocol 1, `.trees`, `.soft-factory`, final validation `just verify`, and concurrency 1.
+- Git ignore rules MUST cover Runner roots while keeping `.soft-factory/config.yml` committable.
+- `.github/agents/rpiv.agent.md` MUST retain `runner_protocol: 1` and `result_contract: agent-result-v1`.
+- `.github/agents/runner-dispatcher.agent.md` MUST be a repository-owned APS framework revision 1.2.2 VS Code agent conforming to APS v1.0, the VS Code adapter, and the subagent architecture guide.
+- The dispatcher MUST be user-invocable and model-invocable as a leaf worker and expose only least-privilege terminal tools.
+- The dispatcher MUST accept exactly one explicit positive issue number and refuse missing, ambiguous, zero, negative, or multiple issue input before invoking Runner.
+- The dispatcher MUST invoke `soft-factory instructions --json`, then `soft-factory doctor --json`, then exactly `soft-factory run --issue <ISSUE_NUMBER> --json` only when Doctor reports ready.
+- The dispatcher MUST return Doctor remediation without running an issue when Doctor is not ready.
+- The dispatcher MUST report the structured Runner result, including refusal, without retrying or invoking lifecycle recovery commands.
+- Runner MUST remain sole owner of RPIV launch, worktrees, locks, leases, snapshots, progress, results, processes, recovery, logs, and cleanup.
+- The repository MUST NOT provide a `just` wrapper, shell wrapper, direct Runner-state access, competing RPIV orchestration, or second readiness implementation.
+- `.agents/agents/`, `.agents/manifest.json`, and `.agents/skills/soft-factory/SKILL.md` MUST be absent.
+- Repository guidance MUST NOT prescribe `soft-factory install --recommended`.
+- `soft-factory doctor --json` MUST remain the sole Runner readiness authority.
+- Sparkta validation MUST remain Runner-independent and MUST NOT invoke Runner or inspect Runner state.
 
 ### Interfaces
 
-- Direct discovery and preflight: `soft-factory --help`, `soft-factory instructions --json`, `soft-factory install --recommended`, and `soft-factory doctor --json`.
-- Direct lifecycle: `soft-factory run --issue <ISSUE_NUMBER> --json`, `list`, `status`, `reconcile`, `resume`, `stop`, `clean`, `attach`, and `logs` with explicit issue input where required.
+- Dispatcher: `.github/agents/runner-dispatcher.agent.md` with one explicit positive issue number in `USER_INPUT`.
+- Direct preflight: `soft-factory instructions --json` and `soft-factory doctor --json`.
+- Direct launch: `soft-factory run --issue <ISSUE_NUMBER> --json`.
 - Sparkta validation: `just verify-focused` and `just verify`.
-- Committed Runner surfaces are interpreted by Runner Doctor rather than Sparkta project-validation recipes.
+- Runner integration: `.soft-factory/config.yml` and `.github/agents/rpiv.agent.md`, interpreted by Runner Doctor.
 
 ### Expectations
 
-- A cold operator discovers and operates Runner through its official direct CLI.
-- Doctor reports all ordered readiness checks and actionable remediation for failed prerequisites.
-- Official asset compatibility and readiness are reported by Runner Doctor, while installation and upgrades preserve unrelated `.agents/` content.
-- Runner state never overlaps `.harness/temp/boot/`, `.sparkta/apps/`, or `.sparkta/runtime/`.
-- Project validation remains independent of Runner diagnostics, configuration, assets, and behavior.
+- A human or orchestrator can invoke one leaf dispatcher with one explicit issue number.
+- Invalid input causes no Runner command.
+- Doctor failure causes no issue run and returns actionable remediation.
+- Runner refusal is surfaced without repository-owned recovery behavior.
+- Runner state never overlaps harness or Sparkta product state.
+- The three engineering-harness skills remain under `.agents/skills/` without a Soft Factory skill sibling.
 
 ## Rationale
 
-Runner already owns complete issue delivery, compatibility diagnostics, readiness, official-asset interpretation, and operational safety. Direct CLI operation keeps that ownership legible and prevents Sparkta from creating a second orchestration or validation layer. The root `justfile` remains a project command interface: Runner may invoke `just verify`, while operators invoke Runner itself directly.
+Runner already owns complete issue delivery and operational safety. A narrow APS VS Code agent provides a discoverable human and orchestrator entry point while preserving direct CLI authority. Removing package-installed Copilot assets keeps repository behavior explicit, reviewable, and least privilege.
 
 ## Usage Examples
 
 ```text
-soft-factory --help
+Invoke runner-dispatcher with: Deliver GitHub Issue #3.
 soft-factory instructions --json
 soft-factory doctor --json
 soft-factory run --issue 3 --json
-soft-factory status 3 --json
-just verify-focused
-just verify
 ```
 
 ## Integration Guidelines
 
-- Read `soft-factory instructions --json` before changing RPIV compatibility behavior.
-- Run `soft-factory doctor --json` directly and retain every failed check and remediation.
-- Use the official direct CLI for every lifecycle operation; do not manipulate Runner-owned resources directly.
-- Keep `.soft-factory/config.yml` final validation at `just verify` unless a separately planned project-validation decision changes it.
-- Keep `just verify-focused` and `just verify` free of Soft Factory configuration, asset, manifest, skill, hash, compatibility, and readiness checks.
-- Let engineering-harness validation check only its three named skills and preserve unrelated `.agents/skills/` siblings without enumerating them.
-- Preserve official assets and harnessability assessment artifacts byte-for-byte unless a separately planned package upgrade changes them.
+- Load APS v1.0, the VS Code adapter, and the subagent architecture guide before changing the dispatcher.
+- Keep workflow logic in APS `<processes>` and static constraints in `<instructions>`.
+- Keep input and result contracts explicit in `<input>` and `<formats>`.
+- Keep the dispatcher as a leaf worker with no nested delegation.
+- Preserve Runner JSON instead of creating a competing success or recovery model.
+- Keep project validation independent of Runner availability and state.
 
 ## Exceptions
 
-- An unavailable or incompatible ambient CLI is an environment-owned blocker and MUST NOT be repaired through repository dependencies or wrappers.
-- No exception permits issue inference, direct Runner-state mutation, force cleanup, replacement of an immutable result, or bypass of `just verify`.
+- An unavailable ambient CLI is an environment-owned blocker and MUST NOT be repaired through repository dependencies or wrappers.
+- No exception permits issue inference from repository state, direct state mutation, dispatcher recovery, or Doctor bypass.
 
 ## Enforcement
 
