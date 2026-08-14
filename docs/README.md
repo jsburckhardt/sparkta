@@ -64,7 +64,7 @@ A caller must explicitly authorize one positive `<ISSUE_NUMBER>`; operators and 
 
 Before an authorized run, inspect `soft-factory instructions --json` and require `soft-factory doctor --json` to report ready. `status` and `list` do not select an issue. Reconcile, resume, stop, clean, attach, and logs always target the explicit issue supplied by the caller.
 
-The strict `.agents/manifest.json` governs the official Operator, Assessor, and Soft Factory skill at version 0.1.0 and Runner protocol 1. Use `soft-factory install --recommended` to prove package-catalog convergence; do not manually replace these files or run the broad harness skill installer.
+Runner Doctor is the sole authority that interprets the package-owned manifest and official Operator, Assessor, and skill assets. Use `soft-factory install --recommended` for package-owned convergence, then require `soft-factory doctor --json` to report ready; do not manually replace these files or run the broad harness skill installer.
 
 ## Validation
 
@@ -109,7 +109,7 @@ Fastify/Pino request logs use correlation IDs, omit request bodies, and redact a
 
 ## GitHub Copilot skills
 
-The committed engineering-harness allowlist under [`.agents/skills/`](../.agents/skills/) is exactly `eng-harness-flow`, `eng-harness-0-harnessability-assessment`, and `grill-agent-done`; the separately governed official `soft-factory` skill is the only additional directory, as indexed in [`.github/skills/README.md`](../.github/skills/README.md). [`.harness/skills.lock.json`](../.harness/skills.lock.json) records project scope and packaged-source provenance only; it does not authorize additional names. Cold-agent use depends only on committed skill content. Do not run a broad installer that would restore other packaged skills.
+Engineering-harness validation under [`.agents/skills/`](../.agents/skills/) checks non-empty `SKILL.md` files only for `eng-harness-flow`, `eng-harness-0-harnessability-assessment`, and `grill-agent-done`. It neither enumerates nor modifies unrelated sibling skills. [`.harness/skills.lock.json`](../.harness/skills.lock.json) records project scope and packaged-source provenance only; it does not authorize additional engineering-harness names. Cold-agent use depends only on committed skill content. Do not run a broad installer that would restore excluded engineering-harness skills.
 
 ## RPIV harness seams
 

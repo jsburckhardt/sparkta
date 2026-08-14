@@ -25,7 +25,7 @@ prettier.config.js — Shared formatting configuration
 .harness/records/harness-change/ — Validated engineering-harness capability change ledger
 .harness/reports/harnessability/ — Historical branch-main static assessment; not current runtime proof
 .harness/temp/boot/ — Gitignored transient runtime ownership, evidence, and log paths
-.agents/skills/ — Three engineering-harness skills plus separately governed official soft-factory skill
+.agents/skills/ — Three governed engineering-harness skills; unrelated sibling skills are ignored and preserved
 apps/web/package.json — React/Vite workspace manifest
 apps/web/src/App.tsx — Neutral Sparkta foundation view
 apps/web/src/foundation.ts — Exported web foundation identity

@@ -1,37 +1,37 @@
-# Implementation Evidence: Correct Soft Factory Runner operation
-
-> **Status: Superseded - returned to Plan on 2026-08-14.** This evidence does not prove the corrected plan. The prior focused/full gates still required the separately governed Soft Factory skill through `justfile#verify-harness-skills`, so their success cannot establish Runner-independent Sparkta validation. Implement must replace the affected AC evidence after completing T-1 through T-5.
-
-## Correction
-
-The final implementation keeps Runner compatibility and readiness under the direct official CLI. Sparkta's root recipes remain project-only gates and do not invoke Runner or perform separate Runner diagnostics.
+# Implementation Evidence: Restore Soft Factory Doctor authority
 
 ## Completed Tasks
 
-- **T-1:** Restored the three RPIV agents to the accepted baseline and removed the rejected custom orchestration surfaces.
-- **T-2:** Kept every Runner discovery, preflight, installation, and lifecycle workflow on direct `soft-factory` commands with one caller-supplied positive issue number where required.
-- **T-3:** Made `just verify-focused` and `just verify` independent of Soft Factory diagnostics while preserving the official assets, integration metadata, and final Runner validation setting.
-- **T-4:** Ran direct Runner Doctor and both project gates, completed a comprehensive repository scan, and prepared the correction without pushing or mutating GitHub.
+- **T-1:** Scoped `verify-harness-skills` to non-empty `SKILL.md` files for `eng-harness-flow`, `eng-harness-0-harnessability-assessment`, and `grill-agent-done`. The recipe no longer enumerates sibling directories and leaves unrelated skills untouched.
+- **T-2:** Kept the repository-owned Runner checker deleted and removed project-gate and evidence references that assigned Runner compatibility, readiness, configuration, manifest, or asset authority to Sparkta validation.
+- **T-3:** Preserved direct official CLI operation, package-owned installation, protocol-1 integration, Runner-owned state, explicit issue input, and `.soft-factory/config.yml` final validation `just verify`. No Runner wrapper or project-validation invocation was added.
+- **T-4:** Updated harness discovery, skills guidance, architecture-facing documentation, and RPIV evidence to describe the three named engineering-harness checks, unrelated-sibling preservation, and Doctor-only Runner authority.
+- **T-5:** Executed V-1 through V-5, including the temporary unrelated sibling control, direct Runner commands, zero-knowledge scans, and focused/full project gates.
 
 ## Acceptance Evidence
 
-- **AC-1:** The ambient `soft-factory` CLI remains directly available as `soft-factory-runner@0.1.0`.
-- **AC-2:** `.soft-factory/config.yml` remains protocol 1 with `.trees`, `.soft-factory`, final `just verify`, and concurrency 1. Direct Doctor accepted the configuration.
-- **AC-3:** Superseded. Asset presence and compatibility must be established through official installation and `soft-factory doctor --json`, not independent file or hash checks.
-- **AC-4:** Direct `soft-factory doctor --json` exited 0 with schema version 1, `ready: true`, repository `jsburckhardt/sparkta`, default branch `main`, and 24 of 24 blocking checks passed.
-- **AC-5:** `README.md` and `docs/README.md` retain the direct lifecycle command matrix. The root command interface has no operational Runner recipe and does not execute `soft-factory`.
-- **AC-6:** Superseded. The prior project gates passed only because harness governance still enumerated and required the Soft Factory skill. Corrected evidence must prove those gates know only Sparkta and the three engineering-harness skills while preserving unrelated siblings.
+- **AC-1:** Direct `soft-factory --help` and `soft-factory instructions --json` succeeded. Recommended installation reported the package-owned assets already up to date, and direct Doctor reported ready.
+- **AC-2:** Direct Doctor accepted protocol 1, safe `.trees` and `.soft-factory` roots, and positive concurrency. Instructions reported effective final validation `just verify`; Sparkta project recipes did not inspect Runner configuration.
+- **AC-3:** `soft-factory install --recommended` completed with `ASSETS_UP_TO_DATE` and no changes. Direct Doctor supplied the sole compatibility, readiness, and asset verdict.
+- **AC-4:** Direct `soft-factory doctor --json` returned schema version 1, `ready: true`, and 24 passed checks with no failed check.
+- **AC-5:** `README.md` and `docs/README.md` retain direct commands for run, list/status, reconcile, resume, stop, clean, attach, and logs, with caller-supplied issue input where required.
+- **AC-6:** Direct help, instructions, installation, and Doctor completed without selecting an issue. The temporary unrelated sibling sentinel retained the same SHA-256 before and after engineering-harness validation, and focused/full Sparkta gates remained independent of Runner.
 
 ## Documentation Evidence
 
-Updated `README.md`, `LLM.txt`, the Soft Factory operating core-component, the decision log, all Issue #3 Plan artifacts, the existing verification summary, and this implementation evidence. No API, configuration default, migration, deployment, or Sparkta product behavior changed. The harnessability assessment reports contained no rejected identifiers or stale claims requiring edits.
+- Updated `AGENTS.md`, `LLM.txt`, `README.md`, `docs/README.md`, `.github/skills/README.md`, and `.harness/engineering-harness.md` for named engineering-harness checks and unrelated-sibling preservation.
+- Existing `project/architecture/README.md` and the engineering-harness and Soft Factory Runner core-components already state the corrected authority boundary and required no further contract change.
+- API behavior, configuration defaults, migrations, deployment, and Sparkta product behavior were unaffected.
+- The remote PR description was not changed during Implement. Verify must regenerate it from this corrected evidence and the final implementation SHA.
 
-## Validation Notes
+## Validation Evidence
 
-Direct Doctor is the sole Runner compatibility and readiness authority. Sparkta focused/full validation remains the final project validation configured in `.soft-factory/config.yml`, but those recipes neither execute Runner nor perform a Soft Factory-specific check. Final acceptance remains owned by Verify.
+- **V-1:** `just --show verify-harness-skills` named only the three governed engineering-harness skills and contained no sibling enumeration or Runner knowledge. `just verify-harness-skills` passed with an unrelated temporary sibling present; sentinel digest before and after was `9a74a9b6e01d4c658c79e61e1b7e4cd7d8e0feacb18327a2a775c5b78e227322`.
+- **V-2:** The deleted checker remained absent. Tracked project recipes, scripts, and tests contained no Runner CLI, configuration, manifest, asset, compatibility, readiness, or digest checks.
+- **V-3:** Direct help, schema-1 instructions, recommended installation, and schema-1 Doctor succeeded; instructions resolved final validation to `just verify`, installation changed no assets, and Doctor reported 24 passed checks.
+- **V-4:** The operator command matrix and Doctor-only authority language were present in live setup, operations, skills, harness, and architecture documentation.
+- **V-5:** `harness checks focused --json` delegated to `just verify-focused`; `harness checks full --json` delegated to `just verify`; direct instructions still resolved final validation to `just verify`.
 
-## Verify-Return Repair
+## Handoff Status
 
-- Rewrote the stale architecture overview so it names direct `soft-factory doctor --json` as the sole Runner compatibility and repository-readiness authority and explicitly disclaims a separate Sparkta repository check.
-- Searched all tracked files, excluding Git object history, for all four stale markers specified in the Verify return; the repaired tree contains zero matches.
-- Re-ran direct Runner Doctor and the focused and full root project gates. No Runner configuration, direct CLI contract, official asset, or remote pull-request content changed.
+Implementation is complete and committed by the SHA supplied in the Implement handoff. Final acceptance remains owned by Verify.

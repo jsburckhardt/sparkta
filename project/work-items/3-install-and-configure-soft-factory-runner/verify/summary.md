@@ -1,41 +1,29 @@
 # Verification Summary: Issue #3
 
-> **Verdict withdrawn - returned to Plan on 2026-08-14.** PR #11 is not accepted at the recorded implementation SHA. `justfile#verify-harness-skills` still enumerates and requires the separately governed Soft Factory skill, contradicting Doctor-only authority and invalidating the prior project-gate evidence. Verify must rerun against a new Implement handoff after T-1 through T-5.
+> **Pending independent Verify rerun.** The earlier verdict and evidence are superseded by the corrected T-1 through T-5 implementation. This file records the required verification target without claiming acceptance.
 
 - **Work item:** `project/work-items/3-install-and-configure-soft-factory-runner`
-- **Verified branch:** `issue-3-install-and-configure-soft-factory-runner`
-- **Implementation commit:** `be32feb71104cadafae405f3b5162e14a822b698`
-- **Base commit:** `51679e6bd5559854b2827776af3faa743128851b`
-- **Pull request:** https://github.com/jsburckhardt/sparkta/pull/11
+- **Branch:** `issue-3-install-and-configure-soft-factory-runner`
+- **Implementation commit:** Supplied by the new Implement handoff
+- **Pull request:** #11; not modified during Implement
 
-## Acceptance decisions
+## Corrected verification target
 
-- **AC-1 - Passed.** The ambient executable resolves at `/usr/local/share/nvm/versions/node/v24.19.0/bin/soft-factory`, global package identity is `soft-factory-runner@0.1.0`, and direct help and instructions exited successfully.
-- **AC-2 - Passed.** `.soft-factory/config.yml` declares protocol 1, `.trees`, `.soft-factory`, final `just verify`, and concurrency 1. Direct Doctor accepted the configuration.
-- **AC-3 - Withdrawn.** Independent official-asset hashes are not valid acceptance authority. Official installation plus `soft-factory doctor --json` must provide the replacement verdict.
-- **AC-4 - Passed.** Direct `soft-factory doctor --json` returned schema 1, `ready: true`, and 24 of 24 blocking checks passed with the official per-check diagnostic contract.
-- **AC-5 - Passed.** README and detailed operator documentation cover direct run, list/status, reconcile, resume, stop, clean, attach, and logs commands with explicit issue placeholders. No operational Runner recipe or wrapper remains.
-- **AC-6 - Withdrawn.** The prior `just verify` still enforced the Soft Factory skill/directory and therefore was not Runner-independent.
+- Confirm `verify-harness-skills` checks non-empty content only for `eng-harness-flow`, `eng-harness-0-harnessability-assessment`, and `grill-agent-done`.
+- Confirm project validation does not enumerate, reject, require, inspect, or modify unrelated `.agents/skills/` siblings.
+- Confirm the repository-owned Runner checker is absent and project recipes, scripts, and tests contain no Runner compatibility, readiness, configuration, manifest, asset, or digest logic.
+- Treat direct `soft-factory doctor --json` as the sole Runner compatibility, readiness, configuration, and asset verdict.
+- Confirm direct Runner operation and explicit issue input remain documented for run, list/status, reconcile, resume, stop, clean, attach, and logs.
+- Confirm `.soft-factory/config.yml` retains final validation `just verify` and direct instructions resolve the same command.
 
-## Rejected implementation review
+## Implementation evidence available to Verify
 
-The complete branch diff and the correction from rejected commit `5f704997f33a892f46590045e003fd17a1858c83` were independently inspected. The Sparkta-specific Operator, integration adapter, synthetic canary, rejected retro, executable APS wiring, operational recipes, and repository-owned Runner checker are absent from the final tree. The three RPIV agents match the `e67a2ac5d4f7c56b80007a2a5404f9c00fa21fec` baseline byte-for-byte. The root `justfile` never executes Runner or a Soft Factory-specific check.
+- V-1 unrelated-sibling preservation control with byte-identical sentinel evidence.
+- V-2 zero-knowledge scans across project gates, scripts, tests, live evidence, and the complete branch diff.
+- V-3 direct help, instructions, recommended installation, and Doctor results without issue selection.
+- V-4 direct operator documentation matrix and corrected authority language.
+- V-5 focused/full harness delegation and final-validation resolution.
 
-## Documentation review
+## PR description requirement
 
-Passed for README, API/no-API impact, configuration, setup, usage, migration, architecture, operations, cleanup, and deployment ownership. Live documentation, governance, plans, implementation evidence, verification evidence, scripts, and the root command interface consistently require direct `soft-factory` operation. Runner state remains separate from harness and product state.
-
-## Scope, architecture, and commit review
-
-The complete branch diff was reviewed against the corrected action plan, task breakdown, test plan, ADRs, and core-components. The final tree is limited to ambient Runner integration, official assets, canonical RPIV metadata, direct-CLI documentation, architecture/decision records, assessment evidence, and work-item artifacts. Every branch commit uses a Conventional Commit message and the required Copilot co-author trailer.
-
-## Validation results
-
-- `soft-factory instructions --json` - passed; schema 1 and effective final validation `just verify`.
-- `soft-factory doctor --json` - passed; 24/24 checks and `ready: true`.
-- Official asset, manifest, and RPIV baseline comparisons - superseded; do not reuse as compatibility/readiness/asset proof.
-- Rejected-file and prohibited-wrapper searches - passed.
-- `just verify` - passed: harness governance, 13 tests, lint, formatting, type-check, build, and branch diff integrity.
-- Working tree before verification and after validation - clean.
-
-No real issue run or Runner lifecycle mutation was performed.
+Verify must replace the current PR description with AC-1 through AC-6 evidence from the corrected implementation and exact final head. Implement did not push, update GitHub, or claim final acceptance.

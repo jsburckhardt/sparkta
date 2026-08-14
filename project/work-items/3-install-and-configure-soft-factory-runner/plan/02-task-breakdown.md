@@ -2,7 +2,7 @@
 
 ## Task T-1: Scope engineering-harness validation
 
-- **Status:** Pending
+- **Status:** Complete
 - **Complexity:** Medium
 - **Dependencies:** None
 - **Acceptance Criteria:** AC-2, AC-6
@@ -30,7 +30,7 @@ Change `justfile#verify-harness-skills` so it validates presence of only `eng-ha
 
 ## Task T-2: Remove duplicate Soft Factory authority
 
-- **Status:** Pending
+- **Status:** Complete
 - **Complexity:** Medium
 - **Dependencies:** T-1
 - **Acceptance Criteria:** AC-2, AC-3, AC-4, AC-5, AC-6
@@ -59,7 +59,7 @@ Keep `scripts/verify-soft-factory.mjs` absent and remove every reference that tr
 
 ## Task T-3: Preserve direct Runner ownership
 
-- **Status:** Pending
+- **Status:** Complete
 - **Complexity:** Small
 - **Dependencies:** T-2
 - **Acceptance Criteria:** AC-1, AC-2, AC-3, AC-4, AC-6
@@ -86,7 +86,7 @@ Preserve direct official CLI operation, package-owned asset installation, protoc
 
 ## Task T-4: Reconcile documentation and evidence
 
-- **Status:** Pending
+- **Status:** Complete
 - **Complexity:** Medium
 - **Dependencies:** T-1, T-2, T-3
 - **Acceptance Criteria:** AC-3, AC-4, AC-5, AC-6
@@ -116,7 +116,7 @@ Update live harness discovery and skills documentation to describe only the thre
 
 ## Task T-5: Prove the boundary
 
-- **Status:** Pending
+- **Status:** Complete
 - **Complexity:** Medium
 - **Dependencies:** T-4
 - **Acceptance Criteria:** AC-1, AC-2, AC-3, AC-4, AC-5, AC-6
