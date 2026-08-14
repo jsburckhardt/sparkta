@@ -14,7 +14,7 @@ The foundation establishes buildable application boundaries, tests, standards, s
 2. Use the separately configured development environment that exposes the ambient harness, run `harness --version`, and require `0.13.0`. Repository npm state and `just setup` do not install it; it is intentionally absent from `package.json` and `package-lock.json`.
 3. Run `just setup` from the repository root to install the exact Sparkta dependency graph.
 4. Run `harness instructions`, `harness help --json`, and `harness doctor --json`. Read `harness instructions <verb>` before using a repository verb.
-5. Require the separately configured ambient `soft-factory-runner` 0.1.0 CLI, then run `just runner-readiness`. Repository npm, lockfile, setup, and devcontainer state do not install it.
+5. Require the separately configured ambient `soft-factory-runner` 0.1.0 CLI, then run `soft-factory --help`, `soft-factory instructions --json`, and `soft-factory doctor --json`. Repository npm, lockfile, setup, and devcontainer state do not install it.
 6. Run `just --list` to inspect the authoritative project recipes.
 
 A `degraded` doctor envelope is usable only when the CLI, extensions, quality gate, skills, and commit guidance are loaded. The expected environment-only findings identify disabled harness telemetry capture and a git-ai binary that is installed but not on the editor PATH; follow each doctor `next_action` when that capability is needed.
@@ -35,19 +35,18 @@ Successful boot leaves the foundation running. Always finish with `harness stop 
 
 ## Authoritative project recipes
 
-| Recipe                            | Purpose                                                                        |
-| --------------------------------- | ------------------------------------------------------------------------------ |
-| `just setup`                      | Recreate dependencies from the committed lockfile                              |
-| `just run`                        | Start the minimal web and server processes                                     |
-| `just test`                       | Run all workspace tests                                                        |
-| `just lint`                       | Check application source                                                       |
-| `just format-check`               | Check application and operating-document formatting                            |
-| `just type-check`                 | Type-check both workspaces                                                     |
-| `just build`                      | Build both workspaces                                                          |
-| `just runner [arguments]`         | Delegate an explicitly chosen Soft Factory operation                           |
-| `just runner-readiness`           | Prove CLI identity, assets, integration instructions, config, and Doctor       |
-| `just verify-focused [test-path]` | Run one selected Vitest target, or all tests when omitted, plus diff integrity |
-| `just verify`                     | Run the complete static, test, build, and diff-integrity suite                 |
+| Recipe                              | Purpose                                                                        |
+| ----------------------------------- | ------------------------------------------------------------------------------ |
+| `just setup`                        | Recreate dependencies from the committed lockfile                              |
+| `just run`                          | Start the minimal web and server processes                                     |
+| `just test`                         | Run all workspace tests                                                        |
+| `just lint`                         | Check application source                                                       |
+| `just format-check`                 | Check application and operating-document formatting                            |
+| `just type-check`                   | Type-check both workspaces                                                     |
+| `just build`                        | Build both workspaces                                                          |
+| `just verify-soft-factory-contract` | Statically check committed Runner compatibility without executing Runner       |
+| `just verify-focused [test-path]`   | Run one selected Vitest target, or all tests when omitted, plus diff integrity |
+| `just verify`                       | Run the complete static, test, build, and diff-integrity suite                 |
 
 The root [`justfile`](justfile) owns all project command bodies. Harness checks supplement that interface and never duplicate or replace the focused or full recipes.
 
@@ -55,26 +54,18 @@ The root [`justfile`](justfile) owns all project command bodies. Harness checks 
 
 Runner Doctor is the authority for repository Runner readiness; harness Doctor covers the separate engineering-harness surface. The caller must supply one explicit positive `<ISSUE_NUMBER>`; never queue, rank, infer, or select an issue. Runner alone owns its worktrees, locks, processes, snapshots, recovery, logs, and cleanup.
 
-| Operation                | Root recipe invocation                                                |
-| ------------------------ | --------------------------------------------------------------------- |
-| Start the selected issue | `just runner run --issue <ISSUE_NUMBER> --json`                       |
-| List and inspect         | `just runner list --json`; `just runner status <ISSUE_NUMBER> --json` |
-| Reconcile                | `just runner reconcile <ISSUE_NUMBER> --json`                         |
-| Resume                   | `just runner resume <ISSUE_NUMBER> --json`                            |
-| Stop                     | `just runner stop <ISSUE_NUMBER> --json`                              |
-| Clean                    | `just runner clean <ISSUE_NUMBER> --json`                             |
-| Attach                   | `just runner attach <ISSUE_NUMBER>`                                   |
-| Read logs                | `just runner logs <ISSUE_NUMBER> --json`                              |
+| Operation                | Direct CLI invocation                                                   |
+| ------------------------ | ----------------------------------------------------------------------- |
+| Start the selected issue | `soft-factory run --issue <ISSUE_NUMBER> --json`                        |
+| List and inspect         | `soft-factory list --json`; `soft-factory status <ISSUE_NUMBER> --json` |
+| Reconcile                | `soft-factory reconcile <ISSUE_NUMBER> --json`                          |
+| Resume                   | `soft-factory resume <ISSUE_NUMBER> --json`                             |
+| Stop                     | `soft-factory stop <ISSUE_NUMBER> --json`                               |
+| Clean                    | `soft-factory clean <ISSUE_NUMBER> --json`                              |
+| Attach                   | `soft-factory attach <ISSUE_NUMBER>`                                    |
+| Read logs                | `soft-factory logs <ISSUE_NUMBER> --json`                               |
 
-Read `just runner instructions --json` and require `just runner doctor --json` to be ready before starting explicitly authorized work. Status and list are inspection only; lifecycle behavior and retained-resource decisions belong exclusively to Runner.
-
-### Executable RPIV integration
-
-The canonical coordinator keeps the optional protocol-1 launch binding in APS runtime state. Bound runs validate its exact schema and fixed helper grammar through repository-owned root recipes, publish ordered phase starts, funnel failures through terminal `failed` publication without masking the original error, and validate the immutable result before terminal success. Unbound launches skip only Runner helper calls, so standalone RPIV behavior is unchanged.
-
-Verify reruns the binding's snapshotted `just verify`, updates or creates the PR, pushes summary and retro evidence, then independently confirms local, remote, PR, base, issue, and final-head facts. Only then may it write `.soft-factory/agent-result.candidate.json` and invoke the injected no-clobber publisher. It never writes the immutable result destination directly.
-
-Sparkta policy lives outside the official asset manifest in [`.github/agents/sparkta-soft-factory-operator.agent.md`](.github/agents/sparkta-soft-factory-operator.agent.md) and [`scripts/runner-integration-adapter.mjs`](scripts/runner-integration-adapter.mjs). The adapter accepts only exact protocol-1 command grammar and spawns argv with shell evaluation disabled. `just runner-canary` uses synthetic issue `999999`, temporary/in-memory fixtures, installed Runner pure helpers, and a stub executor; it performs no network call, live run, GitHub mutation, or real Runner-state write.
+Use `soft-factory install --recommended` for package-owned asset convergence. Read `soft-factory instructions --json` and require `soft-factory doctor --json` to be ready before starting explicitly authorized work. Status and list are inspection only; lifecycle behavior and retained-resource decisions belong exclusively to Runner.
 
 ## Readiness API and configuration
 

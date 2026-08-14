@@ -12,7 +12,7 @@ For a cold setup:
 2. In the separately configured environment that exposes the ambient CLI, run `harness --version` and require `0.13.0`.
 3. Run `just setup` for Sparkta dependencies.
 4. Run `harness instructions`, `harness help --json`, and `harness doctor --json`.
-5. Require ambient `soft-factory-runner` 0.1.0 and run `just runner-readiness`; repository dependencies and provisioning intentionally do not install it.
+5. Require ambient `soft-factory-runner` 0.1.0 and run `soft-factory --help`, `soft-factory instructions --json`, and `soft-factory doctor --json`; repository dependencies and provisioning intentionally do not install it.
 6. Run `just --list` to inspect the root project interface.
 
 If doctor is `degraded` only because harness telemetry capture is disabled or git-ai is not visible on the editor PATH, retain and follow the reported environment `next_action`. Repository adoption is not usable when extensions, quality gate, skills, or commit guidance are missing.
@@ -47,34 +47,24 @@ All three are gitignored and separate from `.sparkta/apps/` and `.sparkta/runtim
 
 The repository commits protocol-1 configuration and official assets while the configured environment owns the CLI. `.trees/` is the isolated-worktree root. Only `.soft-factory/config.yml` is committed beneath the state root; runtime descendants are ignored. Concurrency is 1 and each new run snapshots final validation as `just verify`. Runner state is separate from harness `.harness/temp/boot/` and product `.sparkta/` state.
 
-Runner Doctor and harness Doctor are different authorities: use `just runner doctor --json` for all 24 Runner repository checks and `harness doctor --json` for harness extensions and environment diagnostics. Never manipulate Runner worktrees, locks, leases, snapshots, processes, result files, recovery, logs, or cleanup directly.
+Runner Doctor and harness Doctor are different authorities: use `soft-factory doctor --json` for all 24 Runner repository checks and `harness doctor --json` for harness extensions and environment diagnostics. Never manipulate Runner worktrees, locks, leases, snapshots, processes, result files, recovery, logs, or cleanup directly.
 
-A caller must explicitly authorize one positive `<ISSUE_NUMBER>`; operators and agents must not queue, rank, infer, or select one. All supported lifecycle interfaces delegate through the root recipe:
+A caller must explicitly authorize one positive `<ISSUE_NUMBER>`; operators and agents must not queue, rank, infer, or select one. Invoke every supported lifecycle interface directly:
 
-| Workflow                   | Root invocation                                                          |
-| -------------------------- | ------------------------------------------------------------------------ |
-| Run                        | `just runner run --issue <ISSUE_NUMBER> --json`                          |
-| List and status inspection | `just runner list --json` and `just runner status <ISSUE_NUMBER> --json` |
-| Reconcile                  | `just runner reconcile <ISSUE_NUMBER> --json`                            |
-| Resume                     | `just runner resume <ISSUE_NUMBER> --json`                               |
-| Stop                       | `just runner stop <ISSUE_NUMBER> --json`                                 |
-| Clean retained resources   | `just runner clean <ISSUE_NUMBER> --json`                                |
-| Attach                     | `just runner attach <ISSUE_NUMBER>`                                      |
-| Logs                       | `just runner logs <ISSUE_NUMBER> --json`                                 |
+| Workflow                   | Direct CLI invocation                                                      |
+| -------------------------- | -------------------------------------------------------------------------- |
+| Run                        | `soft-factory run --issue <ISSUE_NUMBER> --json`                           |
+| List and status inspection | `soft-factory list --json` and `soft-factory status <ISSUE_NUMBER> --json` |
+| Reconcile                  | `soft-factory reconcile <ISSUE_NUMBER> --json`                             |
+| Resume                     | `soft-factory resume <ISSUE_NUMBER> --json`                                |
+| Stop                       | `soft-factory stop <ISSUE_NUMBER> --json`                                  |
+| Clean retained resources   | `soft-factory clean <ISSUE_NUMBER> --json`                                 |
+| Attach                     | `soft-factory attach <ISSUE_NUMBER>`                                       |
+| Logs                       | `soft-factory logs <ISSUE_NUMBER> --json`                                  |
 
-Before an authorized run, inspect `just runner instructions --json` and require `just runner doctor --json` to report ready. `status` and `list` do not select an issue. Reconcile, resume, stop, clean, attach, and logs always target the explicit issue supplied by the caller.
+Before an authorized run, inspect `soft-factory instructions --json` and require `soft-factory doctor --json` to report ready. `status` and `list` do not select an issue. Reconcile, resume, stop, clean, attach, and logs always target the explicit issue supplied by the caller.
 
-The strict `.agents/manifest.json` governs the official Operator, Assessor, and Soft Factory skill at version 0.1.0 and Runner protocol 1. Use `just runner-install-assets` to prove package-catalog convergence; do not manually replace these files or run the broad harness skill installer.
-
-### Launch binding and repository adapters
-
-Runner may append one strict `IntegrationLaunchV1` to the coordinator input. Its issue, branch, paths, snapshotted final validation, and three helper command strings remain mutable launch/runtime facts rather than static instructions or constants. The coordinator validates that binding through `just runner-validate-binding`; its APS processes invoke `just runner-publish-progress` for ordered phase and terminal facts and `just runner-validate-result` before success. Every bound error reaches the terminal-failure process first; a failed failure-publication attempt is retained as redacted secondary evidence while the triggering error stays primary. Without a binding these helper processes explicitly no-op.
-
-The verifier receives the binding one-to-one. After acceptance it runs `just runner-final-validation`, creates or updates the PR, pushes verification summary and retro evidence, and independently compares local HEAD, remote HEAD, PR number/state/base/head SHA, and issue linkage. It then creates only the strict candidate and delegates publication through `just runner-publish-result`. The immutable result path is Runner-owned and is never replaced directly.
-
-The official manifest destinations remain package-owned. Sparkta's custom Operator and helper adapter are intentionally outside `.agents/manifest.json`. The Operator exposes root `just runner` commands only; the adapter validates fixed helper grammar and executes exact argv with `shell: false`, without implementing locks, state, publication, recovery, or cleanup.
-
-Run `just runner-canary` for the no-network integration fixture. It uses synthetic issue `999999`, a temporary path, in-memory files, installed pure progress/result helpers, and a stub process executor. It proves valid and rejected transitions, strict result binding, idempotent/no-clobber publication, helper-field selection, and argv boundaries without invoking `gh`, `soft-factory run`, a real issue, or repository Runner state.
+The strict `.agents/manifest.json` governs the official Operator, Assessor, and Soft Factory skill at version 0.1.0 and Runner protocol 1. Use `soft-factory install --recommended` to prove package-catalog convergence; do not manually replace these files or run the broad harness skill installer.
 
 ## Validation
 

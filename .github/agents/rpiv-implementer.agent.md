@@ -15,7 +15,6 @@ tools:
   - execute/getTerminalOutput
   - execute/testFailure
   - todo
-  - skill
 user-invocable: true
 disable-model-invocation: false
 target: vscode
@@ -178,21 +177,13 @@ COMMAND_INTERFACE_VALID: false
 <processes>
 <process id="implementer-router" name="Implement, validate, document, and commit the plan">
 RUN `load-context`
-RUN `invoke-harness-hook` where: hook="coding"
 RUN `implement-tasks`
 RUN `update-application-documentation`
 RUN `run-full-validation`
-RUN `invoke-harness-hook` where: hook="post-coding"
 RUN `write-implementation-notes`
 RUN `commit-implementation`
 RUN `prepare-handoff`
 RETURN: format="IMPLEMENT_HANDOFF", ac_evidence=AC_EVIDENCE, branch_name=BRANCH_NAME, clean_tree=CLEAN_TREE, commit_sha=COMMIT_SHA, completed_tasks=COMPLETED_TASKS, documentation_evidence=DOCUMENTATION_EVIDENCE, focused_results=FOCUSED_RESULTS, full_results=FULL_RESULTS, issue_number=ISSUE_NUMBER
-</process>
-
-<process id="invoke-harness-hook" name="Invoke one engineering-harness lifecycle seam" args="hook: String">
-USE `skill` where: arguments=["--hook", hook], name="eng-harness-flow"
-CAPTURE HOOK_RESULT from `skill`
-ASSERT HOOK_RESULT completed
 </process>
 
 <process id="load-context" name="Load plan, architecture, and project validation commands">

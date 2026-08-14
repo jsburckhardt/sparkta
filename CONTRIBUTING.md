@@ -18,9 +18,7 @@ RPIV fires the `eng-harness-flow` skill at pre-flight, pre-coding, coding, post-
 
 ## Soft Factory Runner
 
-The configured environment, not repository npm or devcontainer state, provides `soft-factory-runner` 0.1.0. Start with `just runner-readiness`. Runner Doctor is separate from harness Doctor. A caller must explicitly select one positive `<ISSUE_NUMBER>`; never queue, rank, infer, or select an issue. Use only `just runner` delegation for run, list/status, reconcile, resume, stop, clean, attach, and logs, and leave worktrees, locks, processes, state, recovery, and cleanup to Runner. See [the operator guide](docs/README.md#soft-factory-runner-operation).
-
-Repository-specific operation uses the Sparkta Operator outside the locked official manifest. Bound RPIV runs validate and execute injected helpers through root adapter recipes; unbound RPIV remains unchanged. Use `just runner-canary` for safe integration proof. It is synthetic and must never be replaced with a real issue run.
+The configured environment, not repository npm or devcontainer state, provides `soft-factory-runner` 0.1.0. Start with `soft-factory instructions --json` and `soft-factory doctor --json`. Runner Doctor is separate from harness Doctor. A caller must explicitly select one positive `<ISSUE_NUMBER>`; never queue, rank, infer, or select an issue. Invoke `soft-factory` directly for run, list/status, reconcile, resume, stop, clean, attach, and logs, and leave worktrees, locks, processes, state, recovery, and cleanup to Runner. See [the operator guide](docs/README.md#soft-factory-runner-operation).
 
 ## How to Start Work on an Issue
 

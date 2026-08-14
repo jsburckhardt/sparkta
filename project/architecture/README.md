@@ -23,9 +23,7 @@ Harness ownership under `.harness/temp/boot/` is engineering evidence, not Spark
 
 ## Soft Factory Runner boundary
 
-The adopted [Soft Factory Runner operating contract](core-components/CORE-COMPONENT-260813-soft-factory-runner-operation.md) governs the environment-owned CLI, protocol-1 configuration, safe `.trees/` and `.soft-factory/` roots, official assets, canonical RPIV injected handoff, root delegation, explicit-issue lifecycle, and readiness validation. Runner state is independent of harness evidence and Sparkta product state. The engineering-harness contract still authorizes exactly three engineering-harness skills; the Runner contract separately authorizes only the official `soft-factory` skill.
-
-Executable APS processes keep the launch binding in runtime state, route helper calls through repository-owned adapters, preserve original failures, and bind completion to independently observed final PR head facts. Official package assets remain immutable; Sparkta policy lives outside their manifest. Static call-graph mutation checks and a synthetic no-network canary enforce those boundaries.
+The adopted [Soft Factory Runner operating contract](core-components/CORE-COMPONENT-260813-soft-factory-runner-operation.md) governs the environment-owned CLI, protocol-1 configuration, safe `.trees/` and `.soft-factory/` roots, official assets, canonical RPIV injected handoff, direct CLI operation, static repository compatibility checks, explicit-issue lifecycle, and readiness validation. Runner state is independent of harness evidence and Sparkta product state. The engineering-harness contract still authorizes exactly three engineering-harness skills; the Runner contract separately authorizes only the official `soft-factory` skill.
 
 ## Scope boundary
 

@@ -5,7 +5,7 @@ Every piece of work MUST flow through exactly four stages in order: Research, Pl
 Every autonomous agent MUST start with `harness instructions`, inspect `harness doctor --json`, and read `harness instructions <verb>` before using a repository harness verb.
 RPIV MUST fire `/eng-harness-flow --hook pre-flight`, `pre-coding`, `coding`, `post-coding`, and `post-flight` at the structural seams documented in `.harness/engineering-harness.md`.
 Agents MUST treat harness checks as delegation to the authoritative root `just verify-focused` and `just verify` recipes, not replacements for them.
-Agents MUST use only root `just runner` recipes for Soft Factory, require one caller-supplied positive `<ISSUE_NUMBER>` for issue operations, and MUST NOT infer or select an issue or manipulate Runner-owned state.
+Agents MUST invoke the official `soft-factory` CLI directly for Soft Factory operations, require one caller-supplied positive `<ISSUE_NUMBER>` for issue operations, and MUST NOT infer or select an issue or manipulate Runner-owned state.
 You MUST classify scope_type as exactly one of: issue, architecture_decision, core_component.
 You MUST NOT create an architectural decision outside of an ADR document.
 You MUST NOT create reusable cross-cutting behavior outside of a core-component document.
@@ -50,8 +50,7 @@ A doctor `degraded` result is usable only for documented environment capture or 
 </harness>
 
 <soft-factory-runner>
-The configured environment owns ambient `soft-factory-runner` 0.1.0; repository npm, lockfile, setup, and devcontainer state MUST NOT install it. Start with `just runner-readiness`; Runner Doctor is separate from harness Doctor. Configuration fixes protocol 1, `.trees`, `.soft-factory`, final `just verify`, and concurrency 1. Runner exclusively owns worktrees, locks, processes, snapshots, progress/result paths, recovery, logs, and cleanup. Use an explicit caller-supplied positive `<ISSUE_NUMBER>` for run, status, reconcile, resume, stop, clean, attach, and logs; never queue, rank, infer, or select an issue. Read `docs/README.md#soft-factory-runner-operation`.
-The canonical RPIV agents MUST keep an optional IntegrationLaunchV1 in runtime state, invoke injected helpers only through root adapter recipes, preserve the original failure when terminal-failed publication also fails, and require final-head result validation before success. The Sparkta Operator and adapter MUST remain outside the official manifest. `just runner-canary` is the only helper-semantics canary and MUST remain synthetic, no-network, and isolated from real Runner state.
+The configured environment owns ambient `soft-factory-runner` 0.1.0; repository npm, lockfile, setup, and devcontainer state MUST NOT install it. Start with `soft-factory instructions --json` and `soft-factory doctor --json`; Runner Doctor is separate from harness Doctor. Configuration fixes protocol 1, `.trees`, `.soft-factory`, final `just verify`, and concurrency 1. Runner exclusively owns worktrees, locks, processes, snapshots, progress/result paths, recovery, logs, and cleanup. Use an explicit caller-supplied positive `<ISSUE_NUMBER>` for run, status, reconcile, resume, stop, clean, attach, and logs; never queue, rank, infer, or select an issue. Read `docs/README.md#soft-factory-runner-operation`.
 </soft-factory-runner>
 
 <constants>

@@ -84,7 +84,5 @@ Short, actionable statements derived from ADRs and core-components. More than on
 | 51  | Require protocol 1, agent-result-v1, and `just verify` for Runner RPIV integration                     | CORE-COMPONENT-260813-soft-factory-runner-operation        | 2026-08-13 |
 | 52  | Delegate explicitly selected issue lifecycle and cleanup exclusively to Soft Factory Runner            | CORE-COMPONENT-260813-soft-factory-runner-operation        | 2026-08-13 |
 | 53  | Commit and integrity-check the official Operator, Assessor, skill, and manifest                        | CORE-COMPONENT-260813-soft-factory-runner-operation        | 2026-08-13 |
-| 54  | Execute injected Runner helpers through reachable APS processes before successful RPIV exit            | CORE-COMPONENT-260813-soft-factory-runner-operation        | 2026-08-14 |
-| 55  | Invoke every engineering-harness lifecycle seam as an executable APS process step                       | CORE-COMPONENT-260813-soft-factory-runner-operation        | 2026-08-14 |
-| 56  | Preserve official Runner assets and isolate Sparkta policy in repository-owned adapters                 | CORE-COMPONENT-260813-soft-factory-runner-operation        | 2026-08-14 |
-| 57  | Prove launch-binding helper semantics with synthetic no-network canaries                                | CORE-COMPONENT-260813-soft-factory-runner-operation        | 2026-08-14 |
+| 54  | Invoke Soft Factory directly and prohibit repository operational wrappers, adapters, and synthetic orchestration | CORE-COMPONENT-260813-soft-factory-runner-operation        | 2026-08-14 |
+| 55  | Restrict root Runner validation to static compatibility while retaining `just verify` as final validation | CORE-COMPONENT-260813-soft-factory-runner-operation        | 2026-08-14 |
