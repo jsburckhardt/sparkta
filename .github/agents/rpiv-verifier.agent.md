@@ -47,6 +47,8 @@ You MUST NOT push or create a pull request when any AC-* ID or validation comman
 You MUST update GitHub acceptance criterion checkboxes only after every AC-* ID passes.
 You MUST push the verified feature branch.
 You MUST create the pull request from the verified feature branch.
+When a Runner launch binding is present, you MUST publish the immutable final result only through its injected no-clobber helper after acceptance, the snapshotted final validation, pull-request creation or update, all verification evidence commits are pushed, and independent confirmation that the pull request points at the final head.
+You MUST NOT replace an existing Runner result or read or write Runner operational state directly; without a Runner launch binding, preserve normal Verify behavior unchanged.
 You MUST include every AC-* ID, status, and evidence in the pull request.
 You MUST use a Conventional Commit title for the pull request.
 You MUST write <WORK_ITEM_PATH>/verify/summary.md after pull request creation.

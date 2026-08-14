@@ -3,7 +3,7 @@ CONTRIBUTING.md — Human contribution and harness-assisted RPIV workflow
 LLM.txt — This repository map for AI agents
 README.md — Sparkta setup, harness operation, readiness API, configuration, skills, and scope
 PRD.md — Sparkta product requirements and future product direction
-justfile — Sole authoritative project setup, run, focused, and full command bodies
+justfile — Sole authoritative Sparkta command bodies, including focused/full project gates
 package.json — Private npm workspace metadata; intentionally does not install the ambient harness
 package-lock.json — Locked Sparkta dependency graph; intentionally does not contain the ambient harness
 tsconfig.base.json — Shared strict TypeScript defaults
@@ -25,7 +25,7 @@ prettier.config.js — Shared formatting configuration
 .harness/records/harness-change/ — Validated engineering-harness capability change ledger
 .harness/reports/harnessability/ — Historical branch-main static assessment; not current runtime proof
 .harness/temp/boot/ — Gitignored transient runtime ownership, evidence, and log paths
-.agents/skills/ — Exact allowlist: eng-harness-flow, eng-harness-0-harnessability-assessment, and grill-agent-done
+.agents/skills/ — Three governed engineering-harness skills; unrelated sibling skills are ignored and preserved
 apps/web/package.json — React/Vite workspace manifest
 apps/web/src/App.tsx — Neutral Sparkta foundation view
 apps/web/src/foundation.ts — Exported web foundation identity
@@ -72,4 +72,7 @@ project/architecture/core-components/CORE-COMPONENT-260812-error-handling.md —
 project/architecture/core-components/CORE-COMPONENT-260812-observability.md — Structured Pino logging and redaction contract
 project/architecture/core-components/CORE-COMPONENT-260812-state-lifecycle.md — Durable and disposable product state contract
 project/architecture/core-components/CORE-COMPONENT-260813-engineering-harness-operation.md — Ambient CLI, delegation, boot ownership, discovery, and commit contract
+project/architecture/core-components/CORE-COMPONENT-260813-soft-factory-runner-operation.md — Ambient Runner, safe roots, dispatcher facade, explicit-issue operation, and RPIV handoff contract
+.soft-factory/config.yml — Protocol-1 Runner roots, final validation, and positive concurrency
+.github/agents/runner-dispatcher.agent.md — APS v1.2.2 user/model facade for one Doctor-gated explicit issue dispatch
 project/work-items/2-adopt-the-ai-substrate-engineering-harness/ — Issue 2 research, plan, implementation, and acceptance evidence

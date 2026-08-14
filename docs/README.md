@@ -12,7 +12,8 @@ For a cold setup:
 2. In the separately configured environment that exposes the ambient CLI, run `harness --version` and require `0.13.0`.
 3. Run `just setup` for Sparkta dependencies.
 4. Run `harness instructions`, `harness help --json`, and `harness doctor --json`.
-5. Run `just --list` to inspect the root project interface.
+5. Require ambient `soft-factory-runner` 0.1.0 and run `soft-factory --help`, `soft-factory instructions --json`, and `soft-factory doctor --json`; repository dependencies and provisioning intentionally do not install it.
+6. Run `just --list` to inspect the root project interface.
 
 If doctor is `degraded` only because harness telemetry capture is disabled or git-ai is not visible on the editor PATH, retain and follow the reported environment `next_action`. Repository adoption is not usable when extensions, quality gate, skills, or commit guidance are missing.
 
@@ -41,6 +42,22 @@ A successful boot intentionally leaves both foundation services running. Run `ha
 - `.harness/temp/boot/boot.log` — transient startup output.
 
 All three are gitignored and separate from `.sparkta/apps/` and `.sparkta/runtime/`.
+
+## Soft Factory Runner operation
+
+The repository commits protocol-1 configuration and the APS v1.2.2 [`runner-dispatcher`](../.github/agents/runner-dispatcher.agent.md), while the configured environment owns the CLI. `.trees/` is the isolated-worktree root. Only `.soft-factory/config.yml` is committed beneath the state root; runtime descendants are ignored. Concurrency is 1 and each new run snapshots final validation as `just verify`. Runner state is separate from harness `.harness/temp/boot/` and product `.sparkta/` state.
+
+Runner Doctor and harness Doctor are different authorities: use `soft-factory doctor --json` for all 24 Runner repository checks and `harness doctor --json` for harness extensions and environment diagnostics. Never manipulate Runner worktrees, locks, leases, snapshots, processes, result files, recovery, logs, or cleanup directly.
+
+A caller must provide exactly one explicit positive `<ISSUE_NUMBER>`; operators and agents must not queue, rank, infer, or select one. The dispatcher is both user- and model-invocable and exposes only the qualified VS Code terminal tools needed to run commands and retrieve output:
+
+1. It rejects missing, multiple, nonpositive, fractional, signed, or invalid issue input before terminal use.
+2. It runs `soft-factory instructions --json` directly.
+3. It runs `soft-factory doctor --json` directly and returns its exact structured remediation when `ready` is false.
+4. Only when Doctor reports ready, it runs exactly `soft-factory run --issue <ISSUE_NUMBER> --json` once.
+5. It returns exact Runner output and distinguishes dispatch acceptance from ticket completion.
+
+The dispatcher does not invoke RPIV agents, retry refusals, use `just`, inspect `.trees` or `.soft-factory`, or manage locks, processes, worktrees, recovery, logs, or cleanup. Those resources and all lifecycle decisions remain Runner-owned. Project validation remains Runner-independent.
 
 ## Validation
 
@@ -85,7 +102,7 @@ Fastify/Pino request logs use correlation IDs, omit request bodies, and redact a
 
 ## GitHub Copilot skills
 
-The committed engineering-harness allowlist under [`.agents/skills/`](../.agents/skills/) is exactly `eng-harness-flow`, `eng-harness-0-harnessability-assessment`, and `grill-agent-done`, as indexed in [`.github/skills/README.md`](../.github/skills/README.md). [`.harness/skills.lock.json`](../.harness/skills.lock.json) records project scope and packaged-source provenance only; it does not authorize additional names. Cold-agent use depends only on committed skill content. Do not run a broad installer that would restore other packaged skills.
+Engineering-harness validation under [`.agents/skills/`](../.agents/skills/) checks non-empty `SKILL.md` files only for `eng-harness-flow`, `eng-harness-0-harnessability-assessment`, and `grill-agent-done`. It neither enumerates nor modifies unrelated sibling skills. [`.harness/skills.lock.json`](../.harness/skills.lock.json) records project scope and packaged-source provenance only; it does not authorize additional engineering-harness names. Cold-agent use depends only on committed skill content. Do not run a broad installer that would restore excluded engineering-harness skills.
 
 ## RPIV harness seams
 
@@ -104,6 +121,7 @@ The exact seam map is in [`.harness/engineering-harness.md`](../.harness/enginee
 - `.sparkta/apps/` is reserved for durable application metadata, generated source, and conversation history.
 - `.sparkta/runtime/` is reserved for disposable product PIDs, ports, status caches, and agent-session coordination.
 - `.harness/temp/boot/` is reserved for disposable engineering-harness runtime ownership and evidence.
+- `.trees/` and runtime descendants of `.soft-factory/` are reserved for Runner-owned worktrees and operational state; `.soft-factory/config.yml` is committed configuration.
 
 No persistence repository, runtime manager, schema, lifecycle API, generated application, or blessed starter is included in this foundation.
 
@@ -111,6 +129,7 @@ No persistence repository, runtime manager, schema, lifecycle API, generated app
 
 - [Foundation stack ADR](../project/architecture/ADR/ADR-260812-foundation-stack.md)
 - [Filesystem state boundary ADR](../project/architecture/ADR/ADR-260812-filesystem-state-boundary.md)
+- [Soft Factory Runner operating contract](../project/architecture/core-components/CORE-COMPONENT-260813-soft-factory-runner-operation.md)
 - [Engineering harness operating contract](../project/architecture/core-components/CORE-COMPONENT-260813-engineering-harness-operation.md)
 - [Project command interface](../project/architecture/core-components/CORE-COMPONENT-260806-project-command-interface.md)
 - [RPIV stage contract](../project/architecture/core-components/CORE-COMPONENT-260806-rpiv-stage-contract.md)
@@ -122,4 +141,4 @@ No persistence repository, runtime manager, schema, lifecycle API, generated app
 
 ## Migration and deployment impact
 
-Harness adoption and `GET /api/readiness` are additive. They introduce no breaking API, data, or configuration migration. The foundation has no deployment procedure; operation remains local to the configured development environment.
+Harness adoption, Runner integration, and `GET /api/readiness` are additive. They introduce no breaking API or data migration. Runner configuration remains protocol 1 with `.trees`, `.soft-factory`, `just verify`, and concurrency 1. The foundation has no server deployment procedure; both ambient tools remain local configured-environment prerequisites.

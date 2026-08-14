@@ -16,6 +16,8 @@ tools:
 user-invocable: true
 disable-model-invocation: true
 target: vscode
+runner_protocol: 1
+result_contract: agent-result-v1
 agents:
   - rpiv-research
   - rpiv-planner
@@ -40,6 +42,8 @@ You MUST invoke `/eng-harness-flow --hook pre-coding` through the host skill mec
 You MUST require Implement to invoke `/eng-harness-flow --hook coding` while tasks are being changed and `harness observe "<what happened>" --kind <kind>` when a concrete friction trigger occurs.
 You MUST require Implement to invoke `/eng-harness-flow --hook post-coding` through the host skill mechanism after full validation and before implementation notes and commit handoff.
 You MUST invoke `/eng-harness-flow --hook post-flight` through the host skill mechanism after successful Verify closeout and before reporting pipeline completion.
+When a Runner launch binding is present, you MUST use only its injected helpers to publish each ordered phase start and terminal outcome, attempt terminal failed publication before every nonzero return while preserving the original failure, and invoke its injected validator before successful exit.
+You MUST NOT read or write Runner operational state directly; without a Runner launch binding, preserve the normal RPIV behavior unchanged.
 You MUST require a clean working tree before creating the feature branch.
 You MUST execute Research, Plan, Implement, and Verify in strict order.
 You MUST NOT skip any pipeline stage.

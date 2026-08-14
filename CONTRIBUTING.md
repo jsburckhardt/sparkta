@@ -16,6 +16,10 @@ The configured development environment provides ambient `harness` 0.13.0; reposi
 
 RPIV fires the `eng-harness-flow` skill at pre-flight, pre-coding, coding, post-coding, and post-flight seams. See [`.harness/engineering-harness.md`](.harness/engineering-harness.md) for exact calls and evidence paths.
 
+## Soft Factory Runner
+
+The configured environment, not repository npm or devcontainer state, provides `soft-factory-runner` 0.1.0. Invoke the user- and model-visible [`runner-dispatcher`](.github/agents/runner-dispatcher.agent.md) with exactly one explicit positive `<ISSUE_NUMBER>`. It runs direct instructions and Doctor preflight, dispatches only when Doctor is ready, and reports dispatch acceptance separately from ticket completion. Never queue, rank, infer, or select an issue, and leave worktrees, locks, processes, state, recovery, and cleanup to Runner. See [the operator guide](docs/README.md#soft-factory-runner-operation).
+
 ## How to Start Work on an Issue
 
 1. **Create a GitHub Issue** describing the work to be done.

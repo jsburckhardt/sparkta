@@ -6,7 +6,7 @@ Sparkta is a local, agent-powered environment for rapidly turning product ideas 
 
 ## Foundation scope
 
-The foundation establishes buildable application boundaries, tests, standards, safe errors, structured logs, the root project command interface, and repository-local harness governance, extensions, and GitHub Copilot skills. It does **not** implement the Soft Factory Runner, agent invocation, the Sparkta control UI, Prototype 0 behavior, generated-app lifecycle, a generated demo, or the blessed generated-app starter.
+The foundation establishes buildable application boundaries, tests, standards, safe errors, structured logs, the root project command interface, and repository-local harness governance, extensions, and GitHub Copilot skills. It configures the ambient Soft Factory Runner for isolated RPIV delivery, but does **not** install or reimplement it, select an issue, implement product agent invocation, the Sparkta control UI, Prototype 0 behavior, generated-app lifecycle, a generated demo, or the blessed generated-app starter.
 
 ## Cold setup
 
@@ -14,7 +14,8 @@ The foundation establishes buildable application boundaries, tests, standards, s
 2. Use the separately configured development environment that exposes the ambient harness, run `harness --version`, and require `0.13.0`. Repository npm state and `just setup` do not install it; it is intentionally absent from `package.json` and `package-lock.json`.
 3. Run `just setup` from the repository root to install the exact Sparkta dependency graph.
 4. Run `harness instructions`, `harness help --json`, and `harness doctor --json`. Read `harness instructions <verb>` before using a repository verb.
-5. Run `just --list` to inspect the authoritative project recipes.
+5. Require the separately configured ambient `soft-factory-runner` 0.1.0 CLI, then run `soft-factory --help`, `soft-factory instructions --json`, and `soft-factory doctor --json`. Repository npm, lockfile, setup, and devcontainer state do not install it.
+6. Run `just --list` to inspect the authoritative project recipes.
 
 A `degraded` doctor envelope is usable only when the CLI, extensions, quality gate, skills, and commit guidance are loaded. The expected environment-only findings identify disabled harness telemetry capture and a git-ai binary that is installed but not on the editor PATH; follow each doctor `next_action` when that capability is needed.
 
@@ -48,6 +49,19 @@ Successful boot leaves the foundation running. Always finish with `harness stop 
 
 The root [`justfile`](justfile) owns all project command bodies. Harness checks supplement that interface and never duplicate or replace the focused or full recipes.
 
+## Soft Factory Runner operations
+
+Runner Doctor is the authority for repository Runner readiness; harness Doctor covers the separate engineering-harness surface. The configured environment owns the CLI, while the repository owns the user- and model-invocable [`runner-dispatcher`](.github/agents/runner-dispatcher.agent.md) facade. The caller must supply exactly one explicit positive `<ISSUE_NUMBER>`; never queue, rank, infer, or select an issue. Runner alone owns its worktrees, locks, processes, snapshots, recovery, logs, and cleanup.
+
+| Operation                              | Invocation                                                         |
+| -------------------------------------- | ------------------------------------------------------------------ |
+| Discover the immutable Runner contract | `soft-factory instructions --json`                                 |
+| Evaluate Runner readiness              | `soft-factory doctor --json`                                       |
+| Dispatch through Copilot               | Invoke `runner-dispatcher` with one explicit positive issue number |
+| Direct CLI equivalent                  | `soft-factory run --issue <ISSUE_NUMBER> --json`                   |
+
+The dispatcher runs instructions and Doctor directly, returns Doctor remediation without dispatch when `ready` is false, and otherwise runs the direct issue command exactly once. Its structured result distinguishes dispatch acceptance from ticket completion. It never invokes RPIV itself or manages Runner lifecycle resources.
+
 ## Readiness API and configuration
 
 `GET /api/readiness` returns HTTP 200 with the exact non-sensitive body:
@@ -66,11 +80,11 @@ The Vite foundation uses fixed port 5173. Boot refuses occupied fixed ports with
 
 ## Skills and agent discovery
 
-Exactly three engineering-harness GitHub Copilot skills are committed beneath [`.agents/skills/`](.agents/skills/): `eng-harness-flow`, `eng-harness-0-harnessability-assessment`, and `grill-agent-done`. [`.harness/skills.lock.json`](.harness/skills.lock.json) records packaged-source provenance only; it does not authorize additional names. Cold agents use the committed files, must not run a broad installer that restores other skills, and start from [`AGENTS.md`](AGENTS.md), [`LLM.txt`](LLM.txt), and the [skill index](.github/skills/README.md).
+Engineering-harness validation requires non-empty `SKILL.md` files for exactly `eng-harness-flow`, `eng-harness-0-harnessability-assessment`, and `grill-agent-done` beneath [`.agents/skills/`](.agents/skills/). [`.harness/skills.lock.json`](.harness/skills.lock.json) records packaged-source provenance only; it does not authorize additional names. The Runner facade is a [VS Code agent](.github/agents/runner-dispatcher.agent.md), not a skill. Cold agents start from [`AGENTS.md`](AGENTS.md), [`LLM.txt`](LLM.txt), and the [skill index](.github/skills/README.md).
 
 ## State boundaries and evidence
 
-Future durable generated-application files belong under `.sparkta/apps/`. Reconstructable product runtime coordination belongs under `.sparkta/runtime/` and must be safe to delete while Sparkta is stopped. Harness runtime evidence is a separate transient boundary under `.harness/temp/boot/`.
+Future durable generated-application files belong under `.sparkta/apps/`. Reconstructable product runtime coordination belongs under `.sparkta/runtime/` and must be safe to delete while Sparkta is stopped. Harness runtime evidence is a separate transient boundary under `.harness/temp/boot/`. Runner worktrees use `.trees/`; Runner configuration is committed at `.soft-factory/config.yml`, while all other `.soft-factory/` descendants are ignored Runner-owned state.
 
 - [`apps/web/`](apps/web/) — minimal React/Vite foundation and tests
 - [`apps/server/`](apps/server/) — Fastify foundation, readiness route, safe errors, logs, and tests
@@ -78,4 +92,4 @@ Future durable generated-application files belong under `.sparkta/apps/`. Recons
 - [`project/architecture/`](project/architecture/) — accepted ADRs and adopted cross-cutting contracts
 - [`project/work-items/`](project/work-items/) — RPIV plans and evidence
 
-The harness adoption and readiness route are additive. They require no API, data, or configuration migration. There is no deployment procedure for this local-only foundation.
+Harness and Runner adoption are additive. They require no API or data migration. Runner configuration remains protocol 1 with safe roots, final `just verify`, and concurrency 1; do not hand-edit Runner state. There is no server deployment procedure for this local-only foundation.
