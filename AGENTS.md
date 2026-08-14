@@ -51,6 +51,7 @@ A doctor `degraded` result is usable only for documented environment capture or 
 
 <soft-factory-runner>
 The configured environment owns ambient `soft-factory-runner` 0.1.0; repository npm, lockfile, setup, and devcontainer state MUST NOT install it. Start with `just runner-readiness`; Runner Doctor is separate from harness Doctor. Configuration fixes protocol 1, `.trees`, `.soft-factory`, final `just verify`, and concurrency 1. Runner exclusively owns worktrees, locks, processes, snapshots, progress/result paths, recovery, logs, and cleanup. Use an explicit caller-supplied positive `<ISSUE_NUMBER>` for run, status, reconcile, resume, stop, clean, attach, and logs; never queue, rank, infer, or select an issue. Read `docs/README.md#soft-factory-runner-operation`.
+The canonical RPIV agents MUST keep an optional IntegrationLaunchV1 in runtime state, invoke injected helpers only through root adapter recipes, preserve the original failure when terminal-failed publication also fails, and require final-head result validation before success. The Sparkta Operator and adapter MUST remain outside the official manifest. `just runner-canary` is the only helper-semantics canary and MUST remain synthetic, no-network, and isolated from real Runner state.
 </soft-factory-runner>
 
 <constants>

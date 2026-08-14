@@ -1,153 +1,179 @@
 # Test Plan: Install and configure Soft Factory Runner
 
-## Test V-1: Ambient CLI identity and preservation baseline
+## Test V-1: Preservation, ambient identity, and official integrity
 
-- **Type:** Environment and preservation validation
-- **Task:** T-1, T-3, T-5
-- **Acceptance Criteria:** AC-1, AC-6
+- **Type:** Preservation and environment validation
+- **Task:** T-1, T-4, T-6
+- **Acceptance Criteria:** AC-1, AC-3, AC-6
 - **Priority:** Critical
 
 ### Setup
-Use the configured development environment from the repository root. Capture Git status and SHA-256 values for the three official assets, manifest, assessment `003` files, and `latest.json`/`latest.md` before implementation edits.
+Capture branch/HEAD, PR #11 head, Issue #3 body, Git status, official hashes, assessment hashes, harness observation, and Runner resources before implementation.
 
 ### Steps
-1. Run the planned root Runner help/identity recipe and resolve the executable through that recipe.
-2. Confirm installed package metadata identifies `soft-factory-runner` version `0.1.0` and the `soft-factory` bin.
-3. Confirm no repository package, lockfile, setup recipe, devcontainer feature, or post-create script installs the Runner.
-4. Save the protected-path status/hash baseline for comparison in V-6.
+1. Run root identity and help without an issue.
+2. Confirm package name/version/bin and no repository installation dependency.
+3. Validate manifest schema/destinations/digests and package-byte equality.
+4. Record protected GitHub/repository facts.
+5. Repeat and compare after implementation.
 
 ### Expected Result
-The environment-owned CLI is executable and returns help successfully; package identity is correct; repository installation dependencies remain absent; no issue or Runner operational state is created.
+Ambient identity and official integrity pass; protected evidence and unrelated state remain unchanged.
 
 ### Expected Evidence
-- Root recipe transcript with executable path, package name/version, bin, and help exit 0.
-- Dependency/provisioning search or diff showing no Runner install declaration.
-- Timestamped protected-path Git-status and SHA-256 baseline.
+- Identity/help transcript and dependency search.
+- Official digest table.
+- Before/after protected-state comparison.
 
-## Test V-2: Strict configuration, root safety, and RPIV metadata
+## Test V-2: Executable APS success-path wiring
 
-- **Type:** Configuration and contract validation
-- **Task:** T-2, T-5
+- **Type:** Static control-flow and APS lint validation
+- **Task:** T-2, T-3, T-5
 - **Acceptance Criteria:** AC-2, AC-6
 - **Priority:** Critical
 
 ### Setup
-T-2 configuration, ignore rules, and canonical RPIV updates are present; no lifecycle command has been invoked.
+Use updated agents and APS v1.2.2 grammar, lint, VS Code adapter, and subagent input contracts.
 
 ### Steps
-1. Parse `.soft-factory/config.yml` and assert protocol 1, `.trees`, `.soft-factory`, `just verify`, and concurrency integer 1 with no unknown planned keys.
-2. Resolve roots relative to the repository and assert they are distinct, non-overlapping, non-traversing, non-symlink escapes, outside the Git common directory, and separate from `.harness/temp/boot/` and `.sparkta/`.
-3. Use Git ignore probes to prove representative descendants of both roots are ignored and `.soft-factory/config.yml` remains committable.
-4. Parse canonical RPIV frontmatter for `runner_protocol: 1` and `result_contract: agent-result-v1`.
-5. Inspect coordinator/verifier instructions for injected-helper-only progress/result publication, failed terminal publication, final-head timing, immutable no-clobber result, final `just verify`, and pre-success validator behavior.
+1. Parse frontmatter/sections and reject malformed order, tags, IDs, backticks, inputs, and targets.
+2. Build process and invocation edges.
+3. Assert coordinator order: branch, pre-flight, Research progress/dispatch, Plan progress/dispatch, pre-coding, Implement progress/dispatch, Verify progress/dispatch, result validation, post-flight, terminal success, return.
+4. Assert verifier order: acceptance, injected final validation, PR create/update, summary/retro push, independent final-head observation, candidate creation, injected publication, typed return.
+5. Assert one-to-one binding mapping and no direct Runner state/result-destination access.
 
 ### Expected Result
-All strict values and safety checks pass; only runtime descendants are ignored; canonical metadata and Runner handoff duties are present without direct operational-state ownership or issue selection.
+All required behavior is reachable executable control flow; prose alone cannot pass.
 
 ### Expected Evidence
-- Parsed configuration assertions and normalized root report.
-- `git check-ignore -v` output for ignored descendants and non-ignored config.
-- RPIV metadata/helper contract excerpts or static-check output.
+- Process/input registry.
+- Edge/order and binding-map reports.
+- APS lint diagnostics.
 
-## Test V-3: Official asset manifest, integrity, and skill governance
+## Test V-3: Coordinator and verifier failure paths
 
-- **Type:** Integration and integrity validation
-- **Task:** T-1, T-3, T-5
-- **Acceptance Criteria:** AC-3, AC-6
+- **Type:** Negative control-flow validation
+- **Task:** T-2, T-3, T-5
+- **Acceptance Criteria:** AC-2, AC-6
 - **Priority:** Critical
 
 ### Setup
-The existing user-installed official assets and manifest have been brought into repository ownership without byte replacement; the root skill guard recognizes both adopted components.
+Use canonical agents and temporary mutated copies.
 
 ### Steps
-1. Parse `.agents/manifest.json` as strict schema version 1 with exactly one Operator, one Assessor, and one Soft Factory skill entry in catalog order.
-2. Assert each entry uses version `0.1.0`, Runner protocol 1, its fixed safe destination, and a lowercase SHA-256 matching the destination bytes.
-3. Assert `.agents/skills/` contains exactly the three engineering-harness skills plus `soft-factory`, with each governed independently and no fifth directory.
-4. Run `just runner install --recommended` after convergence and require a successful no-change/up-to-date result.
-5. Compare official asset bytes with the V-1 baseline.
+1. Enumerate all non-success returns for setup, stages, handoffs, hooks, validation, PR/head, candidate, publication, and coordinator validation.
+2. Prove each bound coordinator failure first reaches terminal-failed publication.
+3. Prove publication failure remains secondary to the original error.
+4. Prove verifier failure cannot reach success.
+5. Mutate fixtures to bypass failure publication, move terminal success, remove validation, or permit head mismatch; require rejection.
+6. Prove no-binding compatibility without helper calls.
 
 ### Expected Result
-The strict manifest and all catalog digests are valid, the deliberate four-skill inventory passes, recommended installation is idempotent, and existing asset bytes remain unchanged.
+Bound failures publish terminal failure and unsafe/misordered paths are rejected without masking original errors.
 
 ### Expected Evidence
-- Manifest validation and digest table.
-- Exact skill inventory output.
-- Successful `ASSETS_UP_TO_DATE`/`Changed: no` installation transcript.
-- Before/after official-asset hash equality.
+- Error-site coverage matrix.
+- Suppressed-error and mutation results.
+- No-binding trace.
 
-## Test V-4: Complete repository Doctor readiness
+## Test V-4: Executable harness lifecycle seams
 
-- **Type:** Repository integration validation
+- **Type:** Structural integration validation
 - **Task:** T-2, T-3, T-5
+- **Acceptance Criteria:** AC-2, AC-6
+- **Priority:** Critical
+
+### Setup
+Use `.harness/engineering-harness.md` and parsed coordinator/implementer graphs.
+
+### Steps
+1. Assert pre-flight after branch confirmation and before Research.
+2. Assert pre-coding after Plan coverage and before Implement.
+3. Assert coding while editing and post-coding after full validation before notes/commit.
+4. Assert post-flight after Verify/result validation and before terminal success.
+5. Remove/reorder each hook in fixtures and require failure.
+6. Confirm host skill invocation, not shell/narrative-only text.
+
+### Expected Result
+All five hooks are reachable at exact seams and every omission/reordering is detected.
+
+### Expected Evidence
+- Hook seam matrix and five negative fixture results.
+
+## Test V-5: Operator consistency and locked-asset separation
+
+- **Type:** Operator contract and integrity validation
+- **Task:** T-1, T-4, T-5, T-6
+- **Acceptance Criteria:** AC-3, AC-5, AC-6
+- **Priority:** Critical
+
+### Setup
+Use V-1 hashes and the Sparkta custom Operator/adapter.
+
+### Steps
+1. Revalidate official hashes and package bytes.
+2. Confirm adapters are absent from the official manifest and installation is idempotent.
+3. Parse help/instructions/doctor/run/list/status/reconcile/resume/stop/clean/attach/logs mappings.
+4. Require root `just runner` commands and explicit issue placeholders where applicable.
+5. Reject raw operator commands outside root recipes/helper implementation/immutable upstream assets.
+6. Assert adapter contains no Runner resource management.
+
+### Expected Result
+Official assets remain untouched and Sparkta policy provides one root-recipe command surface.
+
+### Expected Evidence
+- Digest equality and manifest exclusion.
+- Verb matrix and prohibited-reference report.
+
+## Test V-6: Synthetic launch-binding and helper canary
+
+- **Type:** Deterministic integration canary
+- **Task:** T-3, T-4, T-5
 - **Acceptance Criteria:** AC-2, AC-4, AC-6
 - **Priority:** Critical
 
 ### Setup
-V-2 and V-3 pass in the configured authenticated environment. No issue number is supplied.
+Use temporary/in-memory ports, synthetic identities never sent to GitHub, installed pure helpers, and a stub adapter executor. Capture repository state first.
 
 ### Steps
-1. Run `just runner doctor --json` and retain the complete JSON and exit status.
-2. Assert schema version 1, repository identity, exactly 24 unique checks in documented order, and a blocking boolean/status for every check.
-3. Assert every failed entry, if present, has nonempty `message` and `remediation`; reject omitted or partial checks.
-4. For acceptance, require exit 0, top-level `ready: true`, and all 24 checks passed after repository-owned remediation.
-5. Confirm Doctor created no retained lock, issue snapshot, worktree, process, or unrelated issue state.
+1. Construct strict `IntegrationLaunchV1`; prove exact helper-field selection and shell-free argv.
+2. Publish valid Research-through-terminal progress.
+3. Reject repeated, skipped, regressed, stale, mismatched, and late progress while preserving bytes.
+4. Build strict synthetic `AgentResultV1` with all AC evidence and snapshot validation.
+5. Publish/validate, repeat byte-equivalently, then reject conflicting replacement.
+6. Reject malformed binding/helper, wrong head/PR, missing AC evidence, and final-validation mismatch.
+7. Assert no `gh`, `soft-factory run`, network, repository Runner state, or real issue use; compare state.
 
 ### Expected Result
-Doctor reports the complete readiness matrix with actionable failure shape and finishes ready with every check passed, without selecting or mutating an issue.
+Positive/negative helper semantics pass in isolation without a real run or GitHub mutation.
 
 ### Expected Evidence
-- Complete Doctor JSON and exit status.
-- Machine-checked count/order/field/readiness summary.
-- Before/after Runner operational-path inventory showing no retained issue resources.
+- Canary case table and stub argv capture.
+- Atomic/no-clobber preservation evidence.
+- Before/after repository-state equality.
 
-## Test V-5: Explicit-issue lifecycle documentation coverage
-
-- **Type:** Documentation and static contract validation
-- **Task:** T-4, T-5
-- **Acceptance Criteria:** AC-5
-- **Priority:** High
-
-### Setup
-All planned repository guidance and architecture links are updated.
-
-### Steps
-1. Map run, list/status inspection, reconcile, resume, stop, clean, attach, and logs to documented root recipe examples.
-2. Assert each issue-specific operation uses one explicit positive issue placeholder and no text instructs agents to queue, rank, infer, or select an issue.
-3. Assert guidance distinguishes Runner Doctor from harness Doctor, Runner state from harness/product state, and ambient CLI ownership from repository configuration/assets.
-4. Assert lifecycle guidance delegates worktree, lock, process, state, recovery, and cleanup behavior exclusively to Runner.
-5. Search live guidance for stale Runner-excluded or exact-three-total-skill claims and validate links/format through root gates.
-
-### Expected Result
-A cold operator can discover every required operation for one explicitly selected issue, authority boundaries are unambiguous, and stale conflict text is absent.
-
-### Expected Evidence
-- Verb-to-document coverage matrix.
-- Explicit-issue and prohibited-selection search results.
-- Documentation review checklist and passing formatting result.
-
-## Test V-6: Authoritative non-mutating acceptance sequence
+## Test V-7: Authoritative acceptance sequence
 
 - **Type:** End-to-end repository validation
-- **Task:** T-3, T-4, T-5
+- **Task:** T-1, T-2, T-3, T-4, T-5, T-6
 - **Acceptance Criteria:** AC-1, AC-2, AC-3, AC-4, AC-5, AC-6
 - **Priority:** Critical
 
 ### Setup
-V-1 through V-5 pass. Capture a final pre-sequence Git status, protected-path hashes, and Runner operational-resource inventory. Do not supply an issue number to a mutating lifecycle verb.
+V-1 through V-6 pass. Capture final protected hashes, Git status, GitHub facts, and Runner resources. Supply no issue to mutating commands.
 
 ### Steps
-1. Through root recipes, execute Runner help, structured instructions, idempotent recommended-asset installation, and structured Doctor in that order.
-2. Validate instructions report schema 1, final validation `just verify`, and Runner-owned progress/result paths.
+1. Run root identity, help, instructions, structural contract/canary, idempotent installation, and Doctor.
+2. Require schema 1, helper/result contract, snapshotted `just verify`, and all 24 Doctor checks ready.
 3. Run `just verify-focused` during implementation.
-4. Run `just verify` before handoff and retain the complete result; optionally inspect harness delegation without treating it as a replacement.
-5. Compare post-sequence protected hashes, assessment status, and operational-resource inventory with the captured baselines.
-6. Inspect the scoped diff to confirm no application feature, Runner installation dependency, issue execution, unrelated issue mutation, assessment rewrite, or official asset-byte replacement occurred.
+4. Run `just verify` before handoff.
+5. Compare protected facts and resource inventory with V-1.
+6. Confirm the diff contains only planned architecture, agent, adapter, verification, documentation, and evidence changes.
 
 ### Expected Result
-All required discovery/readiness commands and both authoritative root gates succeed. The sequence starts no run, mutates no unrelated issue, preserves assessment `003`/`latest` and user-installed asset bytes, and leaves only planned repository configuration/integration/documentation changes.
+All root gates pass, executable wiring/canary proof is enforced, official assets remain intact, and no Runner run or unrelated GitHub mutation occurs.
 
 ### Expected Evidence
-- Ordered root recipe transcript with exit 0 for help, instructions, asset convergence, Doctor, focused verification, and full verification.
-- Instructions schema/final-validation assertion and complete Doctor summary.
-- Before/after hash, Git-status, and operational-resource comparison.
-- Final AC-1 through AC-6 evidence index in implementation notes.
+- Ordered root transcript, Doctor summary, and focused/full results.
+- Final preservation/scoped-diff report.
+- AC-1 through AC-6 evidence index for Verify.

@@ -66,6 +66,16 @@ Before an authorized run, inspect `just runner instructions --json` and require 
 
 The strict `.agents/manifest.json` governs the official Operator, Assessor, and Soft Factory skill at version 0.1.0 and Runner protocol 1. Use `just runner-install-assets` to prove package-catalog convergence; do not manually replace these files or run the broad harness skill installer.
 
+### Launch binding and repository adapters
+
+Runner may append one strict `IntegrationLaunchV1` to the coordinator input. Its issue, branch, paths, snapshotted final validation, and three helper command strings remain mutable launch/runtime facts rather than static instructions or constants. The coordinator validates that binding through `just runner-validate-binding`; its APS processes invoke `just runner-publish-progress` for ordered phase and terminal facts and `just runner-validate-result` before success. Every bound error reaches the terminal-failure process first; a failed failure-publication attempt is retained as redacted secondary evidence while the triggering error stays primary. Without a binding these helper processes explicitly no-op.
+
+The verifier receives the binding one-to-one. After acceptance it runs `just runner-final-validation`, creates or updates the PR, pushes verification summary and retro evidence, and independently compares local HEAD, remote HEAD, PR number/state/base/head SHA, and issue linkage. It then creates only the strict candidate and delegates publication through `just runner-publish-result`. The immutable result path is Runner-owned and is never replaced directly.
+
+The official manifest destinations remain package-owned. Sparkta's custom Operator and helper adapter are intentionally outside `.agents/manifest.json`. The Operator exposes root `just runner` commands only; the adapter validates fixed helper grammar and executes exact argv with `shell: false`, without implementing locks, state, publication, recovery, or cleanup.
+
+Run `just runner-canary` for the no-network integration fixture. It uses synthetic issue `999999`, a temporary path, in-memory files, installed pure progress/result helpers, and a stub process executor. It proves valid and rejected transitions, strict result binding, idempotent/no-clobber publication, helper-field selection, and argv boundaries without invoking `gh`, `soft-factory run`, a real issue, or repository Runner state.
+
 ## Validation
 
 Use `just verify-focused [test-path]` during a change and `just verify` for the complete test, lint, format, type-check, build, and diff-integrity suite. Harness wrappers report the delegated command, argv, exit status, duration, and bounded output without copying recipe internals.

@@ -68,6 +68,14 @@ Runner Doctor is the authority for repository Runner readiness; harness Doctor c
 
 Read `just runner instructions --json` and require `just runner doctor --json` to be ready before starting explicitly authorized work. Status and list are inspection only; lifecycle behavior and retained-resource decisions belong exclusively to Runner.
 
+### Executable RPIV integration
+
+The canonical coordinator keeps the optional protocol-1 launch binding in APS runtime state. Bound runs validate its exact schema and fixed helper grammar through repository-owned root recipes, publish ordered phase starts, funnel failures through terminal `failed` publication without masking the original error, and validate the immutable result before terminal success. Unbound launches skip only Runner helper calls, so standalone RPIV behavior is unchanged.
+
+Verify reruns the binding's snapshotted `just verify`, updates or creates the PR, pushes summary and retro evidence, then independently confirms local, remote, PR, base, issue, and final-head facts. Only then may it write `.soft-factory/agent-result.candidate.json` and invoke the injected no-clobber publisher. It never writes the immutable result destination directly.
+
+Sparkta policy lives outside the official asset manifest in [`.github/agents/sparkta-soft-factory-operator.agent.md`](.github/agents/sparkta-soft-factory-operator.agent.md) and [`scripts/runner-integration-adapter.mjs`](scripts/runner-integration-adapter.mjs). The adapter accepts only exact protocol-1 command grammar and spawns argv with shell evaluation disabled. `just runner-canary` uses synthetic issue `999999`, temporary/in-memory fixtures, installed Runner pure helpers, and a stub executor; it performs no network call, live run, GitHub mutation, or real Runner-state write.
+
 ## Readiness API and configuration
 
 `GET /api/readiness` returns HTTP 200 with the exact non-sensitive body:

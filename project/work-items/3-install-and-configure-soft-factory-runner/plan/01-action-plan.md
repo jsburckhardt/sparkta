@@ -3,14 +3,15 @@
 ## Feature
 - **ID:** 3
 - **Research Brief:** `project/work-items/3-install-and-configure-soft-factory-runner/research/00-research.md`
+- **Return Reason:** Focused integration review of PR #11 found prose-only Runner and harness obligations, conflicting Operator command policy, phrase-only verification, and no safe launch-binding canary.
 
 ## ADRs Created
-- None. Existing `ADR-260812-foundation-stack` and `ADR-260812-filesystem-state-boundary` remain applicable; no new architectural decision is required.
+- None. `ADR-260812-foundation-stack` and `ADR-260812-filesystem-state-boundary` remain applicable; no technology, state, API, or deployment decision changes.
 
-## Core-Components Created
-- **Created:** `CORE-COMPONENT-260813-soft-factory-runner-operation` — governs the ambient Runner boundary, fixed safe roots, official assets, injected RPIV handoff, explicit issue operations, root recipe delegation, and preservation rules.
-- **Modified (creation date preserved):** `CORE-COMPONENT-260813-engineering-harness-operation` — narrows its exact allowlist to engineering-harness skills and permits additional skills only through a separately adopted component, resolving the official `soft-factory` skill conflict.
-- **Registry:** `project/architecture/ADR/DECISION-LOG.md` registers the new component, revises the conflicting harness decisions, and records decisions 49–53.
+## Core-Components Created or Updated
+- **Updated (creation date preserved):** `CORE-COMPONENT-260813-soft-factory-runner-operation` now requires executable APS helper and harness wiring, final-head-bound result publication, repository-owned adaptation outside official assets, control-flow verification, and a synthetic no-network canary.
+- **Referenced unchanged:** `CORE-COMPONENT-260813-engineering-harness-operation` remains authoritative for executable `/eng-harness-flow` seams and root validation.
+- **Registry:** `project/architecture/ADR/DECISION-LOG.md` retains decisions 49-53 and adds decisions 54-57.
 
 ## Acceptance Criteria
 - **AC-1:** The `soft-factory-runner` package is installed and its `soft-factory` CLI is available in the configured development environment.
@@ -24,18 +25,50 @@
 
 | AC ID | Implementation tasks | Tests or validation | Expected evidence |
 | --- | --- | --- | --- |
-| AC-1 | T-3, T-5 | V-1, V-6 | Resolved `soft-factory` executable, installed package metadata/version, successful help output, and passing root gates without repository installation dependencies |
-| AC-2 | T-2, T-5 | V-2, V-4, V-6 | Committed strict config, ignore probes for `.trees` and `.soft-factory` descendants, committable config proof, canonical RPIV declarations, and passed Doctor root/config/runtime checks |
-| AC-3 | T-1, T-3, T-5 | V-1, V-3, V-6 | Byte-preservation hashes, schema-v1 manifest with three catalog-matching entries, exact governed four-skill inventory, and idempotent `ASSETS_UP_TO_DATE` installation |
-| AC-4 | T-2, T-3, T-5 | V-4, V-6 | Complete schema-version-1 Doctor JSON with all 24 ordered checks, `ready: true` after repository fixes, and message/remediation assertions for every failed check if the environment introduces one |
-| AC-5 | T-4, T-5 | V-5, V-6 | Reviewed discovery and operator documentation covering run, list/status inspection, reconcile, resume, stop, clean, attach, and logs with explicit issue placeholders and no selection workflow |
-| AC-6 | T-1, T-2, T-3, T-5 | V-1, V-3, V-4, V-6 | Successful non-run command transcript plus before/after Git status and SHA-256 inventory proving no unrelated issue state, user-installed asset bytes, or assessment `003`/`latest` artifacts changed |
+| AC-1 | T-4, T-6 | V-1, V-7 | Ambient identity, help, root recipe discovery, and no repository installation dependency |
+| AC-2 | T-2, T-3, T-5, T-6 | V-2, V-3, V-4, V-6, V-7 | Config/root assertions plus reachable progress, result, validator, final-validation, and harness-seam edges |
+| AC-3 | T-1, T-4, T-5, T-6 | V-1, V-5, V-7 | Official digest equality, no official-byte diff, adapter separation, and idempotent asset convergence |
+| AC-4 | T-5, T-6 | V-6, V-7 | Complete ordered Doctor result retained alongside stronger structural and canary gates |
+| AC-5 | T-4, T-6 | V-5, V-7 | Root-recipe-only lifecycle matrix, explicit issue placeholders, and repository adapter discovery |
+| AC-6 | T-2, T-3, T-5, T-6 | V-2, V-3, V-4, V-6, V-7 | Structural checks and synthetic canary with no run, GitHub mutation, or protected evidence change |
 
-**Coverage proof:** AC-1 through AC-6 each have one or more dependency-ordered implementation tasks, executable validation entries, and concrete expected evidence. No criterion is unmapped.
+**Coverage proof:** Every criterion retains its original text and issue order and maps to dependency-ordered tasks, executable validation, and concrete evidence. The Plan-return defects are mandatory delivery quality under AC-2 through AC-6.
+
+## Executable APS Design
+
+### Coordinator control flow
+`.github/agents/rpiv.agent.md` will parse the optional Runner integration binding appended to `USER_INPUT` into typed runtime state. Dedicated APS processes will validate it and invoke repository-owned root recipes that consume its exact `publishProgressCommand` and `validateResultCommand`; no process will read Runner state files.
+
+The reachable success path must be ordered as follows:
+
+1. Initialize and confirm the issue branch.
+2. Execute the `pre-flight` harness-hook process.
+3. Publish `research/running`, then dispatch Research.
+4. Publish `plan/running`, then dispatch Plan.
+5. Validate Plan coverage, then execute `pre-coding`.
+6. Publish `implement/running`, then dispatch Implement; Implement executes `coding` while editing and `post-coding` after full validation before notes/commit handoff.
+7. Publish `verify/running`, then dispatch Verify with one-to-one launch-binding input mapping.
+8. After Verify returns publication evidence, execute the injected result validator.
+9. Execute `post-flight`.
+10. Publish `terminal/succeeded`, then return success.
+
+Every error return from initialization, handoff validation, a stage, a hook, result publication, or validation first routes through one failure process that attempts `terminal/failed`. A publication failure is redacted secondary evidence while the original failure remains primary. Without a binding, helper processes are explicit no-ops and normal RPIV behavior remains unchanged.
+
+### Verifier control flow
+`.github/agents/rpiv-verifier.agent.md` will receive the optional binding through its `<input>` contract. After acceptance and the snapshotted final validation pass, it will create or update PR #11, commit and push verification summary/retro evidence, independently query the open PR and local final head, and assert issue, branch, base, PR, and head equality. It will create strict `AgentResultV1` candidate bytes and invoke the injected `publishResultCommand` through the repository adapter. Publication failure is a failed Verify result; the immutable destination is never written directly.
+
+### Repository-owned adaptation
+The official assets and manifest remain byte-for-byte package-owned. Sparkta will add a distinctly named custom Operator under `.github/agents/` plus a helper script/root-recipe bridge outside every manifest destination. The Operator exposes only `just runner ...` lifecycle commands. The bridge validates `IntegrationLaunchV1` and fixed helper grammar, uses argv without a shell, and delegates to the exact injected helper command without implementing Runner state behavior.
+
+### Deterministic proof strategy
+`scripts/verify-soft-factory.mjs` will parse APS sections and process bodies into a call/control-flow graph. It will assert required definitions, reachable edges, success ordering, all error-to-failure-publication edges, verifier candidate/publication/final-head ordering, binding input mapping, and harness seam placement.
+
+A separate synthetic canary will use temporary or in-memory fixtures and installed package pure helpers to prove valid progress, rejected invalid transitions, strict result binding, no-clobber publication, and result validation. A stub executor will prove adapter selection of injected command fields and argv boundaries. It makes no `gh` call, invokes no `soft-factory run`, creates no repository Runner state, and consumes no real issue.
 
 ## Implementation Tasks
-1. **T-1 — Preserve and govern the installed official assets (AC-3, AC-6):** capture preservation baselines, retain the official bytes and manifest, commit those existing assets without reinstalling or replacing them, and align the repository skill inventory with the two adopted components.
-2. **T-2 — Add safe Runner configuration and canonical RPIV integration (AC-2, AC-4, AC-6):** add strict protocol/root/concurrency/final-validation configuration, precise ignore coverage, canonical metadata, and injected progress/result/validator duties without implementing a competing control path.
-3. **T-3 — Add root Runner delegation and validation recipes (AC-1, AC-3, AC-4, AC-6):** keep every raw Runner command in the root `justfile`, make asset and Doctor checks part of the project gates, and retain `verify-focused`/`verify` authority.
-4. **T-4 — Publish explicit-issue Runner operating guidance (AC-5):** update cold-agent, contributor, architecture, skill-index, setup, and detailed operator documentation while removing stale “future/excluded” statements.
-5. **T-5 — Execute non-mutating acceptance validation and record evidence (AC-1, AC-2, AC-3, AC-4, AC-5, AC-6):** run the planned root recipes only, inspect complete structured results, prove preservation, and record evidence without running or selecting an issue.
+1. **T-1 - Preserve delivery and strengthen architecture contracts (AC-3, AC-6):** retain PR #11 files, harness observation, official bytes/digests, and the work-item path; update only the Runner component and Decision Log contracts.
+2. **T-2 - Wire executable coordinator progress, failure, validation, and harness seams (AC-2, AC-6):** revise coordinator processes/runtime/input for reachable helpers and all harness hooks with no-binding compatibility and original-error preservation.
+3. **T-3 - Wire executable verifier final-head result publication (AC-2, AC-6):** map the binding, preserve/update the PR, push evidence, confirm final head, create strict result candidate, and invoke the injected publisher before coordinator validation.
+4. **T-4 - Add Sparkta-owned Operator and helper adapters (AC-1, AC-3, AC-5):** leave official assets untouched and route operator/helper behavior through repository-owned root recipes.
+5. **T-5 - Replace phrase checks and add a non-destructive canary (AC-2, AC-3, AC-4, AC-6):** verify control flow and synthetic helper semantics without a run, GitHub mutation, or repository state.
+6. **T-6 - Align documentation, evidence, and authoritative gates (AC-1 through AC-6):** update affected documentation/evidence and run focused/full root validation while preserving current PR and protected artifacts.

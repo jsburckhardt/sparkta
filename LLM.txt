@@ -46,6 +46,10 @@ docs/README.md — Detailed harness setup, API, configuration, operation, cleanu
 .github/agents/rpiv-research.agent.md — RPIV Research agent
 .github/agents/rpiv-planner.agent.md — RPIV Plan agent
 .github/agents/rpiv-verifier.agent.md — RPIV Verify agent
+.github/agents/sparkta-soft-factory-operator.agent.md — Repository-owned root-recipe-only Runner Operator outside official assets
+scripts/runner-integration-adapter.mjs — Strict shell-free argv adapter for injected Runner helpers
+scripts/soft-factory-canary.mjs — Synthetic no-network progress/result/no-clobber canary
+scripts/verify-soft-factory.mjs — APS graph, mutation, asset-integrity, operator, and canary gate
 .github/agents/prd-to-gh-issues.agent.md — PRD-to-GitHub backlog issue planning agent
 .github/agents/aps-v1.2.2.agent.md — APS prompt generator agent
 .github/agents/bootstrap.agent.md — New-project bootstrap agent

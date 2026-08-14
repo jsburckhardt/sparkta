@@ -8,6 +8,8 @@ The ambient CLI installation is owned by the configured development environment.
 
 The ambient Soft Factory Runner is governed separately. `just runner-readiness` validates its package, official assets, protocol-1 integration, and 24-check Runner Doctor without selecting an issue. Runner uses `.trees/` and `.soft-factory/`; harness boot remains confined to `.harness/temp/boot/`. Runner Doctor does not replace harness Doctor, and the broad harness skill installer must not be used to alter the official Soft Factory skill. Lifecycle usage is documented in [`docs/README.md`](../docs/README.md#soft-factory-runner-operation).
 
+The canonical RPIV APS processes invoke every harness seam through the host `skill` tool. Sparkta-owned Runner adapters are outside the official manifest, and `just runner-canary` proves injected helper semantics without a live issue, network call, or Runner-state mutation.
+
 ## Boot command
 
 `harness boot --json` is the bounded boot front door. It reconciles only verified state under `.harness/temp/boot/`, refuses unknown listeners on fixed ports, spawns exactly `just run`, proves both foundations, and composes `harness checks full --json`. A successful boot leaves the owned runtime available until `harness stop --json`.

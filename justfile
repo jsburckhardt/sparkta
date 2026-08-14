@@ -19,6 +19,30 @@ runner-help:
 runner-instructions:
     output="$(soft-factory instructions --json)"; printf "%s\n" "$output"; JSON="$output" node -e 'const x=JSON.parse(process.env.JSON); if(x.schemaVersion!==1||x.effectiveFinalValidation.command!=="just verify"||x.paths.progress!==".soft-factory/rpiv-status.json"||x.paths.result!==".soft-factory/agent-result.json") process.exit(1)'
 
+# Validate one injected protocol-1 launch binding without touching Runner state.
+runner-validate-binding binding:
+    node scripts/runner-integration-adapter.mjs validate-binding '{{binding}}'
+
+# Delegate one ordered progress transition to the exact injected helper.
+runner-publish-progress binding phase status:
+    node scripts/runner-integration-adapter.mjs progress '{{binding}}' '{{phase}}' '{{status}}'
+
+# Execute the final validation snapshotted in the launch binding.
+runner-final-validation binding:
+    node scripts/runner-integration-adapter.mjs final-validation '{{binding}}'
+
+# Publish the strict candidate through the injected no-clobber helper.
+runner-publish-result binding:
+    node scripts/runner-integration-adapter.mjs publish-result '{{binding}}'
+
+# Validate the immutable result through the injected coordinator gate.
+runner-validate-result binding:
+    node scripts/runner-integration-adapter.mjs validate-result '{{binding}}'
+
+# Prove helper semantics using only synthetic in-memory and temporary fixtures.
+runner-canary:
+    SOFT_FACTORY_GLOBAL_ROOT="$(npm root -g)" node scripts/soft-factory-canary.mjs
+
 # Converge recommended official assets; this must report no changes.
 runner-install-assets:
     output="$(soft-factory install --recommended)"; printf "%s\n" "$output"; grep -Eq "ASSETS_UP_TO_DATE|Changed: no" <<<"$output"

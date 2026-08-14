@@ -69,3 +69,46 @@
 - Documentation impact: harnessability assessment 003 and its root latest mirrors were corrected; no README, API, configuration, usage, migration, architecture-contract, deployment, or operational guidance change was required because runtime behavior and interfaces did not change.
 
 Final acceptance remains owned by Verify.
+
+## Revised Implement stage for PR #11 review repair
+
+### Completed tasks
+
+- **T-1:** Preserved PR #11 delivery, official assets, manifest, assessment 003/latest mirrors, issue/PR identity, and empty Runner inventory while retaining the revised Runner component and Decision Log decisions 54-57.
+- **T-2:** Reworked the coordinator into APS v1.2.2 static instructions, mutable runtime binding state, and reachable processes for exact ordered progress, all-error terminal failure, original-error preservation, injected result validation, and pre-flight/pre-coding/post-flight skill seams.
+- **T-3:** Reworked Verify to receive the binding one-to-one, run snapshotted final validation, create/update the PR, push summary/retro evidence, independently confirm local/remote/PR/base/issue/final-head facts, create strict AgentResultV1 candidate bytes, and invoke only the no-clobber publisher.
+- **T-4:** Added the manifest-excluded Sparkta Operator, strict integration adapter, root adapter recipes, and shell-free argv execution while leaving Runner resource management in Runner.
+- **T-5:** Replaced phrase assertions with APS section/frontmatter/tool/process parsing, call/order and failure-funnel checks, ten rejecting mutations, and a synthetic pure-helper canary.
+- **T-6:** Updated setup, usage, operational, architecture, migration/no-impact, harness, repository-map, implementation, and retro evidence and passed authoritative focused/full gates.
+
+### Acceptance evidence
+
+- **AC-1:** `runner-identity` continues to prove ambient `soft-factory-runner` 0.1.0 and `just --list` exposes Runner discovery, adapter, canary, focused, and full recipes. Package, lockfile, devcontainer, and post-create files remain free of Runner installation dependencies.
+- **AC-2:** The exact protocol-1 config remains unchanged. The structural report resolves APS calls/tools, proves ordered phase starts, terminal success after injected validation, terminal failure before nonzero return, preserved original errors, final-head publication order, and all five harness seams. The adapter rejects malformed launch/helper grammar and executes exact argv with `shell: false`.
+- **AC-3:** Official hashes remain Operator `46b96e18...ed760`, Assessor `40054f09...7ed3d`, skill `07d0c15b...d3b6f`, and manifest `e57667a0...a857`; package-source bytes match and recommended installation reports no changes. Custom Operator/adapter paths are absent from the manifest.
+- **AC-4:** Runner Doctor remains schema 1, ready, and 24/24 ordered blocking checks passed. Structural and canary checks supplement but do not replace Doctor.
+- **AC-5:** README, detailed docs, AGENTS, CONTRIBUTING, LLM map, harness guide, and architecture index describe root-recipe operation, explicit issue selection, optional binding behavior, immutable assets, final-head publication, and canary limits.
+- **AC-6:** Synthetic issue `999999` produced 12 progress cases, 8 result cases, three stub adapter invocations, no-clobber preservation, zero network calls, zero real Runner-state writes, and no shell evaluation. Ten mutated coordinator/implementer/verifier fixtures were rejected. No live run, issue mutation, PR mutation, or result publication occurred.
+
+### Review repair evidence
+
+- Coordinator static prose is no longer acceptance evidence by itself: `scripts/verify-soft-factory.mjs` parses canonical APS section order, frontmatter tool declarations, valid process/tool IDs, resolved RUN edges, ordered success/error edges, one-to-one Verify input, no-binding no-ops, and direct-state prohibitions.
+- Verifier checks require final validation before GitHub delivery, evidence push before independent final-head observation, candidate construction after that observation, and publication before clean success.
+- Negative mutations remove each of the five harness seams, result validation, terminal-failed publication, reorder terminal success, weaken PR head equality, and reorder publication; all are rejected.
+- The repository-owned Operator resolves the official raw-command conflict without changing locked package assets or manifest digests.
+
+### Validation evidence
+
+- APS/structural gate: `node scripts/verify-soft-factory.mjs` passed with three linted APS agents, resolved tool/process contracts, ten rejected mutations, official package-byte equality, and canary output.
+- Synthetic canary: `just runner-canary` passed with synthetic issue 999999, no network, no real state, no-clobber preservation, and shell-free stub argv.
+- Focused validation: `harness checks focused --json` delegated to `just verify-focused` and passed Runner readiness, 6 test files, 13 tests, and diff integrity.
+- Full validation: `harness checks full --json` delegated to `just verify` and passed Runner readiness, 13 tests, lint, formatting, type-check, build, and merge-base diff integrity.
+
+### Documentation evidence
+
+- Updated `README.md`, `docs/README.md`, `AGENTS.md`, `CONTRIBUTING.md`, `LLM.txt`, `.harness/engineering-harness.md`, and `project/architecture/README.md` for executable binding, adapter, immutable-result, failure, canary, and operator behavior.
+- Updated the adopted Runner component and Decision Log through the revised Plan; no ADR was created and no architecture contract deviation occurred.
+- API/data migration: none. The change affects local agent orchestration and validation only. Deployment remains local configured-environment operation.
+- Post-coding retro: `.harness/records/retro/2026-08-14/001-issue-3-runner-integration.md` records the encoded phrase-check repair and host-tool friction.
+
+Final acceptance remains owned by Verify.
