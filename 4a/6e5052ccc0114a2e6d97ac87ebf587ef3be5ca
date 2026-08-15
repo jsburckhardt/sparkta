@@ -1,0 +1,157 @@
+templates/default/tsconfig.app.json
+  s_33fb4265ee391c::t_53681a384497d3 1-2,20-22
+  s_33fb4265ee391c::t_859ac330860910 3-19
+docs/README.md
+  s_33fb4265ee391c::t_859ac330860910 111-115
+  s_33fb4265ee391c::t_4b8c842f5624f6 46-61,80,116,143,147-148,163
+.harness/records/retro/2026-08-15/001-5-establish-the-blessed-frontend-starter.md
+  s_33fb4265ee391c::t_7b89059ed47dfd 1-6,9,14-16,190-191,193
+  s_33fb4265ee391c::t_329a6e9db538e2 12,174-186
+  s_33fb4265ee391c::t_9046b6f5dd7177 7-8,10-11,13,17-173,187-189,192,194
+templates/default/src/main.tsx
+  s_33fb4265ee391c::t_53681a384497d3 1-8
+  s_33fb4265ee391c::t_859ac330860910 9-13
+templates/default/vite.config.ts
+  s_33fb4265ee391c::t_53681a384497d3 1-4
+project/architecture/ADR/ADR-260815-blessed-frontend-starter.md
+  s_399b8ca33dd588::t_25cacf62c48dc5 1-20,27-30,32-36,38-42,44-56
+  s_399b8ca33dd588::t_f506bb56299af9 21-26,31,37,43
+project/architecture/core-components/CORE-COMPONENT-260815-generated-frontend-contract.md
+  s_399b8ca33dd588::t_c492398fedd3d4 1-17,19-26,28-32,34-75
+  s_399b8ca33dd588::t_f506bb56299af9 18,27,33
+LLM.txt
+  s_33fb4265ee391c::t_4b8c842f5624f6 83
+  s_33fb4265ee391c::t_a7d9678532c614 43-46,84-85
+package.json
+  s_33fb4265ee391c::t_329a6e9db538e2 18
+templates/default/src/App.tsx
+  s_33fb4265ee391c::t_53681a384497d3 4-8,19,25,29-31
+  s_33fb4265ee391c::t_859ac330860910 12-14,16-17,20-24,26-28
+  s_33fb4265ee391c::t_af52e3f6934e2d 1-3,9-11,15,18
+templates/default/tailwind.config.ts
+  s_33fb4265ee391c::t_53681a384497d3 1-7
+project/architecture/README.md
+  s_33fb4265ee391c::t_4b8c842f5624f6 18-21,34
+  s_33fb4265ee391c::t_859ac330860910 7-9
+templates/default/src/components/ui/button.tsx
+  s_33fb4265ee391c::t_af52e3f6934e2d 1-29
+project/work-items/5-establish-the-blessed-frontend-starter/research/00-research.md
+  s_33fb4265ee391c::t_859ac330860910 4,10,14,18,27,40,52,63
+  s_14a2eb248853ae::t_43636636a314d1 1-3,5-9,11-13,15-17,19-26,28-39,41-51,53-62,64-70
+templates/default/AGENTS.md
+  s_33fb4265ee391c::t_af52e3f6934e2d 1-9
+project/work-items/5-establish-the-blessed-frontend-starter/plan/02-task-breakdown.md
+  s_33fb4265ee391c::t_dbddc893f17aa0 130
+  s_399b8ca33dd588::t_f506bb56299af9 13,17,24,31,46,50,56,62,77,81,87,94,109,113,118,123,138,142,148,154
+  s_33fb4265ee391c::t_4b8c842f5624f6 38
+  s_33fb4265ee391c::t_af52e3f6934e2d 5
+  s_399b8ca33dd588::t_a05b066431840f 1-4,6-12,14-16,18-23,25-30,32-37,39-45,47-49,51-55,57-61,63-68,70-76,78-80,82-86,88-93,95-100,102-108,110-112,114-117,119-122,124-129,131-137,139-141,143-147,149-153,155-157
+  s_33fb4265ee391c::t_a350caee458a8b 101
+  s_33fb4265ee391c::t_4c0b1030b32505 69
+project/work-items/5-establish-the-blessed-frontend-starter/plan/03-test-plan.md
+  s_399b8ca33dd588::t_9d4e2b47e88908 1-10,12-14,16-22,24-26,28-39,41-43,45-51,53-55,57-69,71-73,75-82,84-86,88-99,101-103,105-112,114-116,118-129,131-133,135-142,144-146,148-159,161-163,165-172,174-176,178-180
+  s_399b8ca33dd588::t_f506bb56299af9 11,15,23,27,40,44,52,56,70,74,83,87,100,104,113,117,130,134,143,147,160,164,173,177
+project/work-items/5-establish-the-blessed-frontend-starter/implementation/00-implementation.md
+  s_33fb4265ee391c::t_a350caee458a8b 1-37,39-47,49,51-79,81-83,85-86
+  s_33fb4265ee391c::t_dbddc893f17aa0 38,48,50,80
+  s_33fb4265ee391c::t_329a6e9db538e2 84
+AGENTS.md
+  s_33fb4265ee391c::t_23f5209699bb6c 63
+  s_33fb4265ee391c::t_859ac330860910 391-400,409-411,413,417-419,425-427
+templates/default/postcss.config.js
+  s_33fb4265ee391c::t_53681a384497d3 1-3
+README.md
+  s_33fb4265ee391c::t_859ac330860910 38-48,50
+  s_33fb4265ee391c::t_4b8c842f5624f6 9,49,54-67,107,112
+templates/default/tsconfig.json
+  s_33fb4265ee391c::t_53681a384497d3 1-4
+justfile
+  s_33fb4265ee391c::t_859ac330860910 22-23,25
+  s_33fb4265ee391c::t_23f5209699bb6c 59-72
+  s_33fb4265ee391c::t_2dc50aae11accc 113-121
+  s_33fb4265ee391c::t_a7d9678532c614 56
+  s_33fb4265ee391c::t_2a364f7d3b6bee 132
+  s_33fb4265ee391c::t_05b95acc2850c9 51-55,57-58,73-112,122-131,133-164,173
+  s_33fb4265ee391c::t_329a6e9db538e2 24
+templates/default/tsconfig.node.json
+  s_33fb4265ee391c::t_53681a384497d3 1,11-12
+  s_33fb4265ee391c::t_859ac330860910 2-10
+templates/default/package.json
+  s_33fb4265ee391c::t_53681a384497d3 1,13,22-23,32-33
+  s_33fb4265ee391c::t_859ac330860910 2-12,14-21,24-31
+project/architecture/ADR/DECISION-LOG.md
+  s_399b8ca33dd588::t_5be6b33d6f9518 11,28
+  s_399b8ca33dd588::t_f506bb56299af9 7-10,93-99
+templates/default/src/index.css
+  s_33fb4265ee391c::t_53681a384497d3 1-5,11
+  s_33fb4265ee391c::t_859ac330860910 6-10
+templates/default/src/chart-support.ts
+  s_33fb4265ee391c::t_af52e3f6934e2d 1-3
+project/work-items/5-establish-the-blessed-frontend-starter/plan/01-action-plan.md
+  s_399b8ca33dd588::t_adb3f06bb535a0 1-3,5-8,10-12,14-16,18-26,36-38,40-44
+  s_399b8ca33dd588::t_f506bb56299af9 4,9,13,17,27-35,39
+templates/default/index.html
+  s_33fb4265ee391c::t_53681a384497d3 1-8,10-12
+  s_33fb4265ee391c::t_2a364f7d3b6bee 9
+templates/default/package-lock.json
+  s_33fb4265ee391c::t_144e0070282de2 1-3283
+.harness/records/retro/2026-08-15/002-5-starter-commit-handoff.md
+  s_33fb4265ee391c::t_42b69d782135f4 1-5,9,14,23,31-32,34
+  s_33fb4265ee391c::t_778dc3c7a18dec 6-8,10-13,15-22,24-30,33,35
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "4a6e5052ccc0114a2e6d97ac87ebf587ef3be5ca",
+  "prompts": {},
+  "sessions": {
+    "s_01ca9eb1b5fbf9": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "call_uJCxjLhANKb30V86VyZ1CSXl",
+        "model": "unknown"
+      },
+      "human_author": "jsburckhardt <jsburckhardt@gmail.com>"
+    },
+    "s_14a2eb248853ae": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "call_gOg7MdLPprXMM1xspYAvG75n",
+        "model": "unknown"
+      },
+      "human_author": "jsburckhardt <jsburckhardt@gmail.com>"
+    },
+    "s_1a91f5ffe9e0c8": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "call_YBrjMU6Wq40glMBf1ZAXTytk",
+        "model": "unknown"
+      },
+      "human_author": "jsburckhardt <jsburckhardt@gmail.com>"
+    },
+    "s_33fb4265ee391c": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "call_4VkyPhCSRW2x8iOCL4J2DlvM",
+        "model": "unknown"
+      },
+      "human_author": "jsburckhardt <jsburckhardt@gmail.com>"
+    },
+    "s_399b8ca33dd588": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "call_J0JaJoSWx2IBpZtyzzFvBTqK",
+        "model": "unknown"
+      },
+      "human_author": "jsburckhardt <jsburckhardt@gmail.com>"
+    },
+    "s_b7fd5c5320cb65": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "call_wml4kKRn2Tv0A8GPe5Jidfu6",
+        "model": "unknown"
+      },
+      "human_author": "jsburckhardt <jsburckhardt@gmail.com>"
+    }
+  }
+}
