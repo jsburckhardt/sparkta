@@ -1,0 +1,55 @@
+project/work-items/5-establish-the-blessed-frontend-starter/plan/03-test-plan.md
+  s_1a91f5ffe9e0c8::t_c1c3dd4d475ca2 131,139-143,147,152-154,165,173-176,180,185-187
+AGENTS.md
+  s_01ca9eb1b5fbf9::t_e1d40e8c037828 391-422,431,436,442
+.harness/records/retro/2026-08-15/004-5-frontend-starter-correction-notes.md
+  s_01ca9eb1b5fbf9::t_7ac114f4a336d2 3-8,12-18,20-26,29,31
+  s_01ca9eb1b5fbf9::t_8b061d136e98b9 1-2,9-11,19,27-28,30
+.harness/records/retro/2026-08-15/003-5-frontend-starter-correction.md
+  s_01ca9eb1b5fbf9::t_1fdb1c1e81fcb5 1-27,34
+  s_01ca9eb1b5fbf9::t_6798da3a8681f3 28-33,35-59
+project/work-items/5-establish-the-blessed-frontend-starter/implementation/00-implementation.md
+  s_01ca9eb1b5fbf9::t_3212bca58b7997 12-13,58-59,76,80
+  s_01ca9eb1b5fbf9::t_4d9e723a2d1e37 84
+  s_01ca9eb1b5fbf9::t_2b3518123bce79 86-103
+  s_01ca9eb1b5fbf9::t_5c15c4eca0aec8 85
+project/work-items/5-establish-the-blessed-frontend-starter/plan/02-task-breakdown.md
+  s_01ca9eb1b5fbf9::t_bdcb0bbfb748c7 132
+  s_1a91f5ffe9e0c8::t_c1c3dd4d475ca2 99,110,115,120-121,125-128,141,147,151-153,158-159
+  s_01ca9eb1b5fbf9::t_eba6b31a66bac3 101
+.harness/records/retro/2026-08-15/005-5-frontend-starter-commit-retry.md
+  s_01ca9eb1b5fbf9::t_0f4667c00f2059 1-2,9-11,19,27-28,30
+  s_01ca9eb1b5fbf9::t_5e4757f2beb313 3-8,12-18,20-26,29,31
+.harness/records/retro/2026-08-15/007-5-frontend-starter-signing-diagnosis.md
+  s_01ca9eb1b5fbf9::t_4d9e723a2d1e37 3-8,10-18,20-26,29,31
+  s_01ca9eb1b5fbf9::t_e14c66a05d6dbc 1-2,9,19,27-28,30
+project/work-items/5-establish-the-blessed-frontend-starter/plan/01-action-plan.md
+  s_1a91f5ffe9e0c8::t_c1c3dd4d475ca2 16-21,39,42,49-50
+.harness/records/retro/2026-08-15/006-5-frontend-starter-buffered-commit.md
+  s_01ca9eb1b5fbf9::t_e9335d323aa184 1-2,9-11,19,27-28,30
+  s_01ca9eb1b5fbf9::t_d98bd1f634447d 3-8,12-18,20-26,29,31
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "8481b84550a132c6281bb7a7bf7a95e1bd3dd9f4",
+  "prompts": {},
+  "sessions": {
+    "s_01ca9eb1b5fbf9": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "call_uJCxjLhANKb30V86VyZ1CSXl",
+        "model": "unknown"
+      },
+      "human_author": "jsburckhardt <jsburckhardt@gmail.com>"
+    },
+    "s_1a91f5ffe9e0c8": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "call_YBrjMU6Wq40glMBf1ZAXTytk",
+        "model": "unknown"
+      },
+      "human_author": "jsburckhardt <jsburckhardt@gmail.com>"
+    }
+  }
+}
