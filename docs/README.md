@@ -43,6 +43,22 @@ A successful boot intentionally leaves both foundation services running. Run `ha
 
 All three are gitignored and separate from `.sparkta/apps/` and `.sparkta/runtime/`.
 
+## Blessed frontend starter
+
+The canonical copy source is [`templates/default/`](../templates/default/). Copy the whole directory, including its independent `package-lock.json`; it is not a root npm workspace. The package bundles React, strict TypeScript, Vite, Tailwind CSS, Lucide, Radix/shadcn-style source components and utilities, and Recharts for chart-requiring interfaces. Starter content and state are local/mock only.
+
+Agents must use bundled packages and must not install arbitrary dependencies. Any addition requires an explicitly adopted architecture change that adds an allowlist entry. The direct standalone contracts are:
+
+```bash
+npm ci
+npm run build
+npm run dev -- --host 0.0.0.0 --port <PORT>
+```
+
+Choose an available assigned port; generated-app identity never depends on that port. From the repository root, `just starter-check` makes a temporary clean copy, performs the locked install and build, runs the exact development command, requires HTTP 200 plus HTML/root markers, exercises failure cleanup, verifies lockfiles, and removes only its owned process and copy. `just verify` composes this recipe.
+
+The starter does not call `GET /api/readiness` and requires no Sparkta server, product API, backend, database, authentication, external infrastructure, or external data source.
+
 ## Soft Factory Runner operation
 
 The repository commits protocol-1 configuration and the APS v1.2.2 [`runner-dispatcher`](../.github/agents/runner-dispatcher.agent.md), while the configured environment owns the CLI. `.trees/` is the isolated-worktree root. Only `.soft-factory/config.yml` is committed beneath the state root; runtime descendants are ignored. Concurrency is 1 and each new run snapshots final validation as `just verify`. Runner state is separate from harness `.harness/temp/boot/` and product `.sparkta/` state.
@@ -61,7 +77,7 @@ The dispatcher does not invoke RPIV agents, retry refusals, use `just`, inspect 
 
 ## Validation
 
-Use `just verify-focused [test-path]` during a change and `just verify` for the complete test, lint, format, type-check, build, and diff-integrity suite. Harness wrappers report the delegated command, argv, exit status, duration, and bounded output without copying recipe internals.
+Use `just verify-focused [test-path]` during a change, `just starter-check` for the clean-copy frontend contract, and `just verify` for the complete test, lint, format, type-check, workspace build, starter, and diff-integrity suite. Harness wrappers report the delegated command, argv, exit status, duration, and bounded output without copying recipe internals.
 
 Use the attribution-aware managed commit path after reading `harness instructions commit`:
 
@@ -92,11 +108,12 @@ The response intentionally omits PID, paths, environment, stack, secrets, prompt
 
 ## Configuration
 
-| Setting or option           | Default | Constraints and effect                                                    |
-| --------------------------- | ------: | ------------------------------------------------------------------------- |
-| `PORT`                      |  `3000` | Server listener and readiness probe; integer from 1 to 65535 and not 5173 |
-| `LOG_LEVEL`                 |  `info` | Pino server log level                                                     |
-| `harness boot --timeout-ms` | `60000` | Readiness bound from 1000 through 120000 ms                               |
+| Setting or option           |  Default | Constraints and effect                                                    |
+| --------------------------- | -------: | ------------------------------------------------------------------------- |
+| `PORT`                      |   `3000` | Server listener and readiness probe; integer from 1 to 65535 and not 5173 |
+| `LOG_LEVEL`                 |   `info` | Pino server log level                                                     |
+| `harness boot --timeout-ms` |  `60000` | Readiness bound from 1000 through 120000 ms                               |
+| Starter `<PORT>`            | assigned | Available port forwarded by the exact direct development command          |
 
 Fastify/Pino request logs use correlation IDs, omit request bodies, and redact authorization, cookies, tokens, prompts, conversation content, and generated source fields. Unexpected HTTP failures receive a generic response while protected structured logs retain causal diagnostics.
 
@@ -123,10 +140,12 @@ The exact seam map is in [`.harness/engineering-harness.md`](../.harness/enginee
 - `.harness/temp/boot/` is reserved for disposable engineering-harness runtime ownership and evidence.
 - `.trees/` and runtime descendants of `.soft-factory/` are reserved for Runner-owned worktrees and operational state; `.soft-factory/config.yml` is committed configuration.
 
-No persistence repository, runtime manager, schema, lifecycle API, generated application, or blessed starter is included in this foundation.
+No persistence repository, runtime manager, schema, lifecycle API, or generated application is implemented. The canonical starter is a copy source only; it does not implement lifecycle behavior.
 
 ## Architecture
 
+- [Blessed frontend starter ADR](../project/architecture/ADR/ADR-260815-blessed-frontend-starter.md)
+- [Generated frontend contract](../project/architecture/core-components/CORE-COMPONENT-260815-generated-frontend-contract.md)
 - [Foundation stack ADR](../project/architecture/ADR/ADR-260812-foundation-stack.md)
 - [Filesystem state boundary ADR](../project/architecture/ADR/ADR-260812-filesystem-state-boundary.md)
 - [Soft Factory Runner operating contract](../project/architecture/core-components/CORE-COMPONENT-260813-soft-factory-runner-operation.md)
@@ -141,4 +160,4 @@ No persistence repository, runtime manager, schema, lifecycle API, generated app
 
 ## Migration and deployment impact
 
-Harness adoption, Runner integration, and `GET /api/readiness` are additive. They introduce no breaking API or data migration. Runner configuration remains protocol 1 with `.trees`, `.soft-factory`, `just verify`, and concurrency 1. The foundation has no server deployment procedure; both ambient tools remain local configured-environment prerequisites.
+The blessed starter is additive and introduces no product API, database, authentication, data or configuration migration, external infrastructure, operational service, or deployment procedure. It is copied and run locally with an assigned port. Harness adoption, Runner integration, and `GET /api/readiness` are also additive and introduce no breaking API or data migration. Runner configuration remains protocol 1 with `.trees`, `.soft-factory`, `just verify`, and concurrency 1. The foundation has no server deployment procedure; both ambient tools remain local configured-environment prerequisites.
