@@ -128,7 +128,7 @@ The exact command honors an assigned host and port, serves a browser-loadable pa
 
 ### Setup
 
-Begin from the root README as a cold coding agent without relying on implementation knowledge. Keep starter files, architecture records, and `just --list` available for comparison.
+Begin from the root README as a cold coding agent without relying on implementation knowledge. Keep starter files, architecture records, `just --list`, and the `origin/main` version of `AGENTS.md` available for comparison.
 
 ### Steps
 
@@ -136,18 +136,22 @@ Begin from the root README as a cold coding agent without relying on implementat
 2. Confirm the documented stack and local/mock-data boundary match starter files.
 3. Confirm dependency guidance clearly says to use bundled packages, avoid arbitrary installation, and require an explicit architecture-approved allowlist for additions.
 4. Confirm direct build and assigned-port commands are exact and distinguished from root `justfile` validation.
-5. Confirm stale statements that the blessed starter is absent are removed from live docs and maps.
-6. Confirm docs accurately state API, database, auth, migration, infrastructure, and deployment non-impact.
+5. Build an expected `AGENTS.md` from the exact `origin/main` bytes by inserting only `  - templates/default is the standalone blessed generated-frontend copy source outside root workspaces.` immediately after the single existing `apps/server` application-boundary line; fail if the anchor is absent or occurs more than once.
+6. Compare the expected file byte-for-byte with the branch `AGENTS.md`, then inspect `git diff --unified=0 origin/main -- AGENTS.md`; require exactly one hunk, exactly the intended added line, and no removed line.
+7. Explicitly confirm issue-generator YAML indentation and list structure, agent metadata/contracts, and every embedded `>>` terminator are unchanged. Treat collapsed lists, lost indentation, `> >`, formatting churn, or any other unrelated byte as failure.
+8. Confirm stale statements that the blessed starter is absent are removed from live docs and maps.
+9. Confirm docs accurately state API, database, auth, migration, infrastructure, and deployment non-impact.
 
 ### Expected Result
 
-A cold agent can find, copy, operate, and extend the starter without inventing dependencies or service requirements, and all affected application documentation is current.
+A cold agent can find, copy, operate, and extend the starter without inventing dependencies or service requirements. `AGENTS.md` differs from `origin/main` only by the single intended additive boundary entry; any unrelated reformatting or corruption fails the test.
 
 ### Expected Evidence
 
 - Walkthrough with document sections and resolved links.
-- Guidance-to-manifest and command-to-`just --list` comparisons.
-- Documentation impact checklist and stale-reference scan.
+- Expected-file byte-equality result and exact one-hunk/no-deletion `AGENTS.md` diff.
+- Inspection evidence that issue-generator YAML, lists, metadata/contracts, and `>>` terminators match `origin/main`.
+- Guidance comparisons, documentation impact checklist, and stale-reference scan.
 
 ## Test V-6: Root focused and full validation prove the starter contract
 
@@ -158,7 +162,7 @@ A cold agent can find, copy, operate, and extend the starter without inventing d
 
 ### Setup
 
-Use the completed implementation in the configured Node.js 24 environment. Ensure no prior starter development process or temporary copy is present.
+Use the corrected implementation in the configured Node.js 24 environment. Ensure no prior starter development process or temporary copy is present. Retain the prior Verify return showing AC-1 through AC-6 and independent `just verify` passed while complete-diff scope failed.
 
 ### Steps
 
@@ -166,15 +170,18 @@ Use the completed implementation in the configured Node.js 24 environment. Ensur
 2. Run relevant `just verify-focused` targets during implementation and capture their bounded results.
 3. Run the root starter validation recipe and confirm it performs V-2 through V-4 behavior from a temporary clean copy.
 4. Run root `just verify` and confirm it composes starter validation with tests, lint, formatting, type checks, builds, harness governance, and diff integrity.
-5. Confirm full validation leaves repository lockfiles unchanged, the working tree free of generated starter artifacts, all allocated ports released, and no owned process running.
-6. Inspect the complete diff for issue scope and all AC-1 through AC-6 evidence mappings.
+5. Run V-5's independent `AGENTS.md` expected-file byte comparison and one-hunk/no-deletion check after `just verify`; do not infer scope correctness from formatter or suite success.
+6. Inspect the complete diff against `origin/main` for issue scope and all AC-1 through AC-6 evidence mappings. Fail on any unrelated `AGENTS.md` byte, metadata/contract change, list collapse, indentation loss, or altered terminator.
+7. Confirm full validation leaves repository lockfiles unchanged, the working tree free of generated starter artifacts, all allocated ports released, and no owned process running.
+8. Record the Plan correction rationale and corrected Implement handoff evidence; leave push, issue updates, verification summary, PR creation, and final result to Verify.
 
 ### Expected Result
 
-The authoritative root interface deterministically proves all six criteria without bypassing the standalone direct npm contracts or leaving runtime residue.
+The authoritative root interface still proves all six criteria, and the independent scope gate proves the complete diff is issue-bounded. Both must pass; unrelated `AGENTS.md` changes fail even when `just verify` passes.
 
 ### Expected Evidence
 
 - `just --list`, focused validation, starter validation, and full `just verify` output.
-- Per-AC evidence index linking V-1 through V-6 results.
-- Unchanged-lockfile, released-port, no-process, diff-integrity, and clean-tree results.
+- Per-AC evidence index linking V-1 through V-6 results and the recorded Verify-return/correction rationale.
+- Exact `AGENTS.md` expected-file comparison, one-hunk/no-deletion diff, and unchanged metadata/contract inspection.
+- Complete issue-diff scope verdict plus unchanged-lockfile, released-port, no-process, diff-integrity, and clean-tree results.

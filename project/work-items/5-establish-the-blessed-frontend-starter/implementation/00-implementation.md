@@ -9,8 +9,8 @@ Implemented T-1 through T-5 in dependency order for GitHub Issue #5. The impleme
 - **T-1:** Added `templates/default/` as a standalone package outside root workspaces with its own `package.json`, `package-lock.json`, strict TypeScript, Vite, Tailwind, React entry point, and direct npm scripts.
 - **T-2:** Added local/mock starter content, Lucide usage, a source-owned Radix Slot/shadcn-style button with bundled utilities, a Recharts resolution module, and starter-local `AGENTS.md` dependency policy.
 - **T-3:** Added root `just starter-check`, composed it into `just verify`, and proved clean copy, locked install, build, dynamic assigned-port startup, HTTP/HTML marker response, success and failure cleanup, released ports, unchanged lockfiles, and removed temporary state.
-- **T-4:** Updated README, detailed docs, architecture overview, AGENTS and LLM cold-agent maps, commands, direct usage, dependency policy, and explicit non-impact statements.
-- **T-5:** Executed V-1 through V-6 through root recipes, recorded evidence, drained harness observations, and prepared this Implement handoff without claiming final acceptance.
+- **T-4:** Preserved valid application documentation, restored `AGENTS.md` from `origin/main`, and inserted only the intended `templates/default` application-boundary line.
+- **T-5:** Re-executed corrected V-5/V-6 scope gates, focused and full root validation, runtime cleanup, evidence recording, and managed handoff preparation without changing GitHub acceptance state.
 
 ## Acceptance Evidence
 
@@ -55,8 +55,8 @@ Implemented T-1 through T-5 in dependency order for GitHub Issue #5. The impleme
 - **V-2:** Manifest/lock/source/guidance audits run at the start of `starter-check`; final result reported all required bundled dependencies and no prohibited service source.
 - **V-3:** Clean copy, `npm ci`, unchanged lock checksum, strict TypeScript/Vite build, built artifact listing, and temporary removal passed.
 - **V-4:** Exact assigned-host/port commands, bounded polling, HTTP 200, HTML marker, owned process-group cleanup, bounded port release, and deliberate failure cleanup passed.
-- **V-5:** README, detailed docs, architecture map, AGENTS, and LLM links/policies are statically required; stale starter-absence statements are rejected.
-- **V-6:** `just --list` exposes `starter-check`, `verify-focused`, and `verify`; final `harness checks full --json` delegated to `just verify` and passed with starter validation composed.
+- **V-5:** Existing README/docs/architecture/starter guidance remains accurate. The corrected `AGENTS.md` byte-compares equal to `origin/main` plus one exact insertion and has one additive hunk with zero deletions.
+- **V-6:** `just --list` exposes `starter-check`, `verify-focused`, and `verify`; correction-cycle focused/full wrappers delegated to the authoritative root recipes and passed with complete issue-scope inspection.
 
 ## Documentation Evidence
 
@@ -73,14 +73,33 @@ Implemented T-1 through T-5 in dependency order for GitHub Issue #5. The impleme
 
 ### Focused
 
-`harness checks focused --json` delegated to `just verify-focused` after T-1, T-2, T-3, T-4, and T-5. Every final task run passed; the T-5 run reported 6 test files and 13 tests passed plus harness governance and diff integrity.
+Correction-cycle `harness checks focused --json` delegated to `just verify-focused` and passed in 4.732 seconds: 6 test files and 13 tests passed, with harness governance and diff integrity.
 
 ### Full
 
-Final `harness checks full --json` delegated to `just verify` and passed in 48.331 seconds: 13 workspace tests, lint, Prettier check, workspace type checks/builds, static starter/documentation/architecture audit, clean-copy install/build, two runtime cleanup paths, and branch diff integrity. Earlier formatting and port-release race failures were corrected before this passing result.
+Correction-cycle `harness checks full --json` delegated to `just verify` and passed in 44.447 seconds: 13 workspace tests, lint, Prettier, type checks/builds, starter audits, clean-copy install/build, runtime success/failure cleanup, and diff integrity. Runtime ports 33975 and 46141 were released, `/tmp/sparkta-starter.Q9dTyP` was removed, lockfiles stayed unchanged, and `harness stop --json` released owned ports 3000/5173.
 
 ## Harness Observations
 
-The post-coding drain saved 13 observations to `.harness/records/retro/2026-08-15/001-5-establish-the-blessed-frontend-starter.md` and cleared the transient buffer. Highest-leverage encoded improvements were the root `format` recipe, an HTTP-observable source marker, and bounded port-release proof. Registry mirror discovery and the managed commit socket failure remain recorded friction for future environment encoding.
+The correction drains saved tooling observations to retro records 003 through 007 under `.harness/records/retro/2026-08-15/`, then cleared the transient buffer. They record the unavailable callable host Skill tool, missing `python` executable fallback to Node.js, inherited `/etc/bash.bashrc` `PS1` warning, multiline-edit retry, and repeated managed-commit attempts losing the git-ai socket after successful probes before diagnosing the actual unavailable SSH signing-agent socket and applying a temporary local signing override. Earlier implementation observations remain in records 001 and 002.
+
+## Verify Return and Plan Correction
+
+Verify returned the implementation because the complete issue diff showed destructive, unrelated `AGENTS.md` formatting even though AC-1 through AC-6 product behavior and independent full validation passed. The corrected Plan narrowed T-4/T-5 and V-5/V-6 to preserve every `origin/main` byte except the intended application-boundary insertion. No product architecture or acceptance criterion changed.
+
+### Corrected AGENTS scope proof
+
+- Generated expected bytes directly from `git show origin/main:AGENTS.md` by inserting `  - templates/default is the standalone blessed generated-frontend copy source outside root workspaces.` immediately after the unique `apps/server` boundary.
+- Byte comparison passed: branch `AGENTS.md` is exactly 31,322 bytes with SHA-256 `ec65911e2ab6b2bf90b1a99b0c0b5cb24537391f9ac039ce6546f74065c34d5f`; the source `origin/main` bytes hash to `c11312afafdb69c4da28a4d070ae28b68754f26f59fdf11d0a2489fbc3295c54`.
+- `git diff --unified=0 origin/main -- AGENTS.md` contains exactly one hunk at `@@ -62,0 +63 @@`, adding only the intended line. `git diff --numstat` reports `1 0 AGENTS.md`, and `git diff --check` passes.
+- Because expected and actual files are byte-identical, issue-generator YAML indentation/list layout, agent metadata/contracts, and every `>>` terminator match `origin/main` unchanged.
+
+### Acceptance evidence continuity
+
+The correction changes no starter product bytes. AC-1/AC-2 remain evidenced by the declared/locked blessed stack and frontend-only local data audit; AC-3/AC-4 by the clean-copy build and exact assigned-port command; AC-5 by starter/README/docs bundled-dependency guidance plus the corrected cold-agent-map byte proof; and AC-6 by HTTP 200/HTML marker, negative-path cleanup, released ports, unchanged lockfiles, and removed temporary copy.
+
+### Correction paths and documentation impact
+
+The correction changes `AGENTS.md`, corrected Plan artifacts `plan/01-action-plan.md`, `plan/02-task-breakdown.md`, and `plan/03-test-plan.md`, this implementation note, and the post-coding retro record. Existing README, detailed usage/configuration/operations documentation, architecture explanation, LLM map, API no-impact statement, migration no-impact statement, and deployment no-impact statement remain valid and required no correction.
 
 Final acceptance remains owned by Verify.

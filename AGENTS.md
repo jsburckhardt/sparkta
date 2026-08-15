@@ -388,16 +388,38 @@ prd-to-gh-issues:
     - must not create issues without explicit user approval
 
 issue-generator:
-file: .github/agents/issue-generator.agent.md
-purpose: Analyze codebase history for issue-quality gaps, draft a problem-focused GitHub issue with structured agent-executable acceptance criteria, dispatch a rubber-duck subagent to critique it, then create the issue via gh. Runs before the RPIV pipeline to produce feasible work without preempting RPIV Research or Plan.
-tools: - codebase exploration (search, grep, file reading) - terminal execution (git, gh) - file creation - web fetch - subagent dispatch (rubber-duck)
-read_paths: - project/architecture/ADR/DECISION-LOG.md - AGENTS.md - LLM.txt - justfile - project/work-items/ - application source code
-write_paths: - GitHub issues (via gh issue create)
-templates: []
-guardrails: - must read AGENTS.md and DECISION-LOG.md before starting - must run git history analysis to surface recurring issue-quality gaps - must structure every issue with only the required Problem and Acceptance Criteria sections - must not include proposed solutions, technical considerations, implementation plans, architecture decisions, technology choices, dependency choices, API designs, file paths, or test-framework prescriptions unless explicitly provided by the user as problem context - must format acceptance criteria as markdown checkboxes with ACCEPTANCE_CRITERIA_START/END HTML markers - must make every acceptance criterion bounded, deterministic, observable, and independently verifiable by configured agents - must use repository and declared agent capabilities when proposing validation evidence - must reject unavailable, subjective, manual-only, destructive-production, unbounded, or exhaustive validation requirements - must identify essential external or human prerequisites explicitly instead of encoding impossible agent tasks - must dispatch a rubber-duck subagent to critique the draft before creating the issue - must incorporate rubber-duck feedback before issue creation - must not create an issue without rubber-duck review
-
-> >
-
+  file: .github/agents/issue-generator.agent.md
+  purpose: Analyze codebase history for issue-quality gaps, draft a problem-focused GitHub issue with structured agent-executable acceptance criteria, dispatch a rubber-duck subagent to critique it, then create the issue via gh. Runs before the RPIV pipeline to produce feasible work without preempting RPIV Research or Plan.
+  tools:
+    - codebase exploration (search, grep, file reading)
+    - terminal execution (git, gh)
+    - file creation
+    - web fetch
+    - subagent dispatch (rubber-duck)
+  read_paths:
+    - project/architecture/ADR/DECISION-LOG.md
+    - AGENTS.md
+    - LLM.txt
+    - justfile
+    - project/work-items/
+    - application source code
+  write_paths:
+    - GitHub issues (via gh issue create)
+  templates: []
+  guardrails:
+    - must read AGENTS.md and DECISION-LOG.md before starting
+    - must run git history analysis to surface recurring issue-quality gaps
+    - must structure every issue with only the required Problem and Acceptance Criteria sections
+    - must not include proposed solutions, technical considerations, implementation plans, architecture decisions, technology choices, dependency choices, API designs, file paths, or test-framework prescriptions unless explicitly provided by the user as problem context
+    - must format acceptance criteria as markdown checkboxes with ACCEPTANCE_CRITERIA_START/END HTML markers
+    - must make every acceptance criterion bounded, deterministic, observable, and independently verifiable by configured agents
+    - must use repository and declared agent capabilities when proposing validation evidence
+    - must reject unavailable, subjective, manual-only, destructive-production, unbounded, or exhaustive validation requirements
+    - must identify essential external or human prerequisites explicitly instead of encoding impossible agent tasks
+    - must dispatch a rubber-duck subagent to critique the draft before creating the issue
+    - must incorporate rubber-duck feedback before issue creation
+    - must not create an issue without rubber-duck review
+>>
 TEMPLATE_PATHS: YAML<<
 adr: project/architecture/ADR/ADR-260101-template.md
 core_component: project/architecture/core-components/CORE-COMPONENT-260101-template.md
@@ -406,25 +428,18 @@ task_breakdown: project/work-items/<ISSUE_NUMBER>-<SHORT_DESCRIPTION>/plan/02-ta
 test_plan: project/work-items/<ISSUE_NUMBER>-<SHORT_DESCRIPTION>/plan/03-test-plan.md
 research_brief: project/work-items/<ISSUE_NUMBER>-<SHORT_DESCRIPTION>/research/00-research.md
 pull_request: .github/PULL_REQUEST_TEMPLATE.md
-
-> >
-
+>>
 SCOPE_TYPES: YAML<<
-
 - issue
 - architecture_decision
 - core_component
-
-> >
-
+>>
 NAMING: YAML<<
 issues: "GitHub Issue #<number>"
 work_items: "project/work-items/<issue-number>-<short-description>/"
 adrs: "ADR-yymmdd-short-slug.md"
 core_components: "CORE-COMPONENT-yymmdd-short-slug.md"
-
-> >
-
+>>
 </constants>
 
 <formats>
