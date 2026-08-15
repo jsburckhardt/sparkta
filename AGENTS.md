@@ -60,6 +60,7 @@ runtime: Node.js 24 with strict TypeScript and npm workspaces.
 application_boundaries:
   - apps/web is the minimal React and Vite foundation.
   - apps/server is the minimal Fastify foundation.
+  - templates/default is the standalone blessed generated-frontend copy source outside root workspaces.
 state_boundaries:
   - .sparkta/apps is durable and authoritative.
   - .sparkta/runtime is disposable and reconstructable.

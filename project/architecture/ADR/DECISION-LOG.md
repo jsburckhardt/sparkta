@@ -4,10 +4,11 @@ This file is the single registry of all architectural decisions and core-compone
 
 ## ADRs
 
-| ID                                   | Title                     | Status   | Date       |
-| ------------------------------------ | ------------------------- | -------- | ---------- |
-| ADR-260812-foundation-stack          | Sparkta Foundation Stack  | Accepted | 2026-08-12 |
-| ADR-260812-filesystem-state-boundary | Filesystem State Boundary | Accepted | 2026-08-12 |
+| ID                                   | Title                                 | Status   | Date       |
+| ------------------------------------ | ------------------------------------- | -------- | ---------- |
+| ADR-260812-foundation-stack          | Sparkta Foundation Stack              | Accepted | 2026-08-12 |
+| ADR-260812-filesystem-state-boundary | Filesystem State Boundary             | Accepted | 2026-08-12 |
+| ADR-260815-blessed-frontend-starter  | Blessed Frontend Starter Architecture | Accepted | 2026-08-15 |
 
 ## Core-Components
 
@@ -24,6 +25,7 @@ This file is the single registry of all architectural decisions and core-compone
 | CORE-COMPONENT-260812-state-lifecycle                      | Durable and Runtime State Lifecycle    | Adopted | 2026-08-12 |
 | CORE-COMPONENT-260813-engineering-harness-operation        | Engineering Harness Operating Contract | Adopted | 2026-08-13 |
 | CORE-COMPONENT-260813-soft-factory-runner-operation        | Soft Factory Runner Operating Contract | Adopted | 2026-08-13 |
+| CORE-COMPONENT-260815-generated-frontend-contract          | Generated Frontend Contract            | Adopted | 2026-08-15 |
 
 ## Decisions
 
@@ -88,3 +90,10 @@ Short, actionable statements derived from ADRs and core-components. More than on
 | 55  | Refuse dispatch when issue input is invalid or Runner Doctor is not ready                            | CORE-COMPONENT-260813-soft-factory-runner-operation        | 2026-08-14 |
 | 56  | Prohibit package-installed Operator, Assessor, Soft Factory skill, manifest, and recommended install | CORE-COMPONENT-260813-soft-factory-runner-operation        | 2026-08-14 |
 | 57  | Keep project validation Runner-independent and prohibit direct Runner-state access                   | CORE-COMPONENT-260813-soft-factory-runner-operation        | 2026-08-14 |
+| 58  | Store the canonical blessed frontend starter under `templates/default`                               | ADR-260815-blessed-frontend-starter                        | 2026-08-15 |
+| 59  | Keep the starter outside root workspaces with its own lockfile                                       | ADR-260815-blessed-frontend-starter                        | 2026-08-15 |
+| 60  | Bundle the complete blessed UI stack in every starter copy                                           | ADR-260815-blessed-frontend-starter                        | 2026-08-15 |
+| 61  | Require generated frontends to build and accept assigned host and port arguments                     | CORE-COMPONENT-260815-generated-frontend-contract          | 2026-08-15 |
+| 62  | Keep generated frontends independent of backends, authentication, infrastructure, and external data  | CORE-COMPONENT-260815-generated-frontend-contract          | 2026-08-15 |
+| 63  | Direct agents to bundled dependencies and prohibit arbitrary package installation                    | CORE-COMPONENT-260815-generated-frontend-contract          | 2026-08-15 |
+| 64  | Validate clean starter copies through the root justfile                                              | CORE-COMPONENT-260815-generated-frontend-contract          | 2026-08-15 |

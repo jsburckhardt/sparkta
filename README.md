@@ -6,7 +6,7 @@ Sparkta is a local, agent-powered environment for rapidly turning product ideas 
 
 ## Foundation scope
 
-The foundation establishes buildable application boundaries, tests, standards, safe errors, structured logs, the root project command interface, and repository-local harness governance, extensions, and GitHub Copilot skills. It configures the ambient Soft Factory Runner for isolated RPIV delivery, but does **not** install or reimplement it, select an issue, implement product agent invocation, the Sparkta control UI, Prototype 0 behavior, generated-app lifecycle, a generated demo, or the blessed generated-app starter.
+The foundation establishes buildable application boundaries, tests, standards, safe errors, structured logs, the root project command interface, and repository-local harness governance, extensions, and GitHub Copilot skills. It configures the ambient Soft Factory Runner for isolated RPIV delivery, but does **not** install or reimplement it, select an issue, implement product agent invocation, the Sparkta control UI, Prototype 0 behavior, generated-app lifecycle or a generated demo. The standalone blessed frontend starter is available under `templates/default/`.
 
 ## Cold setup
 
@@ -35,19 +35,35 @@ Successful boot leaves the foundation running. Always finish with `harness stop 
 
 ## Authoritative project recipes
 
-| Recipe                            | Purpose                                                                        |
-| --------------------------------- | ------------------------------------------------------------------------------ |
-| `just setup`                      | Recreate dependencies from the committed lockfile                              |
-| `just run`                        | Start the minimal web and server processes                                     |
-| `just test`                       | Run all workspace tests                                                        |
-| `just lint`                       | Check application source                                                       |
-| `just format-check`               | Check application and operating-document formatting                            |
-| `just type-check`                 | Type-check both workspaces                                                     |
-| `just build`                      | Build both workspaces                                                          |
-| `just verify-focused [test-path]` | Run one selected Vitest target, or all tests when omitted, plus diff integrity |
-| `just verify`                     | Run the complete static, test, build, and diff-integrity suite                 |
+| Recipe                            | Purpose                                                                                |
+| --------------------------------- | -------------------------------------------------------------------------------------- |
+| `just setup`                      | Recreate dependencies from the committed lockfile                                      |
+| `just run`                        | Start the minimal web and server processes                                             |
+| `just test`                       | Run all workspace tests                                                                |
+| `just lint`                       | Check application source                                                               |
+| `just format`                     | Format application and affected operating documentation                                |
+| `just format-check`               | Check application and operating-document formatting                                    |
+| `just type-check`                 | Type-check both workspaces                                                             |
+| `just build`                      | Build both workspaces                                                                  |
+| `just verify-focused [test-path]` | Run one selected Vitest target, or all tests when omitted, plus diff integrity         |
+| `just starter-check`              | Prove a clean starter copy installs, builds, serves on an assigned port, and cleans up |
+| `just verify`                     | Run the complete static, test, build, starter, and diff-integrity suite                |
 
 The root [`justfile`](justfile) owns all project command bodies. Harness checks supplement that interface and never duplicate or replace the focused or full recipes.
+
+## Blessed frontend starter
+
+[`templates/default/`](templates/default/) is the canonical, copyable generated-frontend package. It is intentionally outside the root npm workspaces and owns its package manifest and lockfile. The bundle includes React, strict TypeScript, Vite, Tailwind CSS, Lucide, a Radix-backed shadcn-style source component and utilities, plus Recharts for interfaces that need charts. The neutral page uses only local mock content and requires no Sparkta server, backend, database, authentication, external infrastructure, or external data.
+
+```bash
+cp -R templates/default /tmp/sparkta-app
+cd /tmp/sparkta-app
+npm ci
+npm run build
+npm run dev -- --host 0.0.0.0 --port 6017
+```
+
+Coding agents must use the bundled dependencies and must not install arbitrary packages. A future addition requires an explicitly adopted architecture allowlist change. Run `just starter-check` at the repository root for the deterministic temporary-copy install, build, assigned-port HTTP marker, failure-cleanup, and lockfile proof.
 
 ## Soft Factory Runner operations
 
@@ -88,8 +104,9 @@ Future durable generated-application files belong under `.sparkta/apps/`. Recons
 
 - [`apps/web/`](apps/web/) — minimal React/Vite foundation and tests
 - [`apps/server/`](apps/server/) — Fastify foundation, readiness route, safe errors, logs, and tests
+- [`templates/default/`](templates/default/) — standalone blessed generated-frontend starter
 - [`docs/README.md`](docs/README.md) — detailed setup, API, configuration, operation, and cleanup guide
 - [`project/architecture/`](project/architecture/) — accepted ADRs and adopted cross-cutting contracts
 - [`project/work-items/`](project/work-items/) — RPIV plans and evidence
 
-Harness and Runner adoption are additive. They require no API or data migration. Runner configuration remains protocol 1 with safe roots, final `just verify`, and concurrency 1; do not hand-edit Runner state. There is no server deployment procedure for this local-only foundation.
+The starter is additive and local-only: it adds no product API, database, authentication, configuration migration, external infrastructure, server deployment, or generated-app lifecycle procedure. Harness and Runner adoption are also additive and require no API or data migration. Runner configuration remains protocol 1 with safe roots, final `just verify`, and concurrency 1; do not hand-edit Runner state. There is no server deployment procedure for this local-only foundation.
