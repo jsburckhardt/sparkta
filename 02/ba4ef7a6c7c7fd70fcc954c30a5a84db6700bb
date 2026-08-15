@@ -1,0 +1,19 @@
+project/work-items/5-establish-the-blessed-frontend-starter/verify/summary.md
+  s_b7fd5c5320cb65::t_3c992e18eb8245 1-35
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "02ba4ef7a6c7c7fd70fcc954c30a5a84db6700bb",
+  "prompts": {},
+  "sessions": {
+    "s_b7fd5c5320cb65": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "call_wml4kKRn2Tv0A8GPe5Jidfu6",
+        "model": "unknown"
+      },
+      "human_author": "jsburckhardt <jsburckhardt@gmail.com>"
+    }
+  }
+}
