@@ -1,0 +1,19 @@
+docs/README.md
+  s_77207423c442de::t_b9c66a6eafafd0 151
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "e1ea3b053c641d062503a988d291a5012c5f8fc2",
+  "prompts": {},
+  "sessions": {
+    "s_77207423c442de": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "call_Fp10QKwh5bup1NyeSLTAnOou",
+        "model": "unknown"
+      },
+      "human_author": "jsburckhardt <jsburckhardt@gmail.com>"
+    }
+  }
+}
