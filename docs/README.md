@@ -148,6 +148,7 @@ No persistence repository, runtime manager, schema, lifecycle API, or generated 
 
 - [Blessed frontend starter ADR](../project/architecture/ADR/ADR-260815-blessed-frontend-starter.md)
 - [Generated frontend contract](../project/architecture/core-components/CORE-COMPONENT-260815-generated-frontend-contract.md)
+- [Generated frontend quality contract](../project/architecture/core-components/CORE-COMPONENT-260816-generated-frontend-quality.md)
 - [Foundation stack ADR](../project/architecture/ADR/ADR-260812-foundation-stack.md)
 - [Filesystem state boundary ADR](../project/architecture/ADR/ADR-260812-filesystem-state-boundary.md)
 - [Soft Factory Runner operating contract](../project/architecture/core-components/CORE-COMPONENT-260813-soft-factory-runner-operation.md)
