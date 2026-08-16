@@ -17,7 +17,7 @@ The bootstrap adopts [Node.js 24, strict TypeScript, npm workspaces, React/Vite,
 
 ## Generated frontend boundary
 
-The accepted [blessed frontend starter ADR](ADR/ADR-260815-blessed-frontend-starter.md) places the independent copy source at `templates/default/`, outside root workspaces with its own lockfile. The adopted [generated frontend contract](core-components/CORE-COMPONENT-260815-generated-frontend-contract.md) governs the bundled React/TypeScript/Vite/Tailwind/Lucide/Radix-shadcn/Recharts stack, local/mock-data isolation, bundled-dependency policy, direct npm commands, assigned ports, and root clean-copy validation. This boundary does not implement generated-app lifecycle behavior.
+The accepted [blessed frontend starter ADR](ADR/ADR-260815-blessed-frontend-starter.md) places the independent copy source at `templates/default/`, outside root workspaces with its own lockfile. The adopted [generated frontend contract](core-components/CORE-COMPONENT-260815-generated-frontend-contract.md) governs the bundled React/TypeScript/Vite/Tailwind/Lucide/Radix-shadcn/Recharts stack, local/mock-data isolation, bundled-dependency policy, direct npm commands, assigned ports, and root clean-copy validation. The complementary [generated frontend quality contract](core-components/CORE-COMPONENT-260816-generated-frontend-quality.md) governs realistic domain data, relevant interactions, applicable states, bounded visual-quality vocabulary, and the copied six-category `templates/default/QUALITY-CHECKLIST.md`. Root validation deterministically checks document integrity and runtime behavior; contextual visual quality remains evidence-based reviewer judgment. This boundary does not implement generated-app lifecycle behavior.
 
 ## Engineering harness boundary
 

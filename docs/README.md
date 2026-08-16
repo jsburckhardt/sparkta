@@ -47,7 +47,7 @@ All three are gitignored and separate from `.sparkta/apps/` and `.sparkta/runtim
 
 The canonical copy source is [`templates/default/`](../templates/default/). Copy the whole directory, including its independent `package-lock.json`; it is not a root npm workspace. The package bundles React, strict TypeScript, Vite, Tailwind CSS, Lucide, Radix/shadcn-style source components and utilities, and Recharts for chart-requiring interfaces. Starter content and state are local/mock only.
 
-Agents must use bundled packages and must not install arbitrary dependencies. Any addition requires an explicitly adopted architecture change that adds an allowlist entry. The direct standalone contracts are:
+Agents must follow the copied [`AGENTS.md`](../templates/default/AGENTS.md): build a frontend-only prototype from realistic domain-specific simulated data, implement requested or contextually relevant interactions and applicable states, use bundled packages, and must not install arbitrary dependencies. Any addition requires an explicitly adopted architecture change that adds an allowlist entry. The direct standalone contracts are:
 
 ```bash
 npm ci
@@ -55,9 +55,11 @@ npm run build
 npm run dev -- --host 0.0.0.0 --port <PORT>
 ```
 
-Choose an available assigned port; generated-app identity never depends on that port. From the repository root, `just starter-check` makes a temporary clean copy, performs the locked install and build, runs the exact development command, requires HTTP 200 plus HTML/root markers, exercises failure cleanup, verifies lockfiles, and removes only its owned process and copy. `just verify` composes this recipe.
+Choose an available assigned port; generated-app identity never depends on that port. Evaluate the copy with [`QUALITY-CHECKLIST.md`](../templates/default/QUALITY-CHECKLIST.md), whose six categories are design quality, instruction quality, stack adherence, mock-data quality, build success, and runtime startup. Each check requires pass/fail evidence; N/A is limited to conditional interaction/state checks with a request-specific rationale.
 
-The starter does not call `GET /api/readiness` and requires no Sparkta server, product API, backend, database, authentication, external infrastructure, or external data source.
+From the repository root, `just starter-check` asserts the canonical and copied guidance/checklist contracts, rejects controlled malformed copies, performs the locked clean-copy install and build, runs the exact development command, requires HTTP 200 plus HTML/root markers, exercises failure cleanup, verifies lockfiles, and removes only its owned process and copy. `just verify` composes this recipe. These deterministic checks establish document completeness and operational behavior, not contextual visual quality; a reviewer must inspect rendered evidence against the checklist vocabulary.
+
+The starter does not call `GET /api/readiness` and requires no Sparkta server, product API, backend, database, Docker, authentication infrastructure, external infrastructure, external API, or external data source.
 
 ## Soft Factory Runner operation
 

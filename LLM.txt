@@ -42,7 +42,8 @@ apps/server/src/foundation.ts — Exported server foundation identity
 apps/server/src/foundation.test.ts — Server foundation behavior test
 templates/default/package.json — Standalone blessed frontend manifest outside root workspaces
 templates/default/package-lock.json — Independent deterministic starter dependency graph
-templates/default/AGENTS.md — Bundled-dependency and frontend-only coding guidance
+templates/default/AGENTS.md — Frontend-only interaction, state, mock-data, visual-quality, and bundled-dependency guidance
+templates/default/QUALITY-CHECKLIST.md — Six-category generated-frontend evaluation and evidence checklist
 templates/default/src/ — Tailwind page, Lucide usage, Radix/shadcn-style button, and Recharts resolution
 docs/README.md — Detailed harness setup, API, configuration, operation, cleanup, skills, and architecture guide
 .github/agents/rpiv.agent.md — RPIV coordinator with pre-flight, pre-coding, and post-flight harness seams
@@ -83,3 +84,4 @@ project/work-items/2-adopt-the-ai-substrate-engineering-harness/ — Issue 2 res
 
 project/architecture/ADR/ADR-260815-blessed-frontend-starter.md — Accepted standalone starter boundary
 project/architecture/core-components/CORE-COMPONENT-260815-generated-frontend-contract.md — Generated frontend dependency, isolation, build, runtime, and validation contract
+project/architecture/core-components/CORE-COMPONENT-260816-generated-frontend-quality.md — Generated frontend interaction, state, mock-data, visual-quality, and checklist contract
