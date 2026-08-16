@@ -1,0 +1,19 @@
+project/work-items/6-codify-ui-generation-instructions-and-quality-checks/plan/assets/backpressure-coverage.md
+  s_b2103296d5a088::t_861c955811da56 3-5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "4ced2056a1af9ef814fd0817b572a9b62a201909",
+  "prompts": {},
+  "sessions": {
+    "s_b2103296d5a088": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "call_Fs3PRaPcriGxssNgVp81DyIw",
+        "model": "unknown"
+      },
+      "human_author": "jsburckhardt <jsburckhardt@gmail.com>"
+    }
+  }
+}
