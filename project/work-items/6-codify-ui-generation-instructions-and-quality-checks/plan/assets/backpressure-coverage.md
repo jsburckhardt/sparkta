@@ -1,8 +1,8 @@
 # Backpressure Coverage — Codify UI-generation instructions and quality checks
 
-**Plan**: [01-action-plan.md](../01-action-plan.md)  
-**Basis (plan SHA-256)**: `397605fb444089d87a84810805b94576590a2582cb474cc9ff80968edb30c716`  
-**Generated**: 2026-08-16  
+**Plan**: [01-action-plan.md](../01-action-plan.md)
+**Basis (plan SHA-256)**: `397605fb444089d87a84810805b94576590a2582cb474cc9ff80968edb30c716`
+**Generated**: 2026-08-16
 **Certainty**: Partial
 
 > Advisory only. This survey selects proof; it does not gate work or execute the
