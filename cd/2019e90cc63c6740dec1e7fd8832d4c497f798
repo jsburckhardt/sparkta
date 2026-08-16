@@ -1,0 +1,19 @@
+project/work-items/6-codify-ui-generation-instructions-and-quality-checks/verify/summary.md
+  s_69abf4a5854777::t_ea436202290035 1-30
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "cd2019e90cc63c6740dec1e7fd8832d4c497f798",
+  "prompts": {},
+  "sessions": {
+    "s_69abf4a5854777": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "call_CKrdg05Tie6lonDiZmcT76XS",
+        "model": "unknown"
+      },
+      "human_author": "jsburckhardt <jsburckhardt@gmail.com>"
+    }
+  }
+}
