@@ -26,6 +26,7 @@ This file is the single registry of all architectural decisions and core-compone
 | CORE-COMPONENT-260813-engineering-harness-operation        | Engineering Harness Operating Contract | Adopted | 2026-08-13 |
 | CORE-COMPONENT-260813-soft-factory-runner-operation        | Soft Factory Runner Operating Contract | Adopted | 2026-08-13 |
 | CORE-COMPONENT-260815-generated-frontend-contract          | Generated Frontend Contract            | Adopted | 2026-08-15 |
+| CORE-COMPONENT-260816-generated-frontend-quality           | Generated Frontend Quality Contract    | Adopted | 2026-08-16 |
 
 ## Decisions
 
@@ -97,3 +98,7 @@ Short, actionable statements derived from ADRs and core-components. More than on
 | 62  | Keep generated frontends independent of backends, authentication, infrastructure, and external data  | CORE-COMPONENT-260815-generated-frontend-contract          | 2026-08-15 |
 | 63  | Direct agents to bundled dependencies and prohibit arbitrary package installation                    | CORE-COMPONENT-260815-generated-frontend-contract          | 2026-08-15 |
 | 64  | Validate clean starter copies through the root justfile                                              | CORE-COMPONENT-260815-generated-frontend-contract          | 2026-08-15 |
+| 65  | Require plausible domain-relevant interactions and applicable states in generated frontends          | CORE-COMPONENT-260816-generated-frontend-quality           | 2026-08-16 |
+| 66  | Require realistic domain-specific simulated data in generated frontends                              | CORE-COMPONENT-260816-generated-frontend-quality           | 2026-08-16 |
+| 67  | Enforce purpose-driven visual quality and prohibit stereotypical AI-interface patterns               | CORE-COMPONENT-260816-generated-frontend-quality           | 2026-08-16 |
+| 68  | Evaluate generated frontends with the repository-local six-category quality checklist                | CORE-COMPONENT-260816-generated-frontend-quality           | 2026-08-16 |

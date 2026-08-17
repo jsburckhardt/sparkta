@@ -63,7 +63,9 @@ npm run build
 npm run dev -- --host 0.0.0.0 --port 6017
 ```
 
-Coding agents must use the bundled dependencies and must not install arbitrary packages. A future addition requires an explicitly adopted architecture allowlist change. Run `just starter-check` at the repository root for the deterministic temporary-copy install, build, assigned-port HTTP marker, failure-cleanup, and lockfile proof.
+Coding agents must follow the copied [`templates/default/AGENTS.md`](templates/default/AGENTS.md): use realistic domain-specific simulated data, implement relevant interactions and applicable states, remain frontend-only, use bundled dependencies, and must not install arbitrary packages. A future dependency addition requires an explicitly adopted architecture allowlist change.
+
+Every copy also carries [`templates/default/QUALITY-CHECKLIST.md`](templates/default/QUALITY-CHECKLIST.md). Its six direct pass/fail categories are design quality, instruction quality, stack adherence, mock-data quality, build success, and runtime startup. Only conditional interaction/state checks may be N/A, with a request-specific rationale. Run `just starter-check` at the repository root for deterministic canonical/copied-document assertions, malformed-copy rejection, temporary-copy install/build/startup, assigned-port HTTP marker, failure cleanup, and lockfile proof. The static catalogue checks do not automate contextual visual judgment; reviewers record rendered evidence using the bounded checklist vocabulary.
 
 ## Soft Factory Runner operations
 

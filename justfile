@@ -21,7 +21,7 @@ lint:
 
 # Format application and operating documentation.
 format:
-    npx prettier --write package.json tsconfig.base.json eslint.config.js prettier.config.js apps templates/default README.md docs project/architecture/README.md project/work-items/5-establish-the-blessed-frontend-starter
+    npx prettier --write package.json tsconfig.base.json eslint.config.js prettier.config.js apps templates/default README.md docs project/architecture/README.md project/work-items/5-establish-the-blessed-frontend-starter project/work-items/6-codify-ui-generation-instructions-and-quality-checks
 
 # Check formatting for application and operating documentation.
 format-check:
@@ -85,6 +85,29 @@ starter-check:
       if (starter.scripts.build !== "tsc -b && vite build" || starter.scripts.dev !== "vite") throw new Error("Direct starter scripts changed");
       console.log(`starter dependency audit: ${required.length} blessed packages declared and locked`);
     '
+    assert_quality_contract() {
+      local contract_dir="$1" guidance="$1/AGENTS.md" checklist="$1/QUALITY-CHECKLIST.md" term ac
+      [[ -f "$guidance" && -f "$checklist" ]] || { echo "Missing generated-frontend guidance or checklist in $contract_dir" >&2; return 1; }
+      for term in         "frontend-only" "domain-specific simulated data" "npm run build" "npm run dev -- --host 0.0.0.0 --port <PORT>"         "navigation" "filters" "search" "sorting" "tabs" "dialogs" "forms" "state changes" "requested or contextually relevant"         "loading" "empty" "error" "success" "disabled" "hover" "selected" "where each is applicable"         "backend services" "databases" "Docker" "authentication infrastructure" "external infrastructure" "external data" "runtime fetches" "external APIs"         "realistic domain-specific names, values, statuses, and timestamps" "placeholder prose" "generic numbered identities"         "giant gradients" "card-enclosing every element" "huge radii" "excessive shadows" "meaningless statistics" "random purple accents" "generic hero sections" "excessive whitespace"         "clear hierarchy" "purposeful density" "coherent spacing" "strong typography" "subtle interaction" "useful information architecture" "responsive layout" "realistic content"; do
+        grep -Fq -- "$term" "$guidance" || { echo "Guidance contract missing: $term" >&2; return 1; }
+      done
+      mapfile -t categories < <(sed -n "s/^## //p" "$checklist")
+      expected_categories=("Design quality" "Instruction quality" "Stack adherence" "Mock-data quality" "Build success" "Runtime startup")
+      [[ "${#categories[@]}" -eq 6 ]] || { echo "Checklist must have exactly six evaluation categories" >&2; return 1; }
+      for index in "${!expected_categories[@]}"; do
+        [[ "${categories[$index]}" == "${expected_categories[$index]}" ]] || { echo "Checklist category mismatch: ${expected_categories[$index]}" >&2; return 1; }
+      done
+      [[ "$(grep -Ec "^\| Check +\| Outcome +\| Required evidence +\|$" "$checklist")" -eq 6 ]] || { echo "Every checklist category needs a direct check/outcome/evidence mapping" >&2; return 1; }
+      grep -Fq "PASS / FAIL" "$checklist" || { echo "Checklist lacks finite pass/fail outcomes" >&2; return 1; }
+      grep -Fq "N/A with rationale" "$checklist" || { echo "Checklist lacks bounded applicability rationale" >&2; return 1; }
+      grep -Fq "Stack adherence, build success, and runtime startup are mandatory" "$checklist" || { echo "Mandatory categories are not explicit" >&2; return 1; }
+      for ac in AC-1 AC-2 AC-3 AC-4 AC-5 AC-6; do grep -Fq "$ac" "$checklist" || { echo "Checklist missing $ac mapping" >&2; return 1; }; done
+      for term in "npm run build" "npm run dev -- --host 0.0.0.0 --port <PORT>" "assigned port" "HTTP 200" "text/html" "owned process cleanup" "released-port proof"; do
+        grep -Fq -- "$term" "$checklist" || { echo "Checklist evidence contract missing: $term" >&2; return 1; }
+      done
+      echo "generated-frontend document contract: guidance and six checklist categories complete in $contract_dir"
+    }
+    assert_quality_contract "$starter"
     grep -q "@tailwind base" "$starter/src/index.css"
     grep -q "lucide-react" "$starter/src/App.tsx"
     grep -q "@radix-ui/react-slot" "$starter/src/components/ui/button.tsx"
@@ -147,6 +170,17 @@ starter-check:
     trap cleanup EXIT
     cp -R "$starter/." "$tmp/"
     if [[ -e "$tmp/node_modules" || -e "$tmp/dist" ]]; then echo "Copied starter was not clean" >&2; exit 1; fi
+    echo "copied document proof: $tmp/AGENTS.md and $tmp/QUALITY-CHECKLIST.md"
+    assert_quality_contract "$tmp"
+    mkdir "$tmp/malformed-guidance" "$tmp/malformed-checklist"
+    cp "$tmp/AGENTS.md" "$tmp/QUALITY-CHECKLIST.md" "$tmp/malformed-guidance/"
+    cp "$tmp/AGENTS.md" "$tmp/QUALITY-CHECKLIST.md" "$tmp/malformed-checklist/"
+    sed -i "s/frontend-only/frontend omitted/" "$tmp/malformed-guidance/AGENTS.md"
+    if assert_quality_contract "$tmp/malformed-guidance"; then echo "Malformed guidance unexpectedly passed" >&2; exit 1; fi
+    echo "negative document proof: missing guidance token rejected"
+    sed -i "s/^## Runtime startup$/## Runtime omitted/" "$tmp/malformed-checklist/QUALITY-CHECKLIST.md"
+    if assert_quality_contract "$tmp/malformed-checklist"; then echo "Malformed checklist unexpectedly passed" >&2; exit 1; fi
+    echo "negative document proof: missing checklist category rejected"
     copy_lock_before="$(sha256sum "$tmp/package-lock.json" | cut -d " " -f1)"
     echo "clean copy: $tmp; lock checksum: $copy_lock_before"
     (cd "$tmp" && npm ci --include=dev)
