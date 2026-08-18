@@ -1,0 +1,19 @@
+project/work-items/7-run-repeated-prototype-0-generation-trials/verify/summary.md
+  s_16284a70c9fdce::t_3a6f030ef5f832 1-32
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "ffdfaeb1b6ca88b6053a0f2877d7fda8012b9237",
+  "prompts": {},
+  "sessions": {
+    "s_16284a70c9fdce": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "call_Qj5JWCHVCgnm4IATwvqrrXAl",
+        "model": "unknown"
+      },
+      "human_author": "jsburckhardt <jsburckhardt@gmail.com>"
+    }
+  }
+}
