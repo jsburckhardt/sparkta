@@ -15,3 +15,5 @@ This directory contains all project management documentation organized by catego
 - Research derives the short description from the GitHub Issue title when creating the folder; later stages preserve that path
 - ADRs and core-components are global and live under `architecture/`
 - Templates are read-only references — copy and rename them, don't edit them directly
+
+Issue-local Prototype 0 generation evidence for Issue 7 lives under `work-items/7-run-repeated-prototype-0-generation-trials/implementation/trials/`; it is operational evidence, not a global architecture artifact or product lifecycle store.

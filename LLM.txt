@@ -81,6 +81,9 @@ project/architecture/core-components/CORE-COMPONENT-260813-soft-factory-runner-o
 .soft-factory/config.yml — Protocol-1 Runner roots, final validation, and positive concurrency
 .github/agents/runner-dispatcher.agent.md — APS v1.2.2 user/model facade for one Doctor-gated explicit issue dispatch
 project/work-items/2-adopt-the-ai-substrate-engineering-harness/ — Issue 2 research, plan, implementation, and acceptance evidence
+project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trials/ — Fixed prompts, generated app copies, checklists, control traces, findings, and Prototype 0 verdict evidence
+project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trial-tool.mjs — Issue-local implementation behind the root trial recipes; never invoke directly
+project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trials-check.mjs — Issue-local evidence graph checker invoked by root trials-check
 
 project/architecture/ADR/ADR-260815-blessed-frontend-starter.md — Accepted standalone starter boundary
 project/architecture/core-components/CORE-COMPONENT-260815-generated-frontend-contract.md — Generated frontend dependency, isolation, build, runtime, and validation contract

@@ -61,6 +61,25 @@ From the repository root, `just starter-check` asserts the canonical and copied 
 
 The starter does not call `GET /api/readiness` and requires no Sparkta server, product API, backend, database, Docker, authentication infrastructure, external infrastructure, external API, or external data source.
 
+## Prototype 0 trial operation
+
+The Issue 7 trial protocol is a bounded manual evaluation layer, not a product generation adapter. Use exactly these root commands in dependency order:
+
+```text
+just trial-init <trial> <attempt>
+just trial-generate <trial> <attempt>
+just trial-validate <trial> <attempt>
+just trials-check
+```
+
+Allowed trial IDs are `01-engineering-productivity`, `02-autonomous-delivery`, and `03-customer-management`. Allowed attempts are `01-initial` and `02-rerun`; a rerun is rejected unless `00-findings.md` records an adopted improvement affecting that trial. Initialization copies the complete standalone starter, records clean inventory and lock hashes, rejects `node_modules`/`dist`, and refuses overwrite. Generation invokes configured Copilot noninteractively once with a 600-second bound, current-directory-only path access, and shell, URL, temporary-directory, remote-export, and built-in MCP access disabled. It records finite success, unavailable, authentication, timeout, error, or no-source-diff outcomes without credentials or session telemetry.
+
+Validation performs the locked install, dependency allowlist and frontend-only source audits, strict build, assigned-port Vite startup, HTTP 200/`text/html` and trial-marker probe, verified owned-process-group cleanup, and port-release proof. Runtime logs, PIDs, `node_modules`, and `dist` are removed; durable prompt, result, evidence, generated app source, checklist, and findings remain beneath `project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trials/`. Control evidence is explicitly source-backed inference plus HTTP load. The repository has no real-browser, screenshot, DOM-event, console, or viewport sensor.
+
+`just trials-check` verifies the complete evidence graph, finite outcomes, prompt hashes, generated-source diff on successful generation, checklist completion, finding dispositions, rerun bounds, and per-trial/overall verdict arithmetic. It accepts an honestly failed product trial when the exact blocker and arithmetic are complete; it never converts that trial into a pass. The initial evidence records PASS for engineering productivity and autonomous delivery, FAIL for customer management because Copilot reached the 600-second timeout, and therefore overall FAIL. No canonical change was adopted, so no rerun exists.
+
+This workflow must not inspect or manipulate Runner-owned worktrees or state. It adds no API endpoint, application configuration/default, data or API migration, architecture contract, deployment process, or external infrastructure. Existing local setup and runtime configuration are unchanged.
+
 ## Soft Factory Runner operation
 
 The repository commits protocol-1 configuration and the APS v1.2.2 [`runner-dispatcher`](../.github/agents/runner-dispatcher.agent.md), while the configured environment owns the CLI. `.trees/` is the isolated-worktree root. Only `.soft-factory/config.yml` is committed beneath the state root; runtime descendants are ignored. Concurrency is 1 and each new run snapshots final validation as `just verify`. Runner state is separate from harness `.harness/temp/boot/` and product `.sparkta/` state.
@@ -79,7 +98,7 @@ The dispatcher does not invoke RPIV agents, retry refusals, use `just`, inspect 
 
 ## Validation
 
-Use `just verify-focused [test-path]` during a change, `just starter-check` for the clean-copy frontend contract, and `just verify` for the complete test, lint, format, type-check, workspace build, starter, and diff-integrity suite. Harness wrappers report the delegated command, argv, exit status, duration, and bounded output without copying recipe internals.
+Use `just verify-focused [test-path]` during a change, `just trials-check` for complete Issue 7 trial evidence, `just starter-check` for the clean-copy frontend contract, and `just verify` for the complete test, lint, format, type-check, workspace build, starter, and diff-integrity suite. Harness wrappers report the delegated command, argv, exit status, duration, and bounded output without copying recipe internals.
 
 Use the attribution-aware managed commit path after reading `harness instructions commit`:
 
