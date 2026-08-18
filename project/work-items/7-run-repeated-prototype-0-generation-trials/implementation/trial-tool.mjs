@@ -12,6 +12,7 @@ import {
 import net from "node:net";
 import path from "node:path";
 import process from "node:process";
+import { adoptedTrialIds, boundedDurableOutput, normalizeDurableText } from "./trial-records.mjs";
 
 const repo = process.cwd();
 const workItem = path.join(repo, "project/work-items/7-run-repeated-prototype-0-generation-trials");
@@ -56,7 +57,8 @@ function text(file) {
   return readFileSync(file, "utf8");
 }
 function write(file, value) {
-  writeFileSync(file, value.endsWith("\n") ? value : value + "\n");
+  const normalized = normalizeDurableText(value);
+  writeFileSync(file, normalized.endsWith("\n") ? normalized : normalized + "\n");
 }
 function validateIds(trial, attempt) {
   if (!trials.has(trial)) fail("Unknown trial ID: " + trial, 2);
@@ -99,9 +101,7 @@ function sourceChanges(app) {
     .sort();
 }
 function bounded(value, size = 8000) {
-  return String(value ?? "")
-    .replaceAll(/\x1b\[[0-9;]*m/g, "")
-    .slice(0, size);
+  return boundedDurableOutput(value, size);
 }
 function run(command, args, options = {}) {
   return spawnSync(command, args, { encoding: "utf8", maxBuffer: 16 * 1024 * 1024, ...options });
@@ -126,10 +126,7 @@ function init(trial, attempt) {
   if (existsSync(destination)) fail("Refusing to overwrite existing attempt: " + destination, 3);
   if (attempt === "02-rerun") {
     const findings = path.join(trialsRoot, "00-findings.md");
-    if (
-      !existsSync(findings) ||
-      !new RegExp("ADOPTED.*" + trial + "|" + trial + ".*ADOPTED").test(text(findings))
-    )
+    if (!existsSync(findings) || !adoptedTrialIds(text(findings)).has(trial))
       fail("Rerun requires an adopted finding affecting " + trial, 2);
   }
   const app = path.join(destination, "app");

@@ -18,7 +18,7 @@ RPIV fires the `eng-harness-flow` skill at pre-flight, pre-coding, coding, post-
 
 ## Prototype trial evidence
 
-The bounded Issue 7 manual trial surface is discoverable through `just trial-init`, `just trial-generate`, `just trial-validate`, and `just trials-check`. Use only the allowlisted trial/attempt IDs and root recipes; preserve failed outcomes and never hand-repair generated source or access Runner-owned state. The evidence is issue-local and does not implement a product agent adapter or lifecycle.
+The bounded Issue 7 manual trial surface is discoverable through `just trial-init`, `just trial-generate`, `just trial-validate`, and `just trials-check`. Use only the allowlisted trial/attempt IDs and root recipes; copied guidance directs generation straight at the standalone app, and operators preserve failed outcomes, never hand-repair generated source, and never access Runner-owned state. The evidence is issue-local and does not implement a product agent adapter or lifecycle.
 
 ## Soft Factory Runner
 

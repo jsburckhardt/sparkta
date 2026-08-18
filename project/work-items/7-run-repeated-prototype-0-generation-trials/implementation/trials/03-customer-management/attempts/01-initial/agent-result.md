@@ -37,8 +37,8 @@ Research confirms the app is an untouched frontend starter and the request maps 
 
 # Plan of Attack: Customer Management Frontend
 
-**Issue:** #7  
-**Target:** standalone `app/` directory  
+**Issue:** #7
+**Target:** standalone `app/` directory
 **Artifacts:** Not written because root work-item and architecture paths are policy-blocked. No source files were edited.
 
 ## Architecture Artifacts

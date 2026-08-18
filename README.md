@@ -67,7 +67,7 @@ npm run build
 npm run dev -- --host 0.0.0.0 --port 6017
 ```
 
-Coding agents must follow the copied [`templates/default/AGENTS.md`](templates/default/AGENTS.md): use realistic domain-specific simulated data, implement relevant interactions and applicable states, remain frontend-only, use bundled dependencies, and must not install arbitrary packages. A future dependency addition requires an explicitly adopted architecture allowlist change.
+Coding agents must follow the copied [`templates/default/AGENTS.md`](templates/default/AGENTS.md): implement the supplied interface prompt directly in the standalone app without parent-repository, GitHub issue, RPIV, harness, or Runner orchestration; use realistic domain-specific simulated data, implement relevant interactions and applicable states, remain frontend-only, use bundled dependencies, and must not install arbitrary packages. A future dependency addition requires an explicitly adopted architecture allowlist change.
 
 Every copy also carries [`templates/default/QUALITY-CHECKLIST.md`](templates/default/QUALITY-CHECKLIST.md). Its six direct pass/fail categories are design quality, instruction quality, stack adherence, mock-data quality, build success, and runtime startup. Only conditional interaction/state checks may be N/A, with a request-specific rationale. Run `just starter-check` at the repository root for deterministic canonical/copied-document assertions, malformed-copy rejection, temporary-copy install/build/startup, assigned-port HTTP marker, failure cleanup, and lockfile proof. The static catalogue checks do not automate contextual visual judgment; reviewers record rendered evidence using the bounded checklist vocabulary.
 
@@ -77,7 +77,7 @@ Issue 7 adds a manual, evidence-producing trial surface; it does not add a Spark
 
 Durable records live under [`project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trials/`](project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trials/). Each attempt contains its exact prompt, bounded agent result, operational/control evidence, complete app copy, and completed quality checklist. `just trials-check` validates record completeness, findings dispositions, at-most-one rerun, and the fixed rule that all three latest attempts must pass for the overall verdict to pass. HTTP proof establishes browser-loadable HTML only; no screenshot, DOM-event, console, viewport, or real-browser automation is claimed. Never call the issue-local helper directly or access Runner-owned state.
 
-The recorded initial run produced two passing trials and one honest customer-management generation timeout, so the Issue 7 overall evidence verdict is **FAIL** with that exact blocker. No canonical starter/instruction improvement was adopted and no rerun was created.
+The initial run produced two passing trials and one honest customer-management timeout. Finding F-1 adopted the scoped direct-generation instruction above, and exactly that affected trial was rerun once from a fresh `02-rerun` copy with the identical prompt. The rerun passed locked install, frontend-only audit, build, assigned-port HTTP runtime, owned cleanup, and all fixed-prompt major-control traces; its inert secondary controls and lack of real-browser sensors remain explicit unmet checks. The three latest required attempts now produce an overall evidence verdict of **PASS**; final acceptance remains owned by Verify.
 
 ## Soft Factory Runner operations
 

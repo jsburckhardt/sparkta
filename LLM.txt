@@ -42,7 +42,7 @@ apps/server/src/foundation.ts — Exported server foundation identity
 apps/server/src/foundation.test.ts — Server foundation behavior test
 templates/default/package.json — Standalone blessed frontend manifest outside root workspaces
 templates/default/package-lock.json — Independent deterministic starter dependency graph
-templates/default/AGENTS.md — Frontend-only interaction, state, mock-data, visual-quality, and bundled-dependency guidance
+templates/default/AGENTS.md — Direct app-bounded generation plus frontend-only interaction, state, mock-data, visual-quality, and bundled-dependency guidance
 templates/default/QUALITY-CHECKLIST.md — Six-category generated-frontend evaluation and evidence checklist
 templates/default/src/ — Tailwind page, Lucide usage, Radix/shadcn-style button, and Recharts resolution
 docs/README.md — Detailed harness setup, API, configuration, operation, cleanup, skills, and architecture guide

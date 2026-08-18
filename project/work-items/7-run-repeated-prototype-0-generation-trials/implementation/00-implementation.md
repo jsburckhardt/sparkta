@@ -1,94 +1,81 @@
 # Implementation: Run repeated Prototype 0 generation trials
 
-## Scope and task completion
+## Correction scope and completed tasks
 
-- T-1 complete — root `trial-init`, `trial-generate`, `trial-validate`, and `trials-check` recipes expose allowlisted, overwrite-safe, bounded trial operation and evidence checks.
-- T-2 complete — all three fixed prompts were invoked once in numeric order from full clean `templates/default` copies. Engineering productivity and autonomous delivery returned SUCCESS with non-empty source diffs; customer management returned TIMEOUT at 600 seconds and was not retried or hand-repaired.
-- T-3 complete — the two successful attempts passed locked install, dependency and frontend-only audit, strict build, assigned-port HTTP load, owned cleanup, source-backed controls, and complete checklist review. The timed-out attempt records skipped/failed checks and an exact blocker.
-- T-4 complete — every finding is dispositioned. No canonical starter or instruction change was adopted, so no fake `02-rerun` exists.
-- T-5 complete — findings, three trial verdicts, overall arithmetic, application documentation, focused checks, and full root validation are recorded.
+- T-1/T-2 remain complete. The correction preserves all three `01-initial` app copies and does not rerun trials 1 or 2. The only initial-artifact change removes two trailing horizontal-space sequences from customer-management `agent-result.md` without changing its text.
+- T-3 correction complete. Customer-management `02-rerun` passed locked install, frontend-only/dependency audits, strict build, standard assigned-port runtime, HTTP proof, owned cleanup, source-backed control review, and its completed checklist.
+- T-4 correction complete. F-1 is ADOPTED in the single allowed adoption batch; canonical direct-generation guidance was copied into exactly one fresh affected rerun using the identical prompt. No second adoption cycle exists.
+- T-5 correction complete. Findings, trial/overall verdicts, durable-output checks/tests, application documentation, validation, and handoff evidence are current.
 
 ## Acceptance evidence
 
 ### AC-1 — Three clean fixed-prompt copies
 
-- `implementation/trials/01-engineering-productivity/attempts/01-initial/`, `02-autonomous-delivery/...`, and `03-customer-management/...` contain complete starter copies, exact `prompt.md` records, and identical baseline inventory `2eb1d7b732b0206585e8a6d2ef2dd91782de084d4d2411d2605ab522b33781f5` and lock hash `ea65164c5e5c4adc563dd2bfff644023bba2053a7f6e50383ede8813b2ac02a7`.
-- Prompt hashes are `ab84db6...c02b`, `847a150b...5c2`, and `5f5788d9...083`; `just trials-check` recomputes exact prompt text/hashes.
-- Successful generation source-diff hashes are `5334962a...a087` and `12f871f6...386d`. Trial 3 also changed source before timeout, but its finite TIMEOUT outcome prevents it from being represented as successful generation.
+- The three preserved initial paths remain under `implementation/trials/{01-engineering-productivity,02-autonomous-delivery,03-customer-management}/attempts/01-initial/` with their exact prompts and complete starter copies.
+- The only additional copy is the plan-required affected `03-customer-management/attempts/02-rerun/`, initialized once through `just trial-init` from canonical inventory `22603a301228e0979c8395b7186e72b4b03d0098771b184de30c0f2a7f492eb5` with no `node_modules` or `dist`.
+- Initial and rerun customer prompt hashes are identical: `5f5788d94f27a613a25d61c836b399e537137c7b5f3a073acf652134cfd97083`. Rerun generation returned SUCCESS with non-empty source-diff hash `f30b3b2d5735926a3ff5f07c1eefb7605a7c3c96c4d3c69cfd8539e09e59dd0d`.
 
 ### AC-2 — Comparable complete records
 
-- Every initial attempt contains `prompt.md`, `agent-result.md`, `evidence.md`, the full `app/`, and a completed `app/QUALITY-CHECKLIST.md`.
-- Agent records include CLI 1.0.81-0, path/permission boundary, timestamps, 600-second timeout, exit metadata, finite outcome, prompt hash, generated-source diff, changed files, and bounded result.
-- Evidence records include clean-copy hash, dependency installation, frontend audit, build, assigned runtime port, HTTP load, owned cleanup, control trace, unmet checks, and attempt verdict. `just trials-check` reports PASS for record/schema completeness.
+- Every initial attempt and the one rerun contain `prompt.md`, `agent-result.md`, `evidence.md`, full `app/`, and a twelve-row completed `app/QUALITY-CHECKLIST.md`.
+- Customer rerun `agent-result.md` records CLI version, app-only permissions, timestamps, 600-second bound, exit 0, prompt/source hashes, changed files, and normalized bounded output. `evidence.md` records clean-copy hashes, install, audit, build, runtime, HTTP, cleanup, controls, unmet checks, quality bar, and verdict.
+- Durable writes now remove trailing horizontal whitespace after output bounding. `trials-check.mjs` rejects any durable agent result with exact offending line numbers; `trial-records.test.mjs` covers semantic preservation, truncation normalization, adopted-finding scoping, and negative line detection.
 
 ### AC-3 — Simulated frontend-only build and runtime contract
 
-- Engineering productivity: locked install/build PASS; port `36583`; HTTP 200, `text/html`, trial marker, owned cleanup, and released port PASS.
-- Autonomous delivery: locked install/build PASS; port `42609`; HTTP 200, `text/html`, trial marker, owned cleanup, and released port PASS.
-- Both preserve the lock hash, match canonical dependency allowlists, use local domain data, and pass prohibited backend/database/Docker/auth/external API/runtime-fetch scans.
-- Customer management: FAIL because generation timed out; install, build, and runtime were deliberately skipped rather than fabricated. This is the exact AC-3 blocker.
+- Customer rerun locked install: PASS with `npm ci --include=dev`, exit 0, unchanged lock `ea65164c5e5c4adc563dd2bfff644023bba2053a7f6e50383ede8813b2ac02a7`, and canonical dependency allowlist PASS.
+- Frontend-only audit: PASS. Local source contains realistic customer/order/invoice data and no backend, database, Docker, authentication, external API/data, or runtime-fetch requirement.
+- Strict build: PASS with `npm run build`, exit 0, 1,579 transformed modules, and proved `dist/index.html` before cleanup.
+- Standard runtime: PASS using `npm run dev -- --host 0.0.0.0 --port 33709`; HTTP 200, `text/html`, customer marker, owned process cleanup, released port, and removal of `node_modules`/`dist` all PASS.
+- Engineering-productivity and autonomous-delivery latest attempts retain their earlier passing AC-3 evidence.
 
-### AC-4 — Plausible controls and explicit gaps
+### AC-4 — Plausible controls and explicit unmet checks
 
-- Engineering productivity `evidence.md` traces team and period filters, repository search/sort, and dashboard navigation from source handlers/state to visible effects; all are PASS with successful HTTP load.
-- Autonomous delivery traces search, status filter, elapsed/token sort, overview/activity tabs, pause/resume, and empty-state recovery; all are PASS with successful HTTP load.
-- Every checklist has twelve finite row outcomes. Visual/responsive judgments are bounded source/CSS inference only; no screenshot, DOM-event, console, viewport, or real-browser evidence is claimed.
-- Customer management controls and all checklist rows are FAIL because the TIMEOUT left completion and runtime behavior inconclusive.
+- Customer rerun `evidence.md` traces seven fixed-prompt major capabilities from rendered control through handler/state to visible effect: search, status/tier filters, create customer, customer details, edit customer, orders/invoices tabs, and activity history. Every trace is PASS and is paired with successful HTTP load.
+- The completed checklist records realistic local data and applicable empty, success, disabled, hover, selected, responsive, and recovery states. Loading/remote-error states are explicitly inapplicable to synchronous local data.
+- Honest unmet quality evidence remains: secondary sidebar/global/help/edit-note/new-order/new-invoice/record-chevron controls are inert, so the broad interaction checklist row is FAIL. They are not fixed-prompt major controls; no claim of DOM-event, screenshot, console, viewport, or real-browser automation is made.
+- The fixed Product Quality Bar is PASS for the rerun because build/start, visual representation, all fixed-prompt major controls, story-supporting data, and complete primary workflows pass; the secondary limitations remain visible and non-blocking in the evidence.
 
-### AC-5 — Findings and rerun discipline
+### AC-5 — Adopted finding and exactly affected rerun
 
-- `implementation/trials/00-findings.md` records category, disposition, observation, proposal, rationale, affected trials, and evidence for each finding.
-- The customer timeout and scope-orientation overhead are DEFERRED after one occurrence. Deterministic trial checks remain PROPOSED operational evidence.
-- Adoption batch is NONE; canonical `templates/default` was unchanged; no `02-rerun` exists. `just trials-check` enforces the finding/rerun graph.
+- `implementation/trials/00-findings.md` classifies F-1 ADOPTED and records Adoption Batch ONE. `templates/default/AGENTS.md` now tells app-bounded coding agents to implement the supplied interface prompt directly and forbids parent-repository discovery, GitHub issue workflows, RPIV, engineering-harness, and Runner orchestration.
+- Root `starter-check` asserts the new canonical guidance tokens and retains malformed-guidance negative coverage. The rerun copied canonical `AGENTS.md` byte-for-byte.
+- Initial versus rerun comparison records identical prompt hash, clean baseline inventories, TIMEOUT versus SUCCESS, skipped versus passing operational proof, and unproved versus seven passing prompt-major control traces.
+- Exactly `03-customer-management/attempts/02-rerun` exists. No rerun exists for trials 1 or 2, and `trials-check` enforces exact adopted-trial/attempt sets, one adoption batch, latest-attempt selection, fresh inventory, copied guidance, and prompt identity.
 
 ### AC-6 — Fixed verdict arithmetic
 
-- `01-engineering-productivity`: PASS.
-- `02-autonomous-delivery`: PASS.
-- `03-customer-management`: FAIL — `01-initial` Copilot generation TIMEOUT at 600 seconds blocks install, build, runtime, completed visual review, and accepted control behavior.
-- Overall Prototype 0 verdict: **FAIL**, because all three trial verdicts are not PASS. The arithmetic and exact blocker are checked by `just trials-check`.
-
-## Controlled negative evidence
-
-- Unknown trial and attempt IDs return exit 2.
-- Reinitializing an existing attempt returns exit 3 without overwrite.
-- `02-rerun` is rejected without an adopted finding affecting that trial.
-- A successful Copilot result without a generated source diff becomes `NO_SOURCE_DIFF`.
-- Timeout/auth/unavailable/error outcomes remain finite failures.
-- Owned runtime cleanup and port-release checks run on the validator path; canonical `starter-check` also exercises missing-marker failure cleanup.
+- `01-engineering-productivity`: PASS using `01-initial`.
+- `02-autonomous-delivery`: PASS using `01-initial`.
+- `03-customer-management`: PASS using the required `02-rerun`; its initial timeout remains preserved and compared.
+- `00-findings.md` records overall Prototype 0 evidence verdict PASS because all three latest required attempts pass. `just trials-check` recomputes that arithmetic and retains the secondary-control/browser-sensor limitations. Final acceptance remains owned by Verify.
 
 ## Documentation evidence
 
-- `README.md` documents recipe discovery, IDs, evidence paths, app-only/timeout/cleanup boundaries, unavailable browser capability, current trial verdicts, and API/configuration/migration/deployment no-impact.
-- `docs/README.md` provides the detailed operational sequence, finite outcome model, retained/removed artifacts, evidence checker semantics, Runner isolation, and current blocker.
-- `AGENTS.md`, `LLM.txt`, `CONTRIBUTING.md`, `project/README.md`, and `project/architecture/README.md` update agent discovery, contributor use, evidence indexing, and the explicit issue-local non-architecture boundary.
-- `justfile` and `package.json` include Issue 7 in both formatting scopes. `.prettierignore` preserves raw generated app output and bounded trial records from post-generation rewriting while formatting plans, helpers, and implementation notes.
-- API impact: none; no endpoint or contract changed. Configuration impact: none; no product option/default changed. Migration impact: none; no data/API/configuration migration. Deployment impact: none; trials are local manual evidence. Architecture impact: explanatory documentation only; no ADR/core-component contract changed.
+- `README.md` and `docs/README.md` document direct app-bounded generation guidance, the single adopted customer rerun, operational/control evidence, preserved initial timeout, current evidence verdict, and explicit limitations.
+- `AGENTS.md`, `LLM.txt`, and `CONTRIBUTING.md` update cold-agent and contributor discovery for the direct-generation boundary without changing Runner ownership.
+- `project/architecture/README.md` explains that direct generation is scoped guidance within the existing generated-frontend contracts, not a new product adapter, lifecycle, ADR, or core-component contract.
+- API impact: none. Configuration/default impact: none. Migration impact: none. Deployment/operations impact: local Issue 7 trial evidence only; root recipe usage is unchanged. No API reference, configuration migration, deployment procedure, ADR, core-component, or decision-log change is required.
 
 ## Validation evidence
 
 ### Focused
 
-`harness checks focused --json` delegated to `just verify-focused` and passed after T-1, T-2, T-3, T-4, and T-5. Each run reported all 6 Vitest files and 13 tests passing, harness skill governance passing, and `git diff --check` passing. Final focused duration was 2293 ms.
+- Repeated `just verify-focused` runs passed while changing durable capture, rerun checks, evidence, docs, and task status. Final focused result: 7 test files and 17 tests PASS, harness skill governance PASS, and `git diff --check` PASS.
+- `harness checks focused --json` delegated exactly to `just verify-focused`, exit 0, with 7 files/17 tests PASS.
+- `just trials-check` PASS after the rerun and completed evidence graph.
+- `git diff --check $(git merge-base HEAD origin/main)` PASS after mechanical normalization of initial evidence.
 
 ### Full
 
-`harness checks full --json` delegated to `just verify` and passed with exit 0 in 38205 ms after all code, trial evidence, verdict, and application-documentation changes. Evidence included 13 workspace tests, lint, formatting, type-check, workspace build, canonical clean-starter install/build/runtime/failure-cleanup proof, `trials-check` PASS, and merge-base diff integrity.
+- `harness checks full --json` delegated exactly to `just verify`, status `ok`, exit 0, duration 27,324 ms. It passed workspace tests, lint, formatting, type-check, builds, canonical starter install/build/runtime and controlled-negative cleanup, `trials-check`, and merge-base diff integrity.
+- Direct `just verify` also passed with the same authoritative gate composition and `trials-check: PASS`.
+- Expected controlled-negative starter messages and ambient `/etc/bash.bashrc` PS1 warnings appeared on stderr without changing the deterministic exit-0 verdict.
 
-The environment emitted repeated `/etc/bash.bashrc` PS1 warnings and expected controlled-negative starter messages on stderr; the harness envelope and delegated exit status remained `ok`/0. Harness Doctor was degraded only for documented capture/attribution visibility and reported no registered sensors. These limitations are retained in the committed retro.
+## Scope and handoff proof
 
-## Changed path groups
-
-- Trial command/check implementation: `justfile`, `package.json`, `.prettierignore`, `implementation/trial-tool.mjs`, `implementation/trials-check.mjs`.
-- Persistent trial evidence: `implementation/trials/**`.
-- Plan/task status and existing Plan artifacts: `plan/**`, `research/00-research.md` as supplied by the exact work item.
-- Application and operating documentation: `README.md`, `docs/README.md`, `AGENTS.md`, `LLM.txt`, `CONTRIBUTING.md`, `project/README.md`, `project/architecture/README.md`.
-- Harness learning record: `.harness/records/retro/2026-08-18/001-issue-7-trials.md`.
-
-## Handoff proof
-
+- Runner-owned state was not inspected or manipulated.
+- Application source in all `01-initial` attempts is unchanged; customer rerun source is the one recorded Copilot result and was not hand-repaired.
 - Branch: `feat/7-run-repeated-prototype-0-generation-trials`.
-- Implementation commit: populated through the managed commit handoff; the final caller handoff carries the exact SHA.
-- Clean tree: proved after the final managed commit in the caller handoff.
-- Status: implementation and evidence production are complete. Final acceptance remains owned by Verify; this record does not claim final verification.
+- Correction commit and clean-tree proof are supplied in the caller handoff after the managed commit.
+- Status: the Implement correction is complete; final verification and acceptance remain owned by Verify.

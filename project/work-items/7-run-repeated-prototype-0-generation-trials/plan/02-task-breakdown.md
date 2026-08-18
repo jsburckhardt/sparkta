@@ -73,6 +73,7 @@ In numeric order, initialize each `01-initial/app/` from the full `templates/def
 ## Task T-3: Validate and evaluate every initial attempt
 
 - **Status:** Complete
+- **Implement correction:** Complete — the adopted customer-management `02-rerun` passed locked install, frontend-only audit, build, assigned-port HTTP runtime, owned cleanup, source-backed major-control review, and checklist completion.
 - **Complexity:** Large
 - **Dependencies:** T-2
 - **Acceptance Criteria:** AC-2, AC-3, AC-4
@@ -106,6 +107,7 @@ Complete the copied checklist with PASS/FAIL for every row and N/A only where pe
 ## Task T-4: Classify findings and rerun affected trials for adopted improvements
 
 - **Status:** Complete
+- **Implement correction:** Complete — F-1 is ADOPTED in the single allowed batch; only `03-customer-management` was rerun once from a fresh `02-rerun` copy with the identical prompt, while `01-initial` remains semantically unchanged.
 - **Complexity:** Large
 - **Dependencies:** T-3
 - **Acceptance Criteria:** AC-5
@@ -134,6 +136,7 @@ Create `implementation/trials/00-findings.md` with observation, instruction/star
 ## Task T-5: Publish final findings, documentation, and handoff evidence
 
 - **Status:** Complete
+- **Implement correction:** Complete — findings, latest-attempt verdict arithmetic, documentation, durable-output regression coverage, and correction evidence reflect the adopted rerun.
 - **Complexity:** Medium
 - **Dependencies:** T-3, T-4
 - **Acceptance Criteria:** AC-2, AC-5, AC-6

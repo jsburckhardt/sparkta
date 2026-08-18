@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
 import process from "node:process";
+import { adoptedTrialIds, trailingWhitespaceLines } from "./trial-records.mjs";
 
 const root = path.join(
   process.cwd(),
@@ -41,6 +42,12 @@ const walk = (directory, relative = "") =>
       return entry.isDirectory() ? walk(directory, child) : [child.replaceAll(path.sep, "/")];
     })
     .sort();
+const inventory = (directory) =>
+  sha(
+    walk(directory)
+      .map((file) => file + "\0" + sha(readFileSync(path.join(directory, file))))
+      .join("\n"),
+  );
 const sourceChanged = (app) => {
   const before = path.join(starter, "src");
   const after = path.join(app, "src");
@@ -64,6 +71,14 @@ else {
     errors.push("Trial directory set must be exactly: " + expected.join(", "));
 }
 
+const findingsFile = path.join(root, "00-findings.md");
+const findings = requireFile(findingsFile) ? text(findingsFile) : "";
+const adoptedTrials = adoptedTrialIds(findings);
+const knownTrials = new Set(catalog.map(([trial]) => trial));
+for (const trial of adoptedTrials) {
+  if (!knownTrials.has(trial)) errors.push("Adopted finding names unknown trial: " + trial);
+}
+
 let passCount = 0;
 for (const [trial, prompt] of catalog) {
   const trialRoot = path.join(root, trial);
@@ -71,10 +86,21 @@ for (const [trial, prompt] of catalog) {
   if (!requireFile(trialFile)) continue;
   const trialText = text(trialFile);
   const latest = /Latest Required Attempt: `([^`]+)`/.exec(trialText)?.[1];
-  if (!["01-initial", "02-rerun"].includes(latest))
-    errors.push("Invalid latest attempt for " + trial);
-  const initial = path.join(trialRoot, "attempts/01-initial");
-  for (const attempt of [initial]) {
+  const expectedLatest = adoptedTrials.has(trial) ? "02-rerun" : "01-initial";
+  if (latest !== expectedLatest)
+    errors.push(`Latest attempt for ${trial} must be ${expectedLatest}`);
+  const attemptsRoot = path.join(trialRoot, "attempts");
+  const attemptIds = existsSync(attemptsRoot)
+    ? readdirSync(attemptsRoot, { withFileTypes: true })
+        .filter((entry) => entry.isDirectory())
+        .map((entry) => entry.name)
+        .sort()
+    : [];
+  const expectedAttempts = adoptedTrials.has(trial) ? ["01-initial", "02-rerun"] : ["01-initial"];
+  if (JSON.stringify(attemptIds) !== JSON.stringify(expectedAttempts))
+    errors.push(`Attempt set for ${trial} must be exactly: ${expectedAttempts.join(", ")}`);
+  for (const attemptId of expectedAttempts) {
+    const attemptPath = path.join(attemptsRoot, attemptId);
     for (const record of [
       "prompt.md",
       "agent-result.md",
@@ -84,7 +110,29 @@ for (const [trial, prompt] of catalog) {
       "app/package-lock.json",
       "app/src/App.tsx",
     ])
-      requireFile(path.join(attempt, record));
+      requireFile(path.join(attemptPath, record));
+    if (!existsSync(attemptPath)) continue;
+    const attemptPrompt = text(path.join(attemptPath, "prompt.md"));
+    if (!attemptPrompt.endsWith(prompt + "\n"))
+      errors.push(`Fixed prompt text changed for ${trial}/${attemptId}`);
+    if (!attemptPrompt.includes(sha(prompt)))
+      errors.push(`Prompt hash mismatch for ${trial}/${attemptId}`);
+    const attemptAgent = text(path.join(attemptPath, "agent-result.md"));
+    const whitespaceLines = trailingWhitespaceLines(attemptAgent);
+    if (whitespaceLines.length)
+      errors.push(
+        `Durable agent result has trailing whitespace for ${trial}/${attemptId} on line(s): ${whitespaceLines.join(", ")}`,
+      );
+    if (attemptId === "02-rerun") {
+      const attemptEvidence = text(path.join(attemptPath, "evidence.md"));
+      requireMatch(
+        attemptEvidence,
+        new RegExp(`Starter Inventory SHA-256: \`${inventory(starter)}\``),
+        `fresh canonical starter inventory for ${trial}/${attemptId}`,
+      );
+      if (text(path.join(attemptPath, "app/AGENTS.md")) !== text(path.join(starter, "AGENTS.md")))
+        errors.push(`Rerun copied guidance differs from canonical guidance for ${trial}`);
+    }
   }
   const attempt = path.join(trialRoot, "attempts", latest ?? "missing");
   if (!existsSync(attempt)) {
@@ -173,16 +221,17 @@ for (const [trial, prompt] of catalog) {
     errors.push("Non-durable runtime artifacts remain for " + trial);
 }
 
-const findingsFile = path.join(root, "00-findings.md");
-if (requireFile(findingsFile)) {
-  const findings = text(findingsFile);
+if (findings) {
   if (findings.includes("PENDING")) errors.push("Pending findings remain");
   requireMatch(findings, /Disposition: (PROPOSED|ADOPTED|DEFERRED)/, "finding disposition");
   requireMatch(findings, /Adoption Batch: (NONE|ONE)/, "adoption batch");
-  const adopted = /Disposition: ADOPTED/.test(findings);
+  const batch = /Adoption Batch: (NONE|ONE)/.exec(findings)?.[1];
+  const expectedBatch = adoptedTrials.size ? "ONE" : "NONE";
+  if (batch !== expectedBatch) errors.push(`Adoption batch must be ${expectedBatch}`);
   for (const [trial] of catalog) {
     const rerun = existsSync(path.join(root, trial, "attempts/02-rerun"));
-    if (!adopted && rerun) errors.push("Rerun exists without an adopted finding: " + trial);
+    if (rerun !== adoptedTrials.has(trial))
+      errors.push(`Rerun/adopted finding mismatch for ${trial}`);
   }
   const overall = /Overall Prototype 0 Verdict: (PASS|FAIL)/.exec(findings)?.[1];
   const expected = passCount === 3 ? "PASS" : "FAIL";
