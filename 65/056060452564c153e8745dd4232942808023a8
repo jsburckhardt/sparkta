@@ -1,0 +1,122 @@
+project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trials/03-customer-management/attempts/02-rerun/app/tsconfig.app.json
+  s_b047c0fae59850::t_f89b89574c75ec 1-22
+project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trials/03-customer-management/attempts/02-rerun/agent-result.md
+  s_b047c0fae59850::t_baf2c6ce4213f1 3,5,7-9,11,13-14,16-20,22-43,45
+  s_b047c0fae59850::t_f89b89574c75ec 1-2,4,6,10,12,15,21,44
+project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trials/03-customer-management/attempts/02-rerun/app/src/components/ui/button.tsx
+  s_b047c0fae59850::t_f89b89574c75ec 1-29
+project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trials/03-customer-management/attempts/02-rerun/app/tsconfig.node.json
+  s_b047c0fae59850::t_f89b89574c75ec 1-12
+project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trials/03-customer-management/attempts/02-rerun/prompt.md
+  s_b047c0fae59850::t_f89b89574c75ec 1-7
+templates/default/AGENTS.md
+  s_b047c0fae59850::t_94e0c97b5f4054 15-18
+project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trials/03-customer-management/attempts/02-rerun/app/tailwind.config.ts
+  s_b047c0fae59850::t_f89b89574c75ec 1-7
+AGENTS.md
+  s_b047c0fae59850::t_ff536874c303b5 47
+project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trial-records.test.mjs
+  s_b047c0fae59850::t_aeb19b166b0ebc 14
+  s_b047c0fae59850::t_cb4dc7f60a94ec 1-3,5-13,15-18,25-31
+  s_b047c0fae59850::t_4127caebdcf9c2 4,19-24
+project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trials/00-findings.md
+  s_b047c0fae59850::t_8fcad1a8b90bd6 16
+  s_b047c0fae59850::t_94e0c97b5f4054 3-4,11,14,30
+  s_b047c0fae59850::t_36fea6d6d6d4fc 5-6,31-44
+project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trials/03-customer-management/attempts/02-rerun/app/src/chart-support.ts
+  s_b047c0fae59850::t_f89b89574c75ec 1-3
+project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trials/03-customer-management/attempts/02-rerun/app/src/main.tsx
+  s_b047c0fae59850::t_f89b89574c75ec 1-13
+project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trials/03-customer-management/attempts/02-rerun/app/tsconfig.json
+  s_b047c0fae59850::t_f89b89574c75ec 1-4
+.harness/records/retro/2026-08-18/002-issue-7-correction.md
+  s_b047c0fae59850::t_343c53b949f1f3 7-8,10-13,17-84,87,89
+  s_b047c0fae59850::t_0a2c548bd37d3d 1-6,9,14-16,85-86,88
+project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trials/03-customer-management/attempts/01-initial/agent-result.md
+  s_b047c0fae59850::t_1a4f9296541e24 40-41
+project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trials/03-customer-management/attempts/02-rerun/app/index.html
+  s_b047c0fae59850::t_f89b89574c75ec 1-12
+justfile
+  s_b047c0fae59850::t_94e0c97b5f4054 108
+project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trials/03-customer-management/attempts/02-rerun/app/AGENTS.md
+  s_b047c0fae59850::t_f89b89574c75ec 1-33
+project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trials/03-customer-management/attempts/02-rerun/app/src/App.tsx
+  s_b047c0fae59850::t_f89b89574c75ec 365,461
+  s_e98f051e82cacb::t_7270ab9f83aad2 1-283,286-294,296-318,321-364,366-460,462-500,502-509,512-587
+  s_e98f051e82cacb::t_49849b06927bc0 284-285,295,319-320,501,510-511
+project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trials-check.mjs
+  s_b047c0fae59850::t_4127caebdcf9c2 5
+  s_b047c0fae59850::t_71625d378d439c 74-81
+  s_b047c0fae59850::t_1de3f78bcb33a0 89-98,100-103,113-132,134-135
+  s_b047c0fae59850::t_b155c9234318e6 224,228-230,233-234
+  s_b047c0fae59850::t_aeb19b166b0ebc 99,133
+  s_b047c0fae59850::t_2174b1687da359 45-50
+LLM.txt
+  s_b047c0fae59850::t_ff536874c303b5 45
+README.md
+  s_b047c0fae59850::t_ff536874c303b5 70,80
+docs/README.md
+  s_b047c0fae59850::t_ff536874c303b5 50,79
+project/architecture/README.md
+  s_b047c0fae59850::t_ff536874c303b5 20
+project/work-items/7-run-repeated-prototype-0-generation-trials/plan/02-task-breakdown.md
+  s_b047c0fae59850::t_8fcad1a8b90bd6 76,110,139
+project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trials/03-customer-management/attempts/02-rerun/app/vite.config.ts
+  s_b047c0fae59850::t_f89b89574c75ec 1-4
+project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/00-implementation.md
+  s_b047c0fae59850::t_35be9ab5c75786 3,5-8,14-16,20-22,26-30,32,34-37,39,41-44,48-51,55-58,64-67,71-73,75,77-78,80-81
+project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trials/03-customer-management/attempts/02-rerun/app/postcss.config.js
+  s_b047c0fae59850::t_f89b89574c75ec 1-3
+project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trials/03-customer-management/attempts/02-rerun/app/src/index.css
+  s_e98f051e82cacb::t_49849b06927bc0 6,24,42,48,62,128
+  s_b047c0fae59850::t_f89b89574c75ec 1-3,187,211
+  s_e98f051e82cacb::t_7270ab9f83aad2 4-5,7-23,25-41,43-47,49-61,63-127,129-186,188-210
+CONTRIBUTING.md
+  s_b047c0fae59850::t_ff536874c303b5 21
+project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trials/03-customer-management/attempts/02-rerun/app/QUALITY-CHECKLIST.md
+  s_b047c0fae59850::t_f89b89574c75ec 1-2,4-6,11-13,20-22,27-29,34-36,40-42
+  s_b047c0fae59850::t_fac343f3708233 3,7-10,14-19,23-26,30-33,37-39,43-45
+project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trials/03-customer-management/trial.md
+  s_b047c0fae59850::t_36fea6d6d6d4fc 8
+  s_b047c0fae59850::t_fac343f3708233 5-7
+project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trial-tool.mjs
+  s_b047c0fae59850::t_aeb19b166b0ebc 129
+  s_b047c0fae59850::t_0a1a849bf85654 60-61,104
+  s_b047c0fae59850::t_4127caebdcf9c2 15
+project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trial-records.mjs
+  s_b047c0fae59850::t_cb4dc7f60a94ec 1-16
+  s_b047c0fae59850::t_4127caebdcf9c2 17-19,23-28
+  s_b047c0fae59850::t_aeb19b166b0ebc 20-22
+project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trials/03-customer-management/attempts/02-rerun/evidence.md
+  s_b047c0fae59850::t_f89b89574c75ec 1-10,17,31-32,36-37,43,45,61-62,66-68,74-75,83,85-87,89,100,106,113-115
+  s_b047c0fae59850::t_b969a675a6ef6c 11-16,18-30,33-35,38-42,44,46-60,63-65,69-73,76-82,84,116
+  s_b047c0fae59850::t_fac343f3708233 88,90-99,101-105,107-112,117-119
+project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trials/03-customer-management/attempts/02-rerun/app/package.json
+  s_b047c0fae59850::t_f89b89574c75ec 1-33
+project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trials/03-customer-management/attempts/02-rerun/app/package-lock.json
+  s_b047c0fae59850::t_1f7e981d7c2fd3 1-3283
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "65056060452564c153e8745dd4232942808023a8",
+  "prompts": {},
+  "sessions": {
+    "s_b047c0fae59850": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "call_OHsl7hqCVWiI8IVvGBEMNZqX",
+        "model": "unknown"
+      },
+      "human_author": "jsburckhardt <jsburckhardt@gmail.com>"
+    },
+    "s_e98f051e82cacb": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "5c9f9810-df88-444b-96e4-f903e8a5fcb4",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "jsburckhardt <jsburckhardt@gmail.com>"
+    }
+  }
+}
