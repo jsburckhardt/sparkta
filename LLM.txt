@@ -42,7 +42,7 @@ apps/server/src/foundation.ts — Exported server foundation identity
 apps/server/src/foundation.test.ts — Server foundation behavior test
 templates/default/package.json — Standalone blessed frontend manifest outside root workspaces
 templates/default/package-lock.json — Independent deterministic starter dependency graph
-templates/default/AGENTS.md — Frontend-only interaction, state, mock-data, visual-quality, and bundled-dependency guidance
+templates/default/AGENTS.md — Direct app-bounded generation plus frontend-only interaction, state, mock-data, visual-quality, and bundled-dependency guidance
 templates/default/QUALITY-CHECKLIST.md — Six-category generated-frontend evaluation and evidence checklist
 templates/default/src/ — Tailwind page, Lucide usage, Radix/shadcn-style button, and Recharts resolution
 docs/README.md — Detailed harness setup, API, configuration, operation, cleanup, skills, and architecture guide
@@ -81,6 +81,9 @@ project/architecture/core-components/CORE-COMPONENT-260813-soft-factory-runner-o
 .soft-factory/config.yml — Protocol-1 Runner roots, final validation, and positive concurrency
 .github/agents/runner-dispatcher.agent.md — APS v1.2.2 user/model facade for one Doctor-gated explicit issue dispatch
 project/work-items/2-adopt-the-ai-substrate-engineering-harness/ — Issue 2 research, plan, implementation, and acceptance evidence
+project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trials/ — Fixed prompts, generated app copies, checklists, control traces, findings, and Prototype 0 verdict evidence
+project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trial-tool.mjs — Issue-local implementation behind the root trial recipes; never invoke directly
+project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trials-check.mjs — Issue-local evidence graph checker invoked by root trials-check
 
 project/architecture/ADR/ADR-260815-blessed-frontend-starter.md — Accepted standalone starter boundary
 project/architecture/core-components/CORE-COMPONENT-260815-generated-frontend-contract.md — Generated frontend dependency, isolation, build, runtime, and validation contract

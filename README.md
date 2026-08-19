@@ -35,19 +35,23 @@ Successful boot leaves the foundation running. Always finish with `harness stop 
 
 ## Authoritative project recipes
 
-| Recipe                            | Purpose                                                                                |
-| --------------------------------- | -------------------------------------------------------------------------------------- |
-| `just setup`                      | Recreate dependencies from the committed lockfile                                      |
-| `just run`                        | Start the minimal web and server processes                                             |
-| `just test`                       | Run all workspace tests                                                                |
-| `just lint`                       | Check application source                                                               |
-| `just format`                     | Format application and affected operating documentation                                |
-| `just format-check`               | Check application and operating-document formatting                                    |
-| `just type-check`                 | Type-check both workspaces                                                             |
-| `just build`                      | Build both workspaces                                                                  |
-| `just verify-focused [test-path]` | Run one selected Vitest target, or all tests when omitted, plus diff integrity         |
-| `just starter-check`              | Prove a clean starter copy installs, builds, serves on an assigned port, and cleans up |
-| `just verify`                     | Run the complete static, test, build, starter, and diff-integrity suite                |
+| Recipe                                  | Purpose                                                                                |
+| --------------------------------------- | -------------------------------------------------------------------------------------- |
+| `just setup`                            | Recreate dependencies from the committed lockfile                                      |
+| `just run`                              | Start the minimal web and server processes                                             |
+| `just test`                             | Run all workspace tests                                                                |
+| `just lint`                             | Check application source                                                               |
+| `just format`                           | Format application and affected operating documentation                                |
+| `just format-check`                     | Check application and operating-document formatting                                    |
+| `just type-check`                       | Type-check both workspaces                                                             |
+| `just build`                            | Build both workspaces                                                                  |
+| `just verify-focused [test-path]`       | Run one selected Vitest target, or all tests when omitted, plus diff integrity         |
+| `just starter-check`                    | Prove a clean starter copy installs, builds, serves on an assigned port, and cleans up |
+| `just trial-init <trial> <attempt>`     | Create an overwrite-safe full starter copy for an allowlisted Issue 7 trial            |
+| `just trial-generate <trial> <attempt>` | Run one app-bounded Copilot generation with a finite 600-second timeout                |
+| `just trial-validate <trial> <attempt>` | Audit, install, build, HTTP-smoke, and clean one trial attempt                         |
+| `just trials-check`                     | Validate the Issue 7 evidence graph, rerun bounds, and verdict arithmetic              |
+| `just verify`                           | Run the complete static, test, build, starter, and diff-integrity suite                |
 
 The root [`justfile`](justfile) owns all project command bodies. Harness checks supplement that interface and never duplicate or replace the focused or full recipes.
 
@@ -63,9 +67,17 @@ npm run build
 npm run dev -- --host 0.0.0.0 --port 6017
 ```
 
-Coding agents must follow the copied [`templates/default/AGENTS.md`](templates/default/AGENTS.md): use realistic domain-specific simulated data, implement relevant interactions and applicable states, remain frontend-only, use bundled dependencies, and must not install arbitrary packages. A future dependency addition requires an explicitly adopted architecture allowlist change.
+Coding agents must follow the copied [`templates/default/AGENTS.md`](templates/default/AGENTS.md): implement the supplied interface prompt directly in the standalone app without parent-repository, GitHub issue, RPIV, harness, or Runner orchestration; use realistic domain-specific simulated data, implement relevant interactions and applicable states, remain frontend-only, use bundled dependencies, and must not install arbitrary packages. A future dependency addition requires an explicitly adopted architecture allowlist change.
 
 Every copy also carries [`templates/default/QUALITY-CHECKLIST.md`](templates/default/QUALITY-CHECKLIST.md). Its six direct pass/fail categories are design quality, instruction quality, stack adherence, mock-data quality, build success, and runtime startup. Only conditional interaction/state checks may be N/A, with a request-specific rationale. Run `just starter-check` at the repository root for deterministic canonical/copied-document assertions, malformed-copy rejection, temporary-copy install/build/startup, assigned-port HTTP marker, failure cleanup, and lockfile proof. The static catalogue checks do not automate contextual visual judgment; reviewers record rendered evidence using the bounded checklist vocabulary.
+
+## Prototype 0 generation trials
+
+Issue 7 adds a manual, evidence-producing trial surface; it does not add a Sparkta product agent adapter or generated-app lifecycle. The fixed trial IDs are `01-engineering-productivity`, `02-autonomous-delivery`, and `03-customer-management`; attempt IDs are `01-initial` and, only after an adopted canonical improvement, `02-rerun`. Operate them only through the root recipes above. Initialization refuses overwrite, generation confines Copilot path access to the copied `app/` and records unavailable/auth/timeout outcomes, validation uses locked dependencies and an assigned nondefault port, and cleanup removes only owned runtime processes and non-durable artifacts.
+
+Durable records live under [`project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trials/`](project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trials/). Each attempt contains its exact prompt, bounded agent result, operational/control evidence, complete app copy, and completed quality checklist. `just trials-check` validates record completeness, findings dispositions, at-most-one rerun, and the fixed rule that all three latest attempts must pass for the overall verdict to pass. HTTP proof establishes browser-loadable HTML only; no screenshot, DOM-event, console, viewport, or real-browser automation is claimed. Never call the issue-local helper directly or access Runner-owned state.
+
+The initial run produced two passing trials and one honest customer-management timeout. Finding F-1 adopted the scoped direct-generation instruction above, and exactly that affected trial was rerun once from a fresh `02-rerun` copy with the identical prompt. The rerun passed locked install, frontend-only audit, build, assigned-port HTTP runtime, owned cleanup, and all fixed-prompt major-control traces; its inert secondary controls and lack of real-browser sensors remain explicit unmet checks. The three latest required attempts now produce an overall evidence verdict of **PASS**; final acceptance remains owned by Verify.
 
 ## Soft Factory Runner operations
 
@@ -111,4 +123,4 @@ Future durable generated-application files belong under `.sparkta/apps/`. Recons
 - [`project/architecture/`](project/architecture/) — accepted ADRs and adopted cross-cutting contracts
 - [`project/work-items/`](project/work-items/) — RPIV plans and evidence
 
-The starter is additive and local-only: it adds no product API, database, authentication, configuration migration, external infrastructure, server deployment, or generated-app lifecycle procedure. Harness and Runner adoption are also additive and require no API or data migration. Runner configuration remains protocol 1 with safe roots, final `just verify`, and concurrency 1; do not hand-edit Runner state. There is no server deployment procedure for this local-only foundation.
+The trial surface is local, manual, and evidence-only: it adds no product API, configuration option, data migration, deployment procedure, or generated-app lifecycle. The starter is additive and local-only: it adds no product API, database, authentication, configuration migration, external infrastructure, server deployment, or generated-app lifecycle procedure. Harness and Runner adoption are also additive and require no API or data migration. Runner configuration remains protocol 1 with safe roots, final `just verify`, and concurrency 1; do not hand-edit Runner state. There is no server deployment procedure for this local-only foundation.

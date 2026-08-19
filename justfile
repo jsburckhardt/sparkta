@@ -21,7 +21,7 @@ lint:
 
 # Format application and operating documentation.
 format:
-    npx prettier --write package.json tsconfig.base.json eslint.config.js prettier.config.js apps templates/default README.md docs project/architecture/README.md project/work-items/5-establish-the-blessed-frontend-starter project/work-items/6-codify-ui-generation-instructions-and-quality-checks
+    npx prettier --write package.json tsconfig.base.json eslint.config.js prettier.config.js apps templates/default README.md docs project/architecture/README.md project/work-items/5-establish-the-blessed-frontend-starter project/work-items/6-codify-ui-generation-instructions-and-quality-checks project/work-items/7-run-repeated-prototype-0-generation-trials
 
 # Check formatting for application and operating documentation.
 format-check:
@@ -47,6 +47,23 @@ verify-focused target="":
     just verify-harness-skills
     if [[ -n "{{target}}" ]]; then npm run test:focused -- "{{target}}"; else npm run test:focused; fi
     git diff --check
+
+
+# Create one overwrite-safe complete starter copy for an allowlisted Prototype 0 trial attempt.
+trial-init trial attempt:
+    node project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trial-tool.mjs init "{{trial}}" "{{attempt}}"
+
+# Run one finite noninteractive Copilot generation with only the selected app writable.
+trial-generate trial attempt:
+    node project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trial-tool.mjs generate "{{trial}}" "{{attempt}}"
+
+# Install, audit, build, serve, probe, and clean one persistent trial attempt.
+trial-validate trial attempt:
+    node project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trial-tool.mjs validate "{{trial}}" "{{attempt}}"
+
+# Check the complete Issue 7 evidence graph and fixed verdict arithmetic.
+trials-check:
+    node project/work-items/7-run-repeated-prototype-0-generation-trials/implementation/trials-check.mjs
 
 
 
@@ -88,7 +105,7 @@ starter-check:
     assert_quality_contract() {
       local contract_dir="$1" guidance="$1/AGENTS.md" checklist="$1/QUALITY-CHECKLIST.md" term ac
       [[ -f "$guidance" && -f "$checklist" ]] || { echo "Missing generated-frontend guidance or checklist in $contract_dir" >&2; return 1; }
-      for term in         "frontend-only" "domain-specific simulated data" "npm run build" "npm run dev -- --host 0.0.0.0 --port <PORT>"         "navigation" "filters" "search" "sorting" "tabs" "dialogs" "forms" "state changes" "requested or contextually relevant"         "loading" "empty" "error" "success" "disabled" "hover" "selected" "where each is applicable"         "backend services" "databases" "Docker" "authentication infrastructure" "external infrastructure" "external data" "runtime fetches" "external APIs"         "realistic domain-specific names, values, statuses, and timestamps" "placeholder prose" "generic numbered identities"         "giant gradients" "card-enclosing every element" "huge radii" "excessive shadows" "meaningless statistics" "random purple accents" "generic hero sections" "excessive whitespace"         "clear hierarchy" "purposeful density" "coherent spacing" "strong typography" "subtle interaction" "useful information architecture" "responsive layout" "realistic content"; do
+      for term in         "frontend-only" "Implement the supplied interface prompt directly" "do not attempt parent-repository discovery" "domain-specific simulated data" "npm run build" "npm run dev -- --host 0.0.0.0 --port <PORT>"         "navigation" "filters" "search" "sorting" "tabs" "dialogs" "forms" "state changes" "requested or contextually relevant"         "loading" "empty" "error" "success" "disabled" "hover" "selected" "where each is applicable"         "backend services" "databases" "Docker" "authentication infrastructure" "external infrastructure" "external data" "runtime fetches" "external APIs"         "realistic domain-specific names, values, statuses, and timestamps" "placeholder prose" "generic numbered identities"         "giant gradients" "card-enclosing every element" "huge radii" "excessive shadows" "meaningless statistics" "random purple accents" "generic hero sections" "excessive whitespace"         "clear hierarchy" "purposeful density" "coherent spacing" "strong typography" "subtle interaction" "useful information architecture" "responsive layout" "realistic content"; do
         grep -Fq -- "$term" "$guidance" || { echo "Guidance contract missing: $term" >&2; return 1; }
       done
       mapfile -t categories < <(sed -n "s/^## //p" "$checklist")
@@ -205,4 +222,5 @@ verify:
     just type-check
     just build
     just starter-check
+    just trials-check
     git diff --check "$(git merge-base HEAD origin/main)"

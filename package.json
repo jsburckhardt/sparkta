@@ -15,7 +15,7 @@
     "dev": "concurrently --kill-others --success first --names web,server --prefix-colors cyan,magenta npm:dev:web npm:dev:server",
     "dev:web": "npm run dev --workspace @sparkta/web",
     "dev:server": "npm run dev --workspace @sparkta/server",
-    "format:check": "prettier --check package.json tsconfig.base.json eslint.config.js prettier.config.js apps templates/default README.md docs project/architecture/README.md project/work-items/5-establish-the-blessed-frontend-starter project/work-items/6-codify-ui-generation-instructions-and-quality-checks",
+    "format:check": "prettier --check package.json tsconfig.base.json eslint.config.js prettier.config.js apps templates/default README.md docs project/architecture/README.md project/work-items/5-establish-the-blessed-frontend-starter project/work-items/6-codify-ui-generation-instructions-and-quality-checks project/work-items/7-run-repeated-prototype-0-generation-trials",
     "lint": "eslint apps",
     "test": "npm run test --workspaces --if-present",
     "test:focused": "vitest run",
