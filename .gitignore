@@ -7,3 +7,8 @@
 /project/work-items/*/.pr-title.txt
 /project/work-items/*/.pr-body.md
 /project/work-items/*/.issue-body.md
+/node_modules/
+/dist/
+/coverage/
+/.pnpm-store/
+*.tsbuildinfo

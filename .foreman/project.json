@@ -1,0 +1,158 @@
+{
+  "version": 1,
+  "initialization": {
+    "complete": true,
+    "mode": "bootstrap",
+    "completed_at": "2026-10-02T05:07:28Z"
+  },
+  "project": "Sparkta",
+  "description": "Local agent-powered UI prototyping for devcontainers and GitHub Codespaces, turning conversation into interactive React frontends using mock data.",
+  "repository": "jsburckhardt/sparkta",
+  "remote": "origin",
+  "base_branch": "main",
+  "base_ref": "origin/main",
+  "stack": {
+    "runtime": "Node.js 24",
+    "languages": ["TypeScript"],
+    "typescript": "strict",
+    "frontend": ["React", "Vite", "Tailwind CSS"],
+    "package_manager": "pnpm",
+    "test_runner": "Vitest",
+    "quality": ["ESLint", "Prettier"]
+  },
+  "recipes": {
+    "setup": "setup",
+    "run": "run",
+    "build": "build",
+    "test": "test",
+    "lint": "lint",
+    "format_check": "format-check",
+    "type_check": "type-check",
+    "verify_focused": "verify-focused",
+    "verify": "verify"
+  },
+  "workers": {
+    "enabled": true,
+    "adapter": "copilot-cli-tmux",
+    "max_workers": 2,
+    "permission_mode": "yolo",
+    "permission_approved": true,
+    "permission_scope": ["controller", "issue-generator", "workers", "resumes"],
+    "max_review_rounds": 3,
+    "session": "foreman",
+    "controller_window": "foreman",
+    "worker_window_pattern": "rpiv-<issue>",
+    "worktree_root": ".trees",
+    "worktree_pattern": ".trees/issue-<issue>",
+    "assignment_access": "Managed RPIV receives the controller root through --add-dir and validates the immutable assignment path and digest.",
+    "operations": {
+      "controller-launch": {
+        "recipe": "tmux-foreman-launch",
+        "arguments": ["bootstrap_file"],
+        "output": "Owned foreman session and controller window"
+      },
+      "controller-recover": {
+        "recipe": "tmux-foreman-recover",
+        "arguments": [
+          "bootstrap_file",
+          "expected_session_id",
+          "expected_window_id",
+          "expected_pane_id",
+          "expected_pane_pid",
+          "expected_path"
+        ],
+        "output": "Exact pre-launch shell identity validated, then the existing controller window is respawned through the shared --yolo launcher"
+      },
+      "prepare": {
+        "recipe": "worktree-prepare",
+        "arguments": ["issue", "branch", "remote", "base_branch"],
+        "output": "Absolute isolated issue worktree path"
+      },
+      "launch": {
+        "recipe": "tmux-worker-launch",
+        "arguments": ["issue", "worktree", "bootstrap_file"],
+        "output": "Owned rpiv-N worker window"
+      },
+      "inspect": {
+        "recipe": "tmux-worker-inspect",
+        "arguments": ["issue"],
+        "output": "Window, process, liveness, and current-path evidence"
+      },
+      "status": {
+        "recipe": "tmux-worker-status",
+        "arguments": ["issue"],
+        "output": "Worker pane liveness only"
+      },
+      "list": {
+        "recipe": "tmux-worker-list",
+        "arguments": [],
+        "output": "Owned session window identities"
+      },
+      "signal": {
+        "recipe": "tmux-worker-signal",
+        "arguments": ["issue"],
+        "output": "Wakeup hint without message text"
+      },
+      "wait": {
+        "recipe": "tmux-worker-wait",
+        "arguments": ["issue", "timeout_seconds"],
+        "output": "Explicit signaled or timeout outcome plus owned pane liveness; transport failures are non-zero"
+      },
+      "resume": {
+        "recipe": "tmux-worker-resume",
+        "arguments": ["issue", "worktree", "bootstrap_file"],
+        "output": "Same stopped worker window resumed through --yolo launcher"
+      },
+      "retire": {
+        "recipe": "tmux-worker-retire",
+        "arguments": ["issue"],
+        "output": "Owned stopped worker window removed; worktree preserved"
+      },
+      "issues": {
+        "recipe": "issue-generator-run",
+        "arguments": ["bootstrap_file"],
+        "output": "Primary issue-generator result and correlated files"
+      },
+      "review": {
+        "recipe": "pr-inspect",
+        "arguments": ["repository", "pr"],
+        "output": "Stable-head PR metadata, diff, discussion, and checks"
+      },
+      "review-comment": {
+        "recipe": "pr-comment",
+        "arguments": ["repository", "pr", "body_file"],
+        "output": "Published comment URL"
+      },
+      "delivery": {
+        "recipe": "delivery-inspect",
+        "arguments": ["repository", "pr", "remote", "base_branch"],
+        "output": "PR identity plus explicit nonmerged status or fetched remote/base merge-ancestry evidence"
+      },
+      "integration-checkout": {
+        "recipe": "integration-sync",
+        "arguments": ["remote", "base_branch"],
+        "output": "Exact revision of an owned clean fast-forwarded base checkout"
+      },
+      "full-verification": {
+        "recipe": "verify",
+        "arguments": [],
+        "output": "Complete project verification result"
+      }
+    },
+    "safety": {
+      "automatic_merge": false,
+      "force_push": false,
+      "automatic_worktree_removal": false,
+      "launch_during_bootstrap": false
+    }
+  },
+  "capabilities": {
+    "github_authentication": "configured",
+    "copilot_cli": "1.0.91",
+    "tmux": "3.7c",
+    "just": "1.42.4",
+    "node": "24.21.0",
+    "pnpm": "10.34.5",
+    "host_contract_validation": "tests/foreman-contract.sh"
+  }
+}

@@ -55,6 +55,34 @@ You MUST mark a PR review comment as resolved via the GitHub API after fixing th
 
 <constants>
 APS_BADGE: "[![APS version](https://img.shields.io/badge/APS-v1.2.2-blue?logo=github)](https://github.com/chris-buckley/agnostic-prompt-standard/releases/tag/v1.2.2)"
+PROJECT_INITIALIZATION: YAML<<
+name: Sparkta
+status: initialized
+stack:
+  runtime: Node.js 24
+  language: strict TypeScript
+  frontend: React + Vite + Tailwind CSS
+  package_manager: pnpm
+  test_runner: Vitest
+quality:
+  - ESLint
+  - Prettier
+commands:
+  - setup
+  - run
+  - build
+  - test
+  - lint
+  - format-check
+  - type-check
+  - verify-focused
+  - verify
+managed_execution:
+  adapter: copilot-cli-tmux
+  permission_mode: yolo
+  max_workers: 2
+  max_review_rounds: 3
+>>
 PIPELINE_STAGES: YAML<<
 - id: research
   name: Research

@@ -127,7 +127,7 @@ tmux session: foreman
 
 Use the project's branch naming convention rather than an imposed application
 branch name. The dedicated `foreman` session does not commandeer the
-devcontainer's existing shared `soft-factory` session/socket.
+devcontainer's existing shared `sparkta` session/socket.
 
 All Foreman-managed Copilot sessions use **`--yolo`**, including the controller,
 issue-generator, RPIV workers, and resumed sessions. The shared thin launcher

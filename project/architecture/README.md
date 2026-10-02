@@ -17,6 +17,8 @@ mission scheduling from single-issue RPIV execution.
 and [RPIV Observability](core-components/CORE-COMPONENT-260906-rpiv-observability.md)
 define their shared boundaries.
 
+Sparkta's application foundation is recorded in the [Node React Vite Toolchain ADR](ADR/ADR-261002-node-react-vite-toolchain.md). Shared application contracts cover [development standards](core-components/CORE-COMPONENT-261002-development-standards.md), [local persistence](core-components/CORE-COMPONENT-261002-local-persistence.md), [explicit errors](core-components/CORE-COMPONENT-261002-explicit-errors.md), and [process ownership and cleanup](core-components/CORE-COMPONENT-261002-process-ownership-cleanup.md). These are foundation boundaries, not completed product implementations.
+
 ### ADRs (Architecture Decision Records)
 ADRs capture significant architectural decisions. They are **global** — not scoped to any single issue. Every ADR must be recorded in `ADR/DECISION-LOG.md`.
 

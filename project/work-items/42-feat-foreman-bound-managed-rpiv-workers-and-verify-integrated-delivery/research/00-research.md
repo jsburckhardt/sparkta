@@ -1,7 +1,7 @@
 # Research brief: #42
 
 **Scope type:** issue
-**Issue:** [#42](https://github.com/jsburckhardt/soft-factory/issues/42)
+**Issue:** [#42](https://github.com/jsburckhardt/sparkta/issues/42)
 **Canonical work item:** `project/work-items/42-feat-foreman-bound-managed-rpiv-workers-and-verify-integrated-delivery/`
 
 ## Repository findings
