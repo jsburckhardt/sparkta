@@ -2,7 +2,7 @@
 
 ## Task T-1: Authenticate the immutable source and capture preservation baselines
 
-- **Status:** Pending
+- **Status:** Complete
 - **Complexity:** Medium
 - **Dependencies:** None
 - **Acceptance Criteria:** AC-1, AC-5
@@ -44,7 +44,7 @@ Do not extract, import, adapt, or recreate archive files until all gates pass.
 
 ## Task T-2: Import the approved baseline into assignment-authorized paths
 
-- **Status:** Pending
+- **Status:** Complete
 - **Complexity:** High
 - **Dependencies:** T-1
 - **Acceptance Criteria:** AC-1, AC-2, AC-3, AC-8
@@ -90,7 +90,7 @@ file from this Plan.
 
 ## Task T-3: Reconcile identity, stack, profile, documentation, and devcontainer contracts
 
-- **Status:** Pending
+- **Status:** Complete
 - **Complexity:** Medium
 - **Dependencies:** T-2
 - **Acceptance Criteria:** AC-1, AC-2, AC-3, AC-4, AC-8
@@ -138,7 +138,7 @@ container is not evidence of an unperformed fresh-container rebuild.
 
 ## Task T-4: Maintain executable commands and deterministic regression coverage
 
-- **Status:** Pending
+- **Status:** Complete
 - **Complexity:** High
 - **Dependencies:** T-3
 - **Acceptance Criteria:** AC-2, AC-3, AC-4, AC-5, AC-7
@@ -184,7 +184,7 @@ real worker as a test.
 
 ## Task T-5: Prove the delivered baseline and prepare the Implement handoff
 
-- **Status:** Pending
+- **Status:** Complete
 - **Complexity:** High
 - **Dependencies:** T-4
 - **Acceptance Criteria:** AC-1, AC-2, AC-3, AC-4, AC-5, AC-6, AC-7, AC-8
