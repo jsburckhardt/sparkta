@@ -4,6 +4,10 @@ This directory contains all active core-component definitions for the project.
 
 - [Foreman Orchestration](CORE-COMPONENT-260906-foreman-orchestration.md): context, graph, capacity, isolation, recovery, and integration.
 - [RPIV Observability](CORE-COMPONENT-260906-rpiv-observability.md): standalone/managed lifecycle state and worker communication.
+- [Development Standards](CORE-COMPONENT-261002-development-standards.md): strict TypeScript, commits, tests, and command validation.
+- [Local Persistence](CORE-COMPONENT-261002-local-persistence.md): durable local data and disposable runtime boundaries.
+- [Explicit Errors](CORE-COMPONENT-261002-explicit-errors.md): actionable failures without silent fallbacks.
+- [Process Ownership and Cleanup](CORE-COMPONENT-261002-process-ownership-cleanup.md): exact ownership and safe runtime cleanup.
 
 ## Creating a New Core-Component
 

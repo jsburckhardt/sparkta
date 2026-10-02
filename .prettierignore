@@ -1,0 +1,6 @@
+coverage
+dist
+node_modules
+pnpm-lock.yaml
+project/architecture/soft-factory-pipeline.excalidraw
+.github/skills/agnostic-prompt-standard

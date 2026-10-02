@@ -7,6 +7,7 @@ This file is the single registry of all architectural decisions and core-compone
 | ID | Title | Status | Date |
 |----|-------|--------|------|
 | ADR-260906-foreman-control-plane | Foreman Control Plane | Accepted | 2026-09-06 |
+| ADR-261002-node-react-vite-toolchain | Node React Vite Toolchain | Accepted | 2026-10-02 |
 
 ## Core-Components
 
@@ -19,6 +20,10 @@ This file is the single registry of all architectural decisions and core-compone
 | CORE-COMPONENT-260806-architecture-artifact-naming | Architecture Artifact Naming | Adopted | 2026-08-06 |
 | CORE-COMPONENT-260906-foreman-orchestration | Foreman Orchestration | Adopted | 2026-09-06 |
 | CORE-COMPONENT-260906-rpiv-observability | RPIV Observability | Adopted | 2026-09-06 |
+| CORE-COMPONENT-261002-development-standards | Development Standards | Adopted | 2026-10-02 |
+| CORE-COMPONENT-261002-local-persistence | Local Persistence | Adopted | 2026-10-02 |
+| CORE-COMPONENT-261002-explicit-errors | Explicit Errors | Adopted | 2026-10-02 |
+| CORE-COMPONENT-261002-process-ownership-cleanup | Process Ownership and Cleanup | Adopted | 2026-10-02 |
 
 ## Decisions
 
@@ -69,3 +74,8 @@ Short, actionable statements derived from ADRs and core-components. More than on
 | 41 | Pass versioned bounded issue assignments to managed RPIV workers and check delivered paths | CORE-COMPONENT-260906-foreman-orchestration | 2026-09-30 |
 | 42 | Return typed worker results inside correlated lifecycle events without mutating Foreman's graph | CORE-COMPONENT-260906-rpiv-observability | 2026-09-30 |
 | 43 | Refresh only an owned integrated base checkout before configured full mission verification | CORE-COMPONENT-260906-foreman-orchestration | 2026-09-30 |
+| 44 | Use Node.js 24, pnpm, React, strict TypeScript, Vite, and Tailwind CSS as Sparkta's foundational frontend toolchain | ADR-261002-node-react-vite-toolchain | 2026-10-02 |
+| 45 | Validate Sparkta with Vitest, ESLint, Prettier, strict TypeScript, and root justfile recipes | CORE-COMPONENT-261002-development-standards | 2026-10-02 |
+| 46 | Keep durable local project data separate from disposable runtime sessions, processes, and ports | CORE-COMPONENT-261002-local-persistence | 2026-10-02 |
+| 47 | Surface failed operations as actionable errors without silent or success-shaped fallbacks | CORE-COMPONENT-261002-explicit-errors | 2026-10-02 |
+| 48 | Stop and clean up only runtime resources with proven Sparkta ownership | CORE-COMPONENT-261002-process-ownership-cleanup | 2026-10-02 |

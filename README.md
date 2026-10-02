@@ -1,50 +1,35 @@
-# Project Name
+# Sparkta
 
-<!-- Replace with a short description of your project. -->
 [![APS version](https://img.shields.io/badge/APS-v1.2.2-blue?logo=github)](https://github.com/chris-buckley/agnostic-prompt-standard/releases/tag/v1.2.2)
+
+Sparkta is a local agent-powered UI prototyping environment for devcontainers and GitHub Codespaces. It turns reviewed product conversations into interactive React frontends backed by mock data. Source is durable; runtime sessions, processes, and ports are disposable.
+
+## Goal
+
+Establish a dependable development foundation so reviewed RPIV issues can deliver the product incrementally. The first product release is intended to use the real GitHub Copilot CLI for generation; that product capability is not implemented by bootstrap.
+
+## Development status
+
+This checkout contains only the foundational React, strict TypeScript, Vite, Tailwind CSS, Vitest, ESLint, and Prettier scaffold. It does not yet provide conversational generation, persistence engines, session management, process scheduling, or other product features.
+
+## Commands
+
+The root `justfile` is the operating interface:
+
+| Recipe                | Purpose                                          |
+| --------------------- | ------------------------------------------------ |
+| `just setup`          | Restore the frozen pnpm dependency graph         |
+| `just run`            | Start the Vite development server                |
+| `just test`           | Run deterministic Vitest tests                   |
+| `just lint`           | Run ESLint                                       |
+| `just format-check`   | Check application and project formatting         |
+| `just type-check`     | Check strict TypeScript projects                 |
+| `just build`          | Type-check and build the frontend                |
+| `just verify-focused` | Run focused application and host-contract checks |
+| `just verify`         | Run the complete configured verification suite   |
 
 ## Engineering workflow
 
-This repository is a **template**, not a Foreman application. Start a new
-project with `bootstrap`, or use `onboard-repo` to discover an existing project's
-stack and commands. Those agents record the project's capabilities and can
-configure thin worker-operation recipes when explicitly requested. Foreman
-does not impose Python or another implementation language.
+Foreman owns repository missions; RPIV delivers one issue through Research, Plan, Implement, and Verify. Managed workers are optional and use isolated `.trees/issue-N` worktrees and `rpiv-N` windows in an owned `foreman` tmux session. Bootstrap configures capabilities but does not create a mission, issue, worktree, session, or worker.
 
-**Foreman owns the mission; RPIV delivers one issue.** Give the `foreman` agent a
-PRD or product direction to build and maintain a dependency graph of GitHub
-issues, retain repository context, and schedule isolated RPIV workers within a
-configured capacity when that project has enabled worker execution.
-
-```text
-Product direction -> Foreman -> issue dependency graph
-                          -> tmux session: foreman
-                             foreman | rpiv-21 | rpiv-22
-                                        |         |
-                                  .trees/issue-21  .trees/issue-22
-                                        |         |
-                                  Copilot CLI + RPIV
-                                  Research -> Plan -> Implement -> Verify
-```
-
-Foreman is optional: use `rpiv` directly for a single issue. Each worker exposes
-structured state/events; a delivered PR is not treated as merged integration.
-Foreman passes a bounded, versioned assignment to each issue worker and
-requires typed status/results; after integrating the delivered issues it runs
-the project's full verification before declaring the mission complete.
-The template ships no scheduler runtime and does not start workers automatically.
-Enabling managed execution approves `--yolo` for the controller and all managed
-Copilot launches/resumes. Foreman reviews each delivered PR against expected
-outcomes, sends findings to its RPIV worker, and re-reviews the updated PR.
-Mission context can be maintained before execution is configured; standalone
-RPIV remains available with its own permission policy.
-See [Foreman usage and operations](docs/foreman.md) for setup, graph format,
-permission modes, start/resume/pause, and worker communication.
-
-## Documentation
-
-- [`CONTRIBUTING.md`](CONTRIBUTING.md) — pipeline workflow, how to contribute via GitHub Issues, and where artifacts belong
-- [`AGENTS.md`](AGENTS.md) — agent definitions, guardrails, and pipeline specification
-- [`docs/`](docs/) — application-specific documentation (API docs, user guides, etc.)
-- [`project/`](project/) — architecture decisions, core-components, and human-readable work-item artifacts
-- [`.github/agents/foreman.agent.md`](.github/agents/foreman.agent.md) — APS mission coordinator for Copilot CLI
+See [Foreman operations](docs/foreman.md), [agent contracts](AGENTS.md), and [project architecture](project/architecture/README.md).

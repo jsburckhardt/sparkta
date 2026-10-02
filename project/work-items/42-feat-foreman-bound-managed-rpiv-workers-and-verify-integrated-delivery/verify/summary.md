@@ -1,9 +1,9 @@
 # Verification summary: #42
 
-**Issue:** [#42](https://github.com/jsburckhardt/soft-factory/issues/42)
+**Issue:** [#42](https://github.com/jsburckhardt/sparkta/issues/42)
 **Branch:** `feat/42-foreman-rpiv-tmux`
 **Reviewed implementation commit:** `9937c0b2f52de7a39b3190fdc6222fb6e8e0ef34`
-**Pull request:** [#43](https://github.com/jsburckhardt/soft-factory/pull/43)
+**Pull request:** [#43](https://github.com/jsburckhardt/sparkta/pull/43)
 **Scope type:** issue
 
 The review corrections are on the same branch and PR. The initial commit
